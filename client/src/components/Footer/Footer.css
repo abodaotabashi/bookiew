@@ -1,0 +1,151 @@
+.footer {
+    height: 210px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /*border-top-left-radius: 30px;
+    border-top-right-radius: 30px;*/
+    background: white;
+    position: relative;
+}
+
+.footerBreakline {
+    margin: 15px 0;
+    color: white;
+    border-radius: 50px;
+    width: 70%;
+    color: #341f97;
+}
+
+.footerText {
+    font-size: 14px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Century Gothic';
+    color: #341f97;
+}
+
+.footerSectionsContainer {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5em;
+}
+
+.footerLeftSection{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footerMiddleSection{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.footerRightSection{
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.footerLogoImage{
+    width: 120px;
+    height: 120px;
+    cursor: pointer;
+}
+
+.footerNavLinksContainer {
+    display: flex;
+    align-items: center;
+}
+
+.footerNavLinksWrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+    list-style: none;
+}
+
+.footerNavLinkItem {
+    display: flex;
+    height: 100%;
+    padding: 12px 1em;
+    margin: 0 1em;
+    color: #444;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    border: 3px solid transparent;
+    border-radius: 30px ;
+    transition: all 250ms ease-in-out;
+}
+
+.footerNavLinkItem:hover {
+    border: 3px solid rgba(53, 31, 151, 0.1);
+}
+
+.footerNavLink {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+.footerSocialLinksContainer {
+    display: flex;
+    align-items: center;
+}
+
+.footerSocialLinksWrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+    list-style: none;
+}
+
+.footerSocialLinkItem {
+    display: flex;
+    height: 32px;
+    width: 32px;
+    margin: 0 1.7em;
+    color: #444;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    border: 3px solid transparent;
+    border-radius: 30px ;
+    transition: all 250ms ease-in-out;
+}
+
+.footerSocialLinkItem:hover {
+    background-color: rgb(12, 6, 41);
+}
+
+.footerSocialLink {
+    text-decoration: none;
+    color: inherit;
+    height: 32px;
+    width: 32px;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+.footerSocialLinkIcon {
+    height: 32px;
+    width: 32px;
+}

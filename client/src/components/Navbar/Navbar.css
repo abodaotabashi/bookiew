@@ -1,0 +1,173 @@
+.navbar {
+    height: 70px;
+    box-shadow: 0 5px 3px rgba(15, 15, 15, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5em;
+    position: relative;
+    z-index: 999;
+}
+
+.navbarLeftSection{
+    height: 100%;
+    display: flex;
+}
+
+.navbarMiddleSection{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.navbarRightSection{
+    display: flex;
+}
+
+.navbarLogoWrapper{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbarLogoImage{
+    width: 42px;
+    height: 42px;
+}
+
+.navbarLogoText{
+    margin-left: 10px;
+    height: 32px;
+}
+
+.navLinksContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navLinksWrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+    list-style: none;
+}
+
+.navLinkItem {
+    display: flex;
+    height: 100%;
+    padding: 0 1em;
+    color: #444;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    border-top: 3px solid transparent;
+    transition: all 250ms ease-in-out;
+}
+
+.navLinkItem:hover {
+    border-top: 3px solid #341f97;
+}
+
+.navLink {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+}
+
+.accessibilityContainer {
+    display: flex;
+}
+
+.navbarLoginButton {
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    margin-right: 10px;
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    border-radius: 20px;
+    /*background-image: linear-gradient(to right, rgba(10,0,178,1) 0%, rgba(255,0,0,1) 100%);*/
+    background-image: linear-gradient(to right, transparent 0%, #341f97 100%);
+    background-color: #7e76a3;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.navbarLoginButton:hover {
+    background-color: #341f97;
+}
+
+.navbarRegisterButton {
+    border-radius: 20px;
+    background-image: linear-gradient(to right, transparent 0%, #c43c24 100%);
+    background-color: #eb9481;
+    color: white;
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    font-weight: 600;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.navbarRegisterButton:hover {
+    background-color: #c43c24;
+}
+
+.searchBoxContainer {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.searchBox {
+    display: flex;
+    align-items: center;
+    background: #7e76a3;
+    height: 35px;
+    border-radius: 40px;
+    padding: 2px 10px;
+    margin-right: 10px;
+}
+
+.searchBox:hover > .searchBoxText {
+    width: 240px;
+    padding: 0 5px;
+}
+
+.searchBoxText {
+    display: flex;
+    align-items: center;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'Century Gothic';
+    float: left;
+    line-height: 35px;
+    width: 0px;
+    transition: 400ms;
+}
+
+.searchBoxButton {
+    display: flex;
+    align-items: center;
+    color: white;
+    width: 24px;
+    height: 24px;
+    border-radius: 20px;
+    justify-content: center;
+    float: right;
+    transition: 400ms;
+}
