@@ -1,4 +1,4 @@
-.footer {
+.minifooter {
     height: 50px;
     bottom: 0;
     width: 100%;
@@ -13,7 +13,7 @@
     position: relative;
 }
 
-.footerText {
+.minifooterText {
     font-size: 14px;
     align-items: center;
     justify-content: center;
@@ -21,14 +21,14 @@
     color: #341f97;
 }
 
-.footerSectionsContainer {
+.minifooterSectionsContainer {
     width: 90%;
     display: flex;
     align-items: center;
     padding: 0;
 }
 
-.footerLeftSection{
+.minifooterLeftSection{
     height: 100%;
     display: flex;
     flex: 1;
@@ -36,7 +36,7 @@
     justify-content: center;
 }
 
-.footerMiddleSection{
+.minifooterMiddleSection{
     height: 100%;
     display: flex;
     flex: 2;
@@ -44,7 +44,7 @@
     justify-content: center;
 }
 
-.footerRightSection{
+.minifooterRightSection{
     height: 100%;
     display: flex;
     flex: 1;
@@ -52,7 +52,7 @@
     justify-content: center;
 }
 
-.footerLogoImage{
+.minifooterLogoImage{
     width: 48px;
     height: 48px;
     cursor: pointer;
@@ -62,12 +62,12 @@
 }
 
 
-.footerSocialLinksContainer {
+.minifooterSocialLinksContainer {
     display: flex;
     align-items: center;
 }
 
-.footerSocialLinksWrapper {
+.minifooterSocialLinksWrapper {
     margin: 0;
     padding: 0;
     display: flex;
@@ -75,7 +75,7 @@
     list-style: none;
 }
 
-.footerSocialLinkItem {
+.minifooterSocialLinkItem {
     display: flex;
     height: 32px;
     width: 32px;
@@ -91,11 +91,11 @@
     transition: all 250ms ease-in-out;
 }
 
-.footerSocialLinkItem:hover {
+.minifooterSocialLinkItem:hover {
     background-color: rgb(12, 6, 41);
 }
 
-.footerSocialLink {
+.minifooterSocialLink {
     text-decoration: none;
     color: inherit;
     height: 32px;
@@ -105,7 +105,7 @@
     font-weight: inherit;
 }
 
-.footerSocialLinkIcon {
+.minifooterSocialLinkIcon {
     height: 32px;
     width: 32px;
 }

@@ -79,6 +79,10 @@
     font-size: inherit;
     font-family: inherit;
     font-weight: inherit;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .navbarDropDownContainer {

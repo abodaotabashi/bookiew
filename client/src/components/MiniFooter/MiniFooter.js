@@ -9,35 +9,35 @@ import './MiniFooter.css';
 
 const MiniFooter = () => {
     return(
-        <div className='footer'>
-            <div className='footerSectionsContainer'>
-                <section className='footerLeftSection'>
-                    <p className='footerText'>© Bookiew 2021</p>
+        <div className='minifooter'>
+            <div className='minifooterSectionsContainer'>
+                <section className='minifooterLeftSection'>
+                    <p className='minifooterText'>© Bookiew 2021</p>
                 </section>
-                <section className='footerMiddleSection'>
-                    <img src={Logo} className='footerLogoImage' alt='Bookiew Logo'/>
+                <section className='minifooterMiddleSection'>
+                    <img src={Logo} className='minifooterLogoImage' alt='Bookiew Logo'/>
                 </section>
-                <section className='footerRightSection'>
-                    <div className='footerSocialLinksContainer'>
-                        <ul className='footerSocialLinksWrapper'>
-                            <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
-                                    <img className='footerSocialLinkIcon' src={TwitterIcon} alt='twitterIcon'/>
+                <section className='minifooterRightSection'>
+                    <div className='minifooterSocialLinksContainer'>
+                        <ul className='minifooterSocialLinksWrapper'>
+                            <li className='minifooterSocialLinkItem'>
+                                <a className='minifooterSocialLink' href="">
+                                    <img className='minifooterSocialLinkIcon' src={TwitterIcon} alt='twitterIcon'/>
                                 </a>
                             </li>
-                            <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
-                                    <img className='footerSocialLinkIcon' src={FacebookIcon} alt='facebookIcon'/>
+                            <li className='minifooterSocialLinkItem'>
+                                <a className='minifooterSocialLink' href="">
+                                    <img className='minifooterSocialLinkIcon' src={FacebookIcon} alt='facebookIcon'/>
                                 </a>
                             </li>
-                            <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
-                                    <img className='footerSocialLinkIcon' src={InstagramIcon} alt='instagramIcon'/>
+                            <li className='minifooterSocialLinkItem'>
+                                <a className='minifooterSocialLink' href="">
+                                    <img className='minifooterSocialLinkIcon' src={InstagramIcon} alt='instagramIcon'/>
                                 </a>
                             </li>
-                            <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
-                                    <img className='footerSocialLinkIcon' src={LinkedinIcon} alt='linkedinIcon'/>
+                            <li className='minifooterSocialLinkItem'>
+                                <a className='minifooterSocialLink' href="">
+                                    <img className='minifooterSocialLinkIcon' src={LinkedinIcon} alt='linkedinIcon'/>
                                 </a>
                             </li>
                         </ul>
