@@ -8,8 +8,12 @@ import HomeIcon from "../../assets/icons/home.png";
 import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
-
+var express = require('express');
+var router = express.Router();
 const NavbarWithUser = (props) => {
+    const logout = () => {
+        router.post('/logout');
+    }
     return(
         <div className='navbar'>
             <section className='navbarLeftSection'>
@@ -62,7 +66,7 @@ const NavbarWithUser = (props) => {
                             Change Language
                         </a>
                     </li>
-                    <li className='navbarDropDownItem'>
+                    <li className='navbarDropDownItem' onClick = 'logout();'>
                         <a className='navbarDropDownItemLink' href='#'>
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>

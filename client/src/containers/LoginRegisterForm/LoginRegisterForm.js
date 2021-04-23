@@ -5,6 +5,8 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 
 import PageContainer from '../../components/PageContainer/PageContainer';
 
+//import users from 'server/collections/users';
+
 
 class LoginRegisterForm extends Component {
     state = {
@@ -28,6 +30,8 @@ class LoginRegisterForm extends Component {
     handleRegister = () => {
         this.clearErrors();
         //TODO
+        //var newUser =new users( this.state.firstname, this.state.surname, this.state.email, this.state.password, this.state.birthdate, this.state.gender, '');
+        
     }
 
     handleForgotPassword = () => {
