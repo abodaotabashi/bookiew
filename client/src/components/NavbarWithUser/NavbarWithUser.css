@@ -1,0 +1,214 @@
+.navbar {
+    height: 70px;
+    box-shadow: 0 5px 3px rgba(15, 15, 15, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5em;
+    position: relative;
+    top: 0px;
+    z-index: 999;
+}
+
+.navbarLeftSection{
+    height: 100%;
+    display: flex;
+}
+
+.navbarMiddleSection{
+    display: flex;
+    height: 100%;
+    justify-content: center;
+}
+
+.navbarRightSection{
+    display: flex;
+}
+
+.navbarLogoWrapper{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.navbarLogoImage{
+    width: 42px;
+    height: 42px;
+}
+
+.navbarLogoText{
+    margin-left: 10px;
+    height: 32px;
+}
+
+.navLinksContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.navLinksWrapper {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100%;
+    list-style: none;
+}
+
+.navLinkItem {
+    display: flex;
+    height: 100%;
+    padding: 0 1em;
+    color: #444;
+    font-size: 16px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    border-top: 3px solid transparent;
+    transition: all 250ms ease-in-out;
+}
+
+.navLinkItem:hover {
+    border-top: 3px solid #341f97;
+}
+
+.navLink {
+    text-decoration: none;
+    color: inherit;
+    font-size: inherit;
+    font-family: inherit;
+    font-weight: inherit;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarDropDownContainer {
+    border: 0;
+    padding: 0 1em;
+    font-family: 'Century Gothic';
+    font-size: 16px;
+    text-transform: uppercase;
+    color: white;
+    border-radius: 30px;
+    /*background-image: linear-gradient(to right, rgba(10,0,178,1) 0%, rgba(255,0,0,1) 100%);*/
+    background-image: linear-gradient(to right, transparent 0%, #341f97 100%);
+    background-color: #7e76a3;
+    transition: all 150ms ease-in-out; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.navbarDropDownIcon {
+    width: 18px;
+    height: 18px;
+    margin-left: 0.5em;
+    transition: all 250ms ease-in-out 500ms;
+}
+
+.navbarUserIcon {
+    width: 36px;
+    height: 36px;
+    border-radius:50%;
+    margin-right: 0.5em;
+}
+
+.navbarDropDownWrapper {
+    position: absolute;
+    top: 88%;
+    right: 24px;
+    margin: 0;
+    padding: 0 0.2em 0.2em 0.2em;
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border: 1px solid;
+    border-radius:20px;
+    background-color: #341f97;
+    border-color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 500ms ease-in-out 500ms;
+}
+
+.navbarDropDownItem {
+    display: flex;
+    padding: 0.3em 0.5em;
+    font-size: 14px;
+    align-items: center;
+    justify-content: left;
+    font-family: 'Century Gothic';
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+
+/*.navbarDropDownItem:not(:nth-last-child(2)) {
+    border-bottom: 1px solid white;
+}*/
+
+.navbarDropDownItemLink {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: white;
+}
+
+.navbarDropDownItemIconWrapper {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    margin-right: 0.4em;
+    background: #aea8c7;
+    padding: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarDropDownItemIcon {
+    width: 24px;
+    height: 24px;
+}
+
+.navbarDropDownArrow {
+    position: absolute;
+    width: 11px;
+    height: 11px;
+    top: -5.5px;
+    right: 24px;
+    background-color: white;
+    transform: rotate(45deg);
+}
+
+.navbarDropDownContainer:hover {
+    background-color: #341f97;
+}
+
+.navbarDropDownContainer:hover ~ .navbarDropDownWrapper,
+.navbarDropDownWrapper:hover{
+    transform: translate(0, 0);
+    transition-delay:0s;
+    opacity: 1;
+    pointer-events: auto;
+}
+.navbarDropDownContainer:hover > .navbarDropDownIcon, 
+.navbarDropDownItem:hover ~ .navbarDropDownIcon {
+    transform: rotate(180deg);
+    transition-delay:0s;
+}
+
+.navbarDropDownItem:hover {
+    background-color: #241b4b;
+}
+
+.navbarDropDownItem:first-child:hover ~ .navbarDropDownArrow {
+    background-color: #241b4b;
+}
