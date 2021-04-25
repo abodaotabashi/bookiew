@@ -1,0 +1,10 @@
+.LandingPage {
+    background-color:white;
+    width: 100%;
+    background-size:contain;
+    background-repeat: repeat;
+    background-attachment: fixed;
+    display: block;
+    overflow: auto;
+    direction: ltr;
+}

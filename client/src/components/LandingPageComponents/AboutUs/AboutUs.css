@@ -1,0 +1,28 @@
+.AboutUs {
+    padding: 40px;
+    align-content: center;
+    height: max-content;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    display: flexbox;
+    border-radius: 20px;
+}
+
+.labelUs {
+    font-family: fantasy;
+    font-size: 30px;
+    
+    background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(0, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.pUs {
+    font-family:'Lucida Sans';
+    font-weight: bold;
+    font-style: italic;
+    font-size:medium;
+    color:black;
+}
