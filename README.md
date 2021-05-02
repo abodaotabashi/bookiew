@@ -1,6 +1,11 @@
 # Bookiew
 
-![Bookiew Logo](https://raw.githubusercontent.com/abodaotabashi/bookiew/c5b349003b494fd38a8fe8850fc014bcfdaf9a6d/client/src/assets/logos/logo.png)
+<img
+src="./client/src/assets/logos/logo.png"
+raw=true
+alt=""
+style="width: 182px; height: 182px"
+/>
 
 ## Zielbestimmung
 
