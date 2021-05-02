@@ -1,67 +1,70 @@
-.labelWelcome {
-    display: inline-block;
-    font-family: fantasy;
-    font-size: 80px;
-    text-transform: uppercase;
-    color:black;
-    
-    text-decoration-style: dotted;
-    
-    background: -webkit-linear-gradient(#ff0000, rgb(0, 0, 255));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-
-    margin-top: 100px;
-    margin-left: 600px;
-
-    
-}
-.Container {
+.landingWelcomeContainer {
     display: flex;
     flex-direction: column;
     padding-bottom: 20px;
     margin-bottom: 20px;
-    background-image: url('../../../assets/images/backgrounds/landingPageCover.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    border-bottom:2px ridge black;
+    background-color: rgba(255, 254, 255, 0.6);
     height: max-content;
-    padding-top: 80px;
-
-    
+    align-items: center;
 }
 
-.pWelcome {
-    font-family: 'Lucida Sans';
+.landingWelcomeImage {
+    width: 200px;
+    height: fit-content;
+    padding: 6em 12em 3em 12em;
+}
+
+.landingWelcomeWrapper {
+    display: flex;
+    flex-direction: row;
+    padding-left: 6em;
+    padding-right: 6em;
+}
+
+.landingWelcomeTextWrapper {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.landingWelcomeLabel {
+    display: inline-block;
+    font-family: 'Century Gothic';
+    font-size: 80px;
+    color:black;
+    text-decoration-style: dotted;
+    background: -webkit-linear-gradient(#ff0000, rgb(0, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-top: 100px;
+}
+
+.landingWelcomeText {
+    font-family: 'Century Gothic';
     font-style: italic;
     font-weight: bold;
-    align-self:flex-end;
     font-size: 20px;
     color:black;
-    text-decoration:solid;
-    margin-bottom: 150px;
-    margin-left: 700px;
-    margin-right: 100px;
-
 }
 
-.buttonForMore {
-    background-color: black;
+.landingWelcomeButtonForMore {
+    background-image: linear-gradient(to left, transparent 0%, black 90%);
+    background-color: rgb(119, 119, 119);
+    transition: all 250ms ease-in-out; 
     width: 200px;
     height: 50px;
-    align-self: center;
-    align-items: center;
-    border-color: black;
-
-    border-radius: 20px;
+    border-radius: 30px;
+    border: 1px solid black;
     cursor: pointer;
-    text-decoration: none;
-    margin-top: 20px;
 }
 
-.linkForMore {
+.landingWelcomeButtonForMore:hover {
+    background-color: #000000;
+}
+
+.landingWelcomeLinkForMore {
     color: white;
-    font-family: 'Lucida Sans';
-    font-size: large;
- 
+    font-family: 'Century Gothic';
+    font-size: 18px;
+    font-weight: bold;
 }

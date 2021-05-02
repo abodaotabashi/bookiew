@@ -1,4 +1,4 @@
-.Contact {
+.landingContact {
     padding: 40px;
     align-content: center;
     height: max-content;
@@ -7,23 +7,46 @@
     margin-bottom: 20px;
     display: flexbox;
     border-radius: 20px;
+    background-color: rgba(255, 254, 255, 0.8);
 }
 
-.labelContact {
-    font-family: fantasy;
+.landingContactLabel {
+    font-family: 'Century Gothic';
     font-size: 30px;
-    
     background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(0, 0, 255));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-transform: uppercase;
 }
 
-.pContact {
-    font-family:'Lucida Sans';
+.landingContactTextWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.landingContactText {
+    font-family:'Century Gothic';
     font-weight: bold;
     font-style: italic;
     font-size:medium;
     color:black;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
+.landingContactTable {
+    font-family: 'Century Gothic';
+    border: 1px solid transparent;
+    padding-left: 4em;
+    width: 36em;
+}
+
+.landingContactLogo {
+    width: 120px;
+    height: 120px;
+    padding: 1em 0 1em 2em;
+    align-items: center;
+    justify-content: center;
+}

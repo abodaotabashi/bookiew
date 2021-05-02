@@ -1,6 +1,6 @@
-.landingAboutUs {
+.landingPartnersSpotlightContainer {
     padding: 40px;
-    align-content: center;
+    align-items: center;
     height: max-content;
     margin-left: 200px;
     margin-right: 200px;
@@ -10,7 +10,7 @@
     background-color: rgba(255, 254, 255, 0.8);
 }
 
-.landingAboutUsLabel {
+.landingPartnersSpotlightLabel {
     font-family: 'Century Gothic';
     font-size: 30px;
     background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(0, 0, 255));
@@ -19,24 +19,18 @@
     text-transform: uppercase;
 }
 
-.landingAboutUsTextWrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+/*.landingPartnersSpotlightCarousel{
+    background-color: white;
 }
 
+.landingPartnersSpotlightImageWrapper{
+    width: 320px;
+    height: 210px;
+    border: 1px solid #341f97;
+}*/
 
-.landingAboutUsText {
-    font-family:'Century Gothic';
-    font-weight: bold;
-    font-style: italic;
-    font-size:medium;
-    color:black;
-    text-align: justify;
-}
-
-.landingAboutUsLogo {
-    width: 120px;
-    height: 120px;
-    padding: 1em 0 1em 2em;
+.landingPartnersSpotlightImage{
+    max-width: 320px;
+    max-height: 210px;
+    border-radius: 20px;
 }
