@@ -1,6 +1,6 @@
 # Bookiew
 
-![Bookiew Logo](https://raw.githubusercontent.com/abodaotabashi/bookiew/master/client/src/assets/logos/logo.png?token=AOREER52RQOGEMIK7FHO7UTARZOFU)
+![Bookiew Logo](https://raw.githubusercontent.com/abodaotabashi/bookiew/c5b349003b494fd38a8fe8850fc014bcfdaf9a6d/client/src/assets/logos/logo.png)
 
 ## Zielbestimmung
 
