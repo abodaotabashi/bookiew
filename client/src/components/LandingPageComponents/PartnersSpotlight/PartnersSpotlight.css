@@ -1,0 +1,36 @@
+.landingPartnersSpotlightContainer {
+    padding: 40px;
+    align-items: center;
+    height: max-content;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    display: flexbox;
+    border-radius: 20px;
+    background-color: rgba(255, 254, 255, 0.8);
+}
+
+.landingPartnersSpotlightLabel {
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(0, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+/*.landingPartnersSpotlightCarousel{
+    background-color: white;
+}
+
+.landingPartnersSpotlightImageWrapper{
+    width: 320px;
+    height: 210px;
+    border: 1px solid #341f97;
+}*/
+
+.landingPartnersSpotlightImage{
+    max-width: 320px;
+    max-height: 210px;
+    border-radius: 20px;
+}

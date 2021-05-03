@@ -1,0 +1,15 @@
+.LandingPageContainer {
+    /*background-color:white;*/
+    background-image: url('../../assets/images/backgrounds/background4.jpg');
+    background-size: cover;
+    width: 100%;
+    background-attachment: fixed;
+}
+
+.LandingPageWrapper {
+    background-color: rgba(34, 7, 36, 0.7);
+    width: 100%;
+    display: block;
+    overflow: auto;
+    direction: ltr;
+}

@@ -46,7 +46,11 @@ router.post('/logout', async function (req, res, next) {
   res.render('LoginRegisterForm');
 })
 
+
+
 router.post('/register', async function(req, res, next) {
   const firstname = req.body.firstname;
 });
 module.exports = router;
+
+

@@ -8,11 +8,13 @@ import HomeIcon from "../../assets/icons/home.png";
 import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
-var express = require('express');
+
+/*var express = require('express');
 var router = express.Router();
+*/
 const NavbarWithUser = (props) => {
     const logout = () => {
-        router.post('/logout');
+        //router.post('/logout');
     }
     return(
         <div className='navbar'>

@@ -1,0 +1,42 @@
+.landingAboutUs {
+    padding: 40px;
+    align-content: center;
+    height: max-content;
+    margin-left: 200px;
+    margin-right: 200px;
+    margin-bottom: 20px;
+    display: flexbox;
+    border-radius: 20px;
+    background-color: rgba(255, 254, 255, 0.8);
+}
+
+.landingAboutUsLabel {
+    font-family: 'Century Gothic';
+    font-size: 30px;
+    background: -webkit-linear-gradient(rgb(255, 0, 0), rgb(0, 0, 255));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+}
+
+.landingAboutUsTextWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+.landingAboutUsText {
+    font-family:'Century Gothic';
+    font-weight: bold;
+    font-style: italic;
+    font-size:medium;
+    color:black;
+    text-align: justify;
+}
+
+.landingAboutUsLogo {
+    width: 120px;
+    height: 120px;
+    padding: 1em 0 1em 2em;
+}
