@@ -2,7 +2,7 @@ import React from 'react';
 import './Navbar.css';
 import MiniLogo from "../../assets/logos/minilogo.png";
 import TextLogo from "../../assets/logos/textlogo.png";
-//import {Link} from 'react-scroll';
+import {Link as Scrolllink} from 'react-scroll';
 import {Link} from 'react-router-dom';
 
 const Navbar = () => {
@@ -19,24 +19,9 @@ const Navbar = () => {
                 <div className='navLinksContainer'>
                     <ul className='navLinksWrapper'>
                         <li className='navLinkItem'>
-                            <a className='navLink' href=""> Books </a>
-                        </li>
-                        <li className='navLinkItem'>
                             <a className='navLink' href="">
-                                <Link 
-                                    activeClass="active"
-                                    to="partners"
-                                    spy={true}
-                                    smooth={true}
-                                    offset={-20}
-                                    duration={500} >
-                                    Partners
-                                </Link>
-                            </a>
-                        </li>
-                        <li className='navLinkItem'>
-                            <a className='navLink' href="">
-                                <Link 
+                                <Scrolllink 
+                                    className='navLink'
                                     activeClass="active"
                                     to="aboutBookiew"
                                     spy={true}
@@ -44,12 +29,13 @@ const Navbar = () => {
                                     offset={-20}
                                     duration={500} >
                                     About
-                                </Link>
+                                </Scrolllink>
                             </a>
                         </li>
                         <li className='navLinkItem'>
                             <a className='navLink' href="">
-                                <Link 
+                                <Scrolllink
+                                    className='navLink'
                                     activeClass="active"
                                     to="contact"
                                     spy={true}
@@ -57,7 +43,21 @@ const Navbar = () => {
                                     offset={-20}
                                     duration={500}>
                                     Contact
-                                </Link>
+                                </Scrolllink>
+                            </a>
+                        </li>
+                        <li className='navLinkItem'>
+                            <a className='navLink' href="">
+                                <Scrolllink 
+                                    className='navLink'
+                                    activeClass="active"
+                                    to="partners"
+                                    spy={true}
+                                    smooth={true}
+                                    offset={-20}
+                                    duration={500} >
+                                    Partners
+                                </Scrolllink>
                             </a>
                         </li>
                     </ul>
@@ -66,8 +66,9 @@ const Navbar = () => {
             <section className='navbarRightSection'>
                 <div className='accessibilityContainer'>
                     <button className='navbarLoginButton'>
-                        <a className='navLogin' href="">
+                        <a className='navLink' href="">
                             <Link 
+                                className='navLink'
                                 activeClass="active"
                                 to="/login"
                                 spy={true}
@@ -79,8 +80,9 @@ const Navbar = () => {
                         </a>
                     </button>
                     <button className='navbarRegisterButton'>
-                        <a className='navRegister' href="">
+                        <a className='navLink' href="">
                             <Link 
+                                className='navLink'
                                 activeClass="active"
                                 to="/register"
                                 spy={true}
