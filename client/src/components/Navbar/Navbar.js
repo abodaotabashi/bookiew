@@ -2,7 +2,8 @@ import React from 'react';
 import './Navbar.css';
 import MiniLogo from "../../assets/logos/minilogo.png";
 import TextLogo from "../../assets/logos/textlogo.png";
-import {Link} from 'react-scroll';
+//import {Link} from 'react-scroll';
+import {Link} from 'react-router-dom';
 
 const Navbar = () => {
 
@@ -64,8 +65,32 @@ const Navbar = () => {
             </section>
             <section className='navbarRightSection'>
                 <div className='accessibilityContainer'>
-                    <button className='navbarLoginButton'>Login</button>
-                    <button className='navbarRegisterButton'>Register</button>
+                    <button className='navbarLoginButton'>
+                        <a className='navLogin' href="">
+                            <Link 
+                                activeClass="active"
+                                to="/login"
+                                spy={true}
+                                smooth={true}
+                                offset={-20}
+                                duration={500}> 
+                                Login
+                            </Link>
+                        </a>
+                    </button>
+                    <button className='navbarRegisterButton'>
+                        <a className='navRegister' href="">
+                            <Link 
+                                activeClass="active"
+                                to="/register"
+                                spy={true}
+                                smooth={true}
+                                offset={-20}
+                                duration={500}> 
+                                Register
+                            </Link>
+                        </a>
+                    </button>
                 </div>
             </section>
         </div>

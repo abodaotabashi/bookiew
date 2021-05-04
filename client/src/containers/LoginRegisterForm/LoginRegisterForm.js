@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import "./LoginRegisterForm.css";
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 import PageContainer from '../../components/PageContainer/PageContainer';
-
-//import users from 'server/collections/users';
 
 
 class LoginRegisterForm extends Component {
@@ -22,16 +22,26 @@ class LoginRegisterForm extends Component {
         hasAccount: true
     }
 
-    handleLogin = () => {
+    handleLogin = async () => {
         this.clearErrors();
         //TODO
+        const result = await axios.post("http://127.0.0.1:3000/login",{
+            email:this.state.email,
+            password:this.state.password
+        })
+        if(result.data.response){
+            console.log("Hooray you did it")
+            return;
+        }
+
+        console.log("BOOO!",result.data)
+        return;
+
     }
 
     handleRegister = () => {
         this.clearErrors();
         //TODO
-        //var newUser =new users( this.state.firstname, this.state.surname, this.state.email, this.state.password, this.state.birthdate, this.state.gender, '');
-        
     }
 
     handleForgotPassword = () => {

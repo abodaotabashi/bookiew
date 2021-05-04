@@ -1,7 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const bcrypt = require('bcrypt');
-const { default: LoginRegisterForm } = require('../../client/src/containers/LoginRegisterForm/LoginRegisterForm');
+const express = require('express');
+const router = express.Router();
+//const bcrypt = require('bcrypt');
 
 const knex = require('knex')({
   client: 'mysql',
@@ -16,12 +15,12 @@ const knex = require('knex')({
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.send({message:"Hello world"})
+  res.send({message:"Hello nothing"})
 });
 
 router.get('/home', function(req, res, next) {
-  res.render('Home');
-  return;
+  res.send({message:"Hello home"})
+
 });
 
 
@@ -36,8 +35,8 @@ router.post('/login', async function(req, res, next) {
   //SELECT * from admins where adminEmail=email
   const admin = await knex('admins').select('*').where({"adminEmail":email, "adminPassword":password}).first()
   if(admin){
-    //return res.send({response: true, message:"you are logged in"})
-    res.redirect('/home');
+    return res.send({response: true, message:"you are logged in"})
+    //res.redirect('/home');
   }
   return res.send({response:false, message:"email or password is incorrect"})
 });
