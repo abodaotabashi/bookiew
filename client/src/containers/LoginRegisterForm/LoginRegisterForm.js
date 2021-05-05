@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import "./LoginRegisterForm.css";
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
-import {Link} from 'react-router-dom';
 import axios from 'axios';
+import Home from '../../containers/Home/Home';
 
 import PageContainer from '../../components/PageContainer/PageContainer';
 
@@ -22,56 +22,78 @@ class LoginRegisterForm extends Component {
         hasAccount: true
     }
 
+    validate = () =>{
+        let emailErrorMessage = '';
+        let passwordErrorMessage = '';
+        let nameErrorMessage = '';
+
+        if (!this.state.email.includes('@')) {
+            emailErrorMessage = 'Invalid Email!';
+        }
+        
+
+        if (!this.state.hasAccount) {
+            if (this.state.firstname || this.state.surname) {
+                if (!(/^[A-Za-z ]+$/.test(this.state.firstname)) || !(/^[A-Za-z ]+$/.test(this.state.surname))) {
+                    nameErrorMessage = 'Invalid name!';
+                }
+            } else {
+                nameErrorMessage = 'Firstname and Surname cannot be empty!';
+            }
+            if (this.state.password.length < 6) {
+                passwordErrorMessage = 'Password must contain more than 6 characters';
+            }
+        }
+
+        if (emailErrorMessage || nameErrorMessage || passwordErrorMessage) {
+            this.setState({emailErrorMessage, nameErrorMessage, passwordErrorMessage});
+            return false;
+        }
+        return true;
+    }
+
     handleLogin = async () => {
         this.clearErrors();
         //TODO
-        const result = await axios.post("http://localhost:3000/login",{
+        const isValid = this.validate();
+        if (isValid) {
+            const result = await axios.post("http://localhost:3000/login",{
             email:this.state.email,
             password:this.state.password
-        })
-        if(result.data.response){
-            console.log("Seccessfully logged in")
+            })
+            if(result.data.response){
+                console.log("Seccessfully logged in")
+                return;
+            }
+
+            console.log("Something went worng ",result.data)
             return;
         }
-
-        console.log("Something went worng ",result.data)
-        return;
-
     }
 
     handleRegister = async () => {
         this.clearErrors();
         //TODO
-        const result = await axios.post("http://localhost:3000/register",{
+        const isValid = this.validate();
+        if (isValid) {
+            const result = await axios.post("http://localhost:3000/register",{
             firstname: this.state.firstname,
             surname: this.state.surname,
             birthdate: this.state.birthdate,
             gender: this.state.gender,       //TRUE for FEMALE, FALSE for MALE
             email: this.state.email,
             password: this.state.password,
-            hasAccount: this.state.hasAccount
-        });
-        if(result.data.response){
-            console.log("Seccessfully registered",result.data)
+            });
+            if(result.data.response){
+                console.log("Seccessfully registered",result.data)
+                return;
+            }
+            console.log("Something went wrong", result.data)
             return;
         }
-        console.log("Something went wrong", result.data)
-        return;
     }
 
     handleForgotPassword = () => {
-        //TODO
-    }
-
-    checkEmailValidility = () => {
-        //TODO
-    }
-
-    checkPasswordValidility = () => {
-        //TODO
-    }
-
-    checkNameValidility = () => {
         //TODO
     }
 
@@ -140,7 +162,7 @@ class LoginRegisterForm extends Component {
                         />);
         }
 
-        return(
+        return( 
             <PageContainer>
                 <div className='LoginRegisterForm'>
                     <div className='formBackgroundFilter'>
