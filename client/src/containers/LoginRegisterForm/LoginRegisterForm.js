@@ -30,11 +30,11 @@ class LoginRegisterForm extends Component {
             password:this.state.password
         })
         if(result.data.response){
-            console.log("Hooray you did it")
+            console.log("Seccessfully logged in")
             return;
         }
 
-        console.log("BOOO!",result.data)
+        console.log("Something went worng ",result.data)
         return;
 
     }
@@ -52,10 +52,10 @@ class LoginRegisterForm extends Component {
             hasAccount: this.state.hasAccount
         });
         if(result.data.response){
-            console.log("Hooray you did it")
+            console.log("Seccessfully registered",result.data)
             return;
         }
-        console.log("BOOO!", result.data)
+        console.log("Something went wrong", result.data)
         return;
     }
 

@@ -33,10 +33,9 @@ router.post('/login', async function(req, res, next) {
   //password encryption
   //password = bcrypt.hashSync(pwd, 10);
   //SELECT * from admins where adminEmail=email
-  const admin = await knex('admins').select('*').where({"adminEmail":email, "adminPassword":password}).first()
-  if(admin){
+  const user = await knex('users').select('*').where({"email":email, "password":password}).first()
+  if(user){
     return res.send({response: true, message:"you are logged in"})
-    //res.redirect('/home');
   }
   return res.send({response:false, message:"email or password is incorrect"})
 });
@@ -48,7 +47,31 @@ router.post('/logout', async function (req, res, next) {
 
 
 router.post('/register', async function(req, res, next) {
+  console.log(req.body);
   const firstname = req.body.firstname;
+  const surname = req.body.surname;
+  const email = req.body.email;
+  const password = req.body.password;
+  const gender = req.body.gender;
+  const birthdate = req.body.birthdate;
+  if (!email || !password) {return res.send({response:false, message:"expect an email and a password"})};
+  const user = await knex('users').select('*').where({"email":email, "password":password}).first()
+  if(user){
+    console.log(user.firstname);
+    return res.send({response: false, message:"this email has been already registered"})
+  }
+  const result =await knex('users').insert({
+    email: email,
+    password: password,
+    firstname: firstname,
+    surname: surname,
+    gender: gender,
+    birthDate: birthdate
+  });
+  if (result) {
+    return res.send({response:true, message:"successfully registered "+result})
+  }
+  return res.send({response:false, message:"something went wrong "})
 });
 module.exports = router;
 

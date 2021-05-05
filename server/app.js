@@ -6,12 +6,8 @@ var logger = require('morgan');
 var cors = require("cors")
 var indexRouter = require('./routes/index');
 var app = express();
-const bodyParser = require('body-parser');
 
 
-//son eklenenler
-//app.use(bodyParser.urlencoded({ extended: false }));
-//app.use(bodyParser.json);
 const PORT = 4000;
 app.listen(PORT, ()=>{
   console.log('Server is running at port '+ PORT);
