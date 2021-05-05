@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { Component } from 'react';
 import "./LoginRegisterForm.css";
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
@@ -25,7 +25,7 @@ class LoginRegisterForm extends Component {
     handleLogin = async () => {
         this.clearErrors();
         //TODO
-        const result = await axios.post("http://127.0.0.1:3000/login",{
+        const result = await axios.post("http://localhost:3000/login",{
             email:this.state.email,
             password:this.state.password
         })
@@ -39,9 +39,24 @@ class LoginRegisterForm extends Component {
 
     }
 
-    handleRegister = () => {
+    handleRegister = async () => {
         this.clearErrors();
         //TODO
+        const result = await axios.post("http://localhost:3000/register",{
+            firstname: this.state.firstname,
+            surname: this.state.surname,
+            birthdate: this.state.birthdate,
+            gender: this.state.gender,       //TRUE for FEMALE, FALSE for MALE
+            email: this.state.email,
+            password: this.state.password,
+            hasAccount: this.state.hasAccount
+        });
+        if(result.data.response){
+            console.log("Hooray you did it")
+            return;
+        }
+        console.log("BOOO!", result.data)
+        return;
     }
 
     handleForgotPassword = () => {
