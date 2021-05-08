@@ -32,7 +32,7 @@ router.post('/login', async function(req, res, next) {
   if(!email || !password) return res.send({response:false, message:"expect an email and a password"})
   //password encryption
   //password = bcrypt.hashSync(pwd, 10);
-  //SELECT * from admins where adminEmail=email
+  //SELECT * from users where email=email
   const user = await knex('users').select('*').where({"email":email, "password":password}).first()
   if(user){
     return res.send({response: true, message:"you are logged in"})
