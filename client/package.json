@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.10",
-    "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "materialize-css": "^1.0.0-rc.2",
@@ -43,5 +42,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@testing-library/react": "^11.2.6",
+    "global-jsdom": "^8.1.0",
+    "jsdom": "^16.5.3"
   }
 }
