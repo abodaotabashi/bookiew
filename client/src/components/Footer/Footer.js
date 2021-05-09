@@ -15,13 +15,34 @@ const Footer = () => {
                     <div className='footerNavLinksContainer'>
                         <ul className='footerNavLinksWrapper'>
                             <li className='footerNavLinkItem'>
-                                <a className='footerNavLink' href="">About Us</a>
+                                <Link 
+                                    className='footerNavLink'
+                                    to="/"
+                                    smooth="true"
+                                    offset={-20}
+                                    duration={500}> 
+                                    About Us
+                                </Link>
                             </li>
                             <li className='footerNavLinkItem'>
-                                <a className='footerNavLink' href="">FAQ</a>
+                                <Link 
+                                    className='footerNavLink'
+                                    to="/"
+                                    smooth="true"
+                                    offset={-20}
+                                    duration={500}> 
+                                    Partners
+                                </Link>
                             </li>
                             <li className='footerNavLinkItem'>
-                                <a className='footerNavLink' href="">Contact</a>
+                                <Link 
+                                    className='footerNavLink'
+                                    to="/"
+                                    smooth="true"
+                                    offset={-20}
+                                    duration={500}> 
+                                    Contact
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -40,22 +61,22 @@ const Footer = () => {
                 <div className='footerSocialLinksContainer'>
                         <ul className='footerSocialLinksWrapper'>
                             <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
+                                <a className='footerSocialLink' target="_blank" rel='noreferrer' href="https://twitter.com/">
                                     <img className='footerSocialLinkIcon' src={TwitterIcon} alt='twitterIcon'/>
                                 </a>
                             </li>
                             <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
+                                <a className='footerSocialLink' target="_blank" rel='noreferrer' href="https://www.facebook.com/">
                                     <img className='footerSocialLinkIcon' src={FacebookIcon} alt='facebookIcon'/>
                                 </a>
                             </li>
                             <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
+                                <a className='footerSocialLink' target="_blank" rel='noreferrer' href="https://www.instagram.com/">
                                     <img className='footerSocialLinkIcon' src={InstagramIcon} alt='instagramIcon'/>
                                 </a>
                             </li>
                             <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' href="">
+                                <a className='footerSocialLink' target="_blank" href="https://www.linkedin.com/">
                                     <img className='footerSocialLinkIcon' src={LinkedinIcon} alt='linkedinIcon'/>
                                 </a>
                             </li>

@@ -28,22 +28,22 @@ const MiniFooter = () => {
                     <div className='minifooterSocialLinksContainer'>
                         <ul className='minifooterSocialLinksWrapper'>
                             <li className='minifooterSocialLinkItem'>
-                                <a className='minifooterSocialLink' href="">
+                                <a className='minifooterSocialLink' target="_blank" rel='noreferrer' href="https://twitter.com/">
                                     <img className='minifooterSocialLinkIcon' src={TwitterIcon} alt='twitterIcon'/>
                                 </a>
                             </li>
                             <li className='minifooterSocialLinkItem'>
-                                <a className='minifooterSocialLink' href="">
+                                <a className='minifooterSocialLink' target="_blank" rel='noreferrer' href="https://www.facebook.com/">
                                     <img className='minifooterSocialLinkIcon' src={FacebookIcon} alt='facebookIcon'/>
                                 </a>
                             </li>
                             <li className='minifooterSocialLinkItem'>
-                                <a className='minifooterSocialLink' href="">
+                                <a className='minifooterSocialLink' target="_blank" rel='noreferrer' href="https://www.instagram.com/">
                                     <img className='minifooterSocialLinkIcon' src={InstagramIcon} alt='instagramIcon'/>
                                 </a>
                             </li>
                             <li className='minifooterSocialLinkItem'>
-                                <a className='minifooterSocialLink' href="">
+                                <a className='minifooterSocialLink' target="_blank" rel='noreferrer' href="https://www.linkedin.com/">
                                     <img className='minifooterSocialLinkIcon' src={LinkedinIcon} alt='linkedinIcon'/>
                                 </a>
                             </li>

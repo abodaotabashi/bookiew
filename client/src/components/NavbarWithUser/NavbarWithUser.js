@@ -23,7 +23,7 @@ const NavbarWithUser = (props) => {
                 <div className='navbarLogoWrapper'>
                     <Link 
                         className='navbarLogoWrapper'
-                        to="/"
+                        to="/home"
                         smooth="true"
                         offset={-20}
                         duration={500}> 
@@ -36,10 +36,14 @@ const NavbarWithUser = (props) => {
                 <div className='navLinksContainer'>
                     <ul className='navLinksWrapper'>
                         <li className='navLinkItem'>
-                            <a className='navLink' href="">Home</a>
-                        </li>
-                        <li className='navLinkItem'>
-                            <a className='navLink' href="">My Reviews</a>
+                            <Link 
+                                className='navLink'
+                                to="/myReviews"
+                                smooth="true"
+                                offset={-20}
+                                duration={500}> 
+                                My Reviews
+                            </Link>
                         </li>
                         <li className='navLinkItem'>
                             <a className='navLink' href="">Book Recommendation</a>
@@ -55,12 +59,17 @@ const NavbarWithUser = (props) => {
                 </div>
                 <ul className='navbarDropDownWrapper'>
                     <li className='navbarDropDownItem'>
-                        <a className='navbarDropDownItemLink' href='#'>
+                        <Link 
+                            className='navbarDropDownItemLink'
+                            to="/home"
+                            smooth="true"
+                            offset={-20}
+                            duration={500}> 
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={HomeIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
                             Home
-                        </a>
+                        </Link>
                         <div className='navbarDropDownWrapper'></div>
                     </li>
                     <li className='navbarDropDownItem'>
