@@ -8,6 +8,7 @@ import LandingPage from '../pages/LandingPage/LandingPage';
 import HomePage from '../pages/HomePage/HomePage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
+import MyReviewsPage from '../pages/MyReviewsPage/MyReviewsPage';
 
 class App extends Component {
   
@@ -22,6 +23,7 @@ class App extends Component {
               <Route path='/home' exact component = {HomePage}/>
               <Route path='/forgotPassword' exact component = {ForgotPasswordPage}/>
               <Route path='/resetPassword' exact component = {ResetPasswordPage}/>
+              <Route path='/myReviews' exact component = {MyReviewsPage}/>
           </Switch>
         </div>
       </Router>

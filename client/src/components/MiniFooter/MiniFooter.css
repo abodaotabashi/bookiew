@@ -77,8 +77,8 @@
 
 .minifooterSocialLinkItem {
     display: flex;
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
     margin: 0 1em;
     color: #444;
     font-size: 16px;
@@ -98,14 +98,14 @@
 .minifooterSocialLink {
     text-decoration: none;
     color: inherit;
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
     font-size: inherit;
     font-family: inherit;
     font-weight: inherit;
 }
 
 .minifooterSocialLinkIcon {
-    height: 32px;
-    width: 32px;
+    height: 24px;
+    width: 24px;
 }

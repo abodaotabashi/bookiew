@@ -36,6 +36,9 @@ const NavbarWithUser = (props) => {
                 <div className='navLinksContainer'>
                     <ul className='navLinksWrapper'>
                         <li className='navLinkItem'>
+                            <a className='navLink' href="">Home</a>
+                        </li>
+                        <li className='navLinkItem'>
                             <a className='navLink' href="">My Reviews</a>
                         </li>
                         <li className='navLinkItem'>
