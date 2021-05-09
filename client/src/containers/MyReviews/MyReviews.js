@@ -7,12 +7,33 @@ import ThumbnailTest from "../../assets/images/thumbnailtest.png"
 
 class MyReviews extends Component {
     state = {
-        reviews: null,
-        clickedReviewBookName: '',
-        clickedReviewBookAuthor: ''
+        reviews: this.props.reviews
+    }
+
+    handleReviewClicked = (reviewIndex) => {
+        //TODO
     }
 
     render(){
+
+        let books = null;
+        books = (
+            <div className='myReviewsBookCardsContainer'>
+                {this.state.reviews.map((review, index) => {
+                    return (
+                        <BookCard   key={review.id}
+                                    className='myReviewsBookCard'
+                                    bookName={review.bookName}
+                                    bookAuthor={review.bookAuthor}
+                                    bookThumbnail={review.bookThumbnail}
+                                    click={this.handleReviewClicked.bind(this, index)}
+                                    />
+                    );
+                })}
+            </div>
+        );
+        
+
         return(
             <div className='myReviewsBackgroundSection'>
                 <div className='myReviewsBackgroundFilterSection'>
@@ -22,51 +43,7 @@ class MyReviews extends Component {
                             <hr className='myReviewsBreakline' />
                         </div>
                         <div className='myReviewsBookCardsContainer'>
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 1'
-                                        bookAuthor='Bookiew Inc.'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 2'
-                                        bookAuthor='Betül'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 3'
-                                        bookAuthor='Fatma'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 4'
-                                        bookAuthor='Mahasin'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 5'
-                                        bookAuthor='Nazlı'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Bookiew'
-                                        bookAuthor='Sena'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 6'
-                                        bookAuthor='Abdurrahman'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 7'
-                                        bookAuthor='Betül'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
-                            <BookCard   className='myReviewsBookCard'
-                                        bookName='Book 8'
-                                        bookAuthor='Fatma'
-                                        bookThumbnail={ThumbnailTest}
-                                        />
+                            {books}
                         </div>
                     </div>
                 </div>
