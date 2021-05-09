@@ -5,7 +5,7 @@ import FacebookIcon from "../../assets/icons/facebook_64px.png";
 import TwitterIcon from "../../assets/icons/twitter_64px.png";
 import LinkedinIcon from "../../assets/icons/linkedin_64px.png";
 import './MiniFooter.css';
-
+import {Link} from 'react-router-dom';
 
 const MiniFooter = () => {
     return(
@@ -15,7 +15,14 @@ const MiniFooter = () => {
                     <p className='minifooterText'>© Bookiew 2021</p>
                 </section>
                 <section className='minifooterMiddleSection'>
-                    <img src={Logo} className='minifooterLogoImage' alt='Bookiew Logo'/>
+                    <Link 
+                        className='minifooterMiddleSection'
+                        to="/"
+                        smooth="true"
+                        offset={-20}
+                        duration={500}> 
+                        <img src={Logo} className='minifooterLogoImage' alt='Bookiew Logo'/>
+                    </Link>
                 </section>
                 <section className='minifooterRightSection'>
                     <div className='minifooterSocialLinksContainer'>

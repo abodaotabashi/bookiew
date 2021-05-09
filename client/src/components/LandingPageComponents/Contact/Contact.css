@@ -19,9 +19,16 @@
     text-transform: uppercase;
 }
 
-.landingContactTextWrapper {
+.landingContactTextContainer {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.landingContactTextWrapper {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
 }
@@ -38,6 +45,11 @@
 
 .landingContactTable {
     font-family: 'Century Gothic';
+    font-weight: bold;
+    font-style: italic;
+    font-size:medium;
+    text-align: justify;
+    color:black;
     border: 1px solid transparent;
     padding-left: 4em;
     width: 36em;

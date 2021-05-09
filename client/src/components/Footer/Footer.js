@@ -5,7 +5,7 @@ import FacebookIcon from "../../assets/icons/facebook_64px.png";
 import TwitterIcon from "../../assets/icons/twitter_64px.png";
 import LinkedinIcon from "../../assets/icons/linkedin_64px.png";
 import './Footer.css';
-
+import {Link} from 'react-router-dom';
 
 const Footer = () => {
     return(
@@ -27,7 +27,14 @@ const Footer = () => {
                     </div>
                 </section>
                 <section className='footerMiddleSection'>
-                    <img src={Logo} className='footerLogoImage' alt='Bookiew Logo'/>
+                    <Link 
+                        className='footerMiddleSection'
+                        to="/"
+                        smooth="true"
+                        offset={-20}
+                        duration={500}> 
+                        <img src={Logo} className='footerLogoImage' alt='Bookiew Logo'/>
+                    </Link>
                 </section>
                 <section className='footerRightSection'>
                 <div className='footerSocialLinksContainer'>

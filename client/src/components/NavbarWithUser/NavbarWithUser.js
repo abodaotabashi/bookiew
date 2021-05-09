@@ -8,6 +8,7 @@ import HomeIcon from "../../assets/icons/home.png";
 import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
+import {Link} from 'react-router-dom';
 
 /*var express = require('express');
 var router = express.Router();
@@ -20,8 +21,15 @@ const NavbarWithUser = (props) => {
         <div className='navbar'>
             <section className='navbarLeftSection'>
                 <div className='navbarLogoWrapper'>
-                    <img src={MiniLogo} className='navbarLogoImage' alt='Bookiew Logo'/>
-                    <img src={TextLogo} className='navbarLogoText' alt='Bookiew Logo'/>
+                    <Link 
+                        className='navbarLogoWrapper'
+                        to="/"
+                        smooth="true"
+                        offset={-20}
+                        duration={500}> 
+                        <img src={MiniLogo} className='navbarLogoImage' alt='Bookiew Logo'/>
+                        <img src={TextLogo} className='navbarLogoText' alt='Bookiew Logo'/>
+                    </Link>
                 </div>
             </section>
             <section className='navbarMiddleSection'>

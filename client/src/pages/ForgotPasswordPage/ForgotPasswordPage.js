@@ -1,17 +1,17 @@
 import React from 'react';
 import Footer from '../../components/Footer/Footer';
-import LoginRegisterForm from '../../containers/LoginRegisterForm/LoginRegisterForm';
+import ForgotPassword from '../../containers/ForgotPassword/ForgotPassword';
 import NavbarForAccessability from '../../components/Navbar/NavbarForAccessability';
 
-const LoginPage = (props) => {
+const ForgotPasswordPage = (props) => {
     return(
         <div>
             <NavbarForAccessability />
-            <LoginRegisterForm  formType={true} />
+            <ForgotPassword />
             <Footer />
         </div>
     );
 }
 
 
-export default LoginPage;
+export default ForgotPasswordPage;

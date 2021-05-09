@@ -18,7 +18,7 @@ const AboutUs = () => {
                     give the reviewers a limit of words and rank these reviews by the score given, again by you, so that the next person
                     viewing the book will spend not much of a time searching for what they have wished. 
                 </p>
-                <img src={AboutImage} className='landingAboutUsLogo'/>
+                <img src={AboutImage} className='landingAboutUsLogo' alt='AboutUsLogo'/>
             </div>
         </div>
     )

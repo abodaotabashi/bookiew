@@ -1,5 +1,6 @@
 import React from 'react';
 import "../../containers/LoginRegisterForm/LoginRegisterForm.css";
+import {Link} from 'react-router-dom';
 
 const LoginForm = (props) => {
 
@@ -27,7 +28,14 @@ const LoginForm = (props) => {
             <p className='formErrorMessage'>{props.passwordErrorMessage}</p>
             <div className='formButtonsContainer'>
                 <button className='formButtonLogin' onClick={props.loginClicked}>Login</button>
-                <p className='formForgotPasswordSpan' onClick={props.forgotPasswordClicked}>Forgot Password?</p>
+                <Link 
+                    className='formForgotPasswordSpan'
+                    to="/forgotPassword"
+                    smooth="true"
+                    offset={-20}
+                    duration={500}> 
+                    <p className='formForgotPasswordSpan'>Forgot Password?</p>
+                </Link>
                 <hr className='formBreakline'/>
                 <p className='formAlternativeText'>Don't have an account? 
                     <span className='formAlternativeSpan' onClick={props.changeFormToRegisterClicked}>Register now</span>

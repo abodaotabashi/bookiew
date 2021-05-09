@@ -3,7 +3,6 @@ import "./LoginRegisterForm.css";
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import axios from 'axios';
-import Home from '../../containers/Home/Home';
 
 import PageContainer from '../../components/PageContainer/PageContainer';
 
@@ -19,54 +18,51 @@ class LoginRegisterForm extends Component {
         emailErrorMessage: '',
         passwordErrorMessage: '',
         nameErrorMessage: '',
-        hasAccount: true
+        hasAccount: this.props.formType,
+        formChanged: false
     }
 
     validate = () =>{
-        let emailErrorMessage = '';
-        let passwordErrorMessage = '';
-        let nameErrorMessage = '';
-
+        
         if (!this.state.email.includes('@')) {
-            emailErrorMessage = 'Invalid Email!';
+            this.setState({ emailErrorMessage: 'Invalid Email!' });
+            return false;
         }
         
 
-        if (!this.state.hasAccount) {
+        if ( (!this.state.hasAccount && !this.state.formChanged) || (this.state.hasAccount && this.state.formChanged)) {
             if (this.state.firstname || this.state.surname) {
                 if (!(/^[A-Za-z ]+$/.test(this.state.firstname)) || !(/^[A-Za-z ]+$/.test(this.state.surname))) {
-                    nameErrorMessage = 'Invalid name!';
+                    this.setState({ nameErrorMessage: 'Invalid name!' });
+                    return false;
                 }
             } else {
-                nameErrorMessage = 'Firstname and Surname cannot be empty!';
+                this.setState({ nameErrorMessage: 'Firstname and Surname cannot be empty!' });
+                return false;
             }
             if (this.state.password.length < 6) {
-                passwordErrorMessage = 'Password must contain more than 6 characters';
+                console.log(this.state.password.length);
+                this.setState({ passwordErrorMessage: 'Password must contain more than 6 characters' });
+                return false;
             }
-        }
-
-        if (emailErrorMessage || nameErrorMessage || passwordErrorMessage) {
-            this.setState({emailErrorMessage, nameErrorMessage, passwordErrorMessage});
-            return false;
         }
         return true;
     }
 
     handleLogin = async () => {
         this.clearErrors();
-        //TODO
         const isValid = this.validate();
         if (isValid) {
             const result = await axios.post("http://localhost:3000/login",{
-            email:this.state.email,
-            password:this.state.password
+                email:this.state.email,
+                password:this.state.password
             })
             if(result.data.response){
-                console.log("Seccessfully logged in")
+                console.log("Successfully logged in")
                 return;
             }
 
-            console.log("Something went worng ",result.data)
+            console.log("Something went wrong ",result.data)
             return;
         }
     }
@@ -85,7 +81,7 @@ class LoginRegisterForm extends Component {
             password: this.state.password,
             });
             if(result.data.response){
-                console.log("Seccessfully registered",result.data)
+                console.log("Successfully registered",result.data)
                 return;
             }
             console.log("Something went wrong", result.data)
@@ -122,8 +118,8 @@ class LoginRegisterForm extends Component {
     render(){
         let formType = null;
 
-        if(this.state.hasAccount) {
-            formType=(<LoginForm    emailInputValue={this.state.email} 
+        if(this.state.hasAccount && !this.state.formChanged) {
+            formType=(  <LoginForm    emailInputValue={this.state.email} 
                                     emailInputChanged={(event) => this.setState({ email: event.target.value})}
                                     emailErrorMessage={this.state.emailErrorMessage}
                                     passwordInputValue={this.state.password} 
@@ -134,10 +130,10 @@ class LoginRegisterForm extends Component {
                                     changeFormToRegisterClicked={() => {
                                         this.clearInputs();
                                         this.clearErrors();
-                                        this.setState({ hasAccount: false});}
+                                        this.setState({ formChanged: true });}
                                     }
-                                    />);
-        }else {
+                        />);
+        }else if(!this.state.hasAccount && !this.state.formChanged) {
             formType=(  <RegisterForm   firstnameInputValue={this.state.firstname}
                                         firstnameInputChanged={(event) => this.setState({ firstname: event.target.value})}
                                         surnameInputValue={this.state.surname}
@@ -153,12 +149,50 @@ class LoginRegisterForm extends Component {
                                         changeFormToLoginClicked={() => {
                                             this.clearInputs();
                                             this.clearErrors();
-                                            this.setState({ hasAccount: true});}
+                                            this.setState({ formChanged: true });}
                                         }
                                         birthdate={this.state.birthdate}
                                         birthdateChanged={(date) => this.setState({ birthdate: date})}
                                         femaleSelected={(event) => this.setState({gender: true})}
                                         maleSelected={(event) => this.setState({gender: false})}
+                        />);
+        }else if(this.state.hasAccount && this.state.formChanged) {
+            formType=(  <RegisterForm   firstnameInputValue={this.state.firstname}
+                                        firstnameInputChanged={(event) => this.setState({ firstname: event.target.value})}
+                                        surnameInputValue={this.state.surname}
+                                        surnameInputChanged={(event) => this.setState({surname: event.target.value})}
+                                        nameErrorMessage={this.state.nameErrorMessage}
+                                        emailInputValue={this.state.email} 
+                                        emailInputChanged={(event) => this.setState({email: event.target.value})}
+                                        emailErrorMessage={this.state.emailErrorMessage}
+                                        passwordInputValue={this.state.password} 
+                                        passwordInputChanged={(event) => this.setState({password: event.target.value})}
+                                        passwordErrorMessage={this.state.passwordErrorMessage}
+                                        registerClicked={this.handleRegister}
+                                        changeFormToLoginClicked={() => {
+                                            this.clearInputs();
+                                            this.clearErrors();
+                                            this.setState({ formChanged: false });}
+                                        }
+                                        birthdate={this.state.birthdate}
+                                        birthdateChanged={(date) => this.setState({ birthdate: date})}
+                                        femaleSelected={(event) => this.setState({gender: true})}
+                                        maleSelected={(event) => this.setState({gender: false})}
+                        />);
+        }else if(!this.state.hasAccount && this.state.formChanged) {
+            formType=(  <LoginForm    emailInputValue={this.state.email} 
+                                    emailInputChanged={(event) => this.setState({ email: event.target.value})}
+                                    emailErrorMessage={this.state.emailErrorMessage}
+                                    passwordInputValue={this.state.password} 
+                                    passwordInputChanged={(event) => this.setState({ password: event.target.value})}
+                                    passwordErrorMessage={this.state.passwordErrorMessage}
+                                    loginClicked={this.handleLogin}
+                                    forgotPasswordClicked={this.handleForgotPassword}
+                                    changeFormToRegisterClicked={() => {
+                                        this.clearInputs();
+                                        this.clearErrors();
+                                        this.setState({ formChanged: false });}
+                                    }
                         />);
         }
 

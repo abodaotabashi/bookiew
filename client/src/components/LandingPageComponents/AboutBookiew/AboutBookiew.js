@@ -19,7 +19,7 @@ const AboutBookiew = () => {
                 most time-sparing manner, such that reviews coming from all around the world about books you requested 
                 will be under your hand for you to read, score and even contribute by commenting or writing your own one.
                 </p>
-                <img src={MiniLogo} className='landingAboutBookiewLogo'/>
+                <img src={MiniLogo} className='landingAboutBookiewLogo' alt='BookiewLogo'/>
             </div>
         </div>
 

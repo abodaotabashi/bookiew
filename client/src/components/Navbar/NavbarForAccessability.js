@@ -2,10 +2,9 @@ import React from 'react';
 import './Navbar.css';
 import MiniLogo from "../../assets/logos/minilogo.png";
 import TextLogo from "../../assets/logos/textlogo.png";
-import {Link as Scrolllink} from 'react-scroll';
 import {Link} from 'react-router-dom';
 
-const Navbar = () => {
+const NavbarForAccessability = () => {
 
     return(
         <div className='navbar' id='nav'>
@@ -23,40 +22,7 @@ const Navbar = () => {
                 </div>
             </section>
             <section className='navbarMiddleSection'>
-                <div className='navLinksContainer'>
-                    <ul className='navLinksWrapper'>
-                        <li className='navLinkItem'>
-                            <Scrolllink 
-                                className='navLink'
-                                to="aboutBookiew"
-                                smooth="true"
-                                offset={-20}
-                                duration={500} >
-                                About
-                            </Scrolllink>
-                        </li>
-                        <li className='navLinkItem'>
-                            <Scrolllink
-                                className='navLink'
-                                to="contact"
-                                smooth="true"
-                                offset={-20}
-                                duration={500}>
-                                Contact
-                            </Scrolllink>
-                        </li>
-                        <li className='navLinkItem'>
-                            <Scrolllink 
-                                className='navLink'
-                                to="partners"
-                                smooth="true"
-                                offset={-20}
-                                duration={500} >
-                                Partners
-                            </Scrolllink>
-                        </li>
-                    </ul>
-                </div>
+                
             </section>
             <section className='navbarRightSection'>
                 <div className='accessibilityContainer'>
@@ -86,4 +52,4 @@ const Navbar = () => {
     )
 }
 
-export default Navbar;
+export default NavbarForAccessability;

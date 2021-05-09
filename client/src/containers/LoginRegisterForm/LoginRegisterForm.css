@@ -148,6 +148,7 @@
     margin-right: 5px;
     text-align: right;
     color: white;
+    text-decoration: none;
     letter-spacing: 0.5px;
     cursor: pointer;
     transition: all 400ms ease-in-out;

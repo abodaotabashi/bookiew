@@ -3,15 +3,15 @@ import Footer from '../../components/Footer/Footer';
 import LoginRegisterForm from '../../containers/LoginRegisterForm/LoginRegisterForm';
 import NavbarForAccessability from '../../components/Navbar/NavbarForAccessability';
 
-const LoginPage = (props) => {
+const RegisterPage = (props) => {
     return(
         <div>
             <NavbarForAccessability />
-            <LoginRegisterForm  formType={true} />
+            <LoginRegisterForm formType={false} />
             <Footer />
         </div>
     );
 }
 
 
-export default LoginPage;
+export default RegisterPage;

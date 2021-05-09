@@ -8,7 +8,7 @@ const Welcome = () => {
         <div>
             <div className='landingWelcomeContainer'>
                 <div className='landingWelcomeWrapper'>
-                    <img src={WelcomeImage} className='landingWelcomeImage'/>
+                    <img src={WelcomeImage} className='landingWelcomeImage' alt='WelcomeImage'/>
                     <div className='landingWelcomeTextWrapper'>
                         <label className='landingWelcomeLabel'> Welcome to Bookiew!</label>
                         <p className='landingWelcomeText'> 
@@ -20,10 +20,8 @@ const Welcome = () => {
                 <button className='landingWelcomeButtonForMore'>
                     <Link       
                         className='landingWelcomeLinkForMore'
-                        activeClass="active"
                         to="aboutBookiew"
-                        spy={true}
-                        smooth={true}
+                        smooth="true"
                         offset={-20}
                         duration={500}>
                         Learn More

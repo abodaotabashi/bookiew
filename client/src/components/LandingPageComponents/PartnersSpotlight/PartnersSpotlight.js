@@ -26,19 +26,19 @@ const PartnersSpotlight = () => {
             <div className="landingPartnersSpotlightCarousel">
                 <Slider {...settings}>
                     <div className="landingPartnersSpotlightImageWrapper">
-                        <img src={Partner2} className='landingPartnersSpotlightImage'/>
+                        <img src={Partner2} className='landingPartnersSpotlightImage' alt='ReactJS'/>
                     </div>
                     <div className="landingPartnersSpotlightImageWrapper">
-                        <img src={Partner5} className='landingPartnersSpotlightImage'/>
+                        <img src={Partner5} className='landingPartnersSpotlightImage' alt='NodeJS, ExpressJS'/>
                     </div>
                     <div className="landingPartnersSpotlightImageWrapper">
-                        <img src={Partner3} className='landingPartnersSpotlightImage'/>
+                        <img src={Partner3} className='landingPartnersSpotlightImage' alt='KTB'/>
                     </div>
                     <div className="landingPartnersSpotlightImageWrapper">
-                        <img src={Partner1} className='landingPartnersSpotlightImage'/>
+                        <img src={Partner1} className='landingPartnersSpotlightImage' alt='DAAD'/>
                     </div>
                     <div className="landingPartnersSpotlightImageWrapper">
-                        <img src={Partner4} className='landingPartnersSpotlightImage'/>
+                        <img src={Partner4} className='landingPartnersSpotlightImage' alt='TAÜ'/>
                     </div>
                 </Slider>
             </div>
