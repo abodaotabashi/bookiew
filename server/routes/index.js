@@ -73,6 +73,14 @@ router.post('/register', async function(req, res, next) {
   }
   return res.send({response:false, message:"something went wrong "})
 });
+
+router.post('/forgotPassword', async function(req, res, next) {
+const email = req.body.email;
+const user = await knex('users').select('*').where({"email":email}).first()
+if (user) {
+  
+}
+});
 module.exports = router;
 
 
