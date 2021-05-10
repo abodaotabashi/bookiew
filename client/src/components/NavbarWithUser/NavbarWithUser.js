@@ -23,7 +23,8 @@ const NavbarWithUser = (props) => {
                 <div className='navbarLogoWrapper'>
                     <Link 
                         className='navbarLogoWrapper'
-                        to="/home"
+                        to="/"  /*"/home"
+                        params={{ username: "User" }}*/
                         smooth="true"
                         offset={-20}
                         duration={500}> 

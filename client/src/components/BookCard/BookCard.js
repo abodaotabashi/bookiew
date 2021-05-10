@@ -4,7 +4,7 @@ import './BookCard.css';
 
 const BookCard = (props) => {
     return(
-        <div className='bookCardContainer'>
+        <div className='bookCardContainer' onClick={props.click}>
             <div className='bookCardThumbnailWrapper'>
                 <img src={props.bookThumbnail} className='bookCardThumbnail' alt='bookThumbnail'/>
             </div>

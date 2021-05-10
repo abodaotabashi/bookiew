@@ -51,10 +51,10 @@
 }
 
 .myReviewsBookCardsContainer {
-    padding: 2em 1em;
+    padding: 1em 1em;
     display: flex;
     align-items: flex-start;
     flex-wrap: wrap;
     justify-content: center;
-    width: 100%;
+    width: 90%;
 }
