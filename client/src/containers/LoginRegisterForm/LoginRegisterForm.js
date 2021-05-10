@@ -3,8 +3,10 @@ import "./LoginRegisterForm.css";
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import axios from 'axios';
+import { Redirect, withRouter } from "react-router-dom";
 
 import PageContainer from '../../components/PageContainer/PageContainer';
+import HomePage from '../../pages/HomePage/HomePage';
 
 
 class LoginRegisterForm extends Component {
@@ -19,7 +21,9 @@ class LoginRegisterForm extends Component {
         passwordErrorMessage: '',
         nameErrorMessage: '',
         hasAccount: this.props.formType,
-        formChanged: false
+        formChanged: false,
+        isLoggedin: false,
+        isRegistered: false
     }
 
     validate = () =>{
@@ -58,7 +62,11 @@ class LoginRegisterForm extends Component {
                 password:this.state.password
             })
             if(result.data.response){
-                console.log("Successfully logged in")
+                console.log("Successfully logged in");
+                this.setState({ isLoggedin: true});
+                this.props.history.push({
+                    pathname: '/home',
+                    state: { username: "Nice!!!", user: null }});
                 return;
             }
 
@@ -81,10 +89,13 @@ class LoginRegisterForm extends Component {
             password: this.state.password,
             });
             if(result.data.response){
-                console.log("Successfully registered",result.data)
+                console.log("Successfully registered",result.data);
+                this.setState({ isRegistered: true});
+                this.props.history.push({pathname: '/login'});
+                
                 return;
             }
-            console.log("Something went wrong", result.data)
+            console.log("Something went wrong", result.data);
             return;
         }
     }
@@ -208,4 +219,4 @@ class LoginRegisterForm extends Component {
     }
 }
 
-export default LoginRegisterForm;
+export default withRouter(LoginRegisterForm);

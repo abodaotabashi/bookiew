@@ -6,8 +6,8 @@ import Home from '../../containers/Home/Home';
 const HomePage = (props) => {
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
-            <Home />
+            <NavbarWithUser userName={props.location.state.username} />
+            <Home user={props.location.state.user}/>
             <MiniFooter />
         </div>
     );
