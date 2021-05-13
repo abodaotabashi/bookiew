@@ -3,10 +3,7 @@ import "./LoginRegisterForm.css";
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import axios from 'axios';
-import { Redirect, withRouter } from "react-router-dom";
-
-import PageContainer from '../../components/PageContainer/PageContainer';
-import HomePage from '../../pages/HomePage/HomePage';
+import { withRouter } from "react-router-dom";
 
 
 class LoginRegisterForm extends Component {
@@ -208,13 +205,11 @@ class LoginRegisterForm extends Component {
         }
 
         return( 
-            <PageContainer>
-                <div className='LoginRegisterForm'>
-                    <div className='formBackgroundFilter'>
-                        {formType}
-                    </div>
+            <div className='LoginRegisterForm'>
+                <div className='formBackgroundFilter'>
+                    {formType}
                 </div>
-            </PageContainer>
+            </div>
         )
     }
 }

@@ -14,7 +14,7 @@ const NavbarForAccessability = () => {
                         className='navbarLogoWrapper'
                         to="/"
                         smooth="true"
-                        offset={-20}
+                        offset={0}
                         duration={500}> 
                         <img src={MiniLogo} className='navbarLogoImage' alt='Bookiew Logo'/>
                         <img src={TextLogo} className='navbarLogoText' alt='Bookiew Logo'/>

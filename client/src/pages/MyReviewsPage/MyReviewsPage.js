@@ -4,7 +4,7 @@ import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import MyReviews from '../../containers/MyReviews/MyReviews';
 
 import ThumbnailTest from "../../assets/images/thumbnailtest.png"
-
+import PageContainer from '../../components/PageContainer/PageContainer';
 
 const MyReviewsPage = (props) => {
     let reviews = [ 
@@ -22,7 +22,9 @@ const MyReviewsPage = (props) => {
     return(
         <div>
             <NavbarWithUser userName="Abdurrahman" />
-            <MyReviews reviews={reviews} />
+            <PageContainer>
+                <MyReviews reviews={reviews} />
+            </PageContainer>
             <MiniFooter />
         </div>
     );

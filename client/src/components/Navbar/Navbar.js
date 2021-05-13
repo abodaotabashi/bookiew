@@ -15,7 +15,7 @@ const Navbar = () => {
                         className='navbarLogoWrapper'
                         to="/"
                         smooth="true"
-                        offset={-20}
+                        offset={-80}
                         duration={500}> 
                         <img src={MiniLogo} className='navbarLogoImage' alt='Bookiew Logo'/>
                         <img src={TextLogo} className='navbarLogoText' alt='Bookiew Logo'/>
@@ -30,7 +30,7 @@ const Navbar = () => {
                                 className='navLink'
                                 to="aboutBookiew"
                                 smooth="true"
-                                offset={-20}
+                                offset={-80}
                                 duration={500} >
                                 About
                             </Scrolllink>
@@ -65,7 +65,7 @@ const Navbar = () => {
                             className='navLink'
                             to="/login"
                             smooth="true"
-                            offset={-20}
+                            offset={-70}
                             duration={500}> 
                             Login
                         </Link>
@@ -75,7 +75,7 @@ const Navbar = () => {
                             className='navLink'
                             to="/register"
                             smooth="true"
-                            offset={-20}
+                            offset={-70}
                             duration={500}> 
                             Register
                         </Link>

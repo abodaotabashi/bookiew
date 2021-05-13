@@ -3,7 +3,7 @@ import React from "react";
 const style = {
     width: '100%',
     minHeight: '100%',
-    padding: '0',
+    padding: '70px 0 0 0',
     margin: '0',
     display: 'flex',
     flexDirection: 'column',

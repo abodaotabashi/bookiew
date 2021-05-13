@@ -1,12 +1,16 @@
-.navbar {
+.navbarWithUser {
     height: 70px;
     box-shadow: 0 5px 3px rgba(15, 15, 15, 0.15);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 1.5em;
-    position: relative;
-    top: 0px;
+    /*position: relative;*/
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 999;
 }
 

@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import "./ResetPassword.css";
 
-import PageContainer from '../../components/PageContainer/PageContainer';
-
-
 class ResetPassword extends Component {
     state = {
         password: '',
@@ -30,34 +27,32 @@ class ResetPassword extends Component {
     
     render(){
         return( 
-            <PageContainer>
-                <div className='ResetPasswordContainer'>
-                    <div className='ResetPasswordContainerBackgroundFilter'>
-                        <form className='ResetPasswordWrapper'>
-                            <p className='ResetPasswordHeader'>
-                                Reset your Password
-                            </p>
-                            <p className='ResetPasswordSpan'>Please enter your new password!</p>
-                            <label className='ResetPasswordLabel'>Password</label>
-                            <input  className='ResetPasswordInputText' 
-                                    type='password' 
-                                    name='' 
-                                    placeholder='Your Password' 
-                                    required value={this.state.password} 
-                                    onChange={(event) => this.setState({ password : event.target.value })} />
-                            <label className='ResetPasswordLabel'>Confirm Password</label>
-                            <input  className='ResetPasswordInputText' 
-                                    type='password' 
-                                    name='' 
-                                    placeholder='Confirm Your Password' 
-                                    required value={this.state.confirmPassword} 
-                                    onChange={(event) => this.setState({ confirmPassword : event.target.value })} />
-                            <p className='ResetPasswordErrorMessage'>{this.state.passwordErrorMessage}</p>
-                            <button className='ResetPasswordButton' onClick={this.handleResetPassword}>Reset Password</button>
-                        </form>
-                    </div>
+            <div className='ResetPasswordContainer'>
+                <div className='ResetPasswordContainerBackgroundFilter'>
+                    <form className='ResetPasswordWrapper'>
+                        <p className='ResetPasswordHeader'>
+                            Reset your Password
+                        </p>
+                        <p className='ResetPasswordSpan'>Please enter your new password!</p>
+                        <label className='ResetPasswordLabel'>Password</label>
+                        <input  className='ResetPasswordInputText' 
+                                type='password' 
+                                name='' 
+                                placeholder='Your Password' 
+                                required value={this.state.password} 
+                                onChange={(event) => this.setState({ password : event.target.value })} />
+                        <label className='ResetPasswordLabel'>Confirm Password</label>
+                        <input  className='ResetPasswordInputText' 
+                                type='password' 
+                                name='' 
+                                placeholder='Confirm Your Password' 
+                                required value={this.state.confirmPassword} 
+                                onChange={(event) => this.setState({ confirmPassword : event.target.value })} />
+                        <p className='ResetPasswordErrorMessage'>{this.state.passwordErrorMessage}</p>
+                        <button className='ResetPasswordButton' onClick={this.handleResetPassword}>Reset Password</button>
+                    </form>
                 </div>
-            </PageContainer>
+            </div>
         )
     }
 }

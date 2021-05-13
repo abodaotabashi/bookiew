@@ -22,7 +22,7 @@ const Welcome = () => {
                         className='landingWelcomeLinkForMore'
                         to="aboutBookiew"
                         smooth="true"
-                        offset={-20}
+                        offset={-80}
                         duration={500}>
                         Learn More
                     </Link>

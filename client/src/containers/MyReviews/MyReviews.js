@@ -3,8 +3,6 @@ import "./MyReviews.css";
 
 import BookCard from '../../components/BookCard/BookCard';
 
-import ThumbnailTest from "../../assets/images/thumbnailtest.png"
-
 class MyReviews extends Component {
     state = {
         reviews: this.props.reviews

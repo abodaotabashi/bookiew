@@ -18,7 +18,7 @@ const NavbarWithUser = (props) => {
         //router.post('/logout');
     }
     return(
-        <div className='navbar'>
+        <div className='navbarWithUser'>
             <section className='navbarLeftSection'>
                 <div className='navbarLogoWrapper'>
                     <Link 

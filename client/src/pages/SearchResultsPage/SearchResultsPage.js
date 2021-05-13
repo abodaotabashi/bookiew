@@ -4,6 +4,7 @@ import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import SearchResults from '../../containers/SearchResults/SearchResults';
 
 import ThumbnailTest from "../../assets/images/thumbnailtest.png"
+import PageContainer from '../../components/PageContainer/PageContainer';
 
 
 const SearchResultsPage = (props) => {
@@ -22,7 +23,9 @@ const SearchResultsPage = (props) => {
     return(
         <div>
             <NavbarWithUser userName="Abdurrahman" />
-            <SearchResults books={books} />
+            <PageContainer>
+                <SearchResults books={books} />
+            </PageContainer>
             <MiniFooter />
         </div>
     );
