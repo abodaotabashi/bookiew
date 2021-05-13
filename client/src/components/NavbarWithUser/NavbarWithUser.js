@@ -47,7 +47,14 @@ const NavbarWithUser = (props) => {
                             </Link>
                         </li>
                         <li className='navLinkItem'>
-                            <a className='navLink' href="">Book Recommendation</a>
+                        <Link 
+                                className='navLink'
+                                to="/bookRecommendation"
+                                smooth="true"
+                                offset={-20}
+                                duration={500}> 
+                                Book Recommendation
+                            </Link>
                         </li>
                     </ul>
                 </div>
@@ -74,12 +81,17 @@ const NavbarWithUser = (props) => {
                         <div className='navbarDropDownWrapper'></div>
                     </li>
                     <li className='navbarDropDownItem'>
-                        <a className='navbarDropDownItemLink' href='#'>
+                        <Link 
+                            className='navbarDropDownItemLink'
+                            to="/editProfile"
+                            smooth="true"
+                            offset={-20}
+                            duration={500}> 
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={EditProfileIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
                             Edit Profile
-                        </a>
+                        </Link>
                     </li>
                     <li className='navbarDropDownItem'>
                         <a className='navbarDropDownItemLink' href='#'>

@@ -1,0 +1,182 @@
+.recommendationBackgroundSection {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-image: url('../../assets/images/backgrounds/background7.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.recommendationBackgroundFilterSection {
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
+    background-color: rgba(35, 9, 36, 0.9);
+}
+
+.recommendationSectionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    width: 50%;
+    margin: auto;
+}
+
+
+.recommendationSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5em 5em;
+    width: 100%;
+    background-color: rgba(223, 88, 48, 0.3);
+    border-radius: 30px;
+    margin-top: 3em;
+}
+
+.recommendationSectionHeader {
+    width: 100%;
+    color: white;
+    display: flex;
+    margin: 1em 0 2em 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Century Gothic';
+    line-height: 1;
+}
+
+.recommendationInputTable {
+    text-align: justify;
+    color: white;
+    border: 1px solid transparent;
+    width: fit-content;
+}
+
+.recommendationInputLabel {
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-right: 3em;
+}
+
+.recommendationInputText {
+    min-width: 20em;
+    width: 20em;
+    max-width: 30em;
+    min-height: 1em;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    font-family: 'Century Gothic';
+    padding: 10px 0px 10px 10px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    margin-right: 1em;
+    border: 2px solid transparent;
+    transition: all 250ms ease-in-out; 
+}
+
+
+.recommendationInputText:hover {
+    border: 2px solid #341f97;
+}
+
+.recommendationInputText::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.recommendationInputText::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.recommendationErrorMessage {
+    margin-top: 1em;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 0.2em 1em;
+    color: rgb(230, 75, 75);
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    width: fit-content;
+    transition: all 250ms ease-in-out;
+}
+
+.recommendationSendButton {
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    margin: 2em 0;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    font-weight: lighter;
+    color: white;
+    border: 2px solid #341f97;
+    border-radius: 20px;
+    background-image: linear-gradient(to left, transparent 20%, #341f97 100%);
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.recommendationSendButton:hover {
+    background-color: #341f97;
+}
+
+.recommendationBreaklineContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.recommendationBreakline {
+    color: white;
+    background-color: white;
+    border-radius: 50%;
+    width: 60%;
+    padding: 0.03em 0;
+}
+
+.recommendationThankSpan {
+    width: 100%;
+    color: white;
+    display: flex;
+    margin: 1em 0 1em 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    font-family: 'Century Gothic';
+    line-height: 0.5;
+}
+
+.recommendationHeart {
+    font-size: 50px;
+    margin: 0;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+    animation: heart 1.2s infinite linear;
+}
+
+@keyframes heart {
+    0% {transform: scale(0.8);}
+    10% {transform: scale(0.7);}
+    12% {transform: scale(0.6);}
+    17% {transform: scale(0.9);}
+    30% {transform: scale(0.7);}
+    80% {transform: scale(0.6);}
+    90% {transform: scale(0.5);}
+    100% {transform: scale(0.8);}
+}

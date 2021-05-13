@@ -11,6 +11,7 @@ import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
 import MyReviewsPage from '../pages/MyReviewsPage/MyReviewsPage';
 import SearchResultsPage from '../pages/SearchResultsPage/SearchResultsPage';
 import EditProfilePage from '../pages/EditProfilePage/EditProfilePage';
+import BookRecommendationPage from '../pages/BookRecommendationPage/BookRecommendationPage';
 
 class App extends Component {
   
@@ -28,6 +29,7 @@ class App extends Component {
               <Route path='/myReviews' exact component = {MyReviewsPage}/>
               <Route path='/search' exact component = {SearchResultsPage}/>
               <Route path='/editProfile' exact component = {EditProfilePage}/>
+              <Route path='/bookRecommendation' exact component = {BookRecommendationPage}/>
           </Switch>
         </div>
       </Router>

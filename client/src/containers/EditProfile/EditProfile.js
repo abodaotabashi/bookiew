@@ -178,7 +178,7 @@ class EditProfile extends Component {
                                                 <td>
                                                 </td>
                                                 <td>
-                                                    <div className='editProfileErrorMessage' style={{ display: this.state.errorVisible}}>Your Password is invaild</div>
+                                                    <div className='editProfileErrorMessage' style={{ display: this.state.errorVisible}}>{this.state.errorMessage}</div>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -186,7 +186,7 @@ class EditProfile extends Component {
                                 </div>
                             </div>
                             <div className='editProfileUpdateSectionWrapper'>
-                                <button className='editProfileUpdateButton'>Update Profile</button>
+                                <button className='editProfileUpdateButton' onClick={this.handleEditProfile}>Update Profile</button>
                             </div>
                         </div>
                         <div className='editProfileInformationSection'>

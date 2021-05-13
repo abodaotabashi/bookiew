@@ -62,7 +62,6 @@ const RegisterForm = (props) => {
                     <p className='formGenderText'>Male</p>
                     <input type="radio" name="sex" value="male" required onClick={props.maleSelected}/>
                 </div>
-                
             </div>
             <div className='formButtonsContainer'>
                 <button className='formButtonRegister' onClick={props.registerClicked}>Create New Account</button>
