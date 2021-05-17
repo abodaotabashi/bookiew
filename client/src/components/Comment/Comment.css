@@ -1,0 +1,81 @@
+.commentContainer {
+    width: 100%;
+    height: fit-content;
+    background-color: white;
+    padding: 0.2em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #341f97;
+    border-radius: 30px;
+}
+
+.commentCommenterContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    width: 100%;
+}
+
+.commentCommenterWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: fit-content;
+    border-bottom: 2px solid #341f97;
+    border-radius: 30px;
+    padding: 0 0.5em 0.2em 0.5em;
+}
+
+.commentCommenterIconWrapper {
+    width: 27px;
+    height: 27px;
+    border-radius:50%;
+    margin-right: 0.5em;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentCommenterIcon {
+    width: 24px;
+    height: 24px;
+    border-radius:50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.commentCommenterName {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:#341f97;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.commentText {
+    width: 97%;
+    text-align: justify;
+    text-justify: inter-word;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    font-size: 14px;
+    padding: 0;
+}
+
+.commentDate {
+    text-align: center;
+    color:rgb(52, 31, 151, 0.9);
+    letter-spacing: 0.5px;
+    font-family: 'Century Gothic';
+    font-weight: 500;
+    font-size: 12px;
+    padding: 0 1em;
+}

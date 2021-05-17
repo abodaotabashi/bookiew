@@ -134,8 +134,47 @@
 
 .homeRecentReviewContainer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    
+    margin-bottom: 2em;
+}
+
+.homeRecentReviewShowCommentsButton {
+    display: flex;
+    align-items: center;
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    margin: 2em 0;
+    font-family: 'Century Gothic';
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid rgba(223, 88, 48);
+    border-radius: 20px;
+    /*background-image: linear-gradient(to right, rgba(10,0,178,1) 0%, rgba(255,0,0,1) 100%);*/
+    background-image: linear-gradient(to left, transparent 0%, rgba(223, 88, 48, 0.7) 50%);
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.homeRecentReviewShowCommentsButton:hover {
+    background-color: rgba(223, 88, 48, 0.6);
+}
+
+.homeRecentReviewShowCommentsButton:hover > .homeRecentReviewShowCommentsButtonIcon {
+    background-color: rgb(100, 30, 8);
+}
+
+.homeRecentReviewShowCommentsButtonIcon {
+    width: 18px;
+    height: 18px;
+    padding: 0.2em;
+    margin-left: 0.5em;
+    transition: all 100ms ease-in-out;
+    background-color: rgba(223, 88, 48, 1);
+    border-radius: 50%;
 }

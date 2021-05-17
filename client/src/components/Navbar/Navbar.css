@@ -17,6 +17,11 @@
 .navbarLeftSection{
     height: 100%;
     display: flex;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
 }
 
 .navbarMiddleSection{
@@ -27,6 +32,11 @@
 
 .navbarRightSection{
     display: flex;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
 }
 
 .navbarLogoWrapper{

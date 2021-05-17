@@ -9,6 +9,8 @@ import HomePage from '../pages/HomePage/HomePage';
 import ForgotPasswordPage from '../pages/ForgotPasswordPage/ForgotPasswordPage';
 import ResetPasswordPage from '../pages/ResetPasswordPage/ResetPasswordPage';
 import MyReviewsPage from '../pages/MyReviewsPage/MyReviewsPage';
+import ViewReviewPage from '../pages/ViewReviewPage/ViewReviewPage';
+import EditReviewPage from '../pages/EditReviewPage/EditReviewPage';
 import SearchResultsPage from '../pages/SearchResultsPage/SearchResultsPage';
 import EditProfilePage from '../pages/EditProfilePage/EditProfilePage';
 import BookRecommendationPage from '../pages/BookRecommendationPage/BookRecommendationPage';
@@ -30,6 +32,8 @@ class App extends Component {
               <Route path='/search' exact component = {SearchResultsPage}/>
               <Route path='/editProfile' exact component = {EditProfilePage}/>
               <Route path='/bookRecommendation' exact component = {BookRecommendationPage}/>
+              <Route path='/viewReview' exact component = {ViewReviewPage}/>
+              <Route path='/editReview' exact component = {EditReviewPage}/>
           </Switch>
         </div>
       </Router>

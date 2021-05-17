@@ -5,7 +5,7 @@
     padding: 0.5em 1em;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     border-top-left-radius: 30px;
     border-bottom-left-radius: 30px;
@@ -71,6 +71,7 @@
     justify-content: center;
     color:#341f97;
     font-family: 'Century Gothic';
+    font-weight: bold;
 }
 
 .reviewCardReviewText {
@@ -92,6 +93,7 @@
 .reviewCardBookThumbnailWrapper {
     width: 224px;
     padding: 0.3em;
+    margin: 2em 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -108,7 +110,7 @@
 }
 
 .reviewCardBookName {
-    width: 100%;
+    width: 97%;
     text-align: left;
     color:rgb(52, 31, 151, 0.9);
     letter-spacing: 0.5px;
@@ -119,7 +121,7 @@
 }
 
 .reviewCardBookAuthor {
-    width: 100%;
+    width: 97%;
     text-align: left;
     color:rgb(52, 31, 151, 0.9);
     letter-spacing: 0.5px;
@@ -142,4 +144,58 @@
     border-radius: 50%;
     width: 80%;
     padding: 0.05em 0;
+}
+
+.reviewCardRatingCommentSection {
+    width: 97%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.reviewCardShowCommentsWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #341f97;
+    border-radius: 30px;
+    padding: 0 0.5em 0.1em 0.5em;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+}
+
+.reviewCardLabel {
+    color:rgb(52, 31, 151, 0.9);
+    letter-spacing: 0.5px;
+    font-family: 'Century Gothic';
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.reviewCardRatingWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-top: 2px solid #341f97;
+    border-bottom: 2px solid #341f97;
+    border-radius: 30px;
+    padding: 0 1em 0.1em 1em;    
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+}
+
+.reviewCardStar {
+    padding-left: 0.5em;
+}
+
+.reviewCardCommentsContainer {
+    width: 97%;
 }

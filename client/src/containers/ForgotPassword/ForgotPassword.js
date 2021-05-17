@@ -16,6 +16,7 @@ class ForgotPassword extends Component {
     }
 
     handleForgotPassword = async () => {
+        console.log("I'm in forgot")
         //TODO
     }
 

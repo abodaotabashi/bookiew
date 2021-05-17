@@ -42,6 +42,11 @@
     flex: 2;
     align-items: center;
     justify-content: center;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
 }
 
 .minifooterRightSection{
@@ -50,6 +55,11 @@
     flex: 1;
     align-items: center;
     justify-content: center;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
 }
 
 .minifooterLogoImage{

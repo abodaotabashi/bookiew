@@ -14,9 +14,9 @@ import {Link} from 'react-router-dom';
 var router = express.Router();
 */
 const NavbarWithUser = (props) => {
-    const logout = () => {
-        //router.post('/logout');
-    }
+    /*const logout = () => {
+        router.post('/logout');
+    }*/
     return(
         <div className='navbarWithUser'>
             <section className='navbarLeftSection'>
@@ -94,20 +94,20 @@ const NavbarWithUser = (props) => {
                         </Link>
                     </li>
                     <li className='navbarDropDownItem'>
-                        <a className='navbarDropDownItemLink' href='#'>
+                        <div className='navbarDropDownItemLink'>
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={LanguageIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
                             Change Language
-                        </a>
+                        </div>
                     </li>
-                    <li className='navbarDropDownItem' onClick = 'logout();'>
-                        <a className='navbarDropDownItemLink' href='#'>
+                    <li className='navbarDropDownItem'>
+                        <div className='navbarDropDownItemLink'>
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
                             Log out
-                        </a>
+                        </div>
                     </li>
                 </ul>
             </section>

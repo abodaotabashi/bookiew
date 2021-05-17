@@ -1,0 +1,185 @@
+.viewReviewBackgroundSection {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-image: url('../../assets/images/backgrounds/background5.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.viewReviewBackgroundFilterSection {
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
+    background-color: rgba(35, 9, 36, 0.9);
+}
+
+.viewReviewContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.viewReviewHeader {
+    width: 100%;
+    color: white;
+    display: flex;
+    margin: 1em 0 0.5em 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Century Gothic';
+    line-height: 1;
+}
+
+.viewReviewBreaklineContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewReviewBreakline {
+    color: white;
+    background-color: white;
+    border-radius: 50%;
+    width: 60%;
+    padding: 0.03em 0;
+}
+
+.viewReviewReviewSection {
+    margin: 2em 0;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.viewReviewReviewContainer {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.viewReviewShowCommentsButton {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    margin: 1em 0 0 0;
+    font-family: 'Century Gothic';
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid rgba(223, 88, 48);
+    border-radius: 20px;
+    /*background-image: linear-gradient(to right, rgba(10,0,178,1) 0%, rgba(255,0,0,1) 100%);*/
+    background-image: linear-gradient(to left, transparent 0%, rgba(223, 88, 48, 0.7) 50%);
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+}
+
+.viewReviewShowCommentsButton:hover {
+    background-color: rgba(223, 88, 48, 0.6);
+}
+
+.viewReviewShowCommentsButton:hover > .viewReviewShowCommentsButtonIcon {
+    background-color: rgb(100, 30, 8);
+}
+
+.viewReviewShowCommentsButtonIcon {
+    width: 18px;
+    height: 18px;
+    padding: 0.2em;
+    margin-left: 0.5em;
+    transition: all 100ms ease-in-out;
+    background-color: rgba(223, 88, 48, 1);
+    border-radius: 50%;
+}
+
+.viewReviewEditingContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    align-items: flex-start;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.viewReviewEditReviewWrapper {
+    background-color: rgba(223, 88, 48, 0.6);
+    width: 150px;
+    height: 168px;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    margin: 1em 0;
+    border: 2px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease-in-out;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+}
+
+.viewReviewEditReviewWrapper:hover {
+    background-color: rgba(223, 88, 48, 0.8);
+}
+
+.viewReviewDeleteReviewWrapper {
+    background-color: rgba(223, 88, 48, 0.6);
+    width: 150px;
+    height: 168px;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+    margin: 1em 0;
+    border: 2px solid white;
+    border-radius: 30px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    transition: all 200ms ease-in-out;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+}
+
+.viewReviewDeleteReviewWrapper:hover {
+    background-color: rgba(223, 88, 48, 0.8);
+}
+
+.viewReviewEditingLabel {
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    font-weight: bold;
+    color: white;
+    width: 100%;
+}

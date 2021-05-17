@@ -76,7 +76,7 @@ const Footer = () => {
                                 </a>
                             </li>
                             <li className='footerSocialLinkItem'>
-                                <a className='footerSocialLink' target="_blank" href="https://www.linkedin.com/">
+                                <a className='footerSocialLink' target="_blank" rel='noreferrer' href="https://www.linkedin.com/">
                                     <img className='footerSocialLinkIcon' src={LinkedinIcon} alt='linkedinIcon'/>
                                 </a>
                             </li>

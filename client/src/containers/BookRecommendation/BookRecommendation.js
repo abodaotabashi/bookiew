@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import "./BookRecommendation.css";
 
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 
 class BookRecommendation extends Component {
