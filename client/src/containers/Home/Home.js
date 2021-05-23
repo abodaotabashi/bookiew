@@ -26,7 +26,7 @@ class Home extends Component {
     };
 
     handleShowMoreComments = () => {
-        if(this.state.reviewComments.length < this.state.numberOfCommentDisplayed + 3) {
+        if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
             this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
                             reviewCommentsDisplayed: this.state.reviewComments,
                             showMoreCommentsButtonVisible: 'none'

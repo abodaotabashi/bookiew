@@ -183,3 +183,83 @@
     color: white;
     width: 100%;
 }
+
+.viewReviewCommentInputText {
+    width: 88%;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    padding: 1em 1em;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(52, 31, 151, 1);
+    letter-spacing: 1px;
+    border-radius: 30px;
+    border: 2px solid rgba(52, 31, 151, 0.7);
+    transition: all 250ms ease-in-out; 
+}
+
+.viewReviewCommentInputText:hover {
+    border: 2px solid #341f97;
+}
+
+.viewReviewCommentInputText::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(52, 31, 151, 0.5);
+}
+
+.viewReviewCommentInputText::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(52, 31, 151, 0.5);
+}
+
+.viewReviewCommentInputSendButton {
+    border-radius: 50%;
+    border: 1px solid #341f97;
+    padding: 0.8em;
+    width: 1.5em;
+    height: 1.5em;
+    margin-left: 1em;
+    cursor: pointer;
+}
+
+.viewReviewCommentInputSendButtonIcon {
+    color: #341f97;
+}
+
+.viewBookAddCommentSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    margin: 1em 0;
+}
+
+.viewBookRatingSection {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    margin: 1em 0;
+}
+
+.viewReviewCommentWrapper {
+    width: 95%;
+}
+
+.viewReviewCommentWrapper {
+    width: 95%;
+}
+
+.viewReviewCommentsContainer {
+    width: 95%;
+}
+
+.viewReviewRatingLabel {
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    padding: 1em 1em;
+    color: #341f97;
+}

@@ -39,7 +39,7 @@ const HomeReviewCard = (props) => {
                 <div className='reviewCardRatingCommentSection'>
                     {props.reviewComments !== null ?
                         <div className='reviewCardShowCommentsWrapper'>
-                            <p className='reviewCardLabel'>Comments</p>
+                            <p className='reviewCardLabel'>Comments &nbsp; {props.reviewCommentsNumber}</p>
                         </div>
                         : null
                     }

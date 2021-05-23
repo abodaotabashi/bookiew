@@ -97,10 +97,10 @@ class EditProfile extends Component {
                             <div className='editProfileSectionWrapper'>
                                 <div className='editProfileSectionPhotoContainer'>
                                     <div className='editProfileSectionPhotoWrapper'>
-                                        <img src={UserIcon} className='editProfilePhoto' alt='Profile Photo'/>
+                                        <img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/>
                                     </div>
                                     <div className='editProfileUpdatePhotoWrapper' onClick={this.handleUpdatePhoto}>
-                                        <img src={EditPhotoIcon} className='editProfileUpdatePhotoIcon' alt='Update Profile Photo'/>
+                                        <img src={EditPhotoIcon} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
                                         <p>Update Photo</p>
                                     </div>
                                 </div>

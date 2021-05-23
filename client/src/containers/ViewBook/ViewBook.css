@@ -1,0 +1,248 @@
+.viewBookBackgroundSection {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-image: url('../../assets/images/backgrounds/background8.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.viewBookBackgroundFilterSection {
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
+    background-color: rgba(35, 9, 36, 0.9);
+}
+
+.viewBookMainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+
+.viewBookHeader {
+    width: 100%;
+    color: white;
+    display: flex;
+    margin: 0.5em 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Century Gothic';
+    line-height: 1;
+}
+
+.viewBookBreaklineContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewBookBreakline {
+    color: white;
+    background-color: white;
+    border-radius: 50%;
+    width: 60%;
+    padding: 0.03em 0;
+}
+
+.viewBookContainer {
+    margin: 0.5em 0;
+    width: 95%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    transition: all 250ms ease-in-out;
+}
+
+.viewBookBookCardContainer {
+    width: 18%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 0.5em 0.5em;
+    margin: 0.5em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom-right-radius: 30px;
+    border-top-left-radius: 30px;
+}
+
+.viewBookBookCardThumbnailWrapper {
+    width: 70%;
+    padding: 0.3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid rgb(52, 31, 151, 0.9);
+}
+
+.viewBookBookCardThumbnail {
+    width: 90%;
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewBookBookCardName{
+    text-align: center;
+    color:rgb(52, 31, 151, 0.9);
+    letter-spacing: 0.5px;
+    font-family: 'Century Gothic';
+    font-size: 18px;
+    font-weight: 700;
+    padding: 0 1em;
+    margin: 0;
+}
+
+.viewBookBookCardInformationTable {
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    font-size: medium;
+    text-align: left;
+    color:rgb(52, 31, 151, 0.9);
+    border: 1px solid transparent;
+    padding-left: 1em;
+    width: 100%;
+}
+
+.viewBookBookCardInformationRow {
+    padding: 0.5em 0;
+}
+
+.viewBookReviewsContainer {
+    width: 70%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 0.5em 0.5em;
+    margin: 0.5em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+.viewBookUserReviewBreaklineContainer {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 1em 0;
+}
+
+.viewBookUserReviewBreakline {
+    color: #341f97;
+    background-color: #341f97;
+    border: #341f97;
+    border-radius: 50%;
+    width: 80%;
+    padding: 0.1em 0;
+}
+
+.viewBookOtherReviewsContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.viewBookUserReviewHeader {
+    width: 100%;
+    color: #341f97;
+    display: flex;
+    margin: 0.5em 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: lighter;
+    font-family: 'Century Gothic';
+    line-height: 1;
+}
+
+.viewBookAddReviewContainer {
+    width: 90%;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 0.5em 0.5em;
+    margin: 0.5em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    transition: all 200ms ease-in-out;
+    cursor: pointer;
+}
+
+.viewBookAddReviewContainer:hover {
+    border: 2px solid #341f97;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.viewBookAddReviewContainer:hover > .viewBookAddReviewIcon {
+    color: rgba(52, 31, 151, 1);
+}
+
+.viewBookAddReviewIcon {
+    color: rgba(52, 31, 151, 0.5);
+    transition: all 200ms ease-in-out;
+}
+
+
+.viewBookShowReviewsButton {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    margin: 1em 0 0 0;
+    font-family: 'Century Gothic';
+    font-size: 16px;
+    letter-spacing: 0.8px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #341f97;
+    border-radius: 20px;
+    /*background-image: linear-gradient(to right, rgba(10,0,178,1) 0%, rgba(255,0,0,1) 100%);*/
+    background-image: linear-gradient(to top left, transparent 0%, rgba(52, 31, 151, 0.9) 70%);
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+    -moz-user-select: none; 
+    -webkit-user-select: none; 
+    -ms-user-select:none; 
+    user-select:none;
+    -o-user-select:none;
+}
+
+.viewBookShowReviewsButton:hover {
+    background-color: rgb(52, 31, 151);
+}
+
+.viewBookShowReviewsButton:hover > .viewBookShowReviewsButtonIcon {
+    background-color: rgb(10, 3, 43);
+}
+
+.viewBookShowReviewsButtonIcon {
+    width: 18px;
+    height: 18px;
+    padding: 0.2em;
+    margin-left: 0.5em;
+    transition: all 100ms ease-in-out;
+    background-color: rgb(52, 31, 151, 1);
+    border-radius: 50%;
+}

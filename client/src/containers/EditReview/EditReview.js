@@ -8,6 +8,7 @@ import { withRouter } from "react-router-dom";
 
 class EditReview extends Component {
     state = {
+        book: this.props.book,
         review: this.props.review,
         reviewText: this.props.review.reviewText
     }
@@ -33,14 +34,14 @@ class EditReview extends Component {
                             <div className='editReviewReviewContainer'>
                                 <div className='reviewCardContainer'>
                                     <div className='reviewCardBookThumbnailWrapper'>
-                                        <img src={this.state.review.bookThumbnail} className='reviewCardBookThumbnail' alt='bookThumbnail'/>
+                                        <img src={this.state.book.bookThumbnail} className='reviewCardBookThumbnail' alt='bookThumbnail'/>
                                     </div>
                                     <div className='reviewCardWrapper'>
                                         <div className='reviewCardBookName'>
-                                            <p>{this.state.review.bookName}</p>
+                                            <p>{this.state.book.bookName}</p>
                                         </div>
                                         <div className='reviewCardBookAuthor'>
-                                            <p>{this.state.review.bookAuthor}</p>
+                                            <p>{this.state.book.bookAuthor}</p>
                                         </div>
                                         <div className='reviewCardBreaklineContainer' >
                                             <hr className='reviewCardBreakline' />

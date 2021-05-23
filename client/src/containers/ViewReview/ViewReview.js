@@ -11,6 +11,7 @@ import { withRouter } from "react-router-dom";
 
 class ViewReview extends Component {
     state = {
+        book: this.props.book,
         review: this.props.review,
         reviewComments: this.props.review.reviewComments,
         numberOfCommentDisplayed: null,
@@ -39,17 +40,18 @@ class ViewReview extends Component {
     handleEditReview = () => {
         this.props.history.push({
             pathname: '/editReview',
-            state: { review: this.props.review }});
+            state: { review: this.props.review, book: this.state.book }});
     }
 
     render(){
         if(this.state.numberOfCommentDisplayed === null) {
             let numberOfReviews = null;
-            if(this.props.review.reviewComments.length >= 1) {
+            if(this.props.review.reviewComments.length > 1) {
                 numberOfReviews = 1;
                 this.setState({ numberOfCommentDisplayed: 1 });
             } else {
-                this.setState({ numberOfCommentDisplayed: this.props.review.reviewComments.length});
+                numberOfReviews = this.props.review.reviewComments.length;
+                this.setState({ numberOfCommentDisplayed: this.props.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
             }
             this.setState({ reviewCommentsDisplayed: this.props.review.reviewComments.slice(0, numberOfReviews)});
         }
@@ -68,10 +70,11 @@ class ViewReview extends Component {
                                         reviewText={this.state.review.reviewText}
                                         reviewDate={this.state.review.reviewDate}
                                         reviewRating={this.state.review.reviewRating}
-                                        bookName={this.state.review.bookName}
-                                        bookAuthor={this.state.review.bookAuthor}
-                                        bookThumbnail={this.state.review.bookThumbnail}
+                                        bookName={this.state.book.bookName}
+                                        bookAuthor={this.state.book.bookAuthor}
+                                        bookThumbnail={this.state.book.bookThumbnail}
                                         reviewComments={this.state.reviewCommentsDisplayed}
+                                        reviewCommentsNumber={this.state.reviewComments.length}
                                         />
                                 <button className='viewReviewShowCommentsButton' style={{ display: this.state.showMoreCommentsButtonVisible}} onClick={this.handleShowMoreComments}>
                                     Show More Comments 

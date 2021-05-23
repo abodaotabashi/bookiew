@@ -1,0 +1,101 @@
+.addReviewReviewContainer {
+    width: 50%;
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.6);
+    padding: 0.5em 0.5em;
+    margin: 0.5em 0.5em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+
+.addReviewReviewerContainer {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 1em 0;
+}
+
+.addReviewReviewerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    width: fit-content;
+    border-bottom: 2px solid #341f97;
+    border-radius: 30px;
+    padding: 0 1em 0.2em 1em;
+}
+
+.addReviewReviewText {
+    min-width: 70%;
+    width: 90%;
+    max-width: 90%;
+    min-height: 8em;
+    max-height: 12em;
+    border: none;
+    outline: none;
+    font-size: 22px;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    padding: 1em 1em;
+    background: rgba(255, 255, 255, 0.3);
+    color: rgba(52, 31, 151, 1);
+    letter-spacing: 1px;
+    border-radius: 30px;
+    margin-right: 1em;
+    border: 2px solid rgba(52, 31, 151, 0.3);
+    transition: all 250ms ease-in-out; 
+}
+
+.addReviewReviewText:hover {
+    border: 2px solid #341f97;
+}
+
+.addReviewReviewText::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(52, 31, 151, 0.5);
+}
+
+.addReviewReviewText::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(52, 31, 151, 0.5);
+}
+
+.addReviewReviewTextLength {
+    color: rgba(52, 31, 151, 1);
+    letter-spacing: 1px;
+    font-size: 18px;
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+    text-align: right;
+    width: fit-content;
+    padding: 1em 0;
+    cursor: help;
+}
+
+.addReviewReviewTextLengthTooltip {
+    background-color: rgba(52, 31, 151, 0.8);
+    color: white;
+    letter-spacing: 1px;
+    font-size: 12px;
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+    text-align: right;
+    width: fit-content;
+    padding: 0.5em 0.5em;
+    visibility: hidden;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    position: absolute;
+    z-index: 1;
+    margin: 0 1em;
+}
+
+.addReviewReviewTextLength:hover > .addReviewReviewTextLengthTooltip {
+    visibility: visible;
+}

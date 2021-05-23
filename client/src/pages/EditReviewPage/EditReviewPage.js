@@ -6,13 +6,11 @@ import EditReview from '../../containers/EditReview/EditReview';
 import PageContainer from '../../components/PageContainer/PageContainer';
 
 const EditReviewPage = (props) => {
-    let review = props.location.state.review;
-    
     return(
         <div>
             <NavbarWithUser userName="Abdurrahman" />
             <PageContainer>
-                <EditReview review={review} />
+                <EditReview review={props.location.state.review} book={props.location.state.book} />
             </PageContainer>
             <MiniFooter />
         </div>
