@@ -1,0 +1,15 @@
+.starRatingContainer {
+    width: fit-content;
+    padding: 0.5em 1em;
+    border-radius: 30px;
+    border: 2px solid #341f97;
+}
+
+.starRatingRadio {
+    display: none;
+}
+
+.starRatingStar {
+    cursor: pointer;
+    transition: color 200ms;
+}
