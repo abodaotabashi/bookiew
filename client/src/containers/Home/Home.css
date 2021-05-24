@@ -178,3 +178,74 @@
     background-color: rgba(223, 88, 48, 1);
     border-radius: 50%;
 }
+
+.homeAddBookContainer {
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeRecommendationsContainer {
+    display: flex;
+    flex-direction: row;
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+.homeRecommendationsSection {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeRecommendationsCounterLabel {
+    font-size: 38px;
+    font-family: 'Century Gothic';
+    margin-bottom: 0.5em;
+    color: #341f97;
+    letter-spacing: 1px;
+}
+
+
+.homeRecommendationsCounter {
+    font-size: 128px;
+    font-family: 'Century Gothic';
+    color: #341f97;
+    transition: all 500ms ease-out;
+}
+
+.homeRecommendationsButtonWrapper {
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.homeRecommendationsButton {
+    border: 0;
+    outline: 0;
+    padding: 0.5em 1em;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid #341f97;
+    border-radius: 30px;
+    /*background-image: linear-gradient(to right, rgba(10,0,178,1) 0%, rgba(255,0,0,1) 100%);*/
+    background-image: linear-gradient(to right, transparent 0%, #341f97 60%);
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.homeRecommendationsButton:hover {
+    background-color: #341f97;
+}
