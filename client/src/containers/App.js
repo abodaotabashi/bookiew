@@ -17,6 +17,7 @@ import AddReviewPage from '../pages/AddReviewPage/AddReviewPage';
 import SearchResultsPage from '../pages/SearchResultsPage/SearchResultsPage';
 import EditProfilePage from '../pages/EditProfilePage/EditProfilePage';
 import BookRecommendationPage from '../pages/BookRecommendationPage/BookRecommendationPage';
+import AdminLoginPage from '../pages/AdminLoginPage/AdminLoginPage';
 
 class App extends Component {
   
@@ -40,6 +41,7 @@ class App extends Component {
               <Route path='/editReview' exact component = {EditReviewPage}/>
               <Route path='/addReview' exact component = {AddReviewPage}/>
               <Route path='/viewReviewOfOther' exact component = {ViewOtherReviewPage}/>
+              <Route path='/adminpanel/login' exact component = {AdminLoginPage}/>
           </Switch>
         </div>
       </Router>

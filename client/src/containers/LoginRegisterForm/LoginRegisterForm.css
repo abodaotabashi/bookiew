@@ -5,7 +5,22 @@
     background-size: cover;
 }
 
+.adminForm {
+    width: 100%;
+    height: 865px;
+    background-image: url('../../assets/images/backgrounds/background3.jpg');
+    background-size: cover;
+}
+
 .formBackgroundFilter {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(54, 5, 56, 0.8);
+    display: flex;
+    flex-direction: column;
+}
+
+.adminFormBackgroundFilter {
     width: 100%;
     height: 100%;
     background-color: rgba(54, 5, 56, 0.8);
@@ -33,6 +48,26 @@
     border-radius: 20px;
 }
 
+.adminFormContainer {
+    width: 100%;
+    max-width: 520px;
+    min-height: 600px;
+    padding: 30px 60px;
+    margin: auto;
+    background: radial-gradient(
+        ellipse at left bottom,
+        rgb(231, 109, 71) 0%,
+        rgba(190, 74, 39, 0.9) 59%,
+        rgb(102, 43, 19) 100%
+    );
+    box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 20px;
+}
+
 .formType {
     width: 100%;
     min-height: 100px;
@@ -44,6 +79,20 @@
     font-size: 40px;
     font-family: 'Century Gothic';
     line-height: 1;
+}
+
+.adminFormType {
+    width: 100%;
+    min-height: 100px;
+    color: white;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Century Gothic';
+    line-height: 1;
+    font-weight: bold;
 }
 
 .formLabel {
@@ -66,6 +115,15 @@
     color: white;
     letter-spacing: 1px;
     border-radius: 30px;
+}
+
+
+.formInputText::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.formInputText::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .formErrorMessage {

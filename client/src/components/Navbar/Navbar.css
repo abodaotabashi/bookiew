@@ -14,6 +14,21 @@
     z-index: 999;
 }
 
+.navbarAdmin {
+    height: 70px;
+    box-shadow: 0 5px 3px rgba(15, 15, 15, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1.5em;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
 .navbarLeftSection{
     height: 100%;
     display: flex;
@@ -190,4 +205,8 @@
     justify-content: center;
     float: right;
     transition: 400ms;
+}
+
+.AdminPanelLogo {
+    height: 42px;
 }
