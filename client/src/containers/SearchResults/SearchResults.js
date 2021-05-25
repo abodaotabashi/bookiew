@@ -18,31 +18,40 @@ class SearchResults extends Component {
     handleSearchBook = () => {
         //TODO
     }
-    
+    componentWillReceiveProps(props) {
+        // You don't have to do this check first, but it can help prevent an unneeded render
+        if (props.books !== this.state.books) {
+          this.setState({ 
+            searchedBookName: this.props.searchedBook,
+            books: this.props.books,
+            toSearchBookName: this.props.searchedBook
+            });
+        }
+    }
 
     render(){
-       
-        
         let books = null;
+       
+       
+           
         books = (
             <div className='searchResultsBookCardsContainer'>
                 {this.state.books.map((book, index) => {
                     return (
                         
-                            <BookCard   
-                                key={book.id}
-                                className='searchResultsBookCard'
-                                bookName={book.bookName}
-                                bookAuthor={book.bookAuthor}
-                                bookThumbnail={book.bookCoverURL}
-                                click={this.handleBookClicked.bind(this, index)}
-                            />
+                        <BookCard   
+                            key={book.id}
+                            className='searchResultsBookCard'
+                            bookName={book.bookName}
+                            bookAuthor={book.bookAuthor}
+                            bookThumbnail={book.bookCoverURL}
+                            click={this.handleBookClicked.bind(this, index)}
+                        />
                             
                     );
                 })}
             </div>
         );
-        
         
         let searchedBookName= this.state.searchedBookName;
         
