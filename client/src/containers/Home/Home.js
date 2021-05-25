@@ -38,12 +38,13 @@ class Home extends Component {
     }
 
     handleSearchBook = async() => {
+        this.setState({books: []})
         console.log("searched book: " + this.state.searchedBook)
         const result = await axios.post("http://localhost:3000/search",{
             searchedBook: this.state.searchedBook
         })
         if(result.data.response){
-            this.setState({books: []})
+            
 
             if(result.data.message.length === 0){ 
                 this.setState({loading:false});
@@ -88,6 +89,7 @@ class Home extends Component {
     }
 
     render(){
+       
         let results = null;
 
         if(this.state.loading){

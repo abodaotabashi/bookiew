@@ -18,16 +18,17 @@ class SearchResults extends Component {
     handleSearchBook = () => {
         //TODO
     }
+    
 
     render(){
        
-        console.log("books from props: " + this.props.books)
-        let books = null
+        
+        let books = null;
         books = (
             <div className='searchResultsBookCardsContainer'>
                 {this.state.books.map((book, index) => {
                     return (
-                        <div>
+                        
                             <BookCard   
                                 key={book.id}
                                 className='searchResultsBookCard'
@@ -37,11 +38,11 @@ class SearchResults extends Component {
                                 click={this.handleBookClicked.bind(this, index)}
                             />
                             
-                        </div>
                     );
                 })}
             </div>
         );
+        
         
         let searchedBookName= this.state.searchedBookName;
         
