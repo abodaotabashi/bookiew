@@ -81,6 +81,17 @@ if (user) {
   
 }
 });
+
+router.post('/search', async function(req, res, next){
+  const searchedBook = req.body.searchedBook;
+  const book = await knex('books').select('*').where({'bookName': searchedBook});
+  if(book!=null){
+    return res.send({response: true, message: book});
+  }else{
+    return res.send({response: false, message: "no such book!"});
+  }
+});
+
 module.exports = router;
 
 

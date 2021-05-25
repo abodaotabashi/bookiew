@@ -6,9 +6,9 @@ import BookCard from '../../components/BookCard/BookCard';
 
 class SearchResults extends Component {
     state = {
-        searchedBookName: 'book',
+        searchedBookName: this.props.searchedBook,
         books: this.props.books,
-        toSearchBookName: 'book'
+        toSearchBookName: this.props.searchedBook
     }
 
     handleBookClicked = (bookIndex) => {
@@ -20,19 +20,24 @@ class SearchResults extends Component {
     }
 
     render(){
-
-        let books = null;
+       
+        console.log("books from props: " + this.props.books)
+        let books = null
         books = (
             <div className='searchResultsBookCardsContainer'>
                 {this.state.books.map((book, index) => {
                     return (
-                        <BookCard   key={book.id}
-                                    className='searchResultsBookCard'
-                                    bookName={book.bookName}
-                                    bookAuthor={book.bookAuthor}
-                                    bookThumbnail={book.bookThumbnail}
-                                    click={this.handleBookClicked.bind(this, index)}
-                                    />
+                        <div>
+                            <BookCard   
+                                key={book.id}
+                                className='searchResultsBookCard'
+                                bookName={book.bookName}
+                                bookAuthor={book.bookAuthor}
+                                bookThumbnail={book.bookCoverURL}
+                                click={this.handleBookClicked.bind(this, index)}
+                            />
+                            
+                        </div>
                     );
                 })}
             </div>
@@ -41,31 +46,14 @@ class SearchResults extends Component {
         let searchedBookName= this.state.searchedBookName;
         
         return(
-            <div className='searchResultsBackgroundSection'>
-                <div className='searchResultsBackgroundFilterSection'>
-                    <div className='searchResultsSectionsContainer'>
-                        <div className='searchResultsHeaderSection'>
-                            <div className='searchResultsHeader'>
-                                <p className='searchResultsHeaderText'>Search Results</p>
-                            </div>
-                            <div className='searchResultsSearchBoxContainer'>
-                                <div className='searchResultsSearchBox'>
-                                    <input className='searchResultsSearchBoxText' type='text' name='' placeholder='Search' value={this.state.toSearchBookName} onChange={(event) => this.setState({ toSearchBookName : event.target.value })}/>
-                                    <button className='searchResultsSearchBoxButton' onClick={this.handleSearchBook}>
-                                        <img src={SearchIcon} alt='Search'/>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className='searchResultsBreaklineContainer' >
-                            <hr className='searchResultsBreakline' />
-                        </div>
+            <div>
+                       
                         <p className='searchResultsNumResults'>{this.state.books.length} Search results found for "{searchedBookName}" :</p>
                         <div className='searchResultsBookCardsContainer'>
+                        
                             {books}
                         </div>
-                    </div>
-                </div>
+                    
             </div>
         );
     }

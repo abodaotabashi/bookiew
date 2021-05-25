@@ -5,9 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "nodemon ./bin/www",
-    "server":"nodemon app.js",
-    "client":"npm run start --prefix ../client",
-    "build":"concurrently --kill-others-on-fail\"npm run server\"\"npm run client\""
+    "server": "nodemon app.js",
+    "client": "npm run start --prefix ../client",
+    "build": "concurrently --kill-others-on-fail\"npm run server\"\"npm run client\""
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -20,7 +20,6 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1"
   },
-
   "devDependencies": {
     "nodemon": "^2.0.7"
   }
