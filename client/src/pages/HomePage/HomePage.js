@@ -17,7 +17,7 @@ const HomePage = (props) => {
 
     return(
         <div>
-            <NavbarWithUser userName={props.location.state.username} />
+            <NavbarWithUser email={props.location.state.email} />
             <PageContainer>
                 <Home user={props.location.state.user} reviewComments={comments}/>
             </PageContainer>
