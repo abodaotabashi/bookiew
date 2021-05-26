@@ -10,13 +10,7 @@ import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
 import {Link} from 'react-router-dom';
 
-/*var express = require('express');
-var router = express.Router();
-*/
 const NavbarWithUser = (props) => {
-    /*const logout = () => {
-        router.post('/logout');
-    }*/
     return(
         <div className='navbarWithUser'>
             <section className='navbarLeftSection'>
@@ -102,12 +96,19 @@ const NavbarWithUser = (props) => {
                         </div>
                     </li>
                     <li className='navbarDropDownItem'>
-                        <div className='navbarDropDownItemLink'>
-                            <div className='navbarDropDownItemIconWrapper'>
-                                <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
-                            </div>
-                            Log out
-                        </div>
+                        <a className='navbarDropDownItemLink' href='#'>
+                            <Link 
+                                className='logoutLink'
+                                to="/"
+                                smooth="true"
+                                offset={-20}
+                                duration={500}> 
+                                <div className='navbarDropDownItemIconWrapper'>
+                                    <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
+                                </div>
+                                Log out
+                            </Link>
+                        </a>
                     </li>
                 </ul>
             </section>
