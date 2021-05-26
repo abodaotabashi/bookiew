@@ -4,6 +4,7 @@ import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
+import {setUser} from '../../session';
 
 
 class LoginRegisterForm extends Component {
@@ -30,6 +31,11 @@ class LoginRegisterForm extends Component {
             return false;
         }
         
+        if (this.state.password.length < 6) {
+            console.log(this.state.password.length);
+            this.setState({ passwordErrorMessage: 'Password must contain more than 6 characters' });
+            return false;
+        }
 
         if ( (!this.state.hasAccount && !this.state.formChanged) || (this.state.hasAccount && this.state.formChanged)) {
             if (this.state.firstname || this.state.surname) {
@@ -39,11 +45,6 @@ class LoginRegisterForm extends Component {
                 }
             } else {
                 this.setState({ nameErrorMessage: 'Firstname and Surname cannot be empty!' });
-                return false;
-            }
-            if (this.state.password.length < 6) {
-                console.log(this.state.password.length);
-                this.setState({ passwordErrorMessage: 'Password must contain more than 6 characters' });
                 return false;
             }
         }
@@ -61,13 +62,15 @@ class LoginRegisterForm extends Component {
             if(result.data.response){
                 console.log("Successfully logged in");
                 this.setState({ isLoggedin: true});
+                const user = result.data.user;
+                setUser(user.userID, user.email, user.firstname, user.surname, user.password, user.gender, user.birthdate, user.profilePhotoURL);
                 this.props.history.push({
                     pathname: '/home',
-                    state: { username: "Nice!!!", user: null }});
+                    state: { username: "Nice!!!", user: null, email: this.state.email }});
                 return;
             }
 
-            console.log("Something went wrong ",result.data)
+            console.log("Something went wrong "+result.data)
             return;
         }
     }
@@ -86,13 +89,13 @@ class LoginRegisterForm extends Component {
             password: this.state.password,
             });
             if(result.data.response){
-                console.log("Successfully registered",result.data);
+                console.log("Successfully registered"+result.data);
                 this.setState({ isRegistered: true});
                 this.props.history.push({pathname: '/login'});
                 
                 return;
             }
-            console.log("Something went wrong", result.data);
+            console.log("Something went wrong"+ result.data);
             return;
         }
     }
