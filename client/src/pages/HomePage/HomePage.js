@@ -4,9 +4,13 @@ import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import Home from '../../containers/Home/Home';
 import PageContainer from '../../components/PageContainer/PageContainer';
 
+import {getUser} from '../../session';
 import UserIcon from "../../assets/icons/user.png";
 
 const HomePage = (props) => {
+    
+    const user = getUser();
+
     let comments=[
         { commenterIcon: UserIcon, commenterName: 'Batoul', commentText: 'That is amazing!', commentDate: '20.04.2021'},
         { commenterIcon: UserIcon, commenterName: 'Mahasin', commentText: 'Good Job', commentDate: '21.04.2021'},
@@ -17,7 +21,7 @@ const HomePage = (props) => {
 
     return(
         <div>
-            <NavbarWithUser email={props.location.state.email} />
+            <NavbarWithUser userName={user.firstname} />
             <PageContainer>
                 <Home user={props.location.state.user} reviewComments={comments}/>
             </PageContainer>

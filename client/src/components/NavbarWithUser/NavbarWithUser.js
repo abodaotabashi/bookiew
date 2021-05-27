@@ -96,19 +96,17 @@ const NavbarWithUser = (props) => {
                         </div>
                     </li>
                     <li className='navbarDropDownItem'>
-                        <a className='navbarDropDownItemLink' href='#'>
-                            <Link 
-                                className='logoutLink'
-                                to="/"
-                                smooth="true"
-                                offset={-20}
-                                duration={500}> 
-                                <div className='navbarDropDownItemIconWrapper'>
-                                    <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
-                                </div>
-                                Log out
-                            </Link>
-                        </a>
+                        <Link 
+                            className='navbarDropDownItemLink'
+                            to="/"
+                            smooth="true"
+                            offset={-20}
+                            duration={500}> 
+                            <div className='navbarDropDownItemIconWrapper'>
+                                <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
+                            </div>
+                            Log out
+                        </Link>
                     </li>
                 </ul>
             </section>

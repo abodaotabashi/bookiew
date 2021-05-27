@@ -41,28 +41,33 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex: 1;
 }
 
 .footerMiddleSection{
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     -moz-user-select: none; 
     -webkit-user-select: none; 
     -ms-user-select:none; 
     user-select:none;
     -o-user-select:none;
+    flex: 1;
 }
 
 .footerRightSection{
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
     -moz-user-select: none; 
     -webkit-user-select: none; 
     -ms-user-select:none; 
     user-select:none;
     -o-user-select:none;
+    flex: 1;
 }
 
 .footerLogoImage{

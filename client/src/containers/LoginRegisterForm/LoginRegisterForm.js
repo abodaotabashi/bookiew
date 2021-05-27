@@ -77,7 +77,6 @@ class LoginRegisterForm extends Component {
 
     handleRegister = async () => {
         this.clearErrors();
-        //TODO
         const isValid = this.validate();
         if (isValid) {
             const result = await axios.post("http://localhost:3000/register",{
@@ -92,7 +91,6 @@ class LoginRegisterForm extends Component {
                 console.log("Successfully registered"+result.data);
                 this.setState({ isRegistered: true});
                 this.props.history.push({pathname: '/login'});
-                
                 return;
             }
             console.log("Something went wrong"+ result.data);
