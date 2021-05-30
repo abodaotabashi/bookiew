@@ -4,12 +4,23 @@ import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import Home from '../../containers/Home/Home';
 import PageContainer from '../../components/PageContainer/PageContainer';
 
-import {getUser} from '../../session';
+import {getUser, setUser} from '../../session';
 import UserIcon from "../../assets/icons/user.png";
 
 const HomePage = (props) => {
+    let user =null;
+    if(props.location.user){
+        
+        user = props.location.user;
+        console.log(" user coming from editprofile" + user.firstname)
+    }else{
+        user = props.location.state.user;
+        
+        console.log(" user coming from login " + user.firstname)
+    }
     
-    const user = getUser();
+
+    
 
     let comments=[
         { commenterIcon: UserIcon, commenterName: 'Batoul', commentText: 'That is amazing!', commentDate: '20.04.2021'},
@@ -21,9 +32,9 @@ const HomePage = (props) => {
 
     return(
         <div>
-            <NavbarWithUser userName={user.firstname} />
+            <NavbarWithUser user={user} />
             <PageContainer>
-                <Home user={props.location.state.user} reviewComments={comments}/>
+                <Home user={user} reviewComments={comments}/>
             </PageContainer>
             <MiniFooter />
         </div>

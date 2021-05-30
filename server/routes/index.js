@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
@@ -35,9 +36,9 @@ router.post('/login', async function(req, res, next) {
   //SELECT * from admins where adminEmail=email
   const user = await knex('users').select('*').where({"email":email, "password":password}).first()
   if(user){
-    return res.send({response: true, user:user})
+    return res.send({response: true, message:"you are logged in", user: user})
   }
-  return res.send({response:false, message:"email or password is incorrect"})
+  return res.send({response:false, message:"email or password is incorrect", user: null})
 });
 
 router.post('/register', async function(req, res, next) {
@@ -69,10 +70,12 @@ router.post('/register', async function(req, res, next) {
 });
 
 router.post('/editProfile', async function(req, res, next){
-  const email = req.body.email
-  const user = await knex('users').select('*').where({"email":email}).first();
+  const userID = req.body.userID
+  const user = await knex('users').select('*').where({"userID":userID}).first();
   if(user){
     return res.send({response: true, user: user})
+  }else{
+    return res.send({response: false, user: null})
   }
 });
 
@@ -122,6 +125,33 @@ router.post('/search', async function(req, res, next){
   }else{
     return res.send({response: false, message: "no such book!"});
   }
+});
+
+
+
+router.post('/updateProfile', async function(req,res,next){
+  const userID = req.body.userID;
+  const firstname = req.body.firstname;
+  const surname = req.body.surname;
+  const email = req.body.email;
+  const password = req.body.password;
+  const photoURL = req.body.photoURL;
+
+  const result = await knex('users').where({'userID': userID}).update(({
+    'firstname': firstname,
+    'surname': surname,
+    'email': email,
+    'password': password,
+    'profilePhotoURL': photoURL
+  }))
+
+  if(result){
+    return res.send({response: true, message: "updated!", user:result});
+  }else{
+    return res.send({response:false, message: "could not update!", user:null});
+  }
+
+ 
 });
 
 router.post('/resetPassword', async function(req, res, next) {

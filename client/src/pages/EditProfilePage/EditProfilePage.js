@@ -4,21 +4,21 @@ import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import EditProfile from '../../containers/EditProfile/EditProfile';
 
 import PageContainer from '../../components/PageContainer/PageContainer';
+import { getUser, setUser } from '../../session';
 
 
 const EditProfilePage = (props) => {
+    const user = props.location.state.user;
+    console.log(user)
+    console.log(user.userID);
+    setUser(user.userID, user.email, user.firstname, user.surname, 
+        user.password, user.gender, user.birthdate, user.profilePhotoURL);
 
-    let user = {
-        firstname: 'Abdurrahman',
-        surname: 'odabashi',
-        email:'abd@gmail.com',
-        password: '123456',
-        numberOfReviews: 12
-    };
-
+    const editUser = getUser();
+    
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
+            <NavbarWithUser user={user} />
             <PageContainer>
                 <EditProfile user={user}/>
             </PageContainer>

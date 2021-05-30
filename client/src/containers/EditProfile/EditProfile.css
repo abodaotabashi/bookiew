@@ -114,6 +114,10 @@
     margin-right: 1em;
 }
 
+.updatePhotoInput{
+    opacity: 0;
+}
+
 .editProfileSectionPhotoWrapper {
     width: 15em;
     height: 15em;

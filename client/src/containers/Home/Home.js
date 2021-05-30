@@ -12,6 +12,8 @@ import axios from 'axios';
 
 
 class Home extends Component {
+    
+
     state ={
         userName: '',
         searchedBook: '',
@@ -22,7 +24,8 @@ class Home extends Component {
         numberOfCommentDisplayed: null,
         reviewCommentsDisplayed: null,
         showMoreCommentsButtonVisible: 'flex',
-
+        
+        user: this.props.user,
 
         loading: false,
         id: '',
@@ -34,7 +37,8 @@ class Home extends Component {
         category: '',
         subject: '',
         bookThumbnail: '',
-        books: []
+        books: [],
+        
     }
 
     handleSearchBook = async() => {
@@ -93,9 +97,7 @@ class Home extends Component {
     }
 
     render(){
-       
         let results = null;
-
         if(this.state.loading){
             
             results = <SearchResults 

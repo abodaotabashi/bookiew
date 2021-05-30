@@ -9,8 +9,20 @@ import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
 import {Link} from 'react-router-dom';
+import { getUser, setUser } from '../../session';
 
 const NavbarWithUser = (props) => {
+
+
+    const user = props.user;
+    console.log("user:")
+    console.log(user)
+    console.log("userid: " + user.userID);
+    setUser(user.userID, user.email, user.firstname, user.surname, 
+        user.password, user.gender, user.birthdate, user.profilePhotoURL);
+
+    const navUser = getUser();
+
     return(
         <div className='navbarWithUser'>
             <section className='navbarLeftSection'>
@@ -24,6 +36,7 @@ const NavbarWithUser = (props) => {
                         duration={500}> 
                         <img src={MiniLogo} className='navbarLogoImage' alt='Bookiew Logo'/>
                         <img src={TextLogo} className='navbarLogoText' alt='Bookiew Logo'/>
+
                     </Link>
                 </div>
             </section>
@@ -56,7 +69,7 @@ const NavbarWithUser = (props) => {
             <section className='navbarRightSection'>
                 <div className='navbarDropDownContainer'>
                     <img src={UserIcon} className='navbarUserIcon' alt='navbarUser'/>
-                    <p className='navbarUserName'>{props.userName}</p>
+                    <p className='navbarUserName'>{user.firstname}</p>
                     <img src={ExpandIcon} className='navbarDropDownIcon' alt='navbarDropDownMenu'/>
                 </div>
                 <ul className='navbarDropDownWrapper'>
@@ -77,7 +90,10 @@ const NavbarWithUser = (props) => {
                     <li className='navbarDropDownItem'>
                         <Link 
                             className='navbarDropDownItemLink'
-                            to="/editProfile"
+
+                            to={
+                                {pathname: "/editProfile",
+                                state: {user: user}}}
                             smooth="true"
                             offset={-20}
                             duration={500}> 

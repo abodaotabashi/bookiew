@@ -21,7 +21,8 @@ class LoginRegisterForm extends Component {
         hasAccount: this.props.formType,
         formChanged: false,
         isLoggedin: false,
-        isRegistered: false
+        isRegistered: false,
+        user: null
     }
 
     validate = () =>{
@@ -55,18 +56,24 @@ class LoginRegisterForm extends Component {
         this.clearErrors();
         const isValid = this.validate();
         if (isValid) {
+           
+            console.log("email in valid:" + this.state.email)
+            
             const result = await axios.post("http://localhost:3000/login",{
                 email:this.state.email,
                 password:this.state.password
             })
+            
             if(result.data.response){
+                this.setState({user: result.data.user});
                 console.log("Successfully logged in");
                 this.setState({ isLoggedin: true});
                 const user = result.data.user;
                 setUser(user.userID, user.email, user.firstname, user.surname, user.password, user.gender, user.birthdate, user.profilePhotoURL);
                 this.props.history.push({
                     pathname: '/home',
-                    state: { username: "Nice!!!", user: null, email: this.state.email }});
+                    state: {user: this.state.user}});
+                
                 return;
             }
 
@@ -74,6 +81,9 @@ class LoginRegisterForm extends Component {
             return;
         }
     }
+
+    //TODO: get the userid through email from db
+    // props.location.state....
 
     handleRegister = async () => {
         this.clearErrors();

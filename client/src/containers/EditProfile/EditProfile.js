@@ -5,6 +5,8 @@ import AnimatedNumber from 'react-animated-number';
 import UserIcon from "../../assets/icons/user.png";
 import EditIcon from "../../assets/icons/edit.png";
 import EditPhotoIcon from "../../assets/icons/edit_image.png";
+import { withRouter } from "react-router-dom";
+import axios from 'axios';
 
 class EditProfile extends Component {
     state = {
@@ -12,7 +14,8 @@ class EditProfile extends Component {
         firstname: this.props.user.firstname,
         surname: this.props.user.surname,
         email: this.props.user.email,
-        photo: '',
+        password: this.props.user.password,
+        profilePhotoURL: this.props.user.profilePhotoURL,
         numberOfReviews: this.props.user.numberOfReviews,
         newPassword: '',
         confirmPassword: '',
@@ -20,7 +23,9 @@ class EditProfile extends Component {
         firstnameDisabled: true,
         surnameDisabled: true,
         emailDisabled: true,
-        errorVisible: 'none'
+        errorVisible: 'none',
+        passwordChange: true,
+        selectedPhoto: null
     }
 
     handleFirstnameClicked = () => {
@@ -34,6 +39,7 @@ class EditProfile extends Component {
     handleEmailClicked = () => {
         this.setState( {emailDisabled: !this.state.emailDisabled});
     }
+
 
     validate = () =>{
         
@@ -61,24 +67,109 @@ class EditProfile extends Component {
             });
             return false;
         }
-        if (this.state.password.length < 6) {
-            this.setState({ 
-                errorMessage: 'Password must contain more than 6 characters',
-                errorVisible: 'flex'
-            });
+
+        if(this.state.passwordChange===true){
+            console.log("inside valid true")
+        }else{
             return false;
         }
+
+       
+        
         return true;
     }
 
-    handleUpdatePhoto = () => {
-        //TODO
+    handlePhoto = () => {
+        this.inputElement.click();
     }
+    handleUpdatePhoto = (event) =>{
+        let p= event.target.files[0];
+        
+        console.log(URL.createObjectURL(p))
+        this.setState({profilePhotoURL: URL.createObjectURL(p)})
+        /*
+        const accept = ["image/png"];
+        if (accept.indexOf(file.mediaType) > -1) {
+            console.log("inside?")
+        this.setState({
+           selectedPhoto: file.getAsDataURL()
+        })
+        */
 
-    handleEditProfile = () => {
-        this.clearInputs();
-        //TODO
+        
     }
+    
+
+    handleEditProfile = async() => {
+            this.clearInputs();
+            console.log("userID: " + this.state.user.userID);
+            console.log("firstname: " + this.state.user.firstname);
+            console.log("surname: " + this.state.user.surname);
+            console.log("email: " + this.state.user.email);
+            console.log("password: " + this.state.user.password);
+            console.log("photo: " + this.state.user.photo);
+
+            console.log("firstname after changing: " + this.state.firstname);
+            console.log("surname after changing: " + this.state.surname);
+            console.log("email after changing: " + this.state.email);
+            console.log("photo after changing: " + this.state.selectedPhoto);
+
+            if(this.state.profilePhotoURL===undefined){
+                this.setState({profilePhotoURL: this.state.profilePhotoURL=null})
+            }
+
+            if(this.state.newPassword==="" && this.state.confirmPassword===""){
+                this.setState({ passwordChange: this.state.passwordChange = true})
+                this.setState({ newPassword: this.state.newPassword = this.state.user.password})
+
+            }else if(this.state.newPassword!==this.state.confirmPassword){
+                this.setState({ passwordChange: this.state.passwordChange = false});
+            }else{
+                this.setState({ passwordChange: this.state.passwordChange = true});
+            }
+        
+                if(this.validate()){
+                
+                    const result2 = await axios.post("http://localhost:3000/updateProfile", {
+                        userID: this.state.user.userID,
+                        firstname: this.state.firstname,
+                        surname: this.state.surname,
+                        email: this.state.email,
+                        password: this.state.newPassword,
+                        photoURL: this.state.selectedPhoto
+                    })
+                    
+                    if(result2.data.response){
+                        console.log(result2.data.message);
+
+
+                        const result = await axios.post("http://localhost:3000/editProfile", {
+                            userID: this.state.user.userID,
+                        })
+                        if(result.data.response){
+                            this.setState({user: result.data.user})
+                            console.log(result.data.user)
+                            this.props.history.push({
+                                pathname: '/home', 
+                                user: this.state.user});
+                            }else{
+                                console.log("something wrong")
+                            }
+                        
+
+                      
+                    }else{
+                        console.log(result2)
+                        console.log(result2.data.message);
+    
+                        
+                    }
+                }
+    
+
+
+
+    };
 
     clearInputs = () => {
         this.setState({
@@ -88,6 +179,14 @@ class EditProfile extends Component {
     }
 
     render(){
+        let image = null;
+        if(this.state.profilePhotoURL){
+           image =  <img src={this.state.profilePhotoURL} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
+        }else{
+           image =<img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/> 
+        }
+        
+
 
         return(
             <div className='editProfileBackgroundSection'>
@@ -97,12 +196,21 @@ class EditProfile extends Component {
                             <div className='editProfileSectionWrapper'>
                                 <div className='editProfileSectionPhotoContainer'>
                                     <div className='editProfileSectionPhotoWrapper'>
-                                        <img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/>
+                                        
+                                        
+                                        {image}
+
                                     </div>
-                                    <div className='editProfileUpdatePhotoWrapper' onClick={this.handleUpdatePhoto}>
+                                    <div className='editProfileUpdatePhotoWrapper' onClick={this.handlePhoto} >
                                         <img src={EditPhotoIcon} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
                                         <p>Update Photo</p>
+                                       
                                     </div>
+                                    <input className="updatePhotoInput" type="file" 
+                                    ref={input => this.inputElement = input} 
+                                    onChange={this.handleUpdatePhoto}/>
+                                    
+                                    
                                 </div>
                                 <div className='editProfileVerticalBreakline'>
                                 </div>
@@ -159,16 +267,25 @@ class EditProfile extends Component {
                                                     <p className='editProfileInputLabel'>Password</p>
                                                 </td>
                                                 <td>
-                                                    <details className='editProfilePasswordFieldContainer'> 
-                                                        <summary className='editProfilePasswordFieldLabel'>Update Password</summary>
+                                                    <details className='editProfilePasswordFieldContainer'
+                                                            
+                                                            > 
+                                                        <summary className='editProfilePasswordFieldLabel'
+                                                            
+                                                        >Update Password
+                                                        </summary>
                                                         <div className='editProfilePasswordField'>
                                                             <input  className='editProfileInputText' 
-                                                                    type='password' 
-                                                                    name='' 
+                                                                    type='password'
+                                                                    name=''
+                                                                    
+                                                                    onChange={(event) => this.setState({newPassword: event.target.value})} 
                                                                     placeholder='New Password'  />
                                                             <input  className='editProfileInputText' 
                                                                     type='password' 
-                                                                    name='' 
+                                                                    name=''
+                                                                    
+                                                                    onChange={(event) => this.setState({confirmPassword: event.target.value})} 
                                                                     placeholder='Confirm Password'  />
                                                         </div>
                                                     </details>
@@ -208,4 +325,4 @@ class EditProfile extends Component {
     }
 }
 
-export default EditProfile;
+export default withRouter(EditProfile);
