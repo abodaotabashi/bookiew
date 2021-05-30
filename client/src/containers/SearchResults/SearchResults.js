@@ -9,6 +9,7 @@ import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 
+import {withTranslation} from "react-i18next";
 class SearchResults extends Component {
     constructor(props) {
         super(props);
@@ -56,6 +57,7 @@ class SearchResults extends Component {
     }
 
     render(){
+        const {t} = this.props;
         let books = null;
         
         if(!this.state.loading) {
@@ -111,7 +113,7 @@ class SearchResults extends Component {
                         <div className='searchResultsBreaklineContainer' >
                             <hr className='searchResultsBreakline' />
                         </div>
-                        <p className='searchResultsNumResults'>{this.state.books.length} Search results found for "{searchedBook}" :</p>
+                        <p className='searchResultsNumResults'>{this.state.books.length} {t('search_results.message')} "{searchedBook}" :</p>
                         <div className='searchResultsBookCardsContainer'>
                             {books}
                         </div>
@@ -122,4 +124,4 @@ class SearchResults extends Component {
     }
 }
 
-export default withRouter(SearchResults);
+export default withTranslation()(withRouter(SearchResults));

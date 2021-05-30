@@ -9,11 +9,18 @@ import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
 import {Link} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 const NavbarWithUser = (props) => {
     const userFirstname = localStorage.getItem('userFirstname');
     const userProfilePhotoURL = localStorage.getItem('userProfilePhotoURL');
     
+    const { t, i18n } = useTranslation();
+    const changeLanguage = (lang) => {
+        i18n.changeLanguage(lang);
+    }
+
     return(
         <div className='navbarWithUser'>
             <section className='navbarLeftSection'>
@@ -39,7 +46,7 @@ const NavbarWithUser = (props) => {
                                 smooth="true"
                                 offset={-20}
                                 duration={500}> 
-                                My Reviews
+                                {t('navbar.My_Reviews')}
                             </Link>
                         </li>
                         <li className='navLinkItem'>
@@ -49,7 +56,7 @@ const NavbarWithUser = (props) => {
                                 smooth="true"
                                 offset={-20}
                                 duration={500}> 
-                                Book Recommendation
+                                {t('navbar.Book_Recommendation')}
                             </Link>
                         </li>
                     </ul>
@@ -72,7 +79,7 @@ const NavbarWithUser = (props) => {
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={HomeIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
-                            Home
+                            {t('navbar.Home')}
                         </Link>
                         <div className='navbarDropDownWrapper'></div>
                     </li>
@@ -86,15 +93,15 @@ const NavbarWithUser = (props) => {
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={EditProfileIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
-                            Edit Profile
+                            {t('navbar.Edit_Profile')}
                         </Link>
                     </li>
-                    <li className='navbarDropDownItem'>
+                    <li className='navbarDropDownItem' onClick={()=>changeLanguage('tr')}>
                         <div className='navbarDropDownItemLink'>
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={LanguageIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
-                            Change Language
+                            {t('navbar.Change_Language')}
                         </div>
                     </li>
                     <li className='navbarDropDownItem' onClick={() => {
@@ -117,7 +124,7 @@ const NavbarWithUser = (props) => {
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={LogoutIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
-                            Log out
+                            {t('navbar.Log_out')}
                         </Link>
                     </li>
                 </ul>

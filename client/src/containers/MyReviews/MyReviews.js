@@ -3,6 +3,8 @@ import "./MyReviews.css";
 
 import axios from 'axios';
 import BookCard from '../../components/BookCard/BookCard';
+import { withRouter } from "react-router-dom";
+import {withTranslation} from "react-i18next";
 
 class MyReviews extends Component {
     state = {
@@ -22,15 +24,19 @@ class MyReviews extends Component {
                 }
                 this.setState({ reviews : reviews });
             }
-        }
-        
+        }   
     }
     
-    handleReviewClicked = (reviewIndex) => {
+    handleReviewClicked = async (reviewID) => {
         //TODO
+        this.props.history.push({
+            pathname: '/viewReview',
+            state: { reviewID: reviewID}});
+        return;
     }
 
     render(){
+        const {t} = this.props;
         this.handleGetReviews();
         let books = null;
         if(this.state.reviews !== null){
@@ -58,7 +64,7 @@ class MyReviews extends Component {
             <div className='myReviewsBackgroundSection'>
                 <div className='myReviewsBackgroundFilterSection'>
                     <div className='myReviewsSectionsContainer'>
-                        <p className='myReviewsHeader'>My Reviews</p>
+                        <p className='myReviewsHeader'>{t('navbar.My_Reviews')}</p>
                         <div className='myReviewsBreaklineContainer' >
                             <hr className='myReviewsBreakline' />
                         </div>
@@ -72,4 +78,4 @@ class MyReviews extends Component {
     }
 }
 
-export default MyReviews;
+export default withTranslation()(withRouter(MyReviews));

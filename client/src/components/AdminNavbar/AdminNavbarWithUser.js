@@ -6,9 +6,9 @@ import AdminPanelLogo from "../../assets/logos/adminpanellogo.png";
 import {Link} from 'react-router-dom';
 
 import { FaSignOutAlt } from 'react-icons/fa'
-
+import {userTranslation, useTranslation} from "react-i18next";
 const AdminNavbarWithUser = () => {
-
+    const {t} = useTranslation();
     return(
         <div className='navbarAdmin' id='nav'>
             <section className='navbarLeftSection'>
@@ -36,7 +36,7 @@ const AdminNavbarWithUser = () => {
                                 smooth="true"
                                 offset={-70}
                                 duration={500}> 
-                                Add New Book
+                                {t('admin_nav.add_book')}
                             </Link>
                         </li>
                         <li className='navLinkItem'>
@@ -46,7 +46,7 @@ const AdminNavbarWithUser = () => {
                                 smooth="true"
                                 offset={-70}
                                 duration={500}> 
-                                Received Recommendations
+                                {t('admin_nav.receiv_recomm')}
                             </Link>
                         </li>
                     </ul>
@@ -60,7 +60,7 @@ const AdminNavbarWithUser = () => {
                         smooth="true"
                         offset={-70}
                         duration={500}> 
-                        Log out
+                        {t('admin_nav.logout')}
                         <FaSignOutAlt className='navbarLogoutIcon' 
                                 color="#ffffff" 
                                 size={24}/>

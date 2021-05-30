@@ -15,7 +15,6 @@ const knex = require('knex')({
   }
 });
 
-/* GET home page. */
 router.get('/', function(req, res, next) {
   res.send({message:"Hello nothing"})
 });
@@ -36,9 +35,11 @@ router.post('/login', async function(req, res, next) {
   //SELECT * from admins where adminEmail=email
   const user = await knex('users').select('*').where({"email":email, "password":password}).first()
   if(user){
-    return res.send({response: true, message:"you are logged in", user: user})
+    console.log("Successfully logged in")
+    return res.send({response: true, user:user})
   }
-  return res.send({response:false, message:"email or password is incorrect", user: null})
+  console.log("email or password is incorrect");
+  return res.send({response:false, message:"email or password is incorrect"})
 });
 
 router.post('/register', async function(req, res, next) {
@@ -280,5 +281,3 @@ function sendEmail(message) {
   })
 }
 module.exports = router;
-
-

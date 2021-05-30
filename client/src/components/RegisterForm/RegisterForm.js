@@ -3,8 +3,9 @@ import "../../containers/LoginRegisterForm/LoginRegisterForm.css";
 
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
-
+import {useTranslation} from "react-i18next";
 const RegisterForm = (props) => {
+    const {t} = useTranslation();
     const BirthdatePicker = (
         <DatePicker className="formBirthdatePicker"
                     selected={props.birthdate}
@@ -21,7 +22,7 @@ const RegisterForm = (props) => {
     return(
         <form className='formContainer'>
             <div className='formType'>
-                Create New Account
+                {t('register.title')}
             </div>
             <div className='formNameContainer'>
                 <input  className='formNameInputText' 
@@ -56,18 +57,18 @@ const RegisterForm = (props) => {
             <div className='formNameContainer'>
                 {BirthdatePicker}
                 <div className='formGenderBox'>
-                    <p className='formGenderText'>Female</p>
+                    <p className='formGenderText'>{t('register.female')}</p>
                     <input type="radio" name="sex" value="female" required onClick={props.femaleSelected}/>
                     &nbsp;
-                    <p className='formGenderText'>Male</p>
+                    <p className='formGenderText'>{t('register.male')}</p>
                     <input type="radio" name="sex" value="male" required onClick={props.maleSelected}/>
                 </div>
             </div>
             <div className='formButtonsContainer'>
-                <button className='formButtonRegister' onClick={props.registerClicked}>Create New Account</button>
+                <button className='formButtonRegister' onClick={props.registerClicked}>{t('register.create')}</button>
                 <hr className='formBreakline'/>
-                <p className='formAlternativeText'>Have an account? 
-                    <span className='formAlternativeSpan' onClick={props.changeFormToLoginClicked}>Login</span>
+                <p className='formAlternativeText'>{t('register.have')}
+                    <span className='formAlternativeSpan' onClick={props.changeFormToLoginClicked}>{t('register.login')}</span>
                 </p>
             </div>
         </form>

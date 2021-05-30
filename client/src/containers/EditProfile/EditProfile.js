@@ -7,6 +7,8 @@ import EditIcon from "../../assets/icons/edit.png";
 import EditPhotoIcon from "../../assets/icons/edit_image.png";
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
+import { withTranslation } from 'react-i18next';
+
 
 class EditProfile extends Component {
     state = {
@@ -173,6 +175,7 @@ class EditProfile extends Component {
         
 
 
+        const {t} = this.props;
         return(
             <div className='editProfileBackgroundSection'>
                 <div className='editProfileBackgroundFilterSection'>
@@ -185,7 +188,7 @@ class EditProfile extends Component {
                                     </div>
                                     <div className='editProfileUpdatePhotoWrapper' onClick={this.handlePhoto} >
                                         <img src={EditPhotoIcon} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
-                                        <p>Update Photo</p>
+                                        {t('edit_profile.photo')}
                                     </div>
                                     <input className="updatePhotoInput" type="file" 
                                     ref={input => this.inputElement = input} 
@@ -198,7 +201,7 @@ class EditProfile extends Component {
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <p className='editProfileInputLabel'>First Name</p>
+                                                    <p className='editProfileInputLabel'>{t('edit_profile.first_name')}</p>
                                                 </td>
                                                 <td className='editProfileInputWrapper'>
                                                     <input  className='editProfileInputText' 
@@ -213,7 +216,7 @@ class EditProfile extends Component {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p className='editProfileInputLabel'>Surname</p>
+                                                    <p className='editProfileInputLabel'>{t('edit_profile.surname')}</p>
                                                 </td>
                                                 <td className='editProfileInputWrapper'>
                                                     <input  className='editProfileInputText' 
@@ -228,7 +231,7 @@ class EditProfile extends Component {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p className='editProfileInputLabel'>E-mail</p>
+                                                    <p className='editProfileInputLabel'>{t('edit_profile.email')}</p>
                                                 </td>
                                                 <td className='editProfileInputWrapper'>
                                                     <input  className='editProfileInputText' 
@@ -243,16 +246,11 @@ class EditProfile extends Component {
                                             </tr>
                                             <tr>
                                                 <td>
-                                                    <p className='editProfileInputLabel'>Password</p>
+                                                    <p className='editProfileInputLabel'>{t('edit_profile.password')}</p>
                                                 </td>
                                                 <td>
-                                                    <details className='editProfilePasswordFieldContainer'
-                                                            
-                                                            > 
-                                                        <summary className='editProfilePasswordFieldLabel'
-                                                            
-                                                        >Update Password
-                                                        </summary>
+                                                    <details className='editProfilePasswordFieldContainer'> 
+                                                        <summary className='editProfilePasswordFieldLabel'>{t('edit_profile.update_password')}</summary>
                                                         <div className='editProfilePasswordField'>
                                                             <input  className='editProfileInputText' 
                                                                     type='password'
@@ -282,12 +280,12 @@ class EditProfile extends Component {
                                 </div>
                             </div>
                             <div className='editProfileUpdateSectionWrapper'>
-                                <button className='editProfileUpdateButton' onClick={this.handleEditProfile}>Update Profile</button>
+                                <button className='editProfileUpdateButton' onClick={this.handleEditProfile}>{t('edit_profile.update_profile')}</button>
                             </div>
                         </div>
                         <div className='editProfileInformationSection'>
                             <p className='editProfileReviewCounterLabel'>
-                                Your Reviews
+                                {t('edit_profile.your_reviews')}
                             </p>
                             <AnimatedNumber
                                 className='editProfileReviewCounter'
@@ -304,4 +302,4 @@ class EditProfile extends Component {
     }
 }
 
-export default withRouter(EditProfile);
+export default withTranslation()(EditProfile);

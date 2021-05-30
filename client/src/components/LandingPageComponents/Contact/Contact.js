@@ -1,16 +1,16 @@
 import React from 'react';
 import './Contact.css';
 import ContactImage from "../../../assets/images/contactCommunity.png";
-
+import {useTranslation} from "react-i18next";
 const Contact = () => {
+    const {t} = useTranslation();
     return(
         <div id='contact' className='landingContact'> 
             <label className='landingContactLabel'> Contact </label>
             <div className='landingContactTextContainer'>
                 <div className='landingContactTextWrapper'>
                     <p className='landingContactText'>
-                        Here's the developer team behind this website.
-                        You can contact us through these emails:
+                        {t('landing.contact')}
                     </p>
                     <table className='landingContactTable'>
                         <tbody>

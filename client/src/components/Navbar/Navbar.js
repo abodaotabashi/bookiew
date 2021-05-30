@@ -4,9 +4,9 @@ import MiniLogo from "../../assets/logos/minilogo.png";
 import TextLogo from "../../assets/logos/textlogo.png";
 import {Link as Scrolllink} from 'react-scroll';
 import {Link} from 'react-router-dom';
-
+import {userTranslation, useTranslation} from "react-i18next";
 const Navbar = () => {
-
+    const {t} = useTranslation();
     return(
         <div className='navbar' id='nav'>
             <section className='navbarLeftSection'>
@@ -32,7 +32,7 @@ const Navbar = () => {
                                 smooth="true"
                                 offset={-80}
                                 duration={500} >
-                                About
+                                {t('footer.about')}
                             </Scrolllink>
                         </li>
                         <li className='navLinkItem'>
@@ -42,7 +42,7 @@ const Navbar = () => {
                                 smooth="true"
                                 offset={-20}
                                 duration={500}>
-                                Contact
+                                {t('footer.contact')}
                             </Scrolllink>
                         </li>
                         <li className='navLinkItem'>
@@ -52,7 +52,7 @@ const Navbar = () => {
                                 smooth="true"
                                 offset={-20}
                                 duration={500} >
-                                Partners
+                                {t('landing.partners')}
                             </Scrolllink>
                         </li>
                     </ul>
@@ -67,7 +67,7 @@ const Navbar = () => {
                             smooth="true"
                             offset={-70}
                             duration={500}> 
-                            Login
+                            {t('login.login')}
                         </Link>
                     </button>
                     <button className='navbarRegisterButton'>
@@ -77,7 +77,7 @@ const Navbar = () => {
                             smooth="true"
                             offset={-70}
                             duration={500}> 
-                            Register
+                            {t('register.register')}
                         </Link>
                     </button>
                 </div>

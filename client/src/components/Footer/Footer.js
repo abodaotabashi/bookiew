@@ -6,8 +6,10 @@ import TwitterIcon from "../../assets/icons/twitter_64px.png";
 import LinkedinIcon from "../../assets/icons/linkedin_64px.png";
 import './Footer.css';
 import {Link} from 'react-router-dom';
+import {useTranslation} from "react-i18next";
 
 const Footer = () => {
+    const {t} = useTranslation();
     return(
         <div className='footer'>
             <div className='footerSectionsContainer'>
@@ -21,7 +23,7 @@ const Footer = () => {
                                     smooth="true"
                                     offset={-20}
                                     duration={500}> 
-                                    About Us
+                                    {t('footer.about_us')}
                                 </Link>
                             </li>
                             <li className='footerNavLinkItem'>
@@ -31,7 +33,7 @@ const Footer = () => {
                                     smooth="true"
                                     offset={-20}
                                     duration={500}> 
-                                    Partners
+                                    {t('footer.partners')}
                                 </Link>
                             </li>
                             <li className='footerNavLinkItem'>
@@ -41,7 +43,7 @@ const Footer = () => {
                                     smooth="true"
                                     offset={-20}
                                     duration={500}> 
-                                    Contact
+                                    {t('footer.contact')}
                                 </Link>
                             </li>
                         </ul>

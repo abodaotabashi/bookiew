@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import "../../containers/LoginRegisterForm/LoginRegisterForm.css";
-
+import {useTranslation} from "react-i18next";
 const AdminLogin = (props) => {
-
+    const {t} = useTranslation();
     return(
         <form className='adminFormContainer'>
             <div className='adminFormType'>
-                Login to Admin Panel
+                {t('admin_login.title')}
             </div>
-            <label className='formLabel'>Email</label>
+            <label className='formLabel'>{t('admin_login.email')}</label>
             <input  className='formInputText' 
                     type='text' 
                     name='' 
@@ -17,7 +17,7 @@ const AdminLogin = (props) => {
                     required value={props.emailInputValue} 
                     onChange={props.emailInputChanged}/>
             <p className='formErrorMessage'>{props.emailErrorMessage}</p>
-            <label className='formLabel'>Password</label>
+            <label className='formLabel'>{t('admin_login.password')}</label>
             <input  className='formInputText' 
                     type='password' 
                     name='' 
@@ -26,7 +26,7 @@ const AdminLogin = (props) => {
                     onChange={props.passwordInputChanged} />
             <p className='formErrorMessage'>{props.passwordErrorMessage}</p>
             <div className='formButtonsContainer'>
-                <button className='formButtonLogin' onClick={props.loginClicked}>Login</button>
+                <button className='formButtonLogin' onClick={props.loginClicked}>{t('admin_login.login')}</button>
             </div>
         </form>
     );

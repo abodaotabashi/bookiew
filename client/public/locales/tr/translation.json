@@ -1,0 +1,140 @@
+{
+    "home": {
+        "question":"Son zamanlarda yeni bir kitap okudunuz mu?",
+        "Your_Last_Review": "Son İncelemeniz",
+        "Show_More_Comments": "Daha Fazla Yorum Göster",
+        "after_question": "Onu arayın ve kendi incelemenizi ekleyin, diğer okuyuculara yardımcı olun!"
+        },
+    "navbar":{
+        "Change_Language": "Dili Değiştir",
+        "Edit_Profile": "Profili Güncelle",
+        "Home":"Anasayfa",
+        "My_Reviews": "İncelemelerim",
+        "Book_Recommendation": "Kitap Önerisi",
+        "Log_out": "Çıkış Yap"
+    },
+    "add_review": {
+        "Add_Review": "İnceleme Ekle",
+        "author": "Yazar:",
+        "publisher": "Yayımcı:",
+        "year_of_pub": "Yayın Tarihi:",
+        "category": "Kategori:",
+        "subject": "Konu:",
+        "language": "Dil:",
+        "warning": "Karakter sayısının limiti 500'dur!",
+        "publish_review": "İncelemeyi Yayınla/Ekle"
+    },
+    "admin_home": {
+        "message": "Bilgilerini güncellemek istediğiniz veya silmek istediğiniz kitabı arayın!",
+        "notification": "Yeni öneriler eklenmiştir!",
+        "goTo": "Önerilere git"
+    },
+    "book_recomm": {
+        "title": "Kitap Önerisi",
+        "name": "Kitap Adı: ",
+        "author": "Yazar(lar): ",
+        "year_of_pub": "Yayın Tarihi: ",
+        "add_note": "Ek Not: ",
+        "appreciate": "Bookiew'nun geliştirilmesine yardımcı olduğunuzu takdir eder, size gönülden teşekkür ederiz"
+    },
+    "edit_profile": {
+        "photo": "Fotoğrafı Güncelle",
+        "first_name": "İsim",
+        "surname": "Soyisim",
+        "email": "E-mail",
+        "password": "Şifre",
+        "update_password": "Şifreyi Güncelle",
+        "update_profile": "Profili Güncelle",
+        "your_reviews": "İncelemeleriniz"
+    },
+    "edit_review": {
+        "title": "İncelemeyi Düzenle",
+        "pub_on": "Yayın Tarihi: ",
+        "submit": "Düzenle",
+        "cancel": "İptal"
+    },
+    "forgot_password" : {
+        "message": "Şifrenizi mi unuttunuz?",
+        "dont_worry": "Endişelenmeyin",
+        "we_will": "Biz size şifrenizi değiştirmeniz için bir bağlantı göndereceğiz!",
+        "send_me": "Bana bağlantı gönder",
+        "email": "Email"
+    },
+    "reset_pw": {
+        "title": "Şifrenizi Değitiriniz",
+        "enter": "Lütfen yeni şifrenizi giriniz!",
+        "password": "Şifre",
+        "confirm": "Şifre(Tekrar)",
+        "reset": "Şifremi Değiştir"
+    },
+    "search_results": {
+        "message": "Bu kitap için sonuçlar bulunmuştur: "
+    },
+    "view_book": {
+        "your_review": "Sizin İncelemeniz",
+        "add_your": "Kendi incelemenizi ekleyin!",
+        "author": "Yazar:",
+        "publisher": "Yayımcı:",
+        "year_of_pub": "Yayın Tarihi:",
+        "category": "Kategori:",
+        "subject": "Konu:",
+        "language": "Dil:"
+    },
+    "view_review": {
+        "title": "İncelemeyi göster",
+        "show_more": "Daha fazla yorum göster",
+        "edit": "İncelemeyi güncelle",
+        "delete": "İncelemeyi sil"
+    },
+    "admin_login" : {
+        "title": "Admin Paneline Giriş",
+        "email": "Email",
+        "password": "Şifre",
+        "login": "Giriş Yap"
+    },
+    "book_card":{
+        "review": " İNCELEME "
+    },
+    "admin_nav" : {
+        "add_book": "Yeni kitap ekle",
+        "receiv_recomm": "Gelen Öneriler",
+        "logout": "Çıkış Yap"
+    },
+    "footer": {
+        "about_us": "Hakkımızda",
+        "partners": "Ortaklar",
+        "contact": "İletişim",
+        "about": "Hakkında"
+    },
+    "home_review_card": {
+        "pub_on": "Yayın Tarihi ",
+        "comments": "Yorumlar "
+    },
+    "landing" : {
+        "about_bookiew": "Kitaplarla ilgili ister fiziksel ister elektronik olsun, günümüzün çok sayıdaki bilgi birikiminde, bu içeriğe ayak uydurmak bizim için daha zor hale geliyor. Bookiew, bu sorunu en kolay ve zaman kazandıran şekilde çözmeye çalışan bir platformdur, bu sayede dünyanın her yerinden istediğiniz kitaplarla ilgili incelemeleri okuyabilir, değerlendirebilir ve hatta yorum yaparak veya yazarak katkıda bulunabilirsiniz. Kitaplar açısından gerek fiziki gerekse elektriksel bilgi birikiminin günümüzdeki çokluğunda, bu içeriklere yetişmemiz zorlaşmaktadır. Bookiew, bu sorunu en kolay ve zaman kazandıran şekilde gidermeye çalışan bir platformdur, öyle ki istediğiniz kitaplarla ilgili dünyanın her yerinden gelen incelemeleri, okumanız, puanlamanız ve hatta yorum yaparak katkıda bulunmanız için elinizin altında olacaktır.",
+        "about_us": "Bizler, yazılım mühendisliği dersimiz için bu fikri bulan, Türk-Alman Üniversitesi'ndeki üçüncü sınıfta olan bilgisayar mühendisliği öğrencileriyiz. Fikir, içinde bulunduğumuz teknoloji çağına ve bunun ana etkilerinden birine bakmaktan geldi: beklendiği gibi çok kitap okuyamamak. Yapmaya çalıştığımız fark, eleştirmenlere bir kelime sınırı vermek ve bu yorumları yine sizin tarafınızdan verilen puana göre sıralamaktır, böylece kitabı görüntüleyen bir sonraki kişi, istediklerini aramak için çok fazla zaman harcamaz.",
+        "what": "Bizim hakkımızda?",
+        "contact": "Bu web sitesinin arkasındaki geliştirici ekip bilgileri aşağıdaki gibidir. Bu e-postalar aracılığıyla bizimle iletişime geçebilirsiniz:",
+        "partners": " Ortaklar ",
+        "welcome": " Bookiew'ya Hoşgeldiniz!",
+        "welcome_text": "Kitapların bol olduğu, ancak nadiren onlar hakkında açıklayıcı incelemelerin olduğu bu çağda yaşamak zorunda kalmanın stresinden zihninizi arındırın."
+    },
+    "login": {
+        "title": "Bookiew'ya Giriş",
+        "email": "Email",
+        "password": "Şifre",
+        "login": "Giriş",
+        "forgot_pw": "Şifrenizi mi unuttunuz?",
+        "dont_have": "Hesabınız yok mu?",
+        "register": "Üye ol"
+    },
+    "register" : {
+        "title": "Yeni hesap oluştur",
+        "female": "Kadın",
+        "male": "Erkek",
+        "create": "Hesabımı oluştur",
+        "have": "Hesabınız var mı? ",
+        "login": "Giriş",
+        "register": "Üye Ol"
+    }
+}

@@ -1,5 +1,9 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import "./ForgotPassword.css";
+import { withRouter } from "react-router-dom";
+import { withTranslation } from 'react-i18next';
+
 
 class ForgotPassword extends Component {
     state = {
@@ -18,25 +22,38 @@ class ForgotPassword extends Component {
     handleForgotPassword = async () => {
         console.log("I'm in forgot")
         //TODO
+        const isValid = this.validate();
+        if(isValid) {
+            const result = await axios.post("http://localhost:3000/forgotPassword", {
+                email: this.state.email
+            })
+            if(result.data.response) {
+                console.log("Reset link sent to "+ this.state.email);
+                this.props.history.push({
+                    pathname:'/login'
+                });
+                return;
+            }
+        }
     }
-
     
     render(){
         if(localStorage.getItem('isUserAuthenticated')){
             this.goToHome();
         }
+        const {t} = this.props;
         return( 
             <div className='forgotPasswordContainer'>
                 <div className='forgotPasswordContainerBackgroundFilter'>
                     <form className='forgotPasswordWrapper'>
                         <p className='forgotPasswordHeaderOne'>
-                            Forgot your Password?
+                            {t('frogot_password.message')}
                         </p>
                         <p className='forgotPasswordHeaderTwo'>
-                            Don't Worry
+                            {t('frogot_password.dont_worry')}
                         </p>
-                        <p className='forgotPasswordSpan'>We will send you a link to reset your password!</p>
-                        <label className='ForgotPasswordEmailLabel'>Email</label>
+                        <p className='forgotPasswordSpan'>{t('frogot_password.we_will')}</p>
+                        <label className='ForgotPasswordEmailLabel'>{t('frogot_password.email')}</label>
                         <input  className='ForgotPasswordEmailInputText' 
                                 type='text' 
                                 name='' 
@@ -45,7 +62,7 @@ class ForgotPassword extends Component {
                                 required value={this.state.email} 
                                 onChange={(event) => this.setState({ email: event.target.value})}/>
                         <p className='ForgotPasswordEmailErrorMessage'>{this.state.emailErrorMessage}</p>
-                        <button className='sendLinkButton' onClick={this.handleForgotPassword}>Send me a link</button>
+                        <button className='sendLinkButton' onClick={this.handleForgotPassword}>{t('frogot_password.send_me')}</button>
                     </form>
                 </div>
             </div>
@@ -53,4 +70,4 @@ class ForgotPassword extends Component {
     }
 }
 
-export default ForgotPassword;
+export default withTranslation()(withRouter(ForgotPassword));

@@ -1,0 +1,140 @@
+{
+    "home": {
+        "question":"Have You Read Recently A New Book?",
+        "Your_Last_Review":"Your Last Review",
+        "Show_More_Comments": "Show More Comments",
+        "after_question": "Search it and add your personal review to help another readers!"
+        },
+    "navbar":{
+        "Change_Language": "Change Language",
+        "Edit_Profile": "Edit Profile",
+        "Home": "Home",
+        "My_Reviews": "My Reviews",
+        "Book_Recommendation": "Book Recommendation",
+        "Log_out": "Log Out"
+    },
+    "add_review": {
+        "Add_Review": "Add Review",
+        "author": "Author:",
+        "publisher": "Publisher:",
+        "year_of_pub": "Year of Publication:",
+        "category": "Category:",
+        "subject": "Subject:",
+        "language": "Language:",
+        "warning": "The maximum limit of characters is 500!",
+        "publish_review": "Publish Review"
+    },
+    "admin_home": {
+        "message": "Search simply the book, that you want to edit its informations or you want to delete it!",
+        "notification": "New Recommendations received",
+        "goTo": "Go To Recommendations"
+    },
+    "book_recomm": {
+        "title": "Book Recommendation",
+        "name": "Name of Book: ",
+        "author": "Author(s): ",
+        "year_of_pub": "Year of Publication: ",
+        "add_note": "Additional Note: ",
+        "appreciate": "We Appreciate Your Help Improving Bookiew, So Thank You From The Heart"
+    },
+    "edit_profile": {
+        "photo": "Update Photo",
+        "first_name": "First Name",
+        "surname": "Surname",
+        "email": "E-mail",
+        "password": "Password",
+        "update_password": "Update Password",
+        "update_profile": "Update Profile",
+        "your_reviews": "Your Reviews"
+    },
+    "edit_review": {
+        "title": "Edit Review",
+        "pub_on": "Published On: ",
+        "submit": "Submit",
+        "cancel": "Cancel"
+    },
+    "forgot_password" : {
+        "message": "Forgot your Password?",
+        "dont_worry": "Don't Worry",
+        "we_will": "We will send you a link to reset your password!",
+        "send_me": "Send me a link",
+        "email": "Email"
+    },
+    "reset_pw": {
+        "title": "Reset your Password",
+        "enter": "Please enter your new password!",
+        "password": "Password",
+        "confirm": "Confirm Password",
+        "reset": "Reset Password"
+    },
+    "search_results": {
+        "message": "Search results found for "
+    },
+    "view_book": {
+        "your_review": "Your Review",
+        "add_your": "Add Your Own Review!",
+        "author": "Author:",
+        "publisher": "Publisher:",
+        "year_of_pub": "Year of Publication:",
+        "category": "Category:",
+        "subject": "Subject:",
+        "language": "Language:"
+    },
+    "view_review": {
+        "title": "View Review",
+        "show_more": "Show More Comments",
+        "edit": "Edit Review",
+        "delete": "Delete Review"
+    },
+    "admin_login" : {
+        "title": "Login to Admin Panel",
+        "email": "Email",
+        "password": "Password",
+        "login": "Login"
+    },
+    "book_card":{
+        "review": " REVIEW "
+    },
+    "admin_nav" : {
+        "add_book": "Add New Book",
+        "receiv_recomm": "Received Recommendations",
+        "logout": "Log out"
+    },
+    "footer": {
+        "about_us": "About Us",
+        "partners": "Partners",
+        "contact": "Contact",
+        "about": "About"
+    },
+    "home_review_card": {
+        "pub_on": "Published On ",
+        "comments": "Comments "
+    },
+    "landing" : {
+        "about_bookiew": " In today's multitude of knowledge regarding books, either physical or electrical, it becomes more difficult for us to keep up with that content. Bookiew is a platform that tries to solve this problem in the easiest and most time-saving way possible, so that you can read reviews from all over the world on books that you have requested, rate them and even contribute by making comments or writing your own. In todays multitude of knowledge in aspect of books, either through physical or electrical, it becomes harder for us to catch up with these contents. Bookiew is a platform that tries to ease this problem in the easiest and most time-sparing manner, such that reviews coming from all around the world about books you requested will be under your hand for you to read, score and even contribute by commenting or writing your own one. ",
+        "about_us": "We are computer science students, all in our junior year at the Turkish-German University, who came up with this idea for our software engineering course. The idea came from looking at the technology age we are in and one of the main effects of it: not being able to read many books as expected. The difference we try to make is to give the reviewers a limit of words and rank these reviews by the score given, again by you, so that the next person viewing the book will spend not much of a time searching for what they have wished. ",
+        "what": "What about us?",
+        "contact": "Here's the developer team behind this website. You can contact us through these emails:",
+        "partners": " Partners ",
+        "welcome": " Welcome to Bookiew!",
+        "welcome_text": "Free your mind from the stress of having to live in this age, where there are plenty of books but rarely explanative reviews about them."
+    },
+    "login": {
+        "title": "Login to Bookiew",
+        "email": "Email",
+        "password": "Password",
+        "login": "Login",
+        "forgot_pw": "Forgot Password?",
+        "dont_have": "Don't have an account?",
+        "register": "Register now"
+    },
+    "register" : {
+        "title": "Create New Account",
+        "female": "Female",
+        "male": "Male",
+        "create": "Create New Account",
+        "have": "Have an account? ",
+        "login": "Login",
+        "register": "Register"
+    }
+}

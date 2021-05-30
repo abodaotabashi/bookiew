@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import "./BookRecommendation.css";
 
 import 'react-datepicker/dist/react-datepicker.css'
+import { withTranslation } from 'react-i18next';
+
 
 class BookRecommendation extends Component {
     state = {
@@ -18,17 +20,18 @@ class BookRecommendation extends Component {
     }
 
     render(){
+        const { t } = this.props;
         return(
             <div className='recommendationBackgroundSection'>
                 <div className='recommendationBackgroundFilterSection'>
                     <div className='recommendationSectionsContainer'>
                         <div className='recommendationSection'>
-                            <p className='recommendationSectionHeader'>Book Recommendation</p>
+                            <p className='recommendationSectionHeader'>{t('book_recomm.title')}</p>
                             <table className='recommendationInputTable'>
                                 <tbody>
                                     <tr>
                                         <td>
-                                            <p className='recommendationInputLabel'>Name of Book: </p>
+                                            <p className='recommendationInputLabel'>{t('book_recomm.name')}</p>
                                         </td>
                                         <td>
                                         <input  className='recommendationInputText' 
@@ -41,7 +44,7 @@ class BookRecommendation extends Component {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p className='recommendationInputLabel'>Author(s): </p>
+                                            <p className='recommendationInputLabel'>{t('book_recomm.author')}</p>
                                         </td>
                                         <td>
                                         <input  className='recommendationInputText' 
@@ -54,7 +57,7 @@ class BookRecommendation extends Component {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p className='recommendationInputLabel'>Year of Publication: </p>
+                                            <p className='recommendationInputLabel'>{t('book_recomm.year_of_pub')}</p>
                                         </td>
                                         <td>
                                         <input  className='recommendationInputText' 
@@ -67,7 +70,7 @@ class BookRecommendation extends Component {
                                     </tr>
                                     <tr>
                                         <td>
-                                            <p className='recommendationInputLabel'>Additional Note: </p>
+                                            <p className='recommendationInputLabel'>{t('book_recomm.add_note')}</p>
                                         </td>
                                         <td>
                                             <textarea   className='recommendationInputText' 
@@ -84,7 +87,7 @@ class BookRecommendation extends Component {
                             <div className='recommendationBreaklineContainer' >
                                 <hr className='recommendationBreakline' />
                             </div>
-                            <p className='recommendationThankSpan'>We Appreciate Your Help Improving Bookiew, So Thank You From The Heart</p>
+                            <p className='recommendationThankSpan'>{t('book_recomm.appreciate')}</p>
                             <p className='recommendationHeart'>💗</p>
                         </div>
                     </div>
@@ -94,4 +97,4 @@ class BookRecommendation extends Component {
     }
 }
 
-export default BookRecommendation;
+export default withTranslation()(BookRecommendation);

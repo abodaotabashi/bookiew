@@ -3,10 +3,10 @@ import './HomeReviewCard.css';
 
 import { FaStar } from 'react-icons/fa';
 import Comment from '../Comment/Comment';
-
+import {useTranslation} from "react-i18next";
 
 const HomeReviewCard = (props) => {
-
+    const {t} = useTranslation();
     return(
         <div className='reviewCardContainer'>
             <div className='reviewCardBookThumbnailWrapper'>
@@ -30,7 +30,7 @@ const HomeReviewCard = (props) => {
                         <div className='reviewCardReviewerName'>{props.reviewerName}</div>
                     </div>
                     <div className='reviewCardReviewDate'>
-                        <p>Published On {props.reviewDate}</p>
+                        {t('home_review_card.pub_on')}{props.reviewDate}
                     </div>
                 </div>
                 <div className='reviewCardReviewText'>
@@ -39,7 +39,7 @@ const HomeReviewCard = (props) => {
                 <div className='reviewCardRatingCommentSection'>
                     {props.reviewComments !== null ?
                         <div className='reviewCardShowCommentsWrapper'>
-                            <p className='reviewCardLabel'>Comments &nbsp; {props.reviewCommentsNumber}</p>
+                            <p className='reviewCardLabel'>{t('home_review_card.comments')}&nbsp; {props.reviewCommentsNumber}</p>
                         </div>
                         : null
                     }

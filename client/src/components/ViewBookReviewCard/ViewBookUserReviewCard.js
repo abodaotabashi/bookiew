@@ -2,10 +2,10 @@ import React from 'react';
 import './ViewBookUserReviewCard.css';
 
 import { FaStar } from 'react-icons/fa';
-
+import {useTranslation} from "react-i18next";
 
 const ViewBookUserReviewCard = (props) => {
-
+    const {t} = useTranslation();
     return(
         <div className='viewBookUserReviewWrapper' onClick={props.click}>
             <div className='viewBookUserReviewerContainer'>
@@ -16,7 +16,7 @@ const ViewBookUserReviewCard = (props) => {
                     <div className='viewBookUserReviewerName'>{props.reviewerName}</div>
                 </div>
                 <div className='viewBookUserReviewDate'>
-                    <p>Published On {props.reviewDate}</p>
+                    <p>{t('home_review_card.pub_on')}{props.reviewDate}</p>
                 </div>
             </div>
             <div className='viewBookUserReviewText'>
@@ -24,7 +24,7 @@ const ViewBookUserReviewCard = (props) => {
             </div>
             <div className='viewBookUserReviewRatingCommentSection'>
                 <div className='viewBookUserReviewShowCommentsWrapper'>
-                    <p className='viewBookUserReviewLabel'>Comments &nbsp;{props.reviewComments.length}</p>
+                    <p className='viewBookUserReviewLabel'>{t('home_review_card.comments')} &nbsp;{props.reviewComments.length}</p>
                 </div>
                 <div className='viewBookUserReviewRatingWrapper'>
                     <p className='viewBookUserReviewLabel'>{props.reviewRating}</p>

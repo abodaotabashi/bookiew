@@ -8,8 +8,9 @@ import Partner2 from "../../../assets/images/partners/Partner2.png";
 import Partner3 from "../../../assets/images/partners/Partner3.png";
 import Partner4 from "../../../assets/images/partners/Partner4.png";
 import Partner5 from "../../../assets/images/partners/Partner5.png";
-
+import {useTranslation} from "react-i18next";
 const PartnersSpotlight = () => {
+    const {t} = useTranslation();
     const settings = {
         className: "center",
         centerMode: true,
@@ -21,7 +22,7 @@ const PartnersSpotlight = () => {
     
     return( 
         <div id='partners' className='landingPartnersSpotlightContainer'>
-            <label className='landingPartnersSpotlightLabel'> Partners </label>
+            <label className='landingPartnersSpotlightLabel'>{t('landing.partners')}</label>
             <br/><br/>
             <div className="landingPartnersSpotlightCarousel">
                 <Slider {...settings}>

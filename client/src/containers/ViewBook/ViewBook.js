@@ -7,6 +7,7 @@ import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
 import ViewBookUserReviewCard from '../../components/ViewBookReviewCard/ViewBookUserReviewCard';
 import ViewBookOtherReviewCard from '../../components/ViewBookReviewCard/ViewBookOtherReviewCard';
 import { withRouter } from "react-router-dom";
+import {withTranslation} from "react-i18next";
 
 class ViewBook extends Component {
     state = {
@@ -62,6 +63,7 @@ class ViewBook extends Component {
     }
 
     render(){
+        const {t} = this.props;
         this.checkReviewOfUser();
 
         let reviewOfUser = null;
@@ -69,7 +71,7 @@ class ViewBook extends Component {
         if(this.state.reviewOfUser !== null) {
             reviewOfUser = (
                 <div>
-                    <p className='viewBookUserReviewHeader'>Your Review</p>
+                    <p className='viewBookUserReviewHeader'>{t('view_book.your_review')}</p>
                     <ViewBookUserReviewCard click={this.handleMyReviewClicked}
                                             reviewerIcon={this.state.reviewOfUser.reviewerIcon}
                                             reviewerName={this.state.reviewOfUser.reviewerName}
@@ -87,7 +89,7 @@ class ViewBook extends Component {
         } else {
             reviewOfUser = (
                 <div className='viewBookAddReviewContainer' onClick={this.handleAddReview}>
-                    <p className='viewBookUserReviewHeader'>Add Your Own Review!</p>
+                    <p className='viewBookUserReviewHeader'>{t('view_book.add_your')}</p>
                     <FaPlusCircle className="viewBookAddReviewIcon"
                                 size={124}/>
                 </div>
@@ -151,27 +153,27 @@ class ViewBook extends Component {
                                 <table className='viewBookBookCardInformationTable'>
                                     <tbody>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Author:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.author')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookAuthor}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Publisher:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.publisher')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookPublisher}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Year of Publication:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.year_of_pub')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookPublishingYear}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Category:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.category')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookCategory}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Subject:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.subject')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookSubject}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Language:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.language')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookLanguage}</td>
                                         </tr>
                                     </tbody>
@@ -197,4 +199,4 @@ class ViewBook extends Component {
     }
 }
 
-export default withRouter(ViewBook);
+export default withTranslation()(withRouter(ViewBook));

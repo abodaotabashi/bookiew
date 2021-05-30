@@ -5,6 +5,8 @@ import AnimatedNumber from 'react-animated-number';
 
 import { FaPlusCircle } from 'react-icons/fa';
 import SearchIcon from "../../assets/icons/search_30px.png";
+import { withTranslation } from 'react-i18next';
+
 
 class Home extends Component {
     state ={
@@ -29,6 +31,7 @@ class Home extends Component {
     };
 
     render(){
+        const { t } = this.props;
         if(this.state.numberOfCommentDisplayed === null) {
             let numberOfReviews = null;
             if(this.props.reviewComments.length >= 1) {
@@ -46,7 +49,7 @@ class Home extends Component {
                     <div className='homeSectionsContainer'>
                         <div className='homeSearchSection'>
                             <div className='homeSearchText'>
-                                <h2>Search simply the book, that you want to edit its informations or you want to delete it!</h2>
+                                <h2>{t('admin_home.message')}</h2>
                             </div>
                             <div className='homeSearchBoxContainer'>
                                 <div className='homeSearchBox'>
@@ -73,7 +76,7 @@ class Home extends Component {
                         <div className='homeRecommendationsContainer'>
                             <div className='homeRecommendationsSection'>
                                 <p className='homeRecommendationsCounterLabel'>
-                                    New Recommendations received
+                                    {t('admin_home.notification')}
                                 </p>
                                 <AnimatedNumber
                                     className='homeRecommendationsCounter'
@@ -84,7 +87,7 @@ class Home extends Component {
                                 />
                             </div>
                             <div className='homeRecommendationsButtonWrapper'>
-                                <button className='homeRecommendationsButton' onClick={this.handleGoToRecommendations}>Go To Recommendations ▶</button>
+                                <button className='homeRecommendationsButton' onClick={this.handleGoToRecommendations}>{t('admin_home.goTo')} ▶</button>
                             </div>
                         </div>
                         
@@ -95,4 +98,4 @@ class Home extends Component {
     }
 }
 
-export default Home;
+export default withTranslation()(Home);

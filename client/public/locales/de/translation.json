@@ -1,0 +1,140 @@
+{
+    "home": {
+        "question":"Haben Sie kürzlich ein neues Buch gelesen?",
+        "Your_Last_Review":"Ihre letzte Rezension",
+        "Show_More_Comments": "Mehr Kommentare anzeigen",
+        "after_question": "Durchsuchen Sie es und fügen Sie Ihre persönliche Rezension hinzu, um anderen Lesern zu helfen!"
+        },
+    "navbar":{
+        "Change_Language": "Sprache ändern",
+        "Edit_Profile": "Profil bearbeiten",
+        "Home": "Home",
+        "My_Reviews": "Meine Rezensionen",
+        "Book_Recommendation": "Buchempfehlung",
+        "Log_out": "Log Out"
+    },
+    "add_review": {
+        "Add_Review": "Bewertung hinzufügen",
+        "author": "Autor/in:",
+        "publisher": "Herausgeber:",
+        "year_of_pub": "Veröffentlichungsjahr:",
+        "category": "Kategorie:",
+        "subject": "Thema:",
+        "language": "Sprache:",
+        "warning": "Die maximale Zeichenanzahl beträgt 500!",
+        "publish_review": "Bewertung veröffentlichen"
+    },
+    "admin_home": {
+        "message": "Suchen Sie einfach das Buch, dessen Informationen Sie bearbeiten oder löschen möchten!",
+        "notification": "Neue Empfehlungen sind eingehalten",
+        "goTo": "Gehe zu Empfehlungen"
+    },
+    "book_recomm": {
+        "title": "Buchempfehlung",
+        "name": "Name des Buches: ",
+        "author": "Autor(in): ",
+        "year_of_pub": "Veröffentlichungsjahr: ",
+        "add_note": "Zusätzliche Anmerkung: ",
+        "appreciate": "Wir wissen Ihre Hilfe bei der Verbesserung des Bookiew zu schätzen, also danke Ihnen von Herzen"
+    },
+    "edit_profile": {
+        "photo": "Foto aktualisieren",
+        "first_name": "Name",
+        "surname": "Nachname",
+        "email": "E-mail",
+        "password": "Passwort",
+        "update_password": "Passwort aktualisieren",
+        "update_profile": "Profil aktualisieren",
+        "your_reviews": "Ihre Rezensionen"
+    },
+    "edit_review": {
+        "title": "Rezension bearbeiten",
+        "pub_on": "Veröffentlicht in: ",
+        "submit": "Abgeben",
+        "cancel": "Cancel"
+    },
+    "forgot_password" : {
+        "message": "Passwort vergessen?",
+        "dont_worry": "Machen Sie Ihnen keine Sorge",
+        "we_will": "Wir senden Ihnen einen Link zum Zurücksetzen Ihres Passworts!",
+        "send_me": "Sende mir einen Link",
+        "email": "Email"
+    },
+    "reset_pw": {
+        "title": "Setze dein Passwort zurück",
+        "enter": "Bitte geben Sie Ihr neues Passwort ein!",
+        "password": "Passwort",
+        "confirm": "Passwort bestätigen",
+        "reset": "Passwort zurücksetzen"
+    },
+    "search_results": {
+        "message": "Suchergebnisse gefunden für "
+    },
+    "view_book": {
+        "your_review": "Deine rezension",
+        "add_your": "Fügen Sie Ihre eigene Rezension hinzu!",
+        "author": "Autor:",
+        "publisher": "Herausgeber:",
+        "year_of_pub": "Veröffentlichungsjahr:",
+        "category": "Kategorie:",
+        "subject": "Thema:",
+        "language": "Sprache:"
+    },
+    "view_review": {
+        "title": "Rezension ansehen",
+        "show_more": "Mehr Kommentare anzeigen",
+        "edit": "Rezension bearbeiten",
+        "delete": "Rezension löschen"
+    },
+    "admin_login" : {
+        "title": "Sich im Admin-Panel anmelden",
+        "email": "Email",
+        "password": "Passwort",
+        "login": "Login"
+    },
+    "book_card":{
+        "review": " REVIEW "
+    },
+    "admin_nav" : {
+        "add_book": "Neues Buch hinzufügen",
+        "receiv_recomm": "Erhaltene Empfehlungen",
+        "logout": "Log out"
+    },
+    "footer": {
+        "about_us": "Über uns",
+        "partners": "Partner",
+        "contact": "Kontakt",
+        "about": "Über"
+    },
+    "home_review_card": {
+        "pub_on": "Veröffentlicht auf ",
+        "comments": "Kommentare "
+    },
+    "landing" : {
+        "about_bookiew": "Bei der heutigen Fülle an Wissen über Bücher, sei es physikalisch oder elektrisch, wird es für uns immer schwieriger, mit diesem Inhalt Schritt zu halten. Bookiew ist eine Plattform, die versucht, dieses Problem auf die einfachste und zeitsparendste Weise zu lösen, damit Sie Rezensionen zu Büchern, die Sie angefordert haben, aus der ganzen Welt lesen, bewerten und sogar mit Kommentaren oder Schreiben beitragen können. In der heutigen Fülle an Wissen in Bezug auf Bücher, sei es physikalisch oder elektrisch, wird es für uns schwieriger, diese Inhalte einzuholen. Bookiew ist eine Plattform, die versucht, dieses Problem auf einfachste und zeitsparendste Weise zu lösen, sodass Sie Bewertungen aus aller Welt zu Büchern, die Sie angefordert haben, lesen, bewerten und sogar durch Kommentare oder Beiträge beitragen können.",
+        "about_us": "Wir sind Informatik-Studenten, alle im Junior-Jahr an der Türkisch-Deutschen Universität, die diese Idee für unseren Software-Engineering-Studiengang hatten. Die Idee kam von der Betrachtung des Technologiezeitalters, in dem wir uns befinden, und einer der Haupteffekte davon: nicht in der Lage zu sein, viele Bücher wie erwartet zu lesen. Der Unterschied, den wir versuchen, besteht darin, den Rezensenten eine Beschränkung der Wörter zu geben und diese Rezensionen nach der von Ihnen vergebenen Punktzahl zu ordnen, damit die nächste Person, die das Buch liest, nicht viel Zeit damit verbringt, nach dem zu suchen, was sie sich gewünscht hat.",
+        "what": "Was ist mit uns?",
+        "contact": "Hier ist das Entwicklerteam hinter dieser Website. Sie können uns über diese E-Mails kontaktieren: ",
+        "partners": " Partner ",
+        "welcome": " Herzlichen Willkommen zu Bookiew!",
+        "welcome_text": "Befreien Sie sich von dem Stress, in dieser Zeit leben zu müssen, in der es viele Bücher gibt, aber selten erklärende Rezensionen dazu."
+    },
+    "login": {
+        "title": "Login to Bookiew",
+        "email": "Email",
+        "password": "Passwort",
+        "login": "Login",
+        "forgot_pw": "Passwort vergessen?",
+        "dont_have": "Sie haben kein Konto?",
+        "register": "Jetzt registrieren"
+    },
+    "register" : {
+        "title": "Neues Account erstellen",
+        "female": "Weiblich",
+        "male": "Männlich",
+        "create": "Neues Account erstellen",
+        "have": "Ein Konto haben?? ",
+        "login": "Einloggen",
+        "register": "Registrieren"
+    }
+}

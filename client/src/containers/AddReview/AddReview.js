@@ -3,6 +3,8 @@ import "../ViewReview/ViewReview.css";
 import "./AddReview.css";
 
 import { withRouter } from "react-router-dom";
+import { withTranslation } from 'react-i18next';
+
 
 class AddReview extends Component {
     state = {
@@ -16,11 +18,12 @@ class AddReview extends Component {
     }
 
     render(){
+        const { t } = this.props;
         return(
             <div className='viewReviewBackgroundSection'>
                 <div className='viewReviewBackgroundFilterSection'>
                     <div className='viewReviewContainer'>
-                        <p className='viewReviewHeader'>Add Review</p>
+                        <p className='viewReviewHeader'>{t('add_review.Add_Review')}</p>
                         <div className='viewReviewBreaklineContainer' >
                             <hr className='viewReviewBreakline' />
                         </div>
@@ -35,27 +38,27 @@ class AddReview extends Component {
                                 <table className='viewBookBookCardInformationTable'>
                                     <tbody>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Author:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('add_review.author')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookAuthor}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Publisher:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('add_review.publisher')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookPublisher}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Year of Publication:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('add_review.year_of_pub')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookPublishingYear}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Category:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('add_review.category')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookCategory}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Subject:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('add_review.subject')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookSubject}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Language:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('add_review.language')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookLanguage}</td>
                                         </tr>
                                     </tbody>
@@ -78,11 +81,11 @@ class AddReview extends Component {
                                             placeholder='Your Review' />
                                 <div className='addReviewReviewTextLength'>
                                     📝 {this.state.review.length}/500
-                                    <span className='addReviewReviewTextLengthTooltip'>The maximum limit of characters is 500!</span>
+                                    <span className='addReviewReviewTextLengthTooltip'><p>{t('add_review.warning')}</p></span>
                                 </div>
                                 <div className='viewBookOtherReviewsContainer'>
                                     <button className='viewBookShowReviewsButton' onClick={this.handleAddReview}>
-                                        Publish Review
+                                        {t('add_review.publish_review')}
                                     </button>
                                 </div>
                             </div>
@@ -94,4 +97,4 @@ class AddReview extends Component {
     }
 }
 
-export default withRouter(AddReview);
+export default withTranslation()(withRouter(AddReview));

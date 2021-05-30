@@ -5,6 +5,7 @@ import { FaCheck } from 'react-icons/fa'
 import { FaWindowClose } from 'react-icons/fa'
 
 import { withRouter } from "react-router-dom";
+import { withTranslation } from 'react-i18next';
 
 class EditReview extends Component {
     state = {
@@ -22,11 +23,12 @@ class EditReview extends Component {
     }
 
     render(){
+        const {t} = this.props;
         return(
             <div className='editReviewBackgroundSection'>
                 <div className='editReviewBackgroundFilterSection'>
                     <div className='editReviewContainer'>
-                        <p className='editReviewHeader'>Edit Review</p>
+                        <p className='editReviewHeader'>{t('edit_review.title')}</p>
                         <div className='editReviewBreaklineContainer' >
                             <hr className='editReviewBreakline' />
                         </div>
@@ -54,7 +56,7 @@ class EditReview extends Component {
                                                 <div className='reviewCardReviewerName'>{this.state.review.reviewerName}</div>
                                             </div>
                                             <div className='reviewCardReviewDate'>
-                                                <p>Published On {this.state.review.reviewDate}</p>
+                                                <p>{t('edit_review.pub_on')}{this.state.review.reviewDate}</p>
                                             </div>
                                         </div>
                                         <textarea   className='editReviewInputText' 
@@ -68,13 +70,13 @@ class EditReview extends Component {
                                     <FaCheck  
                                         color="#ffffff" 
                                         size={100}/>
-                                    <p className='editReviewEditingLabel'>Submit</p>
+                                    <p className='editReviewEditingLabel'>{t('edit_review.submit')}</p>
                                 </div>
                                 <div className='editReviewCancelReviewWrapper' onClick={this.handleCancelEditing}>
                                     <FaWindowClose  
                                         color="#ffffff" 
                                         size={100}/>
-                                    <p className='editReviewEditingLabel'>Cancel</p>
+                                    <p className='editReviewEditingLabel'>{t('edit_review.cancel')}</p>
                                 </div>
                             </div>
                         </div>
@@ -85,4 +87,4 @@ class EditReview extends Component {
     }
 }
 
-export default withRouter(EditReview);
+export default withTranslation()(withRouter(EditReview));
