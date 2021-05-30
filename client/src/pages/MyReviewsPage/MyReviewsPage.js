@@ -8,7 +8,7 @@ import PageContainer from '../../components/PageContainer/PageContainer';
 const MyReviewsPage = (props) => {
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
+            <NavbarWithUser />
             <PageContainer>
                 <MyReviews />
             </PageContainer>

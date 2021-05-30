@@ -173,6 +173,7 @@
     align-items: center;
     justify-content: left;
     color: white;
+    text-decoration: none;
 }
 
 .navbarDropDownItemIconWrapper {

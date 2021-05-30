@@ -118,8 +118,10 @@ router.post('/forgotPassword', async function(req, res, next) {
 });
 
 router.post('/search', async function(req, res, next){
-  const searchedBook = req.body.searchedBook;
-  const book = await knex('books').select('*').where({'bookName': searchedBook});
+  let searchedBook = req.body.searchedBook;
+  searchedBook = searchedBook.trim();
+  searchedBook = "%" + searchedBook + "%";
+  const book = await knex('books').select('*').where('bookName', 'like', searchedBook);
   if(book!=null){
     return res.send({response: true, message: book});
   }else{

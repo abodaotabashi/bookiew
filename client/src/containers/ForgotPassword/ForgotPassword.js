@@ -22,7 +22,9 @@ class ForgotPassword extends Component {
 
     
     render(){
-        
+        if(localStorage.getItem('isUserAuthenticated')){
+            this.goToHome();
+        }
         return( 
             <div className='forgotPasswordContainer'>
                 <div className='forgotPasswordContainerBackgroundFilter'>

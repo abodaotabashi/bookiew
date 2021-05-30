@@ -26,6 +26,9 @@ class ResetPassword extends Component {
 
     
     render(){
+        if(localStorage.getItem('isUserAuthenticated')){
+            this.goToHome();
+        }
         return( 
             <div className='ResetPasswordContainer'>
                 <div className='ResetPasswordContainerBackgroundFilter'>

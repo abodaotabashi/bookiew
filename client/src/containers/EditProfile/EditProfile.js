@@ -11,11 +11,12 @@ import axios from 'axios';
 class EditProfile extends Component {
     state = {
         user: this.props.user,
-        firstname: this.props.user.firstname,
-        surname: this.props.user.surname,
-        email: this.props.user.email,
-        password: this.props.user.password,
-        profilePhotoURL: this.props.user.profilePhotoURL,
+        userID: localStorage.getItem('userID'),
+        firstname: localStorage.getItem('userFirstname'),
+        surname: localStorage.getItem('userSurname'),
+        email: localStorage.getItem('userEmail'),
+        password: localStorage.getItem('userPassword'),
+        profilePhotoURL: localStorage.getItem('userProfilePhotoURL'),
         numberOfReviews: this.props.user.numberOfReviews,
         newPassword: '',
         confirmPassword: '',
@@ -42,7 +43,6 @@ class EditProfile extends Component {
 
 
     validate = () =>{
-        
         if (!this.state.email.includes('@')) {
             this.setState({ 
                 errorMessage: 'Invalid Email!',
@@ -50,8 +50,6 @@ class EditProfile extends Component {
             });
             return false;
         }
-        
-
         if (this.state.firstname || this.state.surname) {
             if (!(/^[A-Za-z ]+$/.test(this.state.firstname)) || !(/^[A-Za-z ]+$/.test(this.state.surname))) {
                 this.setState({ 
@@ -73,9 +71,6 @@ class EditProfile extends Component {
         }else{
             return false;
         }
-
-       
-        
         return true;
     }
 
@@ -102,12 +97,12 @@ class EditProfile extends Component {
 
     handleEditProfile = async() => {
             this.clearInputs();
-            console.log("userID: " + this.state.user.userID);
-            console.log("firstname: " + this.state.user.firstname);
-            console.log("surname: " + this.state.user.surname);
-            console.log("email: " + this.state.user.email);
-            console.log("password: " + this.state.user.password);
-            console.log("photo: " + this.state.user.photo);
+            console.log("userID: " + this.state.userID);
+            console.log("firstname: " + localStorage.getItem('userFirstname'));
+            console.log("surname: " + localStorage.getItem('userSurname'));
+            console.log("email: " + localStorage.getItem('userEmail'));
+            console.log("password: " + localStorage.getItem('userPassword'));
+            console.log("photo: " + localStorage.getItem('userProfilePhotoURL'));
 
             console.log("firstname after changing: " + this.state.firstname);
             console.log("surname after changing: " + this.state.surname);
@@ -128,47 +123,37 @@ class EditProfile extends Component {
                 this.setState({ passwordChange: this.state.passwordChange = true});
             }
         
-                if(this.validate()){
+            if(this.validate()){
+            
+                const result2 = await axios.post("http://localhost:3000/updateProfile", {
+                    userID: this.state.userID,
+                    firstname: this.state.firstname,
+                    surname: this.state.surname,
+                    email: this.state.email,
+                    password: this.state.newPassword,
+                    photoURL: this.state.selectedPhoto
+                })
                 
-                    const result2 = await axios.post("http://localhost:3000/updateProfile", {
-                        userID: this.state.user.userID,
-                        firstname: this.state.firstname,
-                        surname: this.state.surname,
-                        email: this.state.email,
-                        password: this.state.newPassword,
-                        photoURL: this.state.selectedPhoto
+                if(result2.data.response){
+                    const result = await axios.post("http://localhost:3000/editProfile", {
+                        userID: this.state.userID,
                     })
-                    
-                    if(result2.data.response){
-                        console.log(result2.data.message);
-
-
-                        const result = await axios.post("http://localhost:3000/editProfile", {
-                            userID: this.state.user.userID,
-                        })
-                        if(result.data.response){
-                            this.setState({user: result.data.user})
-                            console.log(result.data.user)
-                            this.props.history.push({
-                                pathname: '/home', 
-                                user: this.state.user});
-                            }else{
-                                console.log("something wrong")
-                            }
-                        
-
-                      
-                    }else{
-                        console.log(result2)
-                        console.log(result2.data.message);
-    
-                        
-                    }
+                    if(result.data.response){
+                        this.setState({user: result.data.user});
+                        localStorage.setItem('userFirstname',  result.data.user.firstname);
+                        localStorage.setItem('userSurname',  result.data.user.surname);
+                        localStorage.setItem('userEmail',  result.data.user.email);
+                        localStorage.setItem('userProfilePhotoURL',  result.data.user.profilePhotoURL);
+                        localStorage.setItem('userPassword',  result.data.user.password);
+                        this.props.history.push({ pathname: '/home'});
+                        }else{
+                            console.log("something went wrong")
+                        }
+                }else{
+                    console.log(result2)
+                    console.log(result2.data.message);
                 }
-    
-
-
-
+            }
     };
 
     clearInputs = () => {
@@ -181,9 +166,9 @@ class EditProfile extends Component {
     render(){
         let image = null;
         if(this.state.profilePhotoURL){
-           image =  <img src={this.state.profilePhotoURL} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
+            image = <img src={this.state.profilePhotoURL} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
         }else{
-           image =<img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/> 
+            image = <img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/> 
         }
         
 
@@ -196,21 +181,15 @@ class EditProfile extends Component {
                             <div className='editProfileSectionWrapper'>
                                 <div className='editProfileSectionPhotoContainer'>
                                     <div className='editProfileSectionPhotoWrapper'>
-                                        
-                                        
                                         {image}
-
                                     </div>
                                     <div className='editProfileUpdatePhotoWrapper' onClick={this.handlePhoto} >
                                         <img src={EditPhotoIcon} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
                                         <p>Update Photo</p>
-                                       
                                     </div>
                                     <input className="updatePhotoInput" type="file" 
                                     ref={input => this.inputElement = input} 
                                     onChange={this.handleUpdatePhoto}/>
-                                    
-                                    
                                 </div>
                                 <div className='editProfileVerticalBreakline'>
                                 </div>

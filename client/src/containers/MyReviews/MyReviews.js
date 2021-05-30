@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import "./MyReviews.css";
 
 import axios from 'axios';
-import {getUser} from '../../session'
 import BookCard from '../../components/BookCard/BookCard';
 
 class MyReviews extends Component {
@@ -11,9 +10,10 @@ class MyReviews extends Component {
     }
 
     handleGetReviews = async (props) => {
-        const user = getUser();
+        const userID = localStorage.getItem('userID');
+        
         if(this.state.reviews === null){
-            const emir = await axios.post('http://localhost:3000/myReviews',{userID:user.userID});
+            const emir = await axios.post('http://localhost:3000/myReviews',{userID: userID});
             let reviews = [];
             if (emir.data.response) {
                 const myReviews = emir.data.displayedBooks;
@@ -44,7 +44,7 @@ class MyReviews extends Component {
                                         bookName={review.bookName}
                                         bookAuthor={review.bookAuthor}
                                         bookThumbnail={review.bookThumbnail}
-                                        click={this.handleReviewClicked.bind(this, index)}
+                                        click={this.handleReviewClicked.bind(this, review.reviewID)}
                                         />
                         );
                     })}

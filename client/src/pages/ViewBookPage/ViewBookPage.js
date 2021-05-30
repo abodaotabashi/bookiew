@@ -78,7 +78,7 @@ const ViewBookPage = (props) => {
     }
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
+            <NavbarWithUser />
             <PageContainer>
                 <ViewBook book={book} user={user} />
             </PageContainer>

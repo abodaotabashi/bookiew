@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import './LandingPage.css'
 import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import Navbar from '../../components/Navbar/Navbar';
@@ -9,8 +9,7 @@ import Contact from '../../components/LandingPageComponents/Contact/Contact';
 import PartnersSpotlight from '../../components/LandingPageComponents/PartnersSpotlight/PartnersSpotlight';
 import PageContainer from '../../components/PageContainer/PageContainer';
 
-class LandingPage extends Component {
-    render() {
+const LandingPage = (props) => {
         return(
             <div>
                 <Navbar/>
@@ -29,9 +28,6 @@ class LandingPage extends Component {
             </div>
         );
     
-    };
-    
-
 }
 
 export default LandingPage;

@@ -9,7 +9,7 @@ const ViewOtherReviewPage = (props) => {
     
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
+            <NavbarWithUser />
             <PageContainer>
                 <ViewOtherReview review={props.location.state.review} book={props.location.state.book} user={props.location.state.user}/>
             </PageContainer>

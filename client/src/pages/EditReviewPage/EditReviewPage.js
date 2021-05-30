@@ -8,7 +8,7 @@ import PageContainer from '../../components/PageContainer/PageContainer';
 const EditReviewPage = (props) => {
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
+            <NavbarWithUser />
             <PageContainer>
                 <EditReview review={props.location.state.review} book={props.location.state.book} />
             </PageContainer>

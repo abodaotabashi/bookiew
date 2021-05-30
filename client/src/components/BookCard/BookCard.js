@@ -14,7 +14,6 @@ const BookCard = (props) => {
             <div className='bookCardAuthor'>
                 <p>{props.bookAuthor}</p>
             </div>
-            <div class="button"><a onClick={()=> console.log("to be reviewed!")}> REVIEW </a></div>
         </div>
     );
 }

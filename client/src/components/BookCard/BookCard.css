@@ -11,6 +11,12 @@
     border-bottom-right-radius: 30px;
     border-top-left-radius: 30px;
     cursor: pointer;
+    border: 4px solid transparent;
+    transition: all 250ms ease-in-out; 
+}
+
+.bookCardContainer:hover {
+    border: 4px solid #341f97;
 }
 
 .bookCardThumbnailWrapper {
@@ -52,10 +58,3 @@
     padding: 0 1em;
     margin: 0;
 }
-
-.button {
-    width: 500px;
-    text-align: center;
-    opacity: 1;
-  }
- 

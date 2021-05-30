@@ -9,34 +9,23 @@ import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
 import {Link} from 'react-router-dom';
-import { getUser, setUser } from '../../session';
 
 const NavbarWithUser = (props) => {
-
-
-    const user = props.user;
-    console.log("user:")
-    console.log(user)
-    console.log("userid: " + user.userID);
-    setUser(user.userID, user.email, user.firstname, user.surname, 
-        user.password, user.gender, user.birthdate, user.profilePhotoURL);
-
-    const navUser = getUser();
-
+    const userFirstname = localStorage.getItem('userFirstname');
+    const userProfilePhotoURL = localStorage.getItem('userProfilePhotoURL');
+    
     return(
         <div className='navbarWithUser'>
             <section className='navbarLeftSection'>
                 <div className='navbarLogoWrapper'>
                     <Link 
                         className='navbarLogoWrapper'
-                        to="/"  /*"/home"
-                        params={{ username: "User" }}*/
+                        to="/"
                         smooth="true"
                         offset={-20}
                         duration={500}> 
                         <img src={MiniLogo} className='navbarLogoImage' alt='Bookiew Logo'/>
                         <img src={TextLogo} className='navbarLogoText' alt='Bookiew Logo'/>
-
                     </Link>
                 </div>
             </section>
@@ -68,8 +57,8 @@ const NavbarWithUser = (props) => {
             </section>
             <section className='navbarRightSection'>
                 <div className='navbarDropDownContainer'>
-                    <img src={UserIcon} className='navbarUserIcon' alt='navbarUser'/>
-                    <p className='navbarUserName'>{user.firstname}</p>
+                    <img src={(userProfilePhotoURL === '') ? UserIcon : userProfilePhotoURL} className='navbarUserIcon' alt='navbarUser'/>
+                    <p className='navbarUserName'>{userFirstname}</p>
                     <img src={ExpandIcon} className='navbarDropDownIcon' alt='navbarDropDownMenu'/>
                 </div>
                 <ul className='navbarDropDownWrapper'>
@@ -90,10 +79,7 @@ const NavbarWithUser = (props) => {
                     <li className='navbarDropDownItem'>
                         <Link 
                             className='navbarDropDownItemLink'
-
-                            to={
-                                {pathname: "/editProfile",
-                                state: {user: user}}}
+                            to="/editProfile"
                             smooth="true"
                             offset={-20}
                             duration={500}> 
@@ -111,10 +97,20 @@ const NavbarWithUser = (props) => {
                             Change Language
                         </div>
                     </li>
-                    <li className='navbarDropDownItem'>
+                    <li className='navbarDropDownItem' onClick={() => {
+                                                                    localStorage.setItem('isUserAuthenticated', false);
+                                                                    localStorage.setItem('userID', '');
+                                                                    localStorage.setItem('userFirstname', '');
+                                                                    localStorage.setItem('userSurname', '');
+                                                                    localStorage.setItem('userEmail', '');
+                                                                    localStorage.setItem('userProfilePhotoURL', '');
+                                                                    localStorage.setItem('userGender', '');
+                                                                    localStorage.setItem('userBirthdate', '');
+                                                                    localStorage.setItem('userPassword', '');
+                                                                    }}>
                         <Link 
                             className='navbarDropDownItemLink'
-                            to="/"
+                            to="/login"
                             smooth="true"
                             offset={-20}
                             duration={500}> 

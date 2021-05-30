@@ -10,7 +10,7 @@ const BookRecommendationPage = (props) => {
 
     return(
         <div>
-            <NavbarWithUser userName="Abdurrahman" />
+            <NavbarWithUser />
             <PageContainer>
                 <BookRecommendation />
             </PageContainer>

@@ -24,29 +24,29 @@ class App extends Component {
   
   render(){
     return (
-      <Router>
-        <div className="App">
+      <div className="App">
+        <Router>
           <Switch>
-              <Route path='/login' exact component = {LoginPage}/>
-              <Route path='/register' exact component = {RegisterPage}/>
-              <Route path='/' exact component = {LandingPage}/>
-              <Route path='/home' exact component = {HomePage}/>
-              <Route path='/forgotPassword' exact component = {ForgotPasswordPage}/>
-              <Route path='/resetPassword' exact component = {ResetPasswordPage}/>
-              <Route path='/myReviews' exact component = {MyReviewsPage}/>
-              <Route path='/search' exact component = {SearchResultsPage}/>
-              <Route path='/editProfile' exact component = {EditProfilePage}/>
-              <Route path='/bookRecommendation' exact component = {BookRecommendationPage}/>
-              <Route path='/viewReview' exact component = {ViewReviewPage}/>
-              <Route path='/viewBook' exact component = {ViewBookPage}/>
-              <Route path='/editReview' exact component = {EditReviewPage}/>
-              <Route path='/addReview' exact component = {AddReviewPage}/>
-              <Route path='/viewReviewOfOther' exact component = {ViewOtherReviewPage}/>
-              <Route path='/adminpanel/login' exact component = {AdminLoginPage}/>
-              <Route path='/adminpanel/' exact component = {AdminHomePage}/>
+            <Route path='/login' exact component = {LoginPage}/>
+            <Route path='/register' exact component = {RegisterPage}/>
+            <Route path='/' exact component = {(localStorage.getItem('isUserAuthenticated') !== false) ? HomePage : LandingPage}/>
+            <Route path='/home' exact component = {HomePage}/>
+            <Route path='/forgotPassword' exact component = {ForgotPasswordPage}/>
+            <Route path='/resetPassword' exact component = {ResetPasswordPage}/>
+            <Route path='/myReviews' exact component = {MyReviewsPage}/>
+            <Route path='/searchResults' exact component = {SearchResultsPage}/>
+            <Route path='/editProfile' exact component = {EditProfilePage}/>
+            <Route path='/bookRecommendation' exact component = {BookRecommendationPage}/>
+            <Route path='/viewReview' exact component = {ViewReviewPage}/>
+            <Route path='/viewBook' exact component = {ViewBookPage}/>
+            <Route path='/editReview' exact component = {EditReviewPage}/>
+            <Route path='/addReview' exact component = {AddReviewPage}/>
+            <Route path='/viewReviewOfOther' exact component = {ViewOtherReviewPage}/>
+            <Route path='/adminpanel/login' exact component = {AdminLoginPage}/>
+            <Route path='/adminpanel/' exact component = {AdminHomePage}/>
           </Switch>
-        </div>
-      </Router>
+        </Router>
+      </div>
     );
   };
 }
