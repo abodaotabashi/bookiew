@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomeReviewCard.css';
 
+import UserIcon from "../../assets/icons/user.png";
 import { FaStar } from 'react-icons/fa';
 import Comment from '../Comment/Comment';
 import {useTranslation} from "react-i18next";
@@ -55,7 +56,7 @@ const HomeReviewCard = (props) => {
                         {props.reviewComments.map((comment, index) => {
                             return (
                                 <Comment    key={comment.index}
-                                            commenterIcon={comment.commenterIcon}
+                                            commenterIcon={(comment.commenterIcon === '' || typeof(comment.commenterIcon) === 'undefined') ? UserIcon : comment.commenterIcon}
                                             commenterName={comment.commenterName}
                                             commentDate={comment.commentDate}
                                             commentText={comment.commentText}

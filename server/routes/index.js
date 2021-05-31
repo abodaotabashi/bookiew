@@ -208,57 +208,58 @@ router.post('/myReviews', async function(req, res, next) {
 
 router.post('/getReview', async function(req, res, next) {
   const reviewID = req.body.reviewID;
-  const review = new Array();
-  const reviewA = await knex('reviews').select('*').where({"reviewID":reviewID}).first();
-  if (reviewA[0]=null) {
+  const reviews = new Array();
+  const reviewA = await knex('reviews').select('*').where({"reviewID":reviewID});
+  if (reviewA[0] == null) {
     return res.send({response:false, message:"review not found"});
+  } else {
+    const review = {'text':reviewA[0].reviewText, 'date':reviewA[0].reviewDate, 'rating':reviewA[0].reviewRating, 'reviewerID':reviewA[0].reviewUserID, 'reviewBookID':reviewA[0].reviewBookID};
+    reviews.push(review);
+    return res.send({response:true, review})
   }
-  console.log(review);
-  const reviewText = reviewA.reviewText;
-  review.push({'text':reviewText});
-  review.push({'date':reviewA.reviewDate});
-  review.push({'rating':reviewA.reviewRating});
-  review.push({'reviewerID':reviewA.reviewUserID});
-  return res.send({response:true, review})
 })
 
 router.post('/getUser', async function(req, res, next) {
   const userID = req.body.userID;
-  const user = new Array();
-  const userA = await knex('users').select('*').where({'userID':userID}).first();
-  if (!userA) {return res.send({response:false, message:"user not found"});}
-  console.log(userA);
-  user.push({'name':userA.firstname + " "+ userA.surname});
-  user.push({'id': userA.userID});
-  user.push({'icon':userA.profilePhotoURL});
-  return res.send({response:true, user});
+  const userA = await knex('users').select('*').where({'userID':userID});
+  if (!userA) {
+    return res.send({response:false, message:"user not found"});
+  }else{
+    const user = {'name':userA[0].firstname +' '+ userA[0].surname, 'id': userA[0].userID, 'icon':userA[0].profilePhotoURL};
+    return res.send({response:true, user});
+  }
 })
 
 router.post('/getComments', async function (req, res, next) {
   const reviewID = req.body.reviewID;
   const comments = new Array();
   const commentsA = await knex('comments').select('*').where({'commentReviewID':reviewID});
-  if (commentsA[0]==null) {return res.send({response:false, message:'no comments found'});}
-  for (var i=0;i<commentsA.length;i++) {
-    const user = await knex('users').select('*').where({'userID':commentsA[i].commentUserID}).first();
-    comments.push({
-      'commentText': commentsA[i].commentText,
-      'commentDate':commentsA[i].commentDate ,
-      'commentID': commentsA[i].commentID,
-      'commenterName':user.firstname + " " + user.surname,
-      'commenterIcon':user.profilePhotoURL
-    })
+  if (commentsA[0]==null) {
+    return res.send({response:false, message:'no comments found'});
+  } else {
+    for(let i=0; i<commentsA.length; i++) {
+      const user = await knex('users').select('*').where({'userID':commentsA[i].commentUserID});
+      comments.push({
+        'commentText': commentsA[i].commentText,
+        'commentDate':commentsA[i].commentDate ,
+        'commentID': commentsA[i].commentID,
+        'commenterName':user[0].firstname + " " + user[0].surname,
+        'commenterIcon':user[0].profilePhotoURL
+      })
+    }
+    return res.send({response:true, comments});
   }
-  return res.send({response:true, comments});
 })
 
 router.post('/getBook', async function(req, res, next) {
   const bookID = req.body.bookID;
-  const book = new Array();
   const bookA = await knex('books').select('*').where({'bookID':bookID});
-  if (!bookA) { return res.send({response:false, message:'no books found'}); }
-  book.push({'bookName': bookA.bookName, 'bookAuthor': bookA.author,'bookThumbnail': bookA.bookCoverURL});
-  return res.send({response: true, book});
+  if (!bookA) { 
+    return res.send({response:false, message:'no books found'}); 
+  } else {
+    const book = {'bookName': bookA[0].bookName, 'bookAuthor': bookA[0].author,'bookThumbnail': bookA[0].bookCoverURL};
+    return res.send({response: true, book});
+  }
 })
 
 function sendEmail(message) {

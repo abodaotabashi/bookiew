@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import HomeReviewCard from '../../components/HomeReviewCard/HomeReviewCard';
 
+import UserIcon from "../../assets/icons/user.png";
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
@@ -32,27 +33,33 @@ class ViewReview extends Component {
             const userResult = await axios.post("http://localhost:3000/getUser", {
                 userID:displayedReview.reviewerID
             })
+            const reviewer = userResult.data.user;
+            console.log("FRONT review", displayedReview);
+            console.log("FRONT user", reviewer);
             const bookResult = await axios.post("http://localhost:3000/getBook", {
                 bookID: displayedReview.reviewBookID
             })
             const book = bookResult.data.book;
-            this.state.book = book;
+            console.log("FRONT book", book);
             const commentsResult = await axios.post("http://localhost:3000/getComments", {
                 reviewID:reviewID
             })
             const comments = commentsResult.data.comments;
-            this.state.reviewComments = comments;
-            const reviewer = userResult.data.user;
-            this.state.review = {  bookName:book.bookName ,
+            console.log("FRONT comm", comments);
+            this.setState({
+                book : book,
+                reviewComments : comments,
+                review :{   bookName:book.bookName ,
                             bookAuthor:book.bookAuthor ,
                             bookThumbnail:book.bookThumbnail,
                             reviewText: displayedReview.text,
-                            reviewerIcon: reviewer.icon,
+                            reviewerIcon: reviewer.profilePhotoURL,
                             reviewerName: reviewer.name,
                             reviewDate:displayedReview.date,
                             reviewRating: displayedReview.rating,
-                            reviewComments:comments              
+                            reviewComments:commentsResult.data.comments              
                         } 
+            });
         }
     }
 
@@ -81,20 +88,34 @@ class ViewReview extends Component {
     }
 
     render(){
+        let review = null;
         const {t} = this.props;
         this.handleGetReview();
-        if (this.state.review !== null) {
+        if (this.state.review !== null && this.state.review.reviewComments !== null) {
             if(this.state.numberOfCommentDisplayed === null) {
                 let numberOfReviews = null;
-                if(this.props.review.reviewComments.length > 1) {
+                if(this.state.review.reviewComments.length > 1) {
                     numberOfReviews = 1;
                     this.setState({ numberOfCommentDisplayed: 1 });
                 } else {
-                    numberOfReviews = this.props.review.reviewComments.length;
-                    this.setState({ numberOfCommentDisplayed: this.props.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
+                    numberOfReviews = this.state.review.reviewComments.length;
+                    this.setState({ numberOfCommentDisplayed: this.state.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
                 }
-                this.setState({ reviewCommentsDisplayed: this.props.review.reviewComments.slice(0, numberOfReviews)});
+                this.setState({ reviewCommentsDisplayed: this.state.review.reviewComments.slice(0, numberOfReviews)});
             }
+
+            review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
+                reviewerName={this.state.review.reviewerName}
+                reviewText={this.state.review.reviewText}
+                reviewDate={this.state.review.reviewDate}
+                reviewRating={this.state.review.reviewRating}
+                bookName={this.state.book.bookName}
+                bookAuthor={this.state.book.bookAuthor}
+                bookThumbnail={this.state.book.bookThumbnail}
+                reviewComments={this.state.reviewCommentsDisplayed}
+                reviewCommentsNumber={this.state.reviewComments.length}
+                />);
+
         }
         return(
             <div className='viewReviewBackgroundSection'>
@@ -106,17 +127,7 @@ class ViewReview extends Component {
                         </div>
                         <div className='viewReviewReviewSection'>
                             <div className='viewReviewReviewContainer'>
-                                <HomeReviewCard reviewerIcon={this.state.review.reviewerIcon}
-                                        reviewerName={this.state.review.reviewerName}
-                                        reviewText={this.state.review.reviewText}
-                                        reviewDate={this.state.review.reviewDate}
-                                        reviewRating={this.state.review.reviewRating}
-                                        bookName={this.state.book.bookName}
-                                        bookAuthor={this.state.book.bookAuthor}
-                                        bookThumbnail={this.state.book.bookThumbnail}
-                                        reviewComments={this.state.reviewCommentsDisplayed}
-                                        reviewCommentsNumber={this.state.reviewComments.length}
-                                        />
+                                {review}
                                 <button className='viewReviewShowCommentsButton' style={{ display: this.state.showMoreCommentsButtonVisible}} onClick={this.handleShowMoreComments}>
                                     {t('view_review.show_more')}
                                     <img src={ExpandIcon} className='viewReviewShowCommentsButtonIcon' alt='ShowCommentsIcon'/>
