@@ -8,6 +8,10 @@ import HomeIcon from "../../assets/icons/home.png";
 import EditProfileIcon from "../../assets/icons/edit_profile.png";
 import LanguageIcon from "../../assets/icons/language.png";
 import LogoutIcon from "../../assets/icons/logout.png";
+import SaudiFlag from "../../assets/icons/saudi_arabia_flag.png";
+import BritainFlag from "../../assets/icons/great_britain_flag.png";
+import GermanyFlag from "../../assets/icons/germany_flag.png";
+import TurkeyFlag from "../../assets/icons/turkey_flag.png";
 import {Link} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -102,6 +106,36 @@ const NavbarWithUser = (props) => {
                                 <img src={LanguageIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
                             {t('navbar.Change_Language')}
+                            <ul className='navbarSecondDropDownWrapper'>
+                                <li className='navbarDropDownItem'>
+                                    <div className='navbarDropDownItemLink'>
+                                        <img src={SaudiFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
+                                        العربية
+                                    </div>
+                                    <div className='navbarDropDownWrapper'></div>
+                                </li>
+                                <li className='navbarDropDownItem'>
+                                    <div className='navbarDropDownItemLink'>
+                                        <img src={GermanyFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
+                                        Deutsch
+                                    </div>
+                                    <div className='navbarDropDownWrapper'></div>
+                                </li>
+                                <li className='navbarDropDownItem'>
+                                    <div className='navbarDropDownItemLink'>
+                                        <img src={BritainFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
+                                        English
+                                    </div>
+                                    <div className='navbarDropDownWrapper'></div>
+                                </li>
+                                <li className='navbarDropDownItem'>
+                                    <div className='navbarDropDownItemLink'>
+                                        <img src={TurkeyFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
+                                        Türkçe
+                                    </div>
+                                    <div className='navbarDropDownWrapper'></div>
+                                </li>
+                            </ul>
                         </div>
                     </li>
                     <li className='navbarDropDownItem' onClick={() => {

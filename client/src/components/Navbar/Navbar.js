@@ -4,7 +4,8 @@ import MiniLogo from "../../assets/logos/minilogo.png";
 import TextLogo from "../../assets/logos/textlogo.png";
 import {Link as Scrolllink} from 'react-scroll';
 import {Link} from 'react-router-dom';
-import {userTranslation, useTranslation} from "react-i18next";
+import {useTranslation} from "react-i18next";
+
 const Navbar = () => {
     const {t} = useTranslation();
     return(

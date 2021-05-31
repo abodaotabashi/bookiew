@@ -151,6 +151,35 @@
     transition: all 500ms ease-in-out 500ms;
 }
 
+.navbarSecondDropDownWrapper {
+    position: absolute;
+    top: 50%;
+    right:  96%;
+    margin: 0;
+    padding: 0 0.2em 0.2em 0.2em;
+    width: 6rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border: 1px solid;
+    border-radius:20px;
+    background-color: #341f97;
+    border-color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 500ms ease-in-out 500ms;
+}
+
+.navbarDropDownItemLink:hover > .navbarSecondDropDownWrapper,
+.navbarDropDownItem:hover > .navbarSecondDropDownWrapper,
+.navbarSecondDropDownWrapper:hover > .navbarDropDownWrapper,
+.navbarSecondDropDownWrapper:hover {
+    transform: translate(0, 0);
+    transition-delay:0s;
+    opacity: 1;
+    pointer-events: auto;
+}
+
 .navbarDropDownItem {
     display: flex;
     padding: 0.3em 0.5em;

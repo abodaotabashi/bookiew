@@ -3,9 +3,10 @@ import './Navbar.css';
 import MiniLogo from "../../assets/logos/minilogo.png";
 import TextLogo from "../../assets/logos/textlogo.png";
 import {Link} from 'react-router-dom';
+import {useTranslation} from "react-i18next";
 
 const NavbarForAccessability = () => {
-
+    const {t} = useTranslation();
     return(
         <div className='navbar' id='nav'>
             <section className='navbarLeftSection'>
@@ -33,7 +34,7 @@ const NavbarForAccessability = () => {
                             smooth="true"
                             offset={-20}
                             duration={500}> 
-                            Login
+                            {t('login.login')}
                         </Link>
                     </button>
                     <button className='navbarRegisterButton'>
@@ -43,7 +44,7 @@ const NavbarForAccessability = () => {
                             smooth="true"
                             offset={-20}
                             duration={500}> 
-                            Register
+                            {t('register.register')}
                         </Link>
                     </button>
                 </div>
