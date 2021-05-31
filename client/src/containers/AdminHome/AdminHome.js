@@ -15,7 +15,9 @@ class Home extends Component {
     }
 
     handleSearchBook = () => {
-        //TODO
+        this.props.history.push({
+            pathname: '/adminpanel/searchResults',
+            state: { searchedBook: this.state.searchedBook }});
     };
 
     handleAddBook = () => {
