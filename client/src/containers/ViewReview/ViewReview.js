@@ -13,7 +13,8 @@ import {withTranslation} from "react-i18next";
 
 class ViewReview extends Component {
     state = {
-        book:null,
+        reviewID: this.props.reviewID,
+        book: null,
         review: null,
         reviewComments: null,
         numberOfCommentDisplayed: null,
@@ -21,10 +22,9 @@ class ViewReview extends Component {
         showMoreCommentsButtonVisible: 'flex'
     }
 
-    handleGetReview = async (props) => {
-        if (this.state.review == null) {
-            //const reviewID = props.location.state.reviewID;
-            const reviewID = 1 ;
+    handleGetReview = async () => {
+        if (this.state.review === null) {
+            const reviewID = this.state.reviewID ;
             const reviewResult = await axios.post("http://localhost:3000/getReview",{
                 reviewID:reviewID
             })
@@ -83,7 +83,6 @@ class ViewReview extends Component {
     render(){
         const {t} = this.props;
         this.handleGetReview();
-        let review = null;
         if (this.state.review !== null) {
             if(this.state.numberOfCommentDisplayed === null) {
                 let numberOfReviews = null;

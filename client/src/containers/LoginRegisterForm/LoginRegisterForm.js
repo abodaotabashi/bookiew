@@ -137,7 +137,7 @@ class LoginRegisterForm extends Component {
     }
 
     render(){
-        if(localStorage.getItem('isUserAuthenticated') === true){
+        if(localStorage.getItem('isUserAuthenticated') === 'true'){
             this.goToHome();
         }
 

@@ -1,9 +1,7 @@
 import React from 'react';
 import './BookCard.css';
-import {useTranslation} from "react-i18next";
 
 const BookCard = (props) => {
-    const {t} = useTranslation()
     return(
         <div className='bookCardContainer' onClick={props.click}>
             <div className='bookCardThumbnailWrapper'>
@@ -15,7 +13,6 @@ const BookCard = (props) => {
             <div className='bookCardAuthor'>
                 <p>{props.bookAuthor}</p>
             </div>
-            <div class="button"><a onClick={()=> console.log("to be reviewed!")}>{t('book_card.review')}</a></div>
         </div>
     );
 }

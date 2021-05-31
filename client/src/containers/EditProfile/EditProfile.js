@@ -302,4 +302,4 @@ class EditProfile extends Component {
     }
 }
 
-export default withTranslation()(EditProfile);
+export default withTranslation()(withRouter(EditProfile));

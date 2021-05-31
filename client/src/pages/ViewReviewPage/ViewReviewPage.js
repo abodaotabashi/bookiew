@@ -3,16 +3,15 @@ import NavbarWithUser from '../../components/NavbarWithUser/NavbarWithUser';
 import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import ViewReview from '../../containers/ViewReview/ViewReview';
 import PageContainer from '../../components/PageContainer/PageContainer';
-import { withRouter } from "react-router-dom";
 
 
-const ViewReviewPage = async (props) => {
-    //const reviewID = props.location.state.reviewID;
+const ViewReviewPage = (props) => {
+    const reviewID = props.location.state.reviewID;
     return(
         <div>
             <NavbarWithUser />
             <PageContainer>
-                <ViewReview />
+                <ViewReview reviewID={reviewID}/>
             </PageContainer>
             <MiniFooter />
         </div>
@@ -20,4 +19,4 @@ const ViewReviewPage = async (props) => {
 }
 
 
-export default withRouter(ViewReviewPage);
+export default ViewReviewPage;

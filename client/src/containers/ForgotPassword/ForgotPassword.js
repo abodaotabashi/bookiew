@@ -36,9 +36,14 @@ class ForgotPassword extends Component {
             }
         }
     }
+
+    goToHome = () => {
+        this.props.history.push({ pathname: '/home' });
+    }
+
     
     render(){
-        if(localStorage.getItem('isUserAuthenticated')){
+        if(localStorage.getItem('isUserAuthenticated') === 'true'){
             this.goToHome();
         }
         const {t} = this.props;

@@ -7,9 +7,8 @@ import { FaTimesCircle } from 'react-icons/fa';
 
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
-
-
 import {withTranslation} from "react-i18next";
+
 class SearchResults extends Component {
     constructor(props) {
         super(props);

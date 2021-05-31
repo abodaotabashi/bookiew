@@ -4,6 +4,7 @@ import "../../containers/LoginRegisterForm/LoginRegisterForm.css";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'
 import {useTranslation} from "react-i18next";
+
 const RegisterForm = (props) => {
     const {t} = useTranslation();
     const BirthdatePicker = (

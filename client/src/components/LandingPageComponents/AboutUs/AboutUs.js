@@ -2,6 +2,7 @@ import React from 'react';
 import './AboutUs.css';
 import AboutImage from "../../../assets/images/aboutTeam.png";
 import {useTranslation} from "react-i18next";
+
 const AboutUs = () => {
     const {t} = useTranslation();
     return(
@@ -17,8 +18,6 @@ const AboutUs = () => {
             </div>
         </div>
     )
-
-
 }
 
 export default AboutUs;

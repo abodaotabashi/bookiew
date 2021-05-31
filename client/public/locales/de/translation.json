@@ -111,12 +111,13 @@
         "comments": "Kommentare "
     },
     "landing" : {
-        "about_bookiew": "Bei der heutigen Fülle an Wissen über Bücher, sei es physikalisch oder elektrisch, wird es für uns immer schwieriger, mit diesem Inhalt Schritt zu halten. Bookiew ist eine Plattform, die versucht, dieses Problem auf die einfachste und zeitsparendste Weise zu lösen, damit Sie Rezensionen zu Büchern, die Sie angefordert haben, aus der ganzen Welt lesen, bewerten und sogar mit Kommentaren oder Schreiben beitragen können. In der heutigen Fülle an Wissen in Bezug auf Bücher, sei es physikalisch oder elektrisch, wird es für uns schwieriger, diese Inhalte einzuholen. Bookiew ist eine Plattform, die versucht, dieses Problem auf einfachste und zeitsparendste Weise zu lösen, sodass Sie Bewertungen aus aller Welt zu Büchern, die Sie angefordert haben, lesen, bewerten und sogar durch Kommentare oder Beiträge beitragen können.",
+        "about_bookiew": " Über Bookiew!",
+        "about_bookiew_text": "Bei der heutigen Fülle an Wissen über Bücher, sei es physikalisch oder elektrisch, wird es für uns immer schwieriger, mit diesem Inhalt Schritt zu halten. Bookiew ist eine Plattform, die versucht, dieses Problem auf die einfachste und zeitsparendste Weise zu lösen, damit Sie Rezensionen zu Büchern, die Sie angefordert haben, aus der ganzen Welt lesen, bewerten und sogar mit Kommentaren oder Schreiben beitragen können. In der heutigen Fülle an Wissen in Bezug auf Bücher, sei es physikalisch oder elektrisch, wird es für uns schwieriger, diese Inhalte einzuholen. Bookiew ist eine Plattform, die versucht, dieses Problem auf einfachste und zeitsparendste Weise zu lösen, sodass Sie Bewertungen aus aller Welt zu Büchern, die Sie angefordert haben, lesen, bewerten und sogar durch Kommentare oder Beiträge beitragen können.",
         "about_us": "Wir sind Informatik-Studenten, alle im Junior-Jahr an der Türkisch-Deutschen Universität, die diese Idee für unseren Software-Engineering-Studiengang hatten. Die Idee kam von der Betrachtung des Technologiezeitalters, in dem wir uns befinden, und einer der Haupteffekte davon: nicht in der Lage zu sein, viele Bücher wie erwartet zu lesen. Der Unterschied, den wir versuchen, besteht darin, den Rezensenten eine Beschränkung der Wörter zu geben und diese Rezensionen nach der von Ihnen vergebenen Punktzahl zu ordnen, damit die nächste Person, die das Buch liest, nicht viel Zeit damit verbringt, nach dem zu suchen, was sie sich gewünscht hat.",
         "what": "Was ist mit uns?",
         "contact": "Hier ist das Entwicklerteam hinter dieser Website. Sie können uns über diese E-Mails kontaktieren: ",
         "partners": " Partner ",
-        "welcome": " Herzlichen Willkommen zu Bookiew!",
+        "welcome": " Herzlich Willkommen zu Bookiew!",
         "welcome_text": "Befreien Sie sich von dem Stress, in dieser Zeit leben zu müssen, in der es viele Bücher gibt, aber selten erklärende Rezensionen dazu."
     },
     "login": {

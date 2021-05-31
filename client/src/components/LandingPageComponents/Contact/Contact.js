@@ -2,6 +2,7 @@ import React from 'react';
 import './Contact.css';
 import ContactImage from "../../../assets/images/contactCommunity.png";
 import {useTranslation} from "react-i18next";
+
 const Contact = () => {
     const {t} = useTranslation();
     return(
@@ -43,7 +44,6 @@ const Contact = () => {
                 </div>
                 <img src={ContactImage} className='landingContactLogo' alt='ContactLogo'/>
             </div>
-            
         </div>
     )
 }

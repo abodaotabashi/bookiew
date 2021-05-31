@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import "./BookRecommendation.css";
 
-import 'react-datepicker/dist/react-datepicker.css'
 import { withTranslation } from 'react-i18next';
-
 
 class BookRecommendation extends Component {
     state = {
@@ -75,6 +73,7 @@ class BookRecommendation extends Component {
                                         <td>
                                             <textarea   className='recommendationInputText' 
                                                         name="note"
+                                                        maxLength="200"
                                                         value={this.state.note} 
                                                         onChange={(event) => this.setState({note: event.target.value})} 
                                                         placeholder='Leave us a note :)' />

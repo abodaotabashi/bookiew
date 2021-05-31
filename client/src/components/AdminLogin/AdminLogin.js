@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 import "../../containers/LoginRegisterForm/LoginRegisterForm.css";
 import {useTranslation} from "react-i18next";
 const AdminLogin = (props) => {
