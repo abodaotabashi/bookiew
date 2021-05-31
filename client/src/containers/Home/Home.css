@@ -15,6 +15,13 @@
     background-color: rgba(35, 9, 36, 0.7);
 }
 
+.adminHomeBackgroundFilterSection {
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-color: rgba(68, 20, 5, 0.7);
+}
+
 .homeSectionsContainer {
     display: flex;
     align-items: center;
@@ -193,7 +200,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 30px;
-    background-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.7);
 }
 
 .homeRecommendationsSection {

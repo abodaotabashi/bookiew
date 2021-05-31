@@ -1,0 +1,184 @@
+.adminAddBookBackgroundSection {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-image: url('../../assets/images/backgrounds/background8.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.adminAddBookBackgroundFilterSection {
+    width: 100%;
+    height: 100%;
+    min-height: 810px;
+    background-color: rgba(68, 20, 5, 0.7);
+}
+
+.adminAddBookSectionsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    width: 60%;
+    margin: auto;
+}
+
+
+.adminAddBookSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0.5em 5em;
+    width: 100%;
+    background-color: rgba(35, 9, 36, 0.9);
+    border-radius: 30px;
+    margin: 3em 0;
+}
+
+.adminAddBookSectionHeader {
+    width: 100%;
+    color: white;
+    display: flex;
+    margin: 1em 0;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    font-family: 'Century Gothic';
+    line-height: 1;
+}
+
+.adminAddBookWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.adminAddBookCoverSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminAddBookCoverLabel {
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.adminAddBookThumbnailWrapper {
+    width: 224px;
+    object-fit: cover;
+    padding: 0.3em;
+    margin: 2em 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.adminAddBookThumbnail {
+    width: 212px;
+    margin: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.adminAddBookVerticalBreakline {
+    width: 0.2em;
+    height: 32em;
+    background-color: white;
+    border-radius: 50%;
+    margin: 0 2em;
+}
+
+.adminAddBookInputTable {
+    text-align: justify;
+    color: white;
+    border: 1px solid transparent;
+    width: fit-content;
+}
+
+.adminAddBookInputLabel {
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin-right: 3em;
+}
+
+.adminAddBookInputText {
+    min-width: 20em;
+    width: 20em;
+    max-width: 30em;
+    min-height: 1em;
+    border: none;
+    outline: none;
+    font-size: 19px;
+    font-family: 'Century Gothic';
+    padding: 10px 0px 10px 10px;
+    background: rgba(255, 255, 255, 0.3);
+    color: white;
+    letter-spacing: 1px;
+    border-radius: 30px;
+    margin-right: 1em;
+    border: 2px solid transparent;
+    transition: all 250ms ease-in-out; 
+}
+
+
+.adminAddBookInputText:hover {
+    border: 2px solid rgba(223, 88, 48);
+}
+
+.adminAddBookInputText::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.adminAddBookInputText::-ms-input-placeholder { /* Microsoft Edge */
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.adminAddBookErrorMessage {
+    margin-top: 1em;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    padding: 0.2em 1em;
+    color: rgb(230, 75, 75);
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    width: fit-content;
+    transition: all 250ms ease-in-out;
+}
+
+
+.adminAddBookSendButton {
+    border: 0;
+    outline: 0;
+    padding: 8px 1em;
+    margin: 2em 0;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    letter-spacing: 0.8px;
+    font-weight: bold;
+    color: white;
+    border: 2px solid rgba(223, 88, 48);
+    border-radius: 20px;
+    background-image: linear-gradient(to left, transparent 0%, rgba(223, 88, 48, 0.7) 50%);
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.adminAddBookSendButton:hover {
+    background-color: rgba(223, 88, 48, 0.6);
+}

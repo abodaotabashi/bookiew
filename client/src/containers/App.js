@@ -18,6 +18,8 @@ import SearchResultsPage from '../pages/SearchResultsPage/SearchResultsPage';
 import EditProfilePage from '../pages/EditProfilePage/EditProfilePage';
 import BookRecommendationPage from '../pages/BookRecommendationPage/BookRecommendationPage';
 import AdminLoginPage from '../pages/AdminLoginPage/AdminLoginPage';
+import AdminAddBookPage from '../pages/AdminAddBookPage/AdminAddBookPage';
+import AdminSearchResultsPage from '../pages/AdminSearchResultsPage/AdminSearchResultsPage';
 import AdminHomePage from '../pages/AdminHomePage/AdminHomePage';
 
 class App extends Component {
@@ -29,7 +31,7 @@ class App extends Component {
           <Switch>
             <Route path='/login' exact component = {LoginPage}/>
             <Route path='/register' exact component = {RegisterPage}/>
-            <Route path='/' exact component = {(localStorage.getItem('isUserAuthenticated') !== false) ? HomePage : LandingPage}/>
+            <Route path='/' exact component = {LandingPage}/>
             <Route path='/home' exact component = {HomePage}/>
             <Route path='/forgotPassword' exact component = {ForgotPasswordPage}/>
             <Route path='/resetPassword' exact component = {ResetPasswordPage}/>
@@ -43,6 +45,8 @@ class App extends Component {
             <Route path='/addReview' exact component = {AddReviewPage}/>
             <Route path='/viewReviewOfOther' exact component = {ViewOtherReviewPage}/>
             <Route path='/adminpanel/login' exact component = {AdminLoginPage}/>
+            <Route path='/adminpanel/addBook' exact component = {AdminAddBookPage}/>
+            <Route path='/adminpanel/searchResults' exact component = {AdminSearchResultsPage}/>
             <Route path='/adminpanel/' exact component = {AdminHomePage}/>
           </Switch>
         </Router>

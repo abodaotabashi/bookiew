@@ -6,7 +6,7 @@ import AdminPanelLogo from "../../assets/logos/adminpanellogo.png";
 import {Link} from 'react-router-dom';
 
 import { FaSignOutAlt } from 'react-icons/fa'
-import {userTranslation, useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 const AdminNavbarWithUser = () => {
     const {t} = useTranslation();
     return(
@@ -32,7 +32,7 @@ const AdminNavbarWithUser = () => {
                         <li className='navLinkItem'>
                             <Link 
                                 className='navLink'
-                                to="/adminpanel"
+                                to="/adminpanel/addBook"
                                 smooth="true"
                                 offset={-70}
                                 duration={500}> 

@@ -19,7 +19,7 @@ class Home extends Component {
     };
 
     handleAddBook = () => {
-        //TODO
+        this.props.history.push({ pathname: '/adminpanel/addBook' });
     };
 
     handleGoToRecommendations = () => {
