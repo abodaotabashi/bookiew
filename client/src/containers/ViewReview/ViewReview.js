@@ -84,7 +84,7 @@ class ViewReview extends Component {
     handleEditReview = () => {
         this.props.history.push({
             pathname: '/editReview',
-            state: { review: this.props.review, book: this.state.book }});
+            state: { review: this.state.review, book: this.state.book, reviewText: this.state.review.reviewText }});
     }
 
     render(){

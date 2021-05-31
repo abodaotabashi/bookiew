@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./EditReview.css";
 
+import UserIcon from "../../assets/icons/user.png";
 import { FaCheck } from 'react-icons/fa'
 import { FaWindowClose } from 'react-icons/fa'
 
@@ -11,7 +12,7 @@ class EditReview extends Component {
     state = {
         book: this.props.book,
         review: this.props.review,
-        reviewText: this.props.review.reviewText
+        reviewText: this.props.reviewText
     }
 
     handleCancelEditing = () => {
@@ -51,7 +52,7 @@ class EditReview extends Component {
                                         <div className='reviewCardReviewerContainer'>
                                             <div className='reviewCardReviewerWrapper'>
                                                 <div className='reviewCardReviewerIconWrapper'>
-                                                    <img src={this.state.review.reviewerIcon} className='reviewCardReviewerIcon' alt='reviewer'/>
+                                                    <img src={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon} className='reviewCardReviewerIcon' alt='reviewer'/>
                                                 </div>
                                                 <div className='reviewCardReviewerName'>{this.state.review.reviewerName}</div>
                                             </div>

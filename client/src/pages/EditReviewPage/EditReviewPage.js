@@ -10,7 +10,7 @@ const EditReviewPage = (props) => {
         <div>
             <NavbarWithUser />
             <PageContainer>
-                <EditReview review={props.location.state.review} book={props.location.state.book} />
+                <EditReview review={props.location.state.review} book={props.location.state.book} reviewText={props.location.state.reviewText} />
             </PageContainer>
             <MiniFooter />
         </div>
