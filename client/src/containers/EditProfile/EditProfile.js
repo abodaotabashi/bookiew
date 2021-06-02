@@ -165,7 +165,15 @@ class EditProfile extends Component {
         });
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+
         let image = null;
         if(this.state.profilePhotoURL){
             image = <img src={this.state.profilePhotoURL} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>

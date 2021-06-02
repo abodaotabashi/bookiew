@@ -55,7 +55,15 @@ class SearchResults extends Component {
         this.setState({loading:false});
     }
 
+    
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
         const {t} = this.props;
         let books = null;
         

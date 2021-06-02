@@ -47,7 +47,15 @@ class ViewOtherReview extends Component {
         //TODO
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+
         if(this.state.numberOfCommentDisplayed === null) {
             let numberOfReviews = null;
             if(this.props.review.reviewComments.length > 1) {

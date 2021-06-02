@@ -220,13 +220,14 @@ router.post('/getReview', async function(req, res, next) {
   }
 })
 
-router.post('/lastReview', async function(req, res, next) {
-  const reviewID = req.body.reviewID;
-  const review = await knex('reviews').select('*').where({"reviewID": reviewID});
-  if (review) {
-    return res.send({response:true, review: review});
+router.post('/getlastReview', async function(req, res, next) {
+  const userID = req.body.userID;
+  const lastReview = await knex('reviews').select('*').where({"reviewUserID": userID}).orderBy('reviewID', 'desc');
+  if (lastReview[0] != null) {
+    const lastReviewItem = {'reviewID':lastReview[0].reviewID, 'reviewUserID':lastReview[0].reviewUserID, 'reviewBookID':lastReview[0].reviewBookID, 'reviewText':lastReview[0].reviewText, 'reviewDate':lastReview[0].reviewDate, 'reviewRating':lastReview[0].reviewRating};
+    return res.send({response:true, lastReview: lastReviewItem});
   }else{
-    return res.send({response:false, review: null});
+    return res.send({response:false, message:"No Reviews!"});
   }
 })
 
@@ -258,7 +259,7 @@ router.post('/getComments', async function (req, res, next) {
         'commenterIcon':user[0].profilePhotoURL
       })
     }
-    return res.send({response:true, comments});
+    return res.send({response:true, comments: comments});
   }
 })
 

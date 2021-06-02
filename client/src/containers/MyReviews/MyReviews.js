@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./MyReviews.css";
 
+import { FaTimesCircle } from 'react-icons/fa';
 import axios from 'axios';
 import BookCard from '../../components/BookCard/BookCard';
 import { withRouter } from "react-router-dom";
@@ -35,7 +36,15 @@ class MyReviews extends Component {
         return;
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+        
         const {t} = this.props;
         this.handleGetReviews();
         let books = null;
@@ -54,6 +63,15 @@ class MyReviews extends Component {
                                         />
                         );
                     })}
+                </div>
+            );
+        } else {
+            books = (
+                <div className='searchResultsBookCardsContainer'>
+                    <div className='searchResultsNoResultsSection'>
+                        <FaTimesCircle size={148} color='#341f97'/>
+                        You don't have any review!😭
+                    </div>
                 </div>
             );
         }

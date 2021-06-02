@@ -9,7 +9,7 @@ import {useTranslation} from "react-i18next";
 const HomeReviewCard = (props) => {
     const {t} = useTranslation();
     return(
-        <div className='reviewCardContainer'>
+        <div className='reviewCardContainer' onClick={props.click}>
             <div className='reviewCardBookThumbnailWrapper'>
                 <img src={props.bookThumbnail} className='reviewCardBookThumbnail' alt='bookThumbnail'/>
             </div>
@@ -26,7 +26,7 @@ const HomeReviewCard = (props) => {
                 <div className='reviewCardReviewerContainer'>
                     <div className='reviewCardReviewerWrapper'>
                         <div className='reviewCardReviewerIconWrapper'>
-                            <img src={props.reviewerIcon} className='reviewCardReviewerIcon' alt='reviewer'/>
+                            <img src={(props.reviewerIcon === '' || typeof(props.reviewerIcon) === 'undefined') ? UserIcon : props.reviewerIcon} className='reviewCardReviewerIcon' alt='reviewer'/>
                         </div>
                         <div className='reviewCardReviewerName'>{props.reviewerName}</div>
                     </div>
@@ -38,12 +38,9 @@ const HomeReviewCard = (props) => {
                     <p>{props.reviewText}</p>
                 </div>
                 <div className='reviewCardRatingCommentSection'>
-                    {props.reviewComments !== null ?
-                        <div className='reviewCardShowCommentsWrapper'>
-                            <p className='reviewCardLabel'>{t('home_review_card.comments')}&nbsp; {props.reviewCommentsNumber}</p>
-                        </div>
-                        : null
-                    }
+                    <div className='reviewCardShowCommentsWrapper'>
+                        <p className='reviewCardLabel'>{t('home_review_card.comments')}&nbsp; {props.reviewCommentsNumber}</p>
+                    </div>
                     <div className='reviewCardRatingWrapper'>
                         <p className='reviewCardLabel'>{props.reviewRating}</p>
                         <FaStar className="reviewCardStar"
@@ -53,9 +50,9 @@ const HomeReviewCard = (props) => {
                 </div>
                 {props.reviewComments !== null ? 
                     <div className='reviewCardCommentsContainer'>
-                        {props.reviewComments.map((comment, index) => {
+                        {props.reviewComments.map((comment) => {
                             return (
-                                <Comment    key={comment.index}
+                                <Comment    key={comment.commentID}
                                             commenterIcon={(comment.commenterIcon === '' || typeof(comment.commenterIcon) === 'undefined') ? UserIcon : comment.commenterIcon}
                                             commenterName={comment.commenterName}
                                             commentDate={comment.commentDate}

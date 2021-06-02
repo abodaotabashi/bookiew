@@ -23,7 +23,15 @@ class EditReview extends Component {
         //TODO
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+
         const {t} = this.props;
         return(
             <div className='editReviewBackgroundSection'>

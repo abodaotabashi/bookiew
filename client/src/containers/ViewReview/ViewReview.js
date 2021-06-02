@@ -20,7 +20,7 @@ class ViewReview extends Component {
         reviewComments: null,
         numberOfCommentDisplayed: null,
         reviewCommentsDisplayed: null,
-        showMoreCommentsButtonVisible: 'flex'
+        showMoreCommentsButtonVisible: 'none'
     }
 
     handleGetReview = async () => {
@@ -57,14 +57,30 @@ class ViewReview extends Component {
                             reviewerName: reviewer.name,
                             reviewDate:displayedReview.date,
                             reviewRating: displayedReview.rating,
-                            reviewComments:commentsResult.data.comments              
+                            reviewComments:comments            
                         } 
             });
+            if(typeof(comments) === 'undefined') {
+                this.setState({reviewComments: null});
+            } else {
+                if(this.state.numberOfCommentDisplayed === null) {
+                    let numberOfComments = null;
+                    if(comments.length > 1) {
+                        numberOfComments = 1;
+                        this.setState({ numberOfCommentDisplayed: 1,
+                            showMoreCommentsButtonVisible: 'flex' });
+                    } else {
+                        numberOfComments = comments.length;
+                        this.setState({ numberOfCommentDisplayed: comments.length, showMoreCommentsButtonVisible: 'none'});
+                    }
+                    this.setState({ reviewCommentsDisplayed: comments.slice(0, numberOfComments)});
+                }
+            }
         }
     }
 
     handleShowMoreComments = () => {
-        if(this.state.reviewComments.length < this.state.numberOfCommentDisplayed + 3) {
+        if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
             this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
                             reviewCommentsDisplayed: this.state.reviewComments,
                             showMoreCommentsButtonVisible: 'none'
@@ -91,19 +107,7 @@ class ViewReview extends Component {
         let review = null;
         const {t} = this.props;
         this.handleGetReview();
-        if (this.state.review !== null && this.state.review.reviewComments !== null) {
-            if(this.state.numberOfCommentDisplayed === null) {
-                let numberOfReviews = null;
-                if(this.state.review.reviewComments.length > 1) {
-                    numberOfReviews = 1;
-                    this.setState({ numberOfCommentDisplayed: 1 });
-                } else {
-                    numberOfReviews = this.state.review.reviewComments.length;
-                    this.setState({ numberOfCommentDisplayed: this.state.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
-                }
-                this.setState({ reviewCommentsDisplayed: this.state.review.reviewComments.slice(0, numberOfReviews)});
-            }
-
+        if (this.state.review !== null && (this.state.review.reviewComments !== null || typeof(this.state.review.reviewComments) !== 'undefined')) {
             review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
                 reviewerName={this.state.review.reviewerName}
                 reviewText={this.state.review.reviewText}
@@ -113,9 +117,8 @@ class ViewReview extends Component {
                 bookAuthor={this.state.book.bookAuthor}
                 bookThumbnail={this.state.book.bookThumbnail}
                 reviewComments={this.state.reviewCommentsDisplayed}
-                reviewCommentsNumber={this.state.reviewComments.length}
+                reviewCommentsNumber={(typeof(this.state.reviewComments) === 'undefined' || this.state.reviewComments === null) ? 0 : this.state.reviewComments.length}
                 />);
-
         }
         return(
             <div className='viewReviewBackgroundSection'>

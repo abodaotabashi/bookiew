@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import "./BookRecommendation.css";
 import { withTranslation } from 'react-i18next';
+import { withRouter } from 'react-router-dom';
 import axios from 'axios';
 
 class BookRecommendation extends Component {
@@ -35,7 +36,6 @@ class BookRecommendation extends Component {
     handleSendRecommendation = async() => {
         this.clearInputs();
         if(this.validate()){
-
             const result = await axios.post("http://localhost:3000/recommend", {
                 suggestionUserID: this.state.userID,
                 suggestionBook: this.state.bookname,
@@ -46,14 +46,16 @@ class BookRecommendation extends Component {
             if(result.response){
                 console.log(result);
             }
-        }
-
-    
-        
-        
+        }  
+    }
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
     }
 
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
         const { t } = this.props;
         return(
             <div className='recommendationBackgroundSection'>
@@ -132,4 +134,4 @@ class BookRecommendation extends Component {
     }
 }
 
-export default withTranslation()(BookRecommendation);
+export default withTranslation()(withRouter(BookRecommendation));
