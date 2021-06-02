@@ -6,6 +6,7 @@ import BookCard from '../../components/BookCard/BookCard';
 import { FaTimesCircle } from 'react-icons/fa';
 
 import { withRouter } from 'react-router-dom';
+import axios from 'axios';
 
 
 class AdminSearchResults extends Component {
@@ -31,12 +32,32 @@ class AdminSearchResults extends Component {
     }
 
     handleSearchBook = async () => {
-        //TODO
+        this.setState({books: []})
+        console.log("searched book: " + this.state.toSearchBook)
+        const result = await axios.post("http://localhost:3000/search",{
+            searchedBook: this.state.toSearchBook
+        })
+        if(result.data.response){
+            if(result.data.message.length === 0){ 
+                console.log("loading will be false")
+            }else{
+                console.log("the message of searched book below: ")
+                console.log(result.data.message)
+                let i =0;
+                for(i=result.data.message.length;i>0;i--){
+                    this.setState({books: this.state.books.concat(result.data.message[i-1])})
+                }
+            }
+        }else{
+            console.log("response: " + result.data.response)
+            console.log("the message: " + result.data.message);
+        }
+        this.setState({loading:false});
     }
 
     render(){
         let books = null;
-        
+      
         if(!this.state.loading) {
             if(this.state.books.length !== 0){
                 books = (<div className='searchResultsBookCardsContainer'>

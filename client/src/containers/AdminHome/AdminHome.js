@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import "../Home/Home.css";
-
 import AnimatedNumber from 'react-animated-number';
-
 import { FaPlusCircle } from 'react-icons/fa';
 import SearchIcon from "../../assets/icons/search_30px.png";
 import { withTranslation } from 'react-i18next';
-
+import { withRouter } from "react-router-dom";
 
 class Home extends Component {
     state ={
@@ -100,4 +98,4 @@ class Home extends Component {
     }
 }
 
-export default withTranslation()(Home);
+export default withTranslation()(withRouter(Home));
