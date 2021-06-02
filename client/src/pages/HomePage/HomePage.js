@@ -8,7 +8,7 @@ import UserIcon from "../../assets/icons/user.png";
 
 const HomePage = (props) => {
     
-    let comments=[
+    let comments= [
         { commenterIcon: UserIcon, commenterName: 'Batoul', commentText: 'That is amazing!', commentDate: '20.04.2021'},
         { commenterIcon: UserIcon, commenterName: 'Mahasin', commentText: 'Good Job', commentDate: '21.04.2021'},
         { commenterIcon: UserIcon, commenterName: 'Sena', commentText: 'Wow', commentDate: '22.04.2021'},
@@ -20,7 +20,7 @@ const HomePage = (props) => {
         <div>
             <NavbarWithUser/>
             <PageContainer>
-                <Home reviewComments={comments}/>
+                <Home />
             </PageContainer>
             <MiniFooter />
         </div>

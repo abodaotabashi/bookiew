@@ -181,6 +181,7 @@ router.post('/myReviews', async function(req, res, next) {
   const userID = req.body.userID;
   console.log(userID);
   const reviews = await knex('reviews').select('*').where({"reviewUserID":userID});
+  
   console.log(reviews);
   if (reviews[0]!=null) {
     console.log(reviews+" "+userID);
@@ -216,6 +217,16 @@ router.post('/getReview', async function(req, res, next) {
     const review = {'text':reviewA[0].reviewText, 'date':reviewA[0].reviewDate, 'rating':reviewA[0].reviewRating, 'reviewerID':reviewA[0].reviewUserID, 'reviewBookID':reviewA[0].reviewBookID};
     reviews.push(review);
     return res.send({response:true, review})
+  }
+})
+
+router.post('/lastReview', async function(req, res, next) {
+  const reviewID = req.body.reviewID;
+  const review = await knex('reviews').select('*').where({"reviewID": reviewID});
+  if (review) {
+    return res.send({response:true, review: review});
+  }else{
+    return res.send({response:false, review: null});
   }
 })
 
