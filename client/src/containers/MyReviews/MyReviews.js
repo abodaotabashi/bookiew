@@ -28,12 +28,10 @@ class MyReviews extends Component {
         }   
     }
     
-    handleReviewClicked = async (reviewID) => {
-        //TODO
+    handleReviewClicked = (reviewID) => {
         this.props.history.push({
             pathname: '/viewReview',
             state: { reviewID: reviewID}});
-        return;
     }
 
     goToLogin = () => {
@@ -52,7 +50,6 @@ class MyReviews extends Component {
             books = (
                 <div className='myReviewsBookCardsContainer'>
                     {this.state.reviews.map((review, index) => {
-                        console.log(review.bookThumbnail)
                         return (
                             <BookCard   key={review.reviewID}
                                         className='myReviewsBookCard'

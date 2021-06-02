@@ -34,18 +34,14 @@ class ViewReview extends Component {
                 userID:displayedReview.reviewerID
             })
             const reviewer = userResult.data.user;
-            console.log("FRONT review", displayedReview);
-            console.log("FRONT user", reviewer);
             const bookResult = await axios.post("http://localhost:3000/getBook", {
                 bookID: displayedReview.reviewBookID
             })
             const book = bookResult.data.book;
-            console.log("FRONT book", book);
             const commentsResult = await axios.post("http://localhost:3000/getComments", {
                 reviewID:reviewID
             })
             const comments = commentsResult.data.comments;
-            console.log("FRONT comm", comments);
             this.setState({
                 book : book,
                 reviewComments : comments,

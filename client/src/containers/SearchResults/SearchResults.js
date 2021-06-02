@@ -33,16 +33,13 @@ class SearchResults extends Component {
 
     handleSearchBook = async () => {
         this.setState({books: []})
-        console.log("searched book: " + this.state.toSearchBook)
         const result = await axios.post("http://localhost:3000/search",{
             searchedBook: this.state.toSearchBook
         })
         if(result.data.response){
             if(result.data.message.length === 0){ 
-                console.log("loading will be false")
+                console.log("No results!");
             }else{
-                console.log("the message of searched book below: ")
-                console.log(result.data.message)
                 let i =0;
                 for(i=result.data.message.length;i>0;i--){
                     this.setState({books: this.state.books.concat(result.data.message[i-1])})

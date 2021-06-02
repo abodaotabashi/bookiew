@@ -100,35 +100,35 @@ const NavbarWithUser = (props) => {
                             {t('navbar.Edit_Profile')}
                         </Link>
                     </li>
-                    <li className='navbarDropDownItem' onClick={()=>changeLanguage('tr')}>
+                    <li className='navbarDropDownItem'>
                         <div className='navbarDropDownItemLink'>
                             <div className='navbarDropDownItemIconWrapper'>
                                 <img src={LanguageIcon} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                             </div>
                             {t('navbar.Change_Language')}
                             <ul className='navbarSecondDropDownWrapper'>
-                                <li className='navbarDropDownItem'>
+                                <li className='navbarDropDownItem' onClick={()=>changeLanguage('ar')}>
                                     <div className='navbarDropDownItemLink'>
                                         <img src={SaudiFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                                         العربية
                                     </div>
                                     <div className='navbarDropDownWrapper'></div>
                                 </li>
-                                <li className='navbarDropDownItem'>
+                                <li className='navbarDropDownItem' onClick={()=>changeLanguage('de')}>
                                     <div className='navbarDropDownItemLink'>
                                         <img src={GermanyFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                                         Deutsch
                                     </div>
                                     <div className='navbarDropDownWrapper'></div>
                                 </li>
-                                <li className='navbarDropDownItem'>
+                                <li className='navbarDropDownItem' onClick={()=>changeLanguage('en')}>
                                     <div className='navbarDropDownItemLink'>
                                         <img src={BritainFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                                         English
                                     </div>
                                     <div className='navbarDropDownWrapper'></div>
                                 </li>
-                                <li className='navbarDropDownItem'>
+                                <li className='navbarDropDownItem' onClick={()=>changeLanguage('tr')}>
                                     <div className='navbarDropDownItemLink'>
                                         <img src={TurkeyFlag} className='navbarDropDownItemIcon' alt='navbarDropDownItemIcon'/>
                                         Türkçe
