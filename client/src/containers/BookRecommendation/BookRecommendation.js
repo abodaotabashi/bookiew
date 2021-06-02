@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import "./BookRecommendation.css";
-
 import { withTranslation } from 'react-i18next';
+import axios from 'axios';
 
 class BookRecommendation extends Component {
     state = {
+        userID: localStorage.getItem("userID"),
         bookname: '',
         author: '',
         publishingyear: '',
@@ -13,8 +14,43 @@ class BookRecommendation extends Component {
         errorVisible: 'none'
     }
 
-    handleSendRecommendation = () => {
-        //TODO
+    validate = () => {
+        if(this.state.bookname==="" || this.state.author==="" || this.state.publishingyear===""){
+            this.setState({ 
+                errorMessage: 'Please give book name, author and publishing year altogether',
+                errorVisible: 'flex'   
+            });
+            return false;
+        }
+        return true;
+    }
+    clearInputs = () => {
+        this.setState({
+            errorMessage: '',
+            errorVisible: 'none'
+        });
+    }
+
+
+    handleSendRecommendation = async() => {
+        this.clearInputs();
+        if(this.validate()){
+
+            const result = await axios.post("http://localhost:3000/recommend", {
+                suggestionUserID: this.state.userID,
+                suggestionBook: this.state.bookname,
+                suggestionAuthor: this.state.author,
+                suggestionPublishingYear: this.state.publishingyear,
+                suggestionNote: this.state.note
+            })
+            if(result.response){
+                console.log(result);
+            }
+        }
+
+    
+        
+        
     }
 
     render(){

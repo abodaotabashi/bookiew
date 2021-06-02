@@ -281,4 +281,36 @@ function sendEmail(message) {
     })
   })
 }
+
+
+router.post('/recommend', async function(req, res, next) {
+  console.log(req.body);
+  const suggestionUserID = req.body.suggestionUserID;
+  const suggestionBook = req.body.suggestionBook;
+  const suggestionAuthor = req.body.suggestionAuthor;
+  const suggestionPublishingYear = req.body.suggestionPublishingYear;
+  const suggestionNote = req.body.suggestionNote;
+
+  if (!suggestionUserID || !suggestionBook || !suggestionAuthor || !suggestionPublishingYear) {return res.send({response:false, message:"expect at least book name, author and publishing year!"})};
+  const suggestedBook = await knex('suggestions').select('*').where({"suggestionBook":suggestionBook, "suggestionAuthor": suggestionAuthor, "suggestionPublishingYear": suggestionPublishingYear}).first()
+  if(suggestedBook){
+    console.log(suggestedBook);
+    return res.send({response: false, message:"this book exists already!"})
+  }
+  const result =await knex('suggestions').insert({
+    suggestionUserID: suggestionUserID,
+    suggestionBook: suggestionBook,
+    suggestionAuthor: suggestionAuthor,
+    suggestionPublishingYear: suggestionPublishingYear,
+    suggestionNote: suggestionNote
+  });
+  if (result) {
+    return res.send({response:true, message:"successfully recommended"+result})
+  }
+  return res.send({response:false, message:"something went wrong in recommendation!"})
+});
+
+
+
+
 module.exports = router;

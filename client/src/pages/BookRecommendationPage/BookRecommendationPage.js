@@ -12,7 +12,7 @@ const BookRecommendationPage = (props) => {
         <div>
             <NavbarWithUser />
             <PageContainer>
-                <BookRecommendation />
+                <BookRecommendation/>
             </PageContainer>
             <MiniFooter />
         </div>
