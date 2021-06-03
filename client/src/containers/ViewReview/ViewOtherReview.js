@@ -8,6 +8,7 @@ import { FaComment } from 'react-icons/fa';
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
 
 import { withRouter } from "react-router-dom";
+import axios from 'axios';
 
 class ViewOtherReview extends Component {
     state = {
@@ -43,8 +44,26 @@ class ViewOtherReview extends Component {
         }
     }
 
-    handleNewComment = () => {
+    handleNewComment = async () => {
         //TODO
+        const userID = localStorage.getItem('userID');
+        const commentText = this.state.newComment;
+        const commentDate = '2020-03-04';
+        const newRating = this.state.newRating;
+        const reviewID = this.state.review.reviewID;
+        const result = await axios.post("http://localhost:3000/addComment", {
+            userID:userID,
+            commentText: commentText,
+            commentDate: commentDate,
+            reviewID:reviewID,
+            newRating:newRating
+        });
+        if (result.data.response) {
+            console.log('success');
+            this.props.history.push({
+                pathname:'/home'
+            })
+        }
     }
 
     goToLogin = () => {

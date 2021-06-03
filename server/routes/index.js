@@ -249,6 +249,7 @@ router.post('/getReviews', async function(req, res, next) {
       const comments = await knex('comments').select('*').where({"commentReviewID": reviewA[i].reviewID})
       //console.log(comments);
       const review = {
+        'reviewID':reviewA[i].reviewID,
         'reviewText':reviewA[i].reviewText, 
         'reviewDate':reviewA[i].reviewDate, 
         'reviewRating':reviewA[i].reviewRating, 
@@ -437,6 +438,41 @@ router.post('/addReview', async function(req, res, next) {
     reviewUserID: userID,
     reviewDate: reviewDate
   });
+  if (result) {
+    return res.send({response:true, message:"successfully added "})
+  }
+  return res.send({response:false, message:"something went wrong "})
+})
+
+router.post('/addComment', async function(req, res, next) {
+  const commentText = req.body.commentText;
+  const reviewID = req.body.reviewID;
+  const userID = req.body.userID;
+  const commentDate = req.body.commentDate;
+  const newRating = req.body.newRating;
+  const result =await knex('comments').insert({
+    commentText: commentText,
+    commentReviewID: reviewID,
+    commentUserID: userID,
+    commentDate: commentDate
+  });
+  const result2 = await knex('ratings').insert({
+    ratingUserID: userID,
+    ratingReviewID: reviewID,
+    score: newRating
+  })
+  const ratings = await knex('ratings').select('*').where({'ratingReviewID':reviewID})
+  let toplam = 0;
+  let newScore = newRating;
+  if (ratings[1] !== null){
+    for (var i=0;i<ratings.length;i++) {
+      toplam = toplam + ratings[i].score;
+    }
+    newScore = toplam/ratings.length;
+  }
+  const result3 = await knex('reviews').where({'reviewID': reviewID}).update(({
+    'reviewRating': newScore
+  }))
   if (result) {
     return res.send({response:true, message:"successfully added "})
   }
