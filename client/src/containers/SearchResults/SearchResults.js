@@ -22,8 +22,34 @@ class SearchResults extends Component {
     }
     
 
-    handleBookClicked = (bookID) => {
+    handleBookClicked = async (bookID) => {
         //TODO
+        let user = {
+            'userID': localStorage.getItem('userID'),
+            'userName': localStorage.getItem('userFirstname') + " " + localStorage.getItem('userSurname'),
+            'userIcon': localStorage.getItem('userProfilePhotoURL')
+        }
+        let book = null;
+        let review = null;
+        const result = await axios.post("http://localhost:3000/getBook", {
+            bookID:bookID
+        });
+        if (result.data.response) {
+            book = result.data.book;
+            console.log(book);
+        }
+        const result1 = await axios.post("http://localhost:3000/getReviews", {
+            bookID:bookID
+        });
+        if (result1.data.response) {
+            review = result1.data.reviews;
+            console.log(review);
+        }
+        //localStorage.setItem('bookID',bookID);
+        this.props.history.push({
+            pathname: '/viewBook',
+            state: { bookID: bookID, book:book, reviews:review, user:user}});
+        return;
     }
 
     handleSearchClicked = () => {

@@ -8,29 +8,48 @@ import ViewBookUserReviewCard from '../../components/ViewBookReviewCard/ViewBook
 import ViewBookOtherReviewCard from '../../components/ViewBookReviewCard/ViewBookOtherReviewCard';
 import { withRouter } from "react-router-dom";
 import {withTranslation} from "react-i18next";
+import axios from 'axios';
 
 class ViewBook extends Component {
-    state = {
-        book: this.props.book,
-        user: this.props.user,
-        reviews: this.props.book.reviews,
-        reviewOfUser: null,
-        numberOfReviewsDisplayed: null,
-        reviewsDisplayed: null,
-        showMoreReviewsButtonVisible: 'flex'
+    constructor(props) {
+        super(props);
+        this.state = {
+            book: this.props.book,
+            bookID: this.props.bookID,
+            user: this.props.user,
+            userID: localStorage.getItem('userID'),
+            reviews:this.props.reviews,
+            reviewOfUser: null,
+            numberOfReviewsDisplayed: null,
+            reviewsDisplayed: null,
+            showMoreReviewsButtonVisible: 'flex'
+        }
+        this.handleGetBook();
+    }
+
+    handleGetBook = async () => {
+        const bookID = this.state.bookID;
+        const reviewsResult = await axios.post("http://localhost:3000/getReviews", {
+            bookID : bookID
+        });
+        if (reviewsResult.data.response) {
+            this.state.reviews = reviewsResult.data.reviews;
+        }
     }
 
     handleShowMoreReviews = () => {
-        if(this.state.reviews.length <= this.state.numberOfReviewsDisplayed + 3) {
-            this.setState({ numberOfReviewsDisplayed: this.state.reviews.length,
-                            reviewsDisplayed: this.state.reviews,
-                            showMoreReviewsButtonVisible: 'none'
-                        });
-        } else {
-            let numberOfReviews = this.state.numberOfReviewsDisplayed + 3;
-            this.setState({ numberOfReviewsDisplayed: numberOfReviews,
-                reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)
-                });
+        if (this.state.reviews !== null) {
+            if(this.state.reviews.length <= this.state.numberOfReviewsDisplayed + 3) {
+                this.setState({ numberOfReviewsDisplayed: this.state.reviews.length,
+                                reviewsDisplayed: this.state.reviews,
+                                showMoreReviewsButtonVisible: 'none'
+                            });
+            } else {
+                let numberOfReviews = this.state.numberOfReviewsDisplayed + 3;
+                this.setState({ numberOfReviewsDisplayed: numberOfReviews,
+                    reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)
+                    });
+            }
         }
     }
 
@@ -51,15 +70,17 @@ class ViewBook extends Component {
     }
 
     checkReviewOfUser = () => {
-        let userID = this.state.user.userID;
-        this.state.book.reviews.forEach((review, index) => {
-            if (review['reviewerID'] === userID && this.state.reviewOfUser === null){
-                this.setState({reviewOfUser: review});
-                let newReviews = this.state.book.reviews
-                newReviews.splice(index, 1);
-                this.setState({reviews: newReviews});
-            }
-        });
+        let userID = this.state.userID;
+        if (this.state.reviews !== null) {
+            this.state.reviews.forEach((review, index) => {
+                if (review['reviewerID'] === userID && this.state.reviewOfUser === null){
+                    this.setState({reviewOfUser: review});
+                    let newReviews = this.state.book.reviews
+                    newReviews.splice(index, 1);
+                    this.setState({reviews: newReviews});
+                }
+            });
+        }
     }
 
     goToLogin = () => {
@@ -72,8 +93,9 @@ class ViewBook extends Component {
         }
 
         const {t} = this.props;
+        //this.handleGetBook();
         this.checkReviewOfUser();
-
+        
         let reviewOfUser = null;
         let horizontalBreakline = null;
         if(this.state.reviewOfUser !== null) {
@@ -106,6 +128,7 @@ class ViewBook extends Component {
 
         if(this.state.numberOfReviewsDisplayed === null) {
             let numberOfReviews = null;
+            if (this.state.reviews!== null) {
             if(this.state.reviews.length > 1) {
                 numberOfReviews = 1;
                 this.setState({ numberOfReviewsDisplayed: 1 });
@@ -113,7 +136,8 @@ class ViewBook extends Component {
                 numberOfReviews = this.state.reviews.length;
                 this.setState({ numberOfReviewsDisplayed: this.state.reviews.length, showMoreReviewsButtonVisible: 'none'});
             }
-            this.setState({ reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)});
+                this.setState({ reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)});
+            }
         }
 
 
