@@ -396,9 +396,10 @@ router.post('/deleteReview', async function(req, res, next) {
   if (req.body.hasComments) {
     const deleteB = await knex('comments').where('commentReviewID', reviewID).del();
     if (!deleteB) {return res.send({response:false, message:'cannot delete comments'})}
+  } else {
+    console.log('Successfully deleted');
+    return res.send({response:true});
   }
-  console.log('seccessfully deleted');
-  return res.send({response:true});
 });
 
 router.post('/editReview', async function(req, res, next) {
@@ -407,9 +408,12 @@ router.post('/editReview', async function(req, res, next) {
   const reviewText = req.body.reviewText;
   const result = await knex('reviews').where({'reviewID': reviewID}).update(({
     'reviewText': reviewText
-  }))
-  if (!result) {return res.send({response:false, message:'error by updating the review'})}
-  return res.send({response:true, message:'updated seccessfully'});
-})
+  }));
+  if (!result) {
+    return res.send({response:false, message:'error by updating the review'});
+  } else {
+    return res.send({response:true, message:'Successfully updated'});
+  }
+});
 
 module.exports = router;

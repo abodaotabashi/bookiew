@@ -23,7 +23,7 @@ class Home extends Component {
     };
 
     handleGoToRecommendations = () => {
-        //TODO
+        this.props.history.push({pathname: '/adminpanel/recommendations'});
     };
 
     getNumberOfRecommendations = () => {

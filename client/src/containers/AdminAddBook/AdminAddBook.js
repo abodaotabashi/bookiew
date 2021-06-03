@@ -3,9 +3,9 @@ import "./AdminAddBook.css";
 
 class AdminAddBook extends Component {
     state = {
-        bookname: '',
-        author: '',
-        publishingyear: '',
+        bookname: (this.props.recommendedBook !== null ) ? this.props.recommendedBook.bookname : '',
+        author: (this.props.recommendedBook !== null ) ? this.props.recommendedBook.author : '',
+        publishingyear: (this.props.recommendedBook !== null ) ? this.props.recommendedBook.publishingyear : '',
         publisher: '',
         subject: '',
         category: '',

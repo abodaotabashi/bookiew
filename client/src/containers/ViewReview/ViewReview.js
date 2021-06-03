@@ -76,24 +76,21 @@ class ViewReview extends Component {
     }
 
     handleShowMoreComments = () => {
-        if (this.state.reviewComments !== null) {
-            if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
-                this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
-                                reviewCommentsDisplayed: this.state.reviewComments,
-                                showMoreCommentsButtonVisible: 'none'
-                            });
-            } else {
-                let numberOfReviews = this.state.numberOfCommentDisplayed + 3;
-                this.setState({ numberOfCommentDisplayed: numberOfReviews,
-                    reviewCommentsDisplayed: this.state.reviewComments.slice(0, numberOfReviews)
-                    });
-            }   
-        }
+        if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
+            this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
+                            reviewCommentsDisplayed: this.state.reviewComments,
+                            showMoreCommentsButtonVisible: 'none'
+                        });
+        } else {
+            let numberOfReviews = this.state.numberOfCommentDisplayed + 3;
+            this.setState({ numberOfCommentDisplayed: numberOfReviews,
+                reviewCommentsDisplayed: this.state.reviewComments.slice(0, numberOfReviews)
+                });
+        } 
     }
 
     handleDeleteReview = async () => {
-        //TODO
-        const hasComments = true;
+        let hasComments = true;
         const reviewID = this.state.reviewID ;
         if (this.state.reviewComments === null) {
             hasComments = false;
@@ -120,7 +117,7 @@ class ViewReview extends Component {
         let review = null;
         const {t} = this.props;
         this.handleGetReview();
-        //////////////
+        
         if (this.state.review !== null && (this.state.review.reviewComments !== null || typeof(this.state.review.reviewComments) !== 'undefined')) {
             review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
                 reviewerName={this.state.review.reviewerName}
@@ -134,49 +131,7 @@ class ViewReview extends Component {
                 reviewCommentsNumber={(typeof(this.state.reviewComments) === 'undefined' || this.state.reviewComments === null) ? 0 : this.state.reviewComments.length}
                 />);
         }
-        //////////////7
-        /*
-        if (this.state.review !== null ) {
-            if (this.state.review.reviewComments !== null) {
-                if(this.state.numberOfCommentDisplayed === null) {
-                    let numberOfReviews = null;
-                    if(this.state.review.reviewComments.length > 1) {
-                        numberOfReviews = 1;
-                        this.setState({ numberOfCommentDisplayed: 1 });
-                    } else {
-                        numberOfReviews = this.state.review.reviewComments.length;
-                        this.setState({ numberOfCommentDisplayed: this.state.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
-                    }
-                    this.setState({ reviewCommentsDisplayed: this.state.review.reviewComments.slice(0, numberOfReviews)});
-                }
 
-                review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
-                    reviewerName={this.state.review.reviewerName}
-                    reviewText={this.state.review.reviewText}
-                    reviewDate={this.state.review.reviewDate}
-                    reviewRating={this.state.review.reviewRating}
-                    bookName={this.state.book.bookName}
-                    bookAuthor={this.state.book.bookAuthor}
-                    bookThumbnail={this.state.book.bookThumbnail}
-                    reviewComments={this.state.reviewCommentsDisplayed}
-                    reviewCommentsNumber={this.state.reviewComments.length}
-                    />);
-            } else {
-                review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
-                    reviewerName={this.state.review.reviewerName}
-                    reviewText={this.state.review.reviewText}
-                    reviewDate={this.state.review.reviewDate}
-                    reviewRating={this.state.review.reviewRating}
-                    bookName={this.state.book.bookName}
-                    bookAuthor={this.state.book.bookAuthor}
-                    bookThumbnail={this.state.book.bookThumbnail}
-                    reviewComments={this.state.reviewCommentsDisplayed}
-                    reviewCommentsNumber={0}
-                    />);
-            }
-
-        } ////////////////
-        */
         return(
             <div className='viewReviewBackgroundSection'>
                 <div className='viewReviewBackgroundFilterSection'>

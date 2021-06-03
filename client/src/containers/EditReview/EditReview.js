@@ -22,19 +22,15 @@ class EditReview extends Component {
     }
 
     handleEditReview = async () => {
-        //TODO
-        console.log(this.state.reviewID + " " + this.state.review.reviewText)
         const result = await axios.post("http://localhost:3000/editReview", {
             reviewID : this.state.reviewID,
             reviewText: this.state.reviewText
         })
         if (result.data.response) {
-            console.log('updated');
-            this.props.history.push({ pathname: '/viewReview',
-                                      state:{reviewID: this.state.reviewID} });
-        } else {
-            console.log("nothing's changed");
+            this.props.history.push({   pathname: '/viewReview',
+                                        state:{reviewID: this.state.reviewID} });
         }
+        console.log(result.data.message);
     }
 
     goToLogin = () => {

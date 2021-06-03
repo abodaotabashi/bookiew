@@ -22,6 +22,7 @@ import AdminAddBookPage from '../pages/AdminAddBookPage/AdminAddBookPage';
 import AdminSearchResultsPage from '../pages/AdminSearchResultsPage/AdminSearchResultsPage';
 import AdminHomePage from '../pages/AdminHomePage/AdminHomePage';
 import AdminUpdateBookPage from '../pages/AdminUpdateBookPage/AdminUpdateBookPage';
+import AdminRecommendationsPage from '../pages/AdminRecommendationsPage/AdminRecommendationsPage';
 
 class App extends Component {
   
@@ -50,6 +51,7 @@ class App extends Component {
             <Route path='/adminpanel/searchResults' exact component = {AdminSearchResultsPage}/>
             <Route path='/adminpanel/' exact component = {AdminHomePage}/>
             <Route path='/adminpanel/updateBook' exact component = {AdminUpdateBookPage}/>
+            <Route path='/adminpanel/recommendations' exact component = {AdminRecommendationsPage}/>
           </Switch>
         </Router>
       </div>

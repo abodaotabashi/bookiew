@@ -42,7 +42,7 @@ const AdminNavbarWithUser = () => {
                         <li className='navLinkItem'>
                             <Link 
                                 className='navLink'
-                                to="/adminpanel"
+                                to="/adminpanel/recommendations"
                                 smooth="true"
                                 offset={-70}
                                 duration={500}> 
