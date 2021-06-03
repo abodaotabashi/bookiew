@@ -10,7 +10,7 @@ const AddReviewPage = (props) => {
         <div>
             <NavbarWithUser/>
             <PageContainer>
-                <AddReview user={props.location.state.user} book={props.location.state.book} />
+                <AddReview user={props.location.state.user} book={props.location.state.book} bookID={props.location.state.bookID} />
             </PageContainer>
             <MiniFooter />
         </div>

@@ -416,4 +416,31 @@ router.post('/editReview', async function(req, res, next) {
   }
 });
 
+router.get('/adminpanel', async function(req, res, next) {
+  console.log(req.body.message);
+  const suggestions = await knex('suggestions').select('*').where({'suggestionUserID':1});
+  console.log(suggestions);
+  if (!suggestions) {return res.send ({response:false, message: 'no suggestions found'})}
+  const lengthOfSug = suggestions.length;
+  console.log(lengthOfSug);
+  return res.send({resposne:true, lengthOfSug});
+})
+
+router.post('/addReview', async function(req, res, next) {
+  const reviewText = req.body.review;
+  const bookID = req.body.bookID;
+  const userID = req.body.userID;
+  const reviewDate = req.body.reviewDate;
+  const result =await knex('reviews').insert({
+    reviewText: reviewText,
+    reviewBookID: bookID,
+    reviewUserID: userID,
+    reviewDate: reviewDate
+  });
+  if (result) {
+    return res.send({response:true, message:"successfully added "})
+  }
+  return res.send({response:false, message:"something went wrong "})
+})
+
 module.exports = router;

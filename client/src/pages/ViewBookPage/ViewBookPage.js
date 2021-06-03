@@ -12,7 +12,7 @@ const ViewBookPage = (props) => {
         <div>
             <NavbarWithUser />
             <PageContainer>
-                <ViewBook book={props.location.state.book} reviews={props.location.state.reviews} user={props.location.state.user} />
+                <ViewBook bookID={props.location.state.bookID} book={props.location.state.book} reviews={props.location.state.reviews} user={props.location.state.user} />
             </PageContainer>
             <MiniFooter />
         </div>

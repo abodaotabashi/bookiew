@@ -29,6 +29,7 @@ class ViewBook extends Component {
 
     handleGetBook = async () => {
         const bookID = this.state.bookID;
+        console.log(bookID);
         const reviewsResult = await axios.post("http://localhost:3000/getReviews", {
             bookID : bookID
         });
@@ -66,7 +67,7 @@ class ViewBook extends Component {
 
     handleAddReview = () => {
         this.props.history.push({   pathname: '/addReview',
-                                    state: { book:this.state.book, user:this.state.user }});
+                                    state: { book:this.state.book, user:this.state.user, bookID: this.state.bookID }});
     }
 
     checkReviewOfUser = () => {
@@ -93,7 +94,6 @@ class ViewBook extends Component {
         }
 
         const {t} = this.props;
-        //this.handleGetBook();
         this.checkReviewOfUser();
         
         let reviewOfUser = null;

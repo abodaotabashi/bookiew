@@ -46,6 +46,7 @@ class SearchResults extends Component {
             console.log(review);
         }
         //localStorage.setItem('bookID',bookID);
+        console.log(bookID);
         this.props.history.push({
             pathname: '/viewBook',
             state: { bookID: bookID, book:book, reviews:review, user:user}});

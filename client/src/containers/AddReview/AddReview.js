@@ -4,17 +4,31 @@ import "./AddReview.css";
 
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
-
+import axios from 'axios';
 
 class AddReview extends Component {
     state = {
         book: this.props.book,
+        bookID: this.props.bookID,
         review: '',
         user: this.props.user
     }
 
-    handleAddReview = () => {
+    handleAddReview = async () => {
         //TODO
+        console.log(this.state.bookID);
+        const addResult = await axios.post("http://localhost:3000/addReview", {
+            userID: this.state.user.userID,
+            bookID: this.state.bookID,
+            review: this.state.review,
+            reviewDate: '2020-05-20'
+        });
+        if (addResult.data.response) {
+            console.log('added seccessfully');
+            this.props.history.push({
+                pathname:'/home'
+            })
+        }
     }
     
     goToLogin = () => {
