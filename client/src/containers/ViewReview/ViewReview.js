@@ -56,7 +56,7 @@ class ViewReview extends Component {
                             reviewComments:comments            
                         } 
             });
-            if(typeof(comments) === 'undefined') {
+            if(typeof(comments) === 'undefined' || comments === null) {
                 this.setState({reviewComments: null});
             } else {
                 if(this.state.numberOfCommentDisplayed === null) {
@@ -76,33 +76,51 @@ class ViewReview extends Component {
     }
 
     handleShowMoreComments = () => {
-        if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
-            this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
-                            reviewCommentsDisplayed: this.state.reviewComments,
-                            showMoreCommentsButtonVisible: 'none'
-                        });
-        } else {
-            let numberOfReviews = this.state.numberOfCommentDisplayed + 3;
-            this.setState({ numberOfCommentDisplayed: numberOfReviews,
-                reviewCommentsDisplayed: this.state.reviewComments.slice(0, numberOfReviews)
-                });
+        if (this.state.reviewComments !== null) {
+            if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
+                this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
+                                reviewCommentsDisplayed: this.state.reviewComments,
+                                showMoreCommentsButtonVisible: 'none'
+                            });
+            } else {
+                let numberOfReviews = this.state.numberOfCommentDisplayed + 3;
+                this.setState({ numberOfCommentDisplayed: numberOfReviews,
+                    reviewCommentsDisplayed: this.state.reviewComments.slice(0, numberOfReviews)
+                    });
+            }   
         }
     }
 
-    handleDeleteReview = () => {
+    handleDeleteReview = async () => {
         //TODO
+        const hasComments = true;
+        const reviewID = this.state.reviewID ;
+        if (this.state.reviewComments === null) {
+            hasComments = false;
+        }
+        const deleteReview = await axios.post("http://localhost:3000/deleteReview", {
+            reviewID:reviewID,
+            hasComments:hasComments
+        })
+        if (deleteReview.data.response) {
+            this.props.history.push({pathname: '/myReviews'});
+        } else {
+            console.log(deleteReview.data.message);
+        }
     }
 
     handleEditReview = () => {
+        console.log(this.state.reviewID + " " + this.state.review.reviewText)
         this.props.history.push({
             pathname: '/editReview',
-            state: { review: this.state.review, book: this.state.book, reviewText: this.state.review.reviewText }});
+            state: {reviewID:this.state.reviewID,  review: this.state.review, book: this.state.book, reviewText: this.state.review.reviewText }});
     }
 
     render(){
         let review = null;
         const {t} = this.props;
         this.handleGetReview();
+        //////////////
         if (this.state.review !== null && (this.state.review.reviewComments !== null || typeof(this.state.review.reviewComments) !== 'undefined')) {
             review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
                 reviewerName={this.state.review.reviewerName}
@@ -116,6 +134,49 @@ class ViewReview extends Component {
                 reviewCommentsNumber={(typeof(this.state.reviewComments) === 'undefined' || this.state.reviewComments === null) ? 0 : this.state.reviewComments.length}
                 />);
         }
+        //////////////7
+        /*
+        if (this.state.review !== null ) {
+            if (this.state.review.reviewComments !== null) {
+                if(this.state.numberOfCommentDisplayed === null) {
+                    let numberOfReviews = null;
+                    if(this.state.review.reviewComments.length > 1) {
+                        numberOfReviews = 1;
+                        this.setState({ numberOfCommentDisplayed: 1 });
+                    } else {
+                        numberOfReviews = this.state.review.reviewComments.length;
+                        this.setState({ numberOfCommentDisplayed: this.state.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
+                    }
+                    this.setState({ reviewCommentsDisplayed: this.state.review.reviewComments.slice(0, numberOfReviews)});
+                }
+
+                review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
+                    reviewerName={this.state.review.reviewerName}
+                    reviewText={this.state.review.reviewText}
+                    reviewDate={this.state.review.reviewDate}
+                    reviewRating={this.state.review.reviewRating}
+                    bookName={this.state.book.bookName}
+                    bookAuthor={this.state.book.bookAuthor}
+                    bookThumbnail={this.state.book.bookThumbnail}
+                    reviewComments={this.state.reviewCommentsDisplayed}
+                    reviewCommentsNumber={this.state.reviewComments.length}
+                    />);
+            } else {
+                review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
+                    reviewerName={this.state.review.reviewerName}
+                    reviewText={this.state.review.reviewText}
+                    reviewDate={this.state.review.reviewDate}
+                    reviewRating={this.state.review.reviewRating}
+                    bookName={this.state.book.bookName}
+                    bookAuthor={this.state.book.bookAuthor}
+                    bookThumbnail={this.state.book.bookThumbnail}
+                    reviewComments={this.state.reviewCommentsDisplayed}
+                    reviewCommentsNumber={0}
+                    />);
+            }
+
+        } ////////////////
+        */
         return(
             <div className='viewReviewBackgroundSection'>
                 <div className='viewReviewBackgroundFilterSection'>

@@ -7,9 +7,11 @@ import { FaWindowClose } from 'react-icons/fa'
 
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
+import axios from 'axios';
 
 class EditReview extends Component {
     state = {
+        reviewID:this.props.reviewID,
         book: this.props.book,
         review: this.props.review,
         reviewText: this.props.reviewText
@@ -19,8 +21,20 @@ class EditReview extends Component {
         this.props.history.goBack();
     }
 
-    handleEditReview = () => {
+    handleEditReview = async () => {
         //TODO
+        console.log(this.state.reviewID + " " + this.state.review.reviewText)
+        const result = await axios.post("http://localhost:3000/editReview", {
+            reviewID : this.state.reviewID,
+            reviewText: this.state.reviewText
+        })
+        if (result.data.response) {
+            console.log('updated');
+            this.props.history.push({ pathname: '/viewReview',
+                                      state:{reviewID: this.state.reviewID} });
+        } else {
+            console.log("nothing's changed");
+        }
     }
 
     goToLogin = () => {

@@ -26,7 +26,7 @@ router.get('/home', function(req, res, next) {
 
 router.post('/login', async function(req, res, next) {
   //get the payload
-  console.log(req.body)
+  //console.log(req.body)
   const email = req.body.email
   const password = req.body.password
   if(!email || !password) return res.send({response:false, message:"expect an email and a password"})
@@ -130,8 +130,6 @@ router.post('/search', async function(req, res, next){
   }
 });
 
-
-
 router.post('/updateProfile', async function(req,res,next){
   const userID = req.body.userID;
   const firstname = req.body.firstname;
@@ -179,19 +177,19 @@ router.post('/resetPassword', async function(req, res, next) {
 
 router.post('/myReviews', async function(req, res, next) {
   const userID = req.body.userID;
-  console.log(userID);
+  //console.log(userID);
   const reviews = await knex('reviews').select('*').where({"reviewUserID":userID});
   
-  console.log(reviews);
+  //console.log(reviews);
   if (reviews[0]!=null) {
-    console.log(reviews+" "+userID);
+    //console.log(reviews+" "+userID);
     const books = new Array();
     const displayedBooks = new Array();
-    console.log(reviews[0]);
+    //console.log(reviews[0]);
     var i;
     for (i = 0; i < reviews.length; i++) {
       const book = await knex('books').select('*').where({'bookID':reviews[i].reviewBookID}).first();
-      console.log(book);
+      //console.log(book);
       const bookName = book.bookName;
       const bookAuthor = book.author;
       const bookThumbnail = book.bookCoverURL;
@@ -199,11 +197,11 @@ router.post('/myReviews', async function(req, res, next) {
       const displayedBook = {bookName, bookAuthor, bookThumbnail, reviewID};
       books.push(book);
       displayedBooks.push(displayedBook);
-      console.log(displayedBook);
+      //console.log(displayedBook);
     }
     return res.send({response:true, displayedBooks});
   };
-  console.log("No reviews found")
+  //console.log("No reviews found")
   return res.send({response:false, message:"No reviews found"});
 })
 
@@ -214,7 +212,13 @@ router.post('/getReview', async function(req, res, next) {
   if (reviewA[0] == null) {
     return res.send({response:false, message:"review not found"});
   } else {
-    const review = {'text':reviewA[0].reviewText, 'date':reviewA[0].reviewDate, 'rating':reviewA[0].reviewRating, 'reviewerID':reviewA[0].reviewUserID, 'reviewBookID':reviewA[0].reviewBookID};
+    const review = {
+      'text':reviewA[0].reviewText, 
+      'date':reviewA[0].reviewDate, 
+      'rating':reviewA[0].reviewRating, 
+      'reviewerID':reviewA[0].reviewUserID, 
+      'reviewBookID':reviewA[0].reviewBookID
+    };
     reviews.push(review);
     return res.send({response:true, review})
   }
@@ -230,6 +234,55 @@ router.post('/getlastReview', async function(req, res, next) {
     return res.send({response:false, message:"No Reviews!"});
   }
 })
+router.post('/getReviews', async function(req, res, next) {
+  const bookID = req.body.bookID;
+  //console.log(bookID);
+  const reviews = new Array();
+  const reviewA = await knex('reviews').select('*').where({"reviewBookID":bookID});
+  if (reviewA[0] == null) {
+    return res.send({response:false, message:"review not found"});
+  } else {
+    for (var i = 0;i<reviewA.length; i++) {
+      //console.log(reviewA[i]);
+      const reviewer = await knex('users').select('*').where({"userID":reviewA[i].reviewUserID})
+      //console.log(reviewer);
+      const comments = await knex('comments').select('*').where({"commentReviewID": reviewA[i].reviewID})
+      //console.log(comments);
+      const review = {
+        'reviewText':reviewA[i].reviewText, 
+        'reviewDate':reviewA[i].reviewDate, 
+        'reviewRating':reviewA[i].reviewRating, 
+        'reviewerID': reviewer[0].userID, 
+        'reviewerIcon': reviewer[0].profilePhotoURL,
+        'reviewerName': reviewer[0].firstname + " " + reviewer[0].surname,
+        'reviewComments': comments
+      };
+      //console.log(review);
+      reviews.push(review);
+    }
+    //console.log(reviews);
+    return res.send({response:true, reviews})
+  }
+})
+
+router.post('/getReviewOfUser', async function(req, res, next) {
+  const reviewerID = req.body.reviewerID;
+  const reviews = new Array();
+  const reviewA = await knex('reviews').select('*').where({"reviewUserID":reviewerID});
+  if (reviewA[0] == null) {
+    return res.send({response:false, message:"review not found"});
+  } else {
+    const review = {
+      'text':reviewA[0].reviewText, 
+      'date':reviewA[0].reviewDate, 
+      'rating':reviewA[0].reviewRating, 
+      'reviewerID':reviewA[0].reviewUserID, 
+      'reviewBookID':reviewA[0].reviewBookID
+    };
+    reviews.push(review);
+    return res.send({response:true, review})
+  }
+})
 
 router.post('/getUser', async function(req, res, next) {
   const userID = req.body.userID;
@@ -237,7 +290,11 @@ router.post('/getUser', async function(req, res, next) {
   if (!userA) {
     return res.send({response:false, message:"user not found"});
   }else{
-    const user = {'name':userA[0].firstname +' '+ userA[0].surname, 'id': userA[0].userID, 'icon':userA[0].profilePhotoURL};
+    const user = {
+      'name':userA[0].firstname +' '+ userA[0].surname, 
+      'id': userA[0].userID, 
+      'icon':userA[0].profilePhotoURL
+    };
     return res.send({response:true, user});
   }
 })
@@ -247,7 +304,7 @@ router.post('/getComments', async function (req, res, next) {
   const comments = new Array();
   const commentsA = await knex('comments').select('*').where({'commentReviewID':reviewID});
   if (commentsA[0]==null) {
-    return res.send({response:false, message:'no comments found'});
+    return res.send({response:false, comments:null});
   } else {
     for(let i=0; i<commentsA.length; i++) {
       const user = await knex('users').select('*').where({'userID':commentsA[i].commentUserID});
@@ -265,11 +322,21 @@ router.post('/getComments', async function (req, res, next) {
 
 router.post('/getBook', async function(req, res, next) {
   const bookID = req.body.bookID;
+  //console.log(bookID);
   const bookA = await knex('books').select('*').where({'bookID':bookID});
   if (!bookA) { 
     return res.send({response:false, message:'no books found'}); 
   } else {
-    const book = {'bookName': bookA[0].bookName, 'bookAuthor': bookA[0].author,'bookThumbnail': bookA[0].bookCoverURL};
+    const book = {
+      'bookName': bookA[0].bookName, 
+      'bookAuthor': bookA[0].author,
+      'bookThumbnail': bookA[0].bookCoverURL,
+      'bookPublisher':bookA[0].publisher,
+      'bookPublishingYear': bookA[0].publishingYear,
+      'bookCategory': bookA[0].category,
+      'bookSubject': bookA[0].subject,
+      'bookLanguage': bookA[0].language
+    };
     return res.send({response: true, book});
   }
 })
@@ -293,7 +360,6 @@ function sendEmail(message) {
     })
   })
 }
-
 
 router.post('/recommend', async function(req, res, next) {
   console.log(req.body);
@@ -322,7 +388,28 @@ router.post('/recommend', async function(req, res, next) {
   return res.send({response:false, message:"something went wrong in recommendation!"})
 });
 
+router.post('/deleteReview', async function(req, res, next) {
+  const reviewID = req.body.reviewID;
+  console.log(reviewID);
+  const deleteA = await knex('reviews').where('reviewID', reviewID).del();
+  if (!deleteA) {return res.send({response:false, message:'cannot delete review'})}
+  if (req.body.hasComments) {
+    const deleteB = await knex('comments').where('commentReviewID', reviewID).del();
+    if (!deleteB) {return res.send({response:false, message:'cannot delete comments'})}
+  }
+  console.log('seccessfully deleted');
+  return res.send({response:true});
+});
 
-
+router.post('/editReview', async function(req, res, next) {
+  console.log(req.body.reviewID);
+  const reviewID = req.body.reviewID;
+  const reviewText = req.body.reviewText;
+  const result = await knex('reviews').where({'reviewID': reviewID}).update(({
+    'reviewText': reviewText
+  }))
+  if (!result) {return res.send({response:false, message:'error by updating the review'})}
+  return res.send({response:true, message:'updated seccessfully'});
+})
 
 module.exports = router;
