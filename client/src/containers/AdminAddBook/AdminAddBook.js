@@ -1,5 +1,7 @@
+import axios from 'axios';
 import React, { Component } from 'react';
 import "./AdminAddBook.css";
+import { withRouter } from "react-router-dom";
 
 class AdminAddBook extends Component {
     state = {
@@ -15,8 +17,24 @@ class AdminAddBook extends Component {
         errorVisible: 'none'
     }
 
-    handleAddBook = () => {
+    handleAddBook = async () => {
         //TODO
+        const result = await axios.post("http://localhost:3000/adminPanel/addBook", {
+            bookName: this.state.bookname ,
+            author: this.state.author ,
+            yearOfPub: this.state.publishingyear ,
+            publisher: this.state.publisher ,
+            category: this.state.category ,
+            subject: this.state.subject ,
+            language: this.state.language ,
+            coverURL: this.state.coverURL
+        });
+        if (result.data.response) {
+            console.log('successfully added');
+            this.props.history.push({
+                pathname:'/adminpanel/recommendations'
+            })
+        }
     }
 
     render(){
@@ -177,4 +195,4 @@ class AdminAddBook extends Component {
     }
 }
 
-export default AdminAddBook;
+export default withRouter(AdminAddBook);

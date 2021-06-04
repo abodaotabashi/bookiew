@@ -416,7 +416,7 @@ router.post('/editReview', async function(req, res, next) {
     return res.send({response:true, message:'Successfully updated'});
   }
 });
-
+/*
 router.get('/adminpanel', async function(req, res, next) {
   console.log(req.body.message);
   const suggestions = await knex('suggestions').select('*').where({'suggestionUserID':1});
@@ -426,7 +426,7 @@ router.get('/adminpanel', async function(req, res, next) {
   console.log(lengthOfSug);
   return res.send({resposne:true, lengthOfSug});
 })
-
+*/
 router.post('/addReview', async function(req, res, next) {
   const reviewText = req.body.review;
   const bookID = req.body.bookID;
