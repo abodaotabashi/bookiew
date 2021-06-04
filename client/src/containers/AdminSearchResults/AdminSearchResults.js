@@ -22,8 +22,18 @@ class AdminSearchResults extends Component {
     }
     
 
-    handleBookClicked = (bookID) => {
+    handleBookClicked = async (bookID) => {
         //TODO
+        const result = await axios.post("http://localhost:3000/getBook", {
+            bookID:bookID
+        })
+        if (result.data.response) {
+            let book = result.data.book;
+            this.props.history.push({
+                pathname: '/adminpanel/updateBook',
+                state: {book:book}
+            })
+        }
     }
 
     handleSearchClicked = () => {

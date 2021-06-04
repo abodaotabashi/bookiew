@@ -47,4 +47,33 @@ router.post('/addBook', async function(req, res, next) {
   return res.send({response:false, message:'something went wromg'});
 });
 
+router.post('/deleteBook', async function(req, res, next) {
+  const bookID = req.body.bookID;
+  const deleteA = await knex('books').where('bookID', bookID).del();
+  const reviews = await knex('reviews').select('*').where('reviewBookID', bookID);
+  if (reviews) {
+    for (var i = 0; i < reviews.length; i++){
+      const reviewID = reviews[i].reviewID;
+      const deleteB = await knex('reviews').where('reviewID', reviewID).del();
+      const deleteC = await knex('comments').where('commentReviewID', reviewID).del();
+    }
+  }
+  if(deleteA){return res.send({response:true, message:'success'})}
+  return res.send({response:false});
+})
+//       
+router.post('/updateBook', async function(req, res, next) {
+  const result = await knex('books').where({'bookID': req.body.bookID}).update(({
+    'bookName': req.body.bookName,
+    'author': req.body.author,
+    'publisher': req.body.publisher,
+    'publishingYear': req.body.pubYear,
+    'subject': req.body.subject,
+    'category': req.body.category,
+    'bookLanguage': req.body.language,
+    'bookCoverURL': req.body.coverURL
+  }));
+  if (result) {return res.send({response:true, message:'success'});}
+  return res.send({response:false});
+})
 module.exports = router;

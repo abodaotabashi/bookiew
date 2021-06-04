@@ -326,7 +326,7 @@ router.post('/getBook', async function(req, res, next) {
   //console.log(bookID);
   const bookA = await knex('books').select('*').where({'bookID':bookID});
   if (!bookA) { 
-    return res.send({response:false, message:'no books found'}); 
+    return res.send({response:false, message:'no books found'});
   } else {
     const book = {
       'bookName': bookA[0].bookName, 
@@ -336,7 +336,8 @@ router.post('/getBook', async function(req, res, next) {
       'bookPublishingYear': bookA[0].publishingYear,
       'bookCategory': bookA[0].category,
       'bookSubject': bookA[0].subject,
-      'bookLanguage': bookA[0].language
+      'bookLanguage': bookA[0].language,
+      'bookID': bookA[0].bookID
     };
     return res.send({response: true, book});
   }

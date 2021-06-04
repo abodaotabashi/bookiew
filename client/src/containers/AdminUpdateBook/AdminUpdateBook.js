@@ -1,30 +1,60 @@
 import React, { Component } from 'react';
 import "../AdminAddBook/AdminAddBook.css";
+import { withRouter } from 'react-router-dom';
 
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
+import axios from 'axios';
 
 class AdminUpdateBook extends Component {
     state = {
         oldBook: this.props.book,
-        bookname: this.props.book.bookname,
-        author: this.props.book.author,
-        publishingyear: this.props.book.publishingyear,
-        publisher: this.props.book.publisher,
-        subject: this.props.book.subject,
-        category: this.props.book.category,
-        language: this.props.book.language,
-        coverURL: this.props.book.coverURL,
+        bookname: this.props.book.bookName,
+        author: this.props.book.bookAuthor,
+        publishingyear: this.props.book.bookPublishingYear,
+        publisher: this.props.book.bookPublisher,
+        subject: this.props.book.bookSubject,
+        category: this.props.book.bookCategory,
+        language: this.props.book.bookLanguage,
+        coverURL: this.props.book.bookThumbnail,
         errorMessage: '',
         errorVisible: 'none'
     }
 
-    handleUpdateBook = () => {
+    handleUpdateBook = async () => {
         //TODO
+        //const bookID = this.state.oldBook.bookID;
+        const result = await axios.post("http://localhost:3000/adminPanel/updateBook", {
+            bookID: this.state.oldBook.bookID,
+            bookName: this.state.bookname,
+            author: this.state.author,
+            pubYear: this.state.publishingyear,
+            publisher: this.state.publisher,
+            subject: this.state.subject,
+            category: this.state.category,
+            language: this.state.language,
+            coverURL: this.state.coverURL
+        });
+        if (result.data.response) {
+            console.log('success');
+            this.props.history.push({
+                pathname:'/adminpanel'
+            })
+        }
     }
 
-    handleDeleteBook = () => {
+    handleDeleteBook = async () => {
         //TODO
+        const bookID = this.state.oldBook.bookID;
+        const result = await axios.post("http://localhost:3000/adminPanel/deleteBook", {
+            bookID:bookID
+        })
+        if (result.data.response) {
+            console.log('successfully deleted');
+            this.props.history.push({
+                pathname:'/adminpanel'
+            })
+        }
     }
 
     render(){
@@ -207,4 +237,4 @@ class AdminUpdateBook extends Component {
     }
 }
 
-export default AdminUpdateBook;
+export default withRouter(AdminUpdateBook);

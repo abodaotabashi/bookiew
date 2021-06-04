@@ -5,8 +5,9 @@ import AdminUpdateBook from '../../containers/AdminUpdateBook/AdminUpdateBook';
 import PageContainer from '../../components/PageContainer/PageContainer';
 
 const AdminUpdateBookPage = (props) => {
-    //const book = props.location.state.book;
-    const book = {
+    const book = props.location.state.book;
+    console.log(book);
+  /* const book = {
         bookname: 'MyBook',
         author: 'MyAuthor',
         publishingyear: '2020',
@@ -15,7 +16,7 @@ const AdminUpdateBookPage = (props) => {
         category: 'MyCategory',
         language: 'English',
         coverURL: 'https://images-na.ssl-images-amazon.com/images/I/41ktse1ZqPL._SX311_BO1,204,203,200_.jpg'
-    }
+    }*/
     
     return(
         <div>
