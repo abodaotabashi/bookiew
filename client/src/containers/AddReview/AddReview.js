@@ -16,12 +16,14 @@ class AddReview extends Component {
 
     handleAddReview = async () => {
         //TODO
+        var showDate = new Date();
+        let reviewDate = showDate.getFullYear() + '/'+ showDate.getMonth() + '/' + showDate.getDate();
         console.log(this.state.bookID);
         const addResult = await axios.post("http://localhost:3000/addReview", {
             userID: this.state.user.userID,
             bookID: this.state.bookID,
             review: this.state.review,
-            reviewDate: '2020-05-20'
+            reviewDate: reviewDate
         });
         if (addResult.data.response) {
             console.log('added seccessfully');
