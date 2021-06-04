@@ -17,7 +17,7 @@ class AddReview extends Component {
     handleAddReview = async () => {
         //TODO
         var showDate = new Date();
-        let reviewDate = showDate.getFullYear() + '/'+ showDate.getMonth() + '/' + showDate.getDate();
+        let reviewDate = showDate.getFullYear() + '/'+ (showDate.getMonth()+1) + '/' + showDate.getDate();
         console.log(this.state.bookID);
         const addResult = await axios.post("http://localhost:3000/addReview", {
             userID: this.state.user.userID,

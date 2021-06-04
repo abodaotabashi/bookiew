@@ -49,7 +49,7 @@ class ViewOtherReview extends Component {
         var showDate = new Date();
         const userID = localStorage.getItem('userID');
         const commentText = this.state.newComment;
-        const commentDate = showDate.getFullYear() + '/'+ showDate.getMonth() + '/' + showDate.getDate();
+        const commentDate = showDate.getFullYear() + '/'+ (showDate.getMonth()+1) + '/' + showDate.getDate();
         const newRating = this.state.newRating;
         const reviewID = this.state.review.reviewID;
         const result = await axios.post("http://localhost:3000/addComment", {
