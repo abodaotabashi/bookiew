@@ -16,7 +16,7 @@ const AdminLogin = (props) => {
                     autoFocus
                     required value={props.emailInputValue} 
                     onChange={props.emailInputChanged}/>
-            <p className='formErrorMessage'>{props.emailErrorMessage}</p>
+            <p className='formErrorMessageAdmin'>{props.emailErrorMessage}</p>
             <label className='formLabel'>{t('admin_login.password')}</label>
             <input  className='formInputText' 
                     type='password' 
@@ -24,9 +24,9 @@ const AdminLogin = (props) => {
                     placeholder='Your Password' 
                     required value={props.passwordInputValue} 
                     onChange={props.passwordInputChanged} />
-            <p className='formErrorMessage'>{props.passwordErrorMessage}</p>
+            <p className='formErrorMessageAdmin'>{props.passwordErrorMessage}</p>
             <div className='formButtonsContainer'>
-                <button className='formButtonLogin' onClick={props.loginClicked}>{t('admin_login.login')}</button>
+                <button type="button" className='formButtonLogin' onClick={props.loginClicked}>{t('admin_login.login')}</button>
             </div>
         </form>
     );

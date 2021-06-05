@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import "../LoginRegisterForm/LoginRegisterForm.css";
 import AdminLogin from '../../components/AdminLogin/AdminLogin';
 import { withRouter } from "react-router-dom";
+import axios from 'axios';
 
 
 class AdminLoginForm extends Component {
@@ -10,38 +11,45 @@ class AdminLoginForm extends Component {
         password: '',
         emailErrorMessage: '',
         passwordErrorMessage: '',
-        isLoggedin: false
+        errorMessage: '',
+        errorVisible: 'none'
     }
 
-    validate = () =>{
-        if (!this.state.email.includes('@')) {
-            this.setState({ emailErrorMessage: 'Invalid Email!' });
-            return false;
-        }
-        if (this.state.password.length < 6) {
-            console.log(this.state.password.length);
-            this.setState({ passwordErrorMessage: 'Password must contain more than 6 characters' });
-            return false;
-        }
-        return true;
-    }
 
-    handleLogin = async () => {
+    handleLogin = async() => {
+        this.setState({loading: true});
         this.clearErrors();
-        //TODO
-    }
-
-    clearInputs = () => {
-        this.setState({
-            email: '',
-            password: ''
-        });
+        
+        const result = await axios.post("http://localhost:3000/login2",{
+            email:this.state.email,
+            password:this.state.password
+        })
+        console.log(result)
+            
+            if(result.data.response){
+                this.setState({ isLoggedin: true});
+                const newUser = result.data.user;
+                localStorage.setItem('isUserAuthenticated' , true);
+                localStorage.setItem('userID', newUser.adminID);
+                localStorage.setItem('userEmail',  newUser.adminEmail);
+                localStorage.setItem('userPassword',  newUser.adminPassword);
+                this.props.history.push({ pathname: '/adminpanel/'});
+            } else {
+                console.log("Something went wrong "+result.data);
+                this.setState({ 
+                    errorMessage: 'Email or Password is incorrect!',
+                    errorVisible: 'flex'   
+                }, ()=>{console.log(this.state.errorMessage)});
+                
+            }
+            
+        
     }
 
     clearErrors = () => {
         this.setState({
-            emailErrorMessage: '',
-            passwordErrorMessage: ''    
+            errorMessage: '',
+            errorVisible: 'none'
         });
     }
 
@@ -50,10 +58,10 @@ class AdminLoginForm extends Component {
 
         formType=(  <AdminLogin     emailInputValue={this.state.email} 
                                     emailInputChanged={(event) => this.setState({ email: event.target.value})}
-                                    emailErrorMessage={this.state.emailErrorMessage}
+                                    emailErrorMessage=""
                                     passwordInputValue={this.state.password} 
                                     passwordInputChanged={(event) => this.setState({ password: event.target.value})}
-                                    passwordErrorMessage={this.state.passwordErrorMessage}
+                                    passwordErrorMessage={this.state.errorMessage}
                                     loginClicked={this.handleLogin}
                         />);
 
@@ -61,6 +69,7 @@ class AdminLoginForm extends Component {
             <div className='adminForm'>
                 <div className='adminFormBackgroundFilter'>
                     {formType}
+                    
                 </div>
             </div>
         )

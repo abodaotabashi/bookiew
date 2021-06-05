@@ -56,7 +56,7 @@ const AdminNavbarWithUser = () => {
                 <button className='navbarLoginButton'>
                     <Link 
                         className='navLink'
-                        to="/adminpanel"
+                        to="/adminpanel/login"
                         smooth="true"
                         offset={-70}
                         duration={500}> 

@@ -132,6 +132,12 @@
     font-family: 'Century Gothic';
     
 }
+.formErrorMessageAdmin {
+    color: darkred;
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    
+}
 
 .formButtonsContainer {
     width: 100%;

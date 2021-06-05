@@ -480,4 +480,22 @@ router.post('/addComment', async function(req, res, next) {
   return res.send({response:false, message:"something went wrong "})
 })
 
+router.post('/login2', async function(req, res, next) {
+  //get the payload
+  console.log(req.body)
+  const email = req.body.email
+  const password = req.body.password
+  const user = await knex('admins').select('*').where({"adminEmail":email, "adminPassword":password}).first()
+  console.log(user);
+  if(user){
+  console.log("successfully logged in")
+ return res.send({response: true, user:user})
+  }else{
+  console.log("email or password is incorrect");
+  return res.send({response:false, message:"email or password is incorrect"})
+  }
+  
+  
+});
+
 module.exports = router;
