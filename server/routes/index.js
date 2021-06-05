@@ -511,4 +511,37 @@ router.post('/login2', async function(req, res, next) {
   
 });
 
+
+router.post('/deleteRec', async function(req, res, next) {
+  const sugID = req.body.sugID;
+  console.log(sugID);
+  const deleted = await knex('suggestions').where('suggestionID', sugID).del();
+  if (!deleted) {
+    return res.send({response:false, message:'cannot delete suggestion'})
+  }else {
+    console.log('Suggestion successfully deleted');
+    return res.send({response:true});
+  }
+});
+
+
+router.post('/getRecs', async function(req, res, next) {
+ 
+  const recs = await knex('suggestions').select('*');
+  if (recs == null) {
+    return res.send({response:false, message:"no recs found"});
+  } else {
+    console.log("number" + recs.length)
+    for (var i = 0;i<recs.length; i++) {
+      console.log("the " + i + ". record")
+      console.log(recs[i]);
+     }
+    return res.send({response:true, size: recs.length,recs})
+  }
+})
+
+
+
+
+
 module.exports = router;

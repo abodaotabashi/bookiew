@@ -4,55 +4,22 @@ import { FaTimesCircle } from 'react-icons/fa';
 import { FaCheck } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
-
+import axios from 'axios';
 
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 
 class AdminRecommendations extends Component {
     state = {
-        recommendations: [
-            {
-                suggestionID: '1',
-                suggestionUserID: '1',
-                suggestionUserName: 'user MySur',
-                suggestionBook: 'Siddharta',
-                suggestionAuthor: 'Hermann Hesse',
-                suggestionPublishingYear: '1982',
-                suggestionNote: 'my fav book'
-            },
-            {
-                suggestionID: '2',
-                suggestionUserID: '1',
-                suggestionUserName: 'user MySur',
-                suggestionBook: 'Steppenwolf',
-                suggestionAuthor: 'Hermann Hesse',
-                suggestionPublishingYear: '2002',
-                suggestionNote: 'Thanks'
-            },
-            {
-                suggestionID: '3',
-                suggestionUserID: '1',
-                suggestionUserName: 'user MySur',
-                suggestionBook: "A Room of One's Own",
-                suggestionAuthor: 'Virginia Woolf',
-                suggestionPublishingYear: '2019',
-                suggestionNote: ''
-            },
-            {
-                suggestionID: '4',
-                suggestionUserID: '1',
-                suggestionUserName: 'user MySur',
-                suggestionBook: 'To the Lighthouse',
-                suggestionAuthor: 'Virginia Woolf',
-                suggestionPublishingYear: '2020',
-                suggestionNote: 'my fav hklhkl l;jasdj hjashdj hkjasdh  shjk hasdjkh jkasdh asdhjkh kjdash aksdhjkasdh '
-            }
-        ],
-        numberOfRecommendationsDisplayed: null,
-        recommendationsDisplayed: null,
-        showMoreRecommendationsButtonVisible: 'none'
-    }
+            recommendations: [],
+            numberOfNewRecommendations: 0,
+            numberOfRecommendationsDisplayed: null,
+            recommendationsDisplayed: null,
+            recs: null,
+            showMoreRecommendationsButtonVisible: 'none',
+            username: null,
+        }
+
 
     handleShowMoreRecommendations = () => {
         if(this.state.recommendations.length <= this.state.numberOfRecommendationsDisplayed + 3) {
@@ -68,8 +35,31 @@ class AdminRecommendations extends Component {
         }
     }
 
-    handleGetAllRecommendations = () => {
-        //TODO
+    handleGetAllRecommendations = async() => {
+        if(this.state.recommendations.length==0){
+            //console.log("hey")
+            const res = await axios.post("http://localhost:3000/getRecs");
+            //console.log(res.data)
+            //console.log("size of: " + res.data.size)
+            this.setState({recommendations: res.data.recs,
+                numberOfNewRecommendations: res.data.size});
+                let usernames = []
+            for(var i=0;i<res.data.size;i++){ // getUsers
+                    let userid = res.data.recs[i].suggestionUserID
+                   // console.log("userid from recs: "+userid)
+                    const userResult = await axios.post("http://localhost:3000/getUser", {
+                        userID: userid
+                    })
+                    //console.log("name of " + i + " " + userResult.data.user.name)
+                    usernames[i] = userResult.data.user.name
+                   
+                }
+            
+        }else{
+           
+           // console.log("wrong!")
+            
+        }
     }
 
     handleCopyInfosToAddBook = (recommendation) => {
@@ -78,11 +68,24 @@ class AdminRecommendations extends Component {
             state: { recommendedBook:{ bookname: recommendation.suggestionBook, author: recommendation.suggestionAuthor, publishingyear: recommendation.suggestionPublishingYear}}});
     }
 
-    handleDeleteRecommendation = (recommendation) => {
-        //TODO
-    }
+    handleDeleteRecommendation = async(recommendation) => {
+        const result = await axios.post("http://localhost:3000/deleteRec", 
+        {sugID: recommendation.suggestionID});
+        
+        //console.log(result.data)
 
+        if(result.data.response){
+            const res = await axios.post("http://localhost:3000/getRecs");
+            console.log(res.data)
+            this.setState({recommendations: res.data.recs, numberOfNewRecommendations: res.data.size}); 
+            
+        }else{
+           console.log("something wrong!") 
+        }
+    }
+  
     render(){
+        this.handleGetAllRecommendations();
         let recommendations = null;
         const { t } = this.props;
 
@@ -98,6 +101,7 @@ class AdminRecommendations extends Component {
             }
             this.setState({ recommendationsDisplayed: this.state.recommendations.slice(0, numberOfRecommendations)});
         }
+     
         if(this.state.recommendationsDisplayed !== null){
             recommendations = (
                 <div className='adminRecommendationsContainer'>
@@ -123,11 +127,12 @@ class AdminRecommendations extends Component {
                                     <div className='adminRecommendationsTableLabel'>{t('admin_recomm.delete_add_book')}</div>
                                 </th>
                             </tr>
-                            {this.state.recommendationsDisplayed.map((recommendation) => {
+                           
+                            {this.state.recommendations.map((recommendation, recusernames) => {
                                 return (
-                                    <tr key={recommendation.suggestionID}>
+                                    <tr key={recommendation.suggestionID} >
                                         <td>
-                                            <p className='adminRecommendationsTableInput'>{recommendation.suggestionUserName}</p>
+                                            <p className='adminRecommendationsTableInput'>{recommendation.suggestionUserID}</p>
                                         </td>
                                         <td>
                                             <p className='adminRecommendationsTableInput'>{recommendation.suggestionBook}</p>
@@ -174,8 +179,7 @@ class AdminRecommendations extends Component {
                 </div>
             );
         }
-
-
+        
         return(
             <div className='adminRecommendationsBackgroundSection'>
                 <div className='adminRecommendationsBackgroundFilterSection'>

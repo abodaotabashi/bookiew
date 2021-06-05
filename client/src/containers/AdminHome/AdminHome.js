@@ -11,7 +11,8 @@ import axios from 'axios';
 class Home extends Component {
     state ={
         searchedBook: '',
-        numberOfNewRecommendations:0
+        numberOfNewRecommendations: 0,
+        recommendations:  null,
     }
  
     handleSearchBook = () => {
@@ -25,7 +26,11 @@ class Home extends Component {
     };
 
     handleGoToRecommendations = () => {
-        this.props.history.push({pathname: '/adminpanel/recommendations'});
+        this.props.history.push(
+            {
+                pathname: '/adminpanel/recommendations'
+            }
+        );
     };
 
     getNumberOfRecommendations = async () => {
@@ -41,10 +46,26 @@ class Home extends Component {
         }
     };
 
-    render(){        
+           
+    handleGetRecs = async() =>{
+        //console.log("handle get recs!")
+        if(this.state.numberOfNewRecommendations === 0){
+            const res = await axios.post("http://localhost:3000/getRecs")
+            localStorage.setItem('recommendations', JSON.stringify(res.data.recs));
+            this.setState({numberOfNewRecommendations: JSON.parse(localStorage.getItem('recommendations')).length})
+            this.setState({recommendations: JSON.parse(localStorage.getItem('recommendations'))}, ()=>{console.log(this.state.recommendations)});
+            
+        }else{
+            console.log("wrong!")
+        }
+
+    }
+    render(){
+       
+        this.handleGetRecs()
         const { t } = this.props;
         //this.handleGetSuggestionsNO();
-        this.getNumberOfRecommendations();
+        //this.getNumberOfRecommendations();
         if(this.state.numberOfCommentDisplayed === null) {
             let numberOfReviews = null;
             if(this.props.reviewComments.length >= 1) {
@@ -57,6 +78,7 @@ class Home extends Component {
         }
 
         return(
+            
             <div className='homeBackgroundSection'>
                 <div className='homeBackgroundFilterSection'>
                     <div className='homeSectionsContainer'>

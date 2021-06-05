@@ -15,7 +15,6 @@ class AdminLoginForm extends Component {
         errorVisible: 'none'
     }
 
-
     handleLogin = async() => {
         this.setState({loading: true});
         this.clearErrors();
@@ -55,7 +54,7 @@ class AdminLoginForm extends Component {
 
     render(){
         let formType = null;
-
+        
         formType=(  <AdminLogin     emailInputValue={this.state.email} 
                                     emailInputChanged={(event) => this.setState({ email: event.target.value})}
                                     emailErrorMessage=""
