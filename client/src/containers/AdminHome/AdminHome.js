@@ -5,13 +5,15 @@ import { FaPlusCircle } from 'react-icons/fa';
 import SearchIcon from "../../assets/icons/search_30px.png";
 import { withTranslation } from 'react-i18next';
 import { withRouter } from "react-router-dom";
+import axios from 'axios';
+//import { response } from '../../../../server/app';
 
 class Home extends Component {
     state ={
         searchedBook: '',
-        numberOfNewRecommendations: 34
+        numberOfNewRecommendations:0
     }
-
+ 
     handleSearchBook = () => {
         this.props.history.push({
             pathname: '/adminpanel/searchResults',
@@ -26,12 +28,23 @@ class Home extends Component {
         this.props.history.push({pathname: '/adminpanel/recommendations'});
     };
 
-    getNumberOfRecommendations = () => {
+    getNumberOfRecommendations = async () => {
         //TODO
+        const result  = await axios.post("http://localhost:3000/getSugNo", {
+            message:'hello bro'
+        });
+        console.log(result.data.resposne); 
+        if (result.data.resposne) { 
+            this.setState({numberOfNewRecommendations: result.data.lengthOfSug}); 
+            console.log(result.data.lengthOfSug);
+            console.log('suggestions found');
+        }
     };
 
-    render(){
+    render(){        
         const { t } = this.props;
+        //this.handleGetSuggestionsNO();
+        this.getNumberOfRecommendations();
         if(this.state.numberOfCommentDisplayed === null) {
             let numberOfReviews = null;
             if(this.props.reviewComments.length >= 1) {
@@ -65,7 +78,7 @@ class Home extends Component {
                         </div>
                         <div className='homeAddBookContainer'>
                             <div className='viewBookAddReviewContainer' onClick={this.handleAddBook}>
-                                <p className='viewBookUserReviewHeader'>Add New Book</p>
+                                <p className='viewBookUserReviewHeader'>{t('admin_home.add_new_book')}</p>
                                 <FaPlusCircle className="viewBookAddReviewIcon"
                                             size={124}/>
                             </div>

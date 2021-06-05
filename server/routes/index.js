@@ -416,7 +416,20 @@ router.post('/editReview', async function(req, res, next) {
   } else {
     return res.send({response:true, message:'Successfully updated'});
   }
+}); 
+
+
+router.post('/getSugNo', async function(req, res, next) {
+  console.log(req.body.message);
+  const suggestions = await knex('suggestions').select('*').where({'suggestionUserID':1});
+  console.log(suggestions);
+  if (!suggestions) {return res.send({response:false, message: 'no suggestions found'})}
+  const lengthOfSug = suggestions.length;
+  console.log(lengthOfSug);
+  return res.send({resposne:true, lengthOfSug});
 });
+
+
 /*
 router.get('/adminpanel', async function(req, res, next) {
   console.log(req.body.message);
@@ -488,9 +501,9 @@ router.post('/login2', async function(req, res, next) {
   const user = await knex('admins').select('*').where({"adminEmail":email, "adminPassword":password}).first()
   console.log(user);
   if(user){
-  console.log("successfully logged in")
- return res.send({response: true, user:user})
-  }else{
+    console.log("successfully logged in")
+    return res.send({response: true, user:user})
+  } else {
   console.log("email or password is incorrect");
   return res.send({response:false, message:"email or password is incorrect"})
   }
