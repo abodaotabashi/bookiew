@@ -1,6 +1,7 @@
 import React from 'react';
 import './ViewBookUserReviewCard.css';
 
+import UserIcon from "../../assets/icons/user.png";
 import { FaStar } from 'react-icons/fa';
 import {useTranslation} from "react-i18next";
 
@@ -11,7 +12,7 @@ const ViewBookOtherReviewCard = (props) => {
             <div className='viewBookUserReviewerContainer'>
                 <div className='viewBookUserReviewerWrapper'>
                     <div className='viewBookUserReviewerIconWrapper'>
-                        <img src={props.reviewerIcon} className='viewBookUserReviewerIcon' alt='reviewer'/>
+                        <img src={(props.reviewerIcon === '' || typeof(props.reviewerIcon) === 'undefined') ? UserIcon : props.reviewerIcon} className='viewBookUserReviewerIcon' alt='reviewer'/>
                     </div>
                     <div className='viewBookUserReviewerName'>{props.reviewerName}</div>
                 </div>

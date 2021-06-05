@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import "./ViewReview.css";
-
-import Comment from '../../components/Comment/Comment';
-import StarRating from '../StarRating/StarRating';
-import { FaStar } from 'react-icons/fa';
-import { FaComment } from 'react-icons/fa';
-import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
 import {withTranslation} from "react-i18next"
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
+
+import Comment from '../../components/Comment/Comment';
+import StarRating from '../StarRating/StarRating';
+
+import { FaStar } from 'react-icons/fa';
+import { FaComment } from 'react-icons/fa';
+import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
+import UserIcon from "../../assets/icons/user.png";
+import "./ViewReview.css";
 
 class ViewOtherReview extends Component {
     state = {
@@ -19,7 +21,7 @@ class ViewOtherReview extends Component {
         reviewCommentsDisplayed: null,
         showMoreCommentsButtonVisible: 'flex',
         user: this.props.user,
-        userComment: null,//{ commenterName: 'Abdurrahman', commentText: 'That is amazing!', commentDate: '30.03.2021'},
+        userComment: null,
         newComment: '',
         userRating: null,
         newRating: null
@@ -146,7 +148,7 @@ class ViewOtherReview extends Component {
             <div className='viewReviewBackgroundSection'>
                 <div className='viewReviewBackgroundFilterSection'>
                     <div className='viewReviewContainer'>
-                        <p className='viewReviewHeader'>{this('view_review.title')}</p>
+                        <p className='viewReviewHeader'>{t('view_review.title')}</p>
                         <div className='viewReviewBreaklineContainer' >
                             <hr className='viewReviewBreakline' />
                         </div>
@@ -192,7 +194,7 @@ class ViewOtherReview extends Component {
                                     <div className='viewBookUserReviewerContainer'>
                                         <div className='viewBookUserReviewerWrapper'>
                                             <div className='viewBookUserReviewerIconWrapper'>
-                                                <img src={this.state.review.reviewerIcon} className='viewBookUserReviewerIcon' alt='reviewer'/>
+                                                <img src={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon} className='viewBookUserReviewerIcon' alt='reviewer'/>
                                             </div>
                                             <div className='viewBookUserReviewerName'>{this.state.review.reviewerName}</div>
                                         </div>

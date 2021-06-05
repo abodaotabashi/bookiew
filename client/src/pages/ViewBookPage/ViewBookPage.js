@@ -1,10 +1,8 @@
 import React from 'react';
+
 import NavbarWithUser from '../../components/NavbarWithUser/NavbarWithUser';
 import MiniFooter from '../../components/MiniFooter/MiniFooter';
 import ViewBook from '../../containers/ViewBook/ViewBook';
-
-import ThumbnailTest from "../../assets/images/thumbnailtest.png"
-import UserIcon from "../../assets/icons/user.png";
 import PageContainer from '../../components/PageContainer/PageContainer';
 
 const ViewBookPage = (props) => {
@@ -12,12 +10,11 @@ const ViewBookPage = (props) => {
         <div>
             <NavbarWithUser />
             <PageContainer>
-                <ViewBook bookID={props.location.state.bookID} book={props.location.state.book} reviews={props.location.state.reviews} user={props.location.state.user} />
+                <ViewBook book = { props.location.state.book } />
             </PageContainer>
             <MiniFooter />
         </div>
     );
 }
-
 
 export default ViewBookPage;

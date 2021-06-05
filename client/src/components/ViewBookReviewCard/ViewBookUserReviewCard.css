@@ -82,6 +82,7 @@
 }
 
 .viewBookUserReviewText {
+    width: 94%;
     text-align: justify;
     text-justify: inter-word;
     font-family: 'Century Gothic';

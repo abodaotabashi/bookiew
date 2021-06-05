@@ -336,7 +336,7 @@ router.post('/getBook', async function(req, res, next) {
       'bookPublishingYear': bookA[0].publishingYear,
       'bookCategory': bookA[0].category,
       'bookSubject': bookA[0].subject,
-      'bookLanguage': bookA[0].language,
+      'bookLanguage': bookA[0].bookLanguage,
       'bookID': bookA[0].bookID
     };
     return res.send({response: true, book});

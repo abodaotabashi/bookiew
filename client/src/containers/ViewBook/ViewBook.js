@@ -1,87 +1,93 @@
 import React, { Component } from 'react';
-import "./ViewBook.css";
-
-import { FaPlusCircle } from 'react-icons/fa';
-import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
-
-import ViewBookUserReviewCard from '../../components/ViewBookReviewCard/ViewBookUserReviewCard';
-import ViewBookOtherReviewCard from '../../components/ViewBookReviewCard/ViewBookOtherReviewCard';
 import { withRouter } from "react-router-dom";
 import {withTranslation} from "react-i18next";
 import axios from 'axios';
 
-class ViewBook extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            book: this.props.book,
-            bookID: this.props.bookID,
-            user: this.props.user,
-            userID: localStorage.getItem('userID'),
-            reviews:this.props.reviews,
-            reviewOfUser: null,
-            numberOfReviewsDisplayed: null,
-            reviewsDisplayed: null,
-            showMoreReviewsButtonVisible: 'flex'
-        }
-        this.handleGetBook();
-    }
+import ViewBookUserReviewCard from '../../components/ViewBookReviewCard/ViewBookUserReviewCard';
+import ViewBookOtherReviewCard from '../../components/ViewBookReviewCard/ViewBookOtherReviewCard';
 
-    handleGetBook = async () => {
-        const bookID = this.state.bookID;
-        console.log(bookID);
+import { FaTimesCircle } from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
+import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
+import "./ViewBook.css";
+
+class ViewBook extends Component {
+    state = {
+        book: this.props.book,
+        user: {
+            'userID': localStorage.getItem('userID'),
+            'userName': localStorage.getItem('userFirstname') + " " + localStorage.getItem('userSurname'),
+            'userIcon': localStorage.getItem('userProfilePhotoURL')
+        },
+        reviews: null,
+        reviewOfUser: null,
+        numberOfReviewsDisplayed: null,
+        reviewsDisplayed: null,
+        showMoreReviewsButtonVisible: 'none'
+    };
+
+    handleGetReviews = async () => {
+        //Getting the Reviews from the database
+        const bookID = this.state.book.bookID;
         const reviewsResult = await axios.post("http://localhost:3000/getReviews", {
-            bookID : bookID
+            bookID: bookID
         });
         if (reviewsResult.data.response) {
-            this.state.reviews = reviewsResult.data.reviews;
+            //Checking whether there is a review of the logged in user or not
+            let reviews = reviewsResult.data.reviews;
+            let userID = this.state.user.userID;
+            let newReviews = null;
+            reviews.forEach((review, index) => {
+                if (review.reviewerID == userID && this.state.reviewOfUser === null){
+                    this.setState({reviewOfUser: review});
+                    newReviews = reviews
+                    newReviews.splice(index, 1);
+                    reviews = newReviews;
+                    this.setState({reviews : reviews});
+                }
+            });
+            //Checking whether we need to display "Show More Reviews"-Button or not
+            if(this.state.numberOfReviewsDisplayed === null) {
+                let numberOfReviews = null;
+                if(reviews.length > 3) {
+                    numberOfReviews = 3;
+                    this.setState({ numberOfReviewsDisplayed: 3,
+                        showMoreReviewsButtonVisible: 'flex'});
+                    this.setState({ reviewsDisplayed: reviews.slice(0, numberOfReviews)});
+                } else {
+                    this.setState({ numberOfReviewsDisplayed: reviews.length, reviewsDisplayed: reviews});
+                }
+            }    
         }
     }
 
     handleShowMoreReviews = () => {
-        if (this.state.reviews !== null) {
-            if(this.state.reviews.length <= this.state.numberOfReviewsDisplayed + 3) {
-                this.setState({ numberOfReviewsDisplayed: this.state.reviews.length,
-                                reviewsDisplayed: this.state.reviews,
-                                showMoreReviewsButtonVisible: 'none'
-                            });
-            } else {
-                let numberOfReviews = this.state.numberOfReviewsDisplayed + 3;
-                this.setState({ numberOfReviewsDisplayed: numberOfReviews,
-                    reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)
-                    });
-            }
+        if(this.state.reviews.length <= this.state.numberOfReviewsDisplayed + 3) {
+            this.setState({ numberOfReviewsDisplayed: this.state.reviews.length,
+                            reviewsDisplayed: this.state.reviews,
+                            showMoreReviewsButtonVisible: 'none'
+                        });
+        } else {
+            let numberOfReviews = this.state.numberOfReviewsDisplayed + 3;
+            this.setState({ numberOfReviewsDisplayed: numberOfReviews,
+                reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)
+                });
         }
     }
 
-
     handleMyReviewClicked = () => {
         this.props.history.push({   pathname: '/viewReview',
-                                    state: { review: this.state.reviewOfUser, book:this.state.book}});
+                                    state: { reviewID: this.state.reviewOfUser.reviewID }});
     }
 
     handleOtherReviewClicked = (review) => {
         this.props.history.push({   pathname: '/viewReviewOfOther',
-                                    state: { review: review, book:this.state.book, user: this.state.user }});
+                                    state: { review: review, book: this.state.book, user: this.state.user }});
     }
 
     handleAddReview = () => {
         this.props.history.push({   pathname: '/addReview',
-                                    state: { book:this.state.book, user:this.state.user, bookID: this.state.bookID }});
-    }
-
-    checkReviewOfUser = () => {
-        let userID = this.state.userID;
-        if (this.state.reviews !== null) {
-            this.state.reviews.forEach((review, index) => {
-                if (review['reviewerID'] === userID && this.state.reviewOfUser === null){
-                    this.setState({reviewOfUser: review});
-                    let newReviews = this.state.book.reviews
-                    newReviews.splice(index, 1);
-                    this.setState({reviews: newReviews});
-                }
-            });
-        }
+                                    state: { book: this.state.book, user: this.state.user }});
     }
 
     goToLogin = () => {
@@ -93,14 +99,18 @@ class ViewBook extends Component {
             this.goToLogin();
         }
 
-        const {t} = this.props;
-        this.checkReviewOfUser();
+        if(this.state.reviews === null){
+            this.handleGetReviews();
+        }
+
+        const {t} = this.props;   
         
         let reviewOfUser = null;
         let horizontalBreakline = null;
+
         if(this.state.reviewOfUser !== null) {
             reviewOfUser = (
-                <div>
+                <div className='viewBookUserReviewSection'>
                     <p className='viewBookUserReviewHeader'>{t('view_book.your_review')}</p>
                     <ViewBookUserReviewCard click={this.handleMyReviewClicked}
                                             reviewerIcon={this.state.reviewOfUser.reviewerIcon}
@@ -126,21 +136,6 @@ class ViewBook extends Component {
             )
         }
 
-        if(this.state.numberOfReviewsDisplayed === null) {
-            let numberOfReviews = null;
-            if (this.state.reviews!== null) {
-            if(this.state.reviews.length > 1) {
-                numberOfReviews = 1;
-                this.setState({ numberOfReviewsDisplayed: 1 });
-            } else {
-                numberOfReviews = this.state.reviews.length;
-                this.setState({ numberOfReviewsDisplayed: this.state.reviews.length, showMoreReviewsButtonVisible: 'none'});
-            }
-                this.setState({ reviewsDisplayed: this.state.reviews.slice(0, numberOfReviews)});
-            }
-        }
-
-
         let reviewsOfOther = null;
         if(this.state.reviewsDisplayed !== null) {
             reviewsOfOther = (
@@ -163,8 +158,16 @@ class ViewBook extends Component {
                     })}
                 </div>
             );
+        }else{
+            reviewsOfOther = (
+                <div className='viewBookUserReviewSection'>
+                    <div className='searchResultsNoResultsSection'>
+                        <FaTimesCircle size={148} color='#341f97'/>
+                        There are no Reviews yet for this book!
+                    </div>
+                </div>
+            );
         }
-
 
         return(
             <div className='viewBookBackgroundSection'>
@@ -221,7 +224,6 @@ class ViewBook extends Component {
                                         <img src={ExpandIcon} className='viewBookShowReviewsButtonIcon' alt='ShowReviewsIcon'/>
                                     </button>
                                 </div>
-                                
                             </div>
                         </div>
                     </div>

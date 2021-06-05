@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import "./SearchResults.css";
+import { withRouter } from 'react-router-dom';
+import {withTranslation} from "react-i18next";
+import axios from 'axios';
+
+import BookCard from '../../components/BookCard/BookCard';
 
 import SearchIcon from "../../assets/icons/search_30px.png";
-import BookCard from '../../components/BookCard/BookCard';
 import { FaTimesCircle } from 'react-icons/fa';
-
-import { withRouter } from 'react-router-dom';
-import axios from 'axios';
-import {withTranslation} from "react-i18next";
+import "./SearchResults.css";
 
 class SearchResults extends Component {
     constructor(props) {
@@ -20,36 +20,18 @@ class SearchResults extends Component {
         }
         this.handleSearchBook();
     }
-    
 
     handleBookClicked = async (bookID) => {
-        //TODO
-        let user = {
-            'userID': localStorage.getItem('userID'),
-            'userName': localStorage.getItem('userFirstname') + " " + localStorage.getItem('userSurname'),
-            'userIcon': localStorage.getItem('userProfilePhotoURL')
-        }
         let book = null;
-        let review = null;
         const result = await axios.post("http://localhost:3000/getBook", {
-            bookID:bookID
+            bookID: bookID
         });
         if (result.data.response) {
             book = result.data.book;
-            console.log(book);
         }
-        const result1 = await axios.post("http://localhost:3000/getReviews", {
-            bookID:bookID
-        });
-        if (result1.data.response) {
-            review = result1.data.reviews;
-            console.log(review);
-        }
-        //localStorage.setItem('bookID',bookID);
-        console.log(bookID);
         this.props.history.push({
             pathname: '/viewBook',
-            state: { bookID: bookID, book:book, reviews:review, user:user}});
+            state: { book: book }});
         return;
     }
 
@@ -79,7 +61,6 @@ class SearchResults extends Component {
         this.setState({loading:false});
     }
 
-    
     goToLogin = () => {
         this.props.history.push({ pathname: '/login' });
     }

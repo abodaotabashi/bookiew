@@ -246,3 +246,12 @@
     background-color: rgb(52, 31, 151, 1);
     border-radius: 50%;
 }
+
+.viewBookUserReviewSection {
+    width: 97%;
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 90%;
+}
