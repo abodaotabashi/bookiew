@@ -143,7 +143,7 @@ class Home extends Component {
                 <div className='searchResultsBookCardsContainer'>
                     <div className='searchResultsNoResultsSection'>
                         <FaTimesCircle size={148} color='#341f97'/>
-                        You don't have any review!😭
+                        {t('home.no_reviews')}😭
                     </div>
                 </div>
             );

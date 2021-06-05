@@ -3,7 +3,8 @@
         "question":"Son zamanlarda yeni bir kitap okudunuz mu?",
         "Your_Last_Review": "Son İncelemeniz",
         "Show_More_Comments": "Daha Fazla Yorum Göster",
-        "after_question": "Onu arayın ve kendi incelemenizi ekleyin, diğer okuyuculara yardımcı olun!"
+        "after_question": "Onu arayın ve kendi incelemenizi ekleyin, diğer okuyuculara yardımcı olun!",
+        "no_reviews":"You don't have any review!"
         },
     "navbar":{
         "Change_Language": "Dili Değiştir",
@@ -27,7 +28,8 @@
     "admin_home": {
         "message": "Bilgilerini güncellemek istediğiniz veya silmek istediğiniz kitabı arayın!",
         "notification": "Yeni öneriler eklenmiştir!",
-        "goTo": "Önerilere git"
+        "goTo": "Önerilere git",
+        "add_new_book": "Yeni kitap ekle"
     },
     "book_recomm": {
         "title": "Kitap Önerisi",
@@ -68,7 +70,9 @@
         "reset": "Şifremi Değiştir"
     },
     "search_results": {
-        "message": "Bu kitap için sonuçlar bulunmuştur: "
+        "message": "Bu kitap için sonuçlar bulunmuştur: ",
+        "no_results":"Sonuç bulunamamıştır",
+        "title":"Arama Sonuçları"
     },
     "view_book": {
         "your_review": "Sizin İncelemeniz",
@@ -78,7 +82,8 @@
         "year_of_pub": "Yayın Tarihi:",
         "category": "Kategori:",
         "subject": "Konu:",
-        "language": "Dil:"
+        "language": "Dil:",
+        "show_more":"Daha fazla inceleme göster"
     },
     "view_review": {
         "title": "İncelemeyi göster",
@@ -116,6 +121,8 @@
         "about_us": "Bizler, yazılım mühendisliği dersimiz için bu fikri bulan, Türk-Alman Üniversitesi'ndeki üçüncü sınıfta olan bilgisayar mühendisliği öğrencileriyiz. Fikir, içinde bulunduğumuz teknoloji çağına ve bunun ana etkilerinden birine bakmaktan geldi: beklendiği gibi çok kitap okuyamamak. Yapmaya çalıştığımız fark, eleştirmenlere bir kelime sınırı vermek ve bu yorumları yine sizin tarafınızdan verilen puana göre sıralamaktır, böylece kitabı görüntüleyen bir sonraki kişi, istediklerini aramak için çok fazla zaman harcamaz.",
         "what": "Bizim hakkımızda?",
         "contact": "Bu web sitesinin arkasındaki geliştirici ekip bilgileri aşağıdaki gibidir. Bu e-postalar aracılığıyla bizimle iletişime geçebilirsiniz:",
+        "contact_title": "İletişim",
+        "welcome_more":"Detaylı Bilgi",
         "partners": " Ortaklar ",
         "welcome": " Bookiew'ya Hoşgeldiniz!",
         "welcome_text": "Kitapların bol olduğu, ancak nadiren onlar hakkında açıklayıcı incelemelerin olduğu bu çağda yaşamak zorunda kalmanın stresinden zihninizi arındırın."
@@ -137,5 +144,49 @@
         "have": "Hesabınız var mı? ",
         "login": "Giriş",
         "register": "Üye Ol"
+    },
+    "admin_add_book": {
+        "title": "Yeni Kitap Ekle",
+        "book_preview": "Kapak Önizlemesi ",
+        "book_name": "Kitabın Adı: ",
+        "author": "Yazar(lar): ",
+        "year_of_pub":"Yayın Tarihi: ",
+        "publisher": "Yayımcı: ",
+        "category": "Kategori: ",
+        "subject": "Konu: ",
+        "language": "Dil: ",
+        "cover_url": "Kapağın URL linki: ",
+        "add_button": "Kitabı Ekle"
+    },
+    "admin_recomm": {
+        "recommender": "Öneren",
+        "recommended_book": "Önerilen kitabın adı",
+        "recommended_book_author":"Önerilen kitabın yazar(lar)ı",
+        "year_od_pub":"Yayın Tarihi",
+        "recommenders_note":"Öneren kullanıcının notu:",
+        "delete_add_book":"Kitaplara Ekle/Kaldır",
+        "show_more_recomm":"Daha Fazla Öneri Göster",
+        "no_recomm":"Gelen Öneri Bulunmamaktadır",
+        "received_recom":"Gelen Öneriler"
+    },
+    "admin_search": {
+        "no_result":"Sonuç Bulunamadı",
+        "search_results":"Arama Sonuçları",
+        "results_for":"Bu kitap için sonuçlar bulunmuştur"
+    },
+    "update_book": {
+        "title":"Kitabı Güncelle",
+        "old_cover":"Eski Kapak Önizlemesi",
+        "new_cover":"Yeni Kapak Önizlemesi",
+        "book_name":"Kitabın Adı:",
+        "author":"Yazar(lar):",
+        "year_of_pub":"Yayın Tarihi:",
+        "publisher":"Yayımcı:",
+        "category":"Kategori:",
+        "subject":"Konu:",
+        "language":"Dil:",
+        "cover_url":"Kapağın URL linki: ",
+        "delete":"Kitabı Kaldır",
+        "update":"Kitabı Güncelle"
     }
 }

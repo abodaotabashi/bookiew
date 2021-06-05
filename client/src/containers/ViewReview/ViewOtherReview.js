@@ -6,7 +6,7 @@ import StarRating from '../StarRating/StarRating';
 import { FaStar } from 'react-icons/fa';
 import { FaComment } from 'react-icons/fa';
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
-
+import {withTranslation} from "react-i18next"
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
 
@@ -75,7 +75,7 @@ class ViewOtherReview extends Component {
         if(localStorage.getItem('isUserAuthenticated') === 'false'){
             this.goToLogin();
         }
-
+        const {t} = this.props;
         if(this.state.numberOfCommentDisplayed === null) {
             let numberOfReviews = null;
             if(this.props.review.reviewComments.length > 1) {
@@ -146,7 +146,7 @@ class ViewOtherReview extends Component {
             <div className='viewReviewBackgroundSection'>
                 <div className='viewReviewBackgroundFilterSection'>
                     <div className='viewReviewContainer'>
-                        <p className='viewReviewHeader'>View Review</p>
+                        <p className='viewReviewHeader'>{this('view_review.title')}</p>
                         <div className='viewReviewBreaklineContainer' >
                             <hr className='viewReviewBreakline' />
                         </div>
@@ -161,27 +161,27 @@ class ViewOtherReview extends Component {
                                 <table className='viewBookBookCardInformationTable'>
                                     <tbody>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Author:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.author')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookAuthor}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Publisher:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.publisher')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookPublisher}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Year of Publication:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.year_of_pub')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookPublishingYear}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Category:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.category')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookCategory}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Subject:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.subject')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookSubject}</td>
                                         </tr>
                                         <tr>
-                                            <td className='viewBookBookCardInformationRow'>Language:</td>
+                                            <td className='viewBookBookCardInformationRow'>{t('view_book.language')}</td>
                                             <td className='viewBookBookCardInformationRow'>{this.state.book.bookLanguage}</td>
                                         </tr>
                                     </tbody>
@@ -197,7 +197,7 @@ class ViewOtherReview extends Component {
                                             <div className='viewBookUserReviewerName'>{this.state.review.reviewerName}</div>
                                         </div>
                                         <div className='viewBookUserReviewDate'>
-                                            <p>Published On {this.state.review.reviewDate}</p>
+                                            <p>{t('home_review_card.pub_on')} {this.state.review.reviewDate}</p>
                                         </div>
                                     </div>
                                     <div className='viewBookUserReviewText'>
@@ -205,7 +205,7 @@ class ViewOtherReview extends Component {
                                     </div>
                                     <div className='viewBookOtherReviewRatingCommentSection'>
                                         <div className='viewBookUserReviewShowCommentsWrapper'>
-                                            <p className='viewBookUserReviewLabel'>Comments &nbsp;{this.state.review.reviewComments.length}</p>
+                                            <p className='viewBookUserReviewLabel'>{t('home_review_card.comments')} &nbsp;{this.state.review.reviewComments.length}</p>
                                         </div>
                                         <div className='viewBookRatingSection'>
                                             <p  className='viewReviewRatingLabel'>{RatingLabel}</p>
@@ -226,7 +226,7 @@ class ViewOtherReview extends Component {
                                 </div>
                                 <div className='viewBookOtherReviewsContainer'>
                                     <button className='viewBookShowReviewsButton' style={{ display: this.state.showMoreCommentsButtonVisible}} onClick={this.handleShowMoreComments}>
-                                        Show More Comments 
+                                        {t('home.Show_More_Comments')} 
                                         <img src={ExpandIcon} className='viewBookShowReviewsButtonIcon' alt='ShowReviewsIcon'/>
                                     </button>
                                 </div>
@@ -239,4 +239,4 @@ class ViewOtherReview extends Component {
     }
 }
 
-export default withRouter(ViewOtherReview);
+export default withTranslation()(withRouter(ViewOtherReview));

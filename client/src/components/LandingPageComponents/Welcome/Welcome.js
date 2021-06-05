@@ -24,7 +24,7 @@ const Welcome = () => {
                         smooth="true"
                         offset={-80}
                         duration={500}>
-                        Learn More
+                        {t('landing.welcome_more')}
                     </Link>
                 </button>
             </div>

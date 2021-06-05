@@ -2,8 +2,9 @@ import axios from 'axios';
 import React, { Component } from 'react';
 import "./AdminAddBook.css";
 import { withRouter } from "react-router-dom";
+import { withTranslation } from 'react-i18next';
 
-class AdminAddBook extends Component {
+class AdminAddBook extends Component { 
     state = {
         bookname: (this.props.recommendedBook !== null ) ? this.props.recommendedBook.bookname : '',
         author: (this.props.recommendedBook !== null ) ? this.props.recommendedBook.author : '',
@@ -38,25 +39,26 @@ class AdminAddBook extends Component {
     }
 
     render(){
+        const { t } = this.props;
         return(
             <div className='adminAddBookBackgroundSection'>
                 <div className='adminAddBookBackgroundFilterSection'>
                     <div className='adminAddBookSectionsContainer'>
                         <div className='adminAddBookSection'>
-                            <p className='adminAddBookSectionHeader'>Add New Book</p>
+                            <p className='adminAddBookSectionHeader'>{t('admin_add_book.title')}</p>
                             <div className='adminAddBookWrapper'>
                                 <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
                                         <img src={this.state.coverURL} className='adminAddBookThumbnail' alt=''/>
                                     </div>
-                                    <p className='adminAddBookCoverLabel'>Cover Preview </p>
+                                    <p className='adminAddBookCoverLabel'>{t('admin_add_book.book_preview')}</p>
                                 </div>
                                 <div className='adminAddBookVerticalBreakline'></div>
                                 <table className='adminAddBookInputTable'>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Name of Book: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.book_name')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -69,7 +71,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Author(s): </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.author')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -82,7 +84,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Year of Publication: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.year_of_pub')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -95,7 +97,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Publisher: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.publisher')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -108,7 +110,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Category: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.category')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -121,7 +123,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Subject: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.subject')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -134,7 +136,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Language: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.language')}</p>
                                             </td>
                                             <td>
                                                 <input  className='adminAddBookInputText' 
@@ -171,7 +173,7 @@ class AdminAddBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>URL of the Cover: </p>
+                                                <p className='adminAddBookInputLabel'>{t('admin_add_book.cover_url')}</p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -186,7 +188,7 @@ class AdminAddBook extends Component {
                                 </table>
                             </div>
                             <div className='adminAddBookErrorMessage' style={{ display: this.state.errorVisible}}>{this.state.errorMessage}</div>
-                            <button className='adminAddBookSendButton' onClick={this.handleAddBook}>Add Book</button>
+                            <button className='adminAddBookSendButton' onClick={this.handleAddBook}>{t('admin_add_book.add_button')}</button>
                         </div>
                     </div>
                 </div>
@@ -195,4 +197,4 @@ class AdminAddBook extends Component {
     }
 }
 
-export default withRouter(AdminAddBook);
+export default withTranslation()(withRouter(AdminAddBook));

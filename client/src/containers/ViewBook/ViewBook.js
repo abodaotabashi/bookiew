@@ -217,7 +217,7 @@ class ViewBook extends Component {
                                 <div className='viewBookOtherReviewsContainer'>
                                     {reviewsOfOther}
                                     <button className='viewBookShowReviewsButton' style={{ display: this.state.showMoreReviewsButtonVisible}} onClick={this.handleShowMoreReviews}>
-                                        Show More Reviews 
+                                        {t('view_book.show_more')} 
                                         <img src={ExpandIcon} className='viewBookShowReviewsButtonIcon' alt='ShowReviewsIcon'/>
                                     </button>
                                 </div>

@@ -3,7 +3,8 @@
         "question":"Haben Sie kürzlich ein neues Buch gelesen?",
         "Your_Last_Review":"Ihre letzte Rezension",
         "Show_More_Comments": "Mehr Kommentare anzeigen",
-        "after_question": "Durchsuchen Sie es und fügen Sie Ihre persönliche Rezension hinzu, um anderen Lesern zu helfen!"
+        "after_question": "Durchsuchen Sie es und fügen Sie Ihre persönliche Rezension hinzu, um anderen Lesern zu helfen!",
+        "no_reviews":"You don't have any review!"
         },
     "navbar":{
         "Change_Language": "Sprache ändern",
@@ -27,7 +28,8 @@
     "admin_home": {
         "message": "Suchen Sie einfach das Buch, dessen Informationen Sie bearbeiten oder löschen möchten!",
         "notification": "Neue Empfehlungen sind eingehalten",
-        "goTo": "Gehe zu Empfehlungen"
+        "goTo": "Gehe zu Empfehlungen",
+        "add_new_book": "Neues Buch hinzufügen"
     },
     "book_recomm": {
         "title": "Buchempfehlung",
@@ -68,7 +70,9 @@
         "reset": "Passwort zurücksetzen"
     },
     "search_results": {
-        "message": "Suchergebnisse gefunden für "
+        "message": "Suchergebnisse gefunden für ",
+        "no_results":"Keine Suchergebnisse",
+        "title":"Suchergebnisse"
     },
     "view_book": {
         "your_review": "Deine rezension",
@@ -78,7 +82,8 @@
         "year_of_pub": "Veröffentlichungsjahr:",
         "category": "Kategorie:",
         "subject": "Thema:",
-        "language": "Sprache:"
+        "language": "Sprache:",
+        "show_more":"Mehr Rezensionen anzeigen"
     },
     "view_review": {
         "title": "Rezension ansehen",
@@ -116,6 +121,8 @@
         "about_us": "Wir sind Informatik-Studenten, alle im Junior-Jahr an der Türkisch-Deutschen Universität, die diese Idee für unseren Software-Engineering-Studiengang hatten. Die Idee kam von der Betrachtung des Technologiezeitalters, in dem wir uns befinden, und einer der Haupteffekte davon: nicht in der Lage zu sein, viele Bücher wie erwartet zu lesen. Der Unterschied, den wir versuchen, besteht darin, den Rezensenten eine Beschränkung der Wörter zu geben und diese Rezensionen nach der von Ihnen vergebenen Punktzahl zu ordnen, damit die nächste Person, die das Buch liest, nicht viel Zeit damit verbringt, nach dem zu suchen, was sie sich gewünscht hat.",
         "what": "Was ist mit uns?",
         "contact": "Hier ist das Entwicklerteam hinter dieser Website. Sie können uns über diese E-Mails kontaktieren: ",
+        "contact_title": "Kontakt",
+        "welcome_more":"Erfahren Sie mehr",
         "partners": " Partner ",
         "welcome": " Herzlich Willkommen zu Bookiew!",
         "welcome_text": "Befreien Sie sich von dem Stress, in dieser Zeit leben zu müssen, in der es viele Bücher gibt, aber selten erklärende Rezensionen dazu."
@@ -137,5 +144,49 @@
         "have": "Ein Konto haben?? ",
         "login": "Einloggen",
         "register": "Registrieren"
+    },
+    "admin_add_book": {
+        "title": "Neues Buch hinzufügen",
+        "book_preview": "Cover-Vorschau ",
+        "book_name": "Name des Buches: ",
+        "author": "Autor(en): ",
+        "year_of_pub":"Veröffentlichungsjahr: ",
+        "publisher": "Herausgeber: ",
+        "category": "Kategorie: ",
+        "subject": "Thema: ",
+        "language": "Sprache: ",
+        "cover_url": "URL des Covers: ",
+        "add_button": "Buch hinzufügen"
+    },
+    "admin_recomm": {
+        "recommender": "Empfehlungsgeber",
+        "recommended_book": "Name des empfohlenen Buches",
+        "recommended_book_author":"Autor(en) des empfohlenen Buches",
+        "year_od_pub":"Veröffentlichungsjahr",
+        "recommenders_note":"Hinweis des Empfehlungsgebers",
+        "delete_add_book":"Löschen/Zu Büchern hinzufügen",
+        "show_more_recomm":"Weitere Empfehlungen anzeigen",
+        "no_recomm":"Es liegen keine Empfehlungen vor",
+        "received_recom":"Erhaltene Empfehlungen"
+    },
+    "admin_search": {
+        "no_result":"Keine Ergebnisse",
+        "search_results":"Suchergebnisse",
+        "results_for":"Suchergebnisse gefunden für"
+    },
+    "update_book": {
+        "title":"Buch aktualisieren",
+        "old_cover":"Vorschau des alten Covers",
+        "new_cover":"Vorschau des neuen Covers",
+        "book_name":"Name des Buches:",
+        "author":"Autor(en):",
+        "year_of_pub":"Veröffentlichungsjahr:",
+        "publisher":"Herausgeber:",
+        "category":"Kategorie:",
+        "subject":"Thema:",
+        "language":"Sprache:",
+        "cover_url":"URL des Covers: ",
+        "delete":"Buch löschen",
+        "update":"Buch aktualisieren"
     }
 }

@@ -1,9 +1,10 @@
 {
-    "home": {
+    "home": { 
         "question":"Have You Read Recently A New Book?",
         "Your_Last_Review":"Your Last Review",
         "Show_More_Comments": "Show More Comments",
-        "after_question": "Search it and add your personal review to help another readers!"
+        "after_question": "Search it and add your personal review to help another readers!",
+        "no_reviews":"You don't have any review!"
         },
     "navbar":{
         "Change_Language": "Change Language",
@@ -27,7 +28,8 @@
     "admin_home": {
         "message": "Search simply the book, that you want to edit its informations or you want to delete it!",
         "notification": "New Recommendations received",
-        "goTo": "Go To Recommendations"
+        "goTo": "Go To Recommendations",
+        "add_new_book": "Add New Book"
     },
     "book_recomm": {
         "title": "Book Recommendation",
@@ -67,10 +69,12 @@
         "confirm": "Confirm Password",
         "reset": "Reset Password"
     },
-    "search_results": {
-        "message": "Search results found for "
+    "search_results": { 
+        "message": "Search results found for ",
+        "no_results":"No Results",
+        "title":"Search Results"
     },
-    "view_book": {
+    "view_book": {  
         "your_review": "Your Review",
         "add_your": "Add Your Own Review!",
         "author": "Author:",
@@ -78,7 +82,8 @@
         "year_of_pub": "Year of Publication:",
         "category": "Category:",
         "subject": "Subject:",
-        "language": "Language:"
+        "language": "Language:",
+        "show_more":"Show More Reviews"
     },
     "view_review": {
         "title": "View Review",
@@ -106,7 +111,7 @@
         "contact": "Contact",
         "about": "About"
     },
-    "home_review_card": {
+    "home_review_card": { 
         "pub_on": "Published On ",
         "comments": "Comments "
     },
@@ -116,6 +121,8 @@
         "about_us": "We are computer science students, all in our junior year at the Turkish-German University, who came up with this idea for our software engineering course. The idea came from looking at the technology age we are in and one of the main effects of it: not being able to read many books as expected. The difference we try to make is to give the reviewers a limit of words and rank these reviews by the score given, again by you, so that the next person viewing the book will spend not much of a time searching for what they have wished. ",
         "what": "What about us?",
         "contact": "Here's the developer team behind this website. You can contact us through these emails:",
+        "contact_title": "Contact",
+        "welcome_more":"Learn More",
         "partners": " Partners ",
         "welcome": " Welcome to Bookiew!",
         "welcome_text": "Free your mind from the stress of having to live in this age, where there are plenty of books but rarely explanative reviews about them."
@@ -137,5 +144,49 @@
         "have": "Have an account? ",
         "login": "Login",
         "register": "Register"
+    },
+    "admin_add_book": {
+        "title": "Add New Book",
+        "book_preview": "Cover Preview ",
+        "book_name": "Name of Book: ",
+        "author": "Author(s): ",
+        "year_of_pub":"Year of Publication: ",
+        "publisher": "Publisher: ",
+        "category": "Category: ",
+        "subject": "Subject: ",
+        "language": "Language: ",
+        "cover_url": "URL of the Cover: ",
+        "add_button": "Add Book"
+    },
+    "admin_recomm": {
+        "recommender": "Recommender",
+        "recommended_book": "Name of Recommended Book",
+        "recommended_book_author":"Author(s) of Recommended Book",
+        "year_od_pub":"Year of Publication",
+        "recommenders_note":"Recommender's Note",
+        "delete_add_book":"Delete/Add to Books",
+        "show_more_recomm":"Show More Recommendations",
+        "no_recomm":"There are no received recommendations",
+        "received_recom":"Received Recommendations"
+    },
+    "admin_search": {
+        "no_result":"No Results",
+        "search_results":"Search Results",
+        "results_for":"Search results found for"
+    },
+    "update_book": {
+        "title":"Update Book",
+        "old_cover":"Old Cover Preview",
+        "new_cover":"New Cover Preview",
+        "book_name":"Name of Book:",
+        "author":"Author(s):",
+        "year_of_pub":"Year of Publication:",
+        "publisher":"Publisher:",
+        "category":"Category:",
+        "subject":"Subject:",
+        "language":"Language:",
+        "cover_url":"URL of the Cover: ",
+        "delete":"Delete Book",
+        "update":"Update Book"
     }
 }

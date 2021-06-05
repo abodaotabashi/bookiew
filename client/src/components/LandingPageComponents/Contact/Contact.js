@@ -7,7 +7,7 @@ const Contact = () => {
     const {t} = useTranslation();
     return(
         <div id='contact' className='landingContact'> 
-            <label className='landingContactLabel'> Contact </label>
+            <label className='landingContactLabel'> {t('landing.contact_title')} </label>
             <div className='landingContactTextContainer'>
                 <div className='landingContactTextWrapper'>
                     <p className='landingContactText'>

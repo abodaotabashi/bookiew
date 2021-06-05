@@ -111,7 +111,7 @@ class SearchResults extends Component {
                 books = (<div className='searchResultsBookCardsContainer'>
                             <div className='searchResultsNoResultsSection'>
                                 <FaTimesCircle size={148} color='#341f97'/>
-                                No Results 😟
+                                {t('search_results.no_results')} 😟
                             </div>
                         </div>);
             }
@@ -130,7 +130,7 @@ class SearchResults extends Component {
                     <div className='searchResultsSectionsContainer'>
                         <div className='searchResultsHeaderSection'>
                             <div className='searchResultsHeader'>
-                                <p className='searchResultsHeaderText'>Search Results</p>
+                                <p className='searchResultsHeaderText'>{t('search_results.title')}</p>
                             </div>
                             <div className='searchResultsSearchBoxContainer'>
                                 <div className='searchResultsSearchBox'>

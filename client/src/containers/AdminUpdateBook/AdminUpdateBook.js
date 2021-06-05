@@ -5,6 +5,7 @@ import { withRouter } from 'react-router-dom';
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
 import axios from 'axios';
+import { withTranslation } from 'react-i18next';
 
 class AdminUpdateBook extends Component {
     state = {
@@ -58,32 +59,33 @@ class AdminUpdateBook extends Component {
     }
 
     render(){
+        const { t } = this.props;
         return(
             <div className='adminAddBookBackgroundSection'>
                 <div className='adminAddBookBackgroundFilterSection'>
                     <div className='adminUpdateBookSectionsContainer'>
                         <div className='adminAddBookSection'>
-                            <p className='adminAddBookSectionHeader'>Update Book</p>
+                            <p className='adminAddBookSectionHeader'>{t('update_book.title')}</p>
                             <div className='adminAddBookWrapper'>
                             <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
                                         <img src={this.state.oldBook.coverURL} className='adminAddBookThumbnail' alt=''/>
                                     </div>
-                                    <p className='adminAddBookCoverLabel'>Old Cover Preview </p>
+                                    <p className='adminAddBookCoverLabel'>{t('update_book.old_cover')} </p>
                                 </div>
                                 <div className='adminAddBookVerticalBreakline'></div>
                                 <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
                                         <img src={this.state.coverURL} className='adminAddBookThumbnail' alt=''/>
                                     </div>
-                                    <p className='adminAddBookCoverLabel'>New Cover Preview </p>
+                                    <p className='adminAddBookCoverLabel'>{t('update_book.new_cover')} </p>
                                 </div>
                                 <div className='adminAddBookVerticalBreakline'></div>
                                 <table className='adminAddBookInputTable'>
                                     <tbody>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Name of Book: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.book_name')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -96,7 +98,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Author(s): </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.author')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -109,7 +111,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Year of Publication: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.year_of_pub')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -122,7 +124,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Publisher: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.publisher')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -135,7 +137,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Category: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.category')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -148,7 +150,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Subject: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.subject')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -161,7 +163,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>Language: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.language')} </p>
                                             </td>
                                             <td>
                                                 <input  className='adminAddBookInputText' 
@@ -198,7 +200,7 @@ class AdminUpdateBook extends Component {
                                         </tr>
                                         <tr>
                                             <td>
-                                                <p className='adminAddBookInputLabel'>URL of the Cover: </p>
+                                                <p className='adminAddBookInputLabel'>{t('update_book.cover_url')} </p>
                                             </td>
                                             <td>
                                             <input  className='adminAddBookInputText' 
@@ -219,14 +221,14 @@ class AdminUpdateBook extends Component {
                                         color="#ffffff" 
                                         size={24}/>
                                     &nbsp;
-                                    Delete Book
+                                    {t('update_book.delete')}
                                 </button>
                                 <button className='adminUpdateBookUpdateButton' onClick={this.handleUpdateBook}>
                                     <FaEdit  
                                         color="#ffffff" 
                                         size={24}/>
                                     &nbsp;
-                                    Update Book
+                                    {t('update_book.update')}
                                 </button>
                             </div>
                         </div>
@@ -237,4 +239,4 @@ class AdminUpdateBook extends Component {
     }
 }
 
-export default withRouter(AdminUpdateBook);
+export default withTranslation()(withRouter(AdminUpdateBook));

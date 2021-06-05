@@ -6,6 +6,7 @@ import BookCard from '../../components/BookCard/BookCard';
 import { FaTimesCircle } from 'react-icons/fa';
 
 import { withRouter } from 'react-router-dom';
+import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 
 
@@ -67,7 +68,8 @@ class AdminSearchResults extends Component {
 
     render(){
         let books = null;
-      
+        const { t } = this.props;
+
         if(!this.state.loading) {
             if(this.state.books.length !== 0){
                 books = (<div className='searchResultsBookCardsContainer'>
@@ -88,7 +90,7 @@ class AdminSearchResults extends Component {
                 books = (<div className='searchResultsBookCardsContainer'>
                             <div className='searchResultsNoResultsSection'>
                                 <FaTimesCircle size={148} color='#341f97'/>
-                                No Results 😟
+                                {t('admin_search.no_result')} 😟
                             </div>
                         </div>);
             }
@@ -107,7 +109,7 @@ class AdminSearchResults extends Component {
                     <div className='searchResultsSectionsContainer'>
                         <div className='searchResultsHeaderSection'>
                             <div className='searchResultsHeader'>
-                                <p className='searchResultsHeaderText'>Search Results</p>
+                                <p className='searchResultsHeaderText'>{t('admin_search.search_results')}</p>
                             </div>
                             <div className='searchResultsSearchBoxContainer'>
                                 <div className='searchResultsSearchBox'>
@@ -121,7 +123,7 @@ class AdminSearchResults extends Component {
                         <div className='searchResultsBreaklineContainer' >
                             <hr className='searchResultsBreakline' />
                         </div>
-                        <p className='searchResultsNumResults'>{this.state.books.length} Search results found for "{searchedBook}" :</p>
+                        <p className='searchResultsNumResults'>{this.state.books.length} {t('admin_search.results_for')} "{searchedBook}" :</p>
                         <div className='searchResultsBookCardsContainer'>
                             {books}
                         </div>
@@ -132,4 +134,4 @@ class AdminSearchResults extends Component {
     }
 }
 
-export default withRouter(AdminSearchResults);
+export default withTranslation()(withRouter(AdminSearchResults));
