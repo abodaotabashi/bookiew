@@ -1,36 +1,53 @@
 import React, { Component } from 'react';
-import "../ViewReview/ViewReview.css";
-import "./AddReview.css";
-
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 
+import UserIcon from "../../assets/icons/user.png";
+import "../ViewReview/ViewReview.css";
+import "./AddReview.css";
+
 class AddReview extends Component {
     state = {
         book: this.props.book,
-        bookID: this.props.bookID,
         review: '',
-        user: this.props.user
+        user: this.props.user,
+        errorMessage: '',
+        errorVisible: 'none'
     }
 
     handleAddReview = async () => {
-        //TODO
-        var showDate = new Date();
-        let reviewDate = showDate.getFullYear() + '/'+ (showDate.getMonth()+1) + '/' + showDate.getDate();
-        console.log(this.state.bookID);
-        const addResult = await axios.post("http://localhost:3000/addReview", {
-            userID: this.state.user.userID,
-            bookID: this.state.bookID,
-            review: this.state.review,
-            reviewDate: reviewDate
-        });
-        if (addResult.data.response) {
-            console.log('added seccessfully');
-            this.props.history.push({
-                pathname:'/home'
-            })
+        this.clearErrors();
+        if (this.state.review === null || (typeof(this.state.review) === 'string' && this.state.review.trim() === '')) {
+            console.log(typeof(this.state.review))
+            this.setState({ 
+                errorMessage: 'Your Review is empty!',
+                errorVisible: 'flex'   
+            });
+        } else {
+            let todayDate = new Date();
+            let reviewDate = todayDate.getFullYear() + '/'+ (todayDate.getMonth()+1) + '/' + todayDate.getDate();
+            const addResult = await axios.post("http://localhost:3000/addReview", {
+                userID: this.state.user.userID,
+                bookID: this.state.book.bookID,
+                review: this.state.review,
+                reviewDate: reviewDate
+            });
+            if (addResult.data.response) {
+                console.log('You have new Review for this book successfully added!');
+                this.props.history.push({
+                    pathname: '/viewBook',
+                    state: { book: this.state.book }
+                });
+            }
         }
+    }
+
+    clearErrors = () => {
+        this.setState({
+            errorMessage: '',
+            errorVisible: 'none'
+        });
     }
     
     goToLogin = () => {
@@ -91,7 +108,7 @@ class AddReview extends Component {
                                 <div className='addReviewReviewerContainer'>
                                     <div className='addReviewReviewerWrapper'>
                                         <div className='viewBookUserReviewerIconWrapper'>
-                                            <img src={this.state.user.userIcon} className='viewBookUserReviewerIcon' alt='reviewer'/>
+                                            <img src={(this.state.user.userIcon === '' || typeof(this.state.user.userIcon) === 'undefined') ? UserIcon : this.state.user.userIcon} className='viewBookUserReviewerIcon' alt='reviewer'/>
                                         </div>
                                         <div className='viewBookUserReviewerName'>{this.state.user.userName}</div>
                                     </div>
@@ -106,6 +123,7 @@ class AddReview extends Component {
                                     📝 {this.state.review.length}/500
                                     <span className='addReviewReviewTextLengthTooltip'><p>{t('add_review.warning')}</p></span>
                                 </div>
+                                <div className='addReviewErrorMessage' style={{ display: this.state.errorVisible}}>{this.state.errorMessage}</div>
                                 <div className='viewBookOtherReviewsContainer'>
                                     <button className='viewBookShowReviewsButton' onClick={this.handleAddReview}>
                                         {t('add_review.publish_review')}

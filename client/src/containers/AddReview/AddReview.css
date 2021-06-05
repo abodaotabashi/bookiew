@@ -99,3 +99,16 @@
 .addReviewReviewTextLength:hover > .addReviewReviewTextLengthTooltip {
     visibility: visible;
 }
+
+.addReviewErrorMessage {
+    margin-top: 1em;
+    background: rgb(121, 8, 8);
+    border-radius: 30px;
+    padding: 0.2em 1em;
+    color: rgba(255, 255, 255, 1);
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    font-weight: lighter;
+    width: fit-content;
+    transition: all 250ms ease-in-out;
+}

@@ -16,56 +16,80 @@ class ViewOtherReview extends Component {
     state = {
         book: this.props.book,
         review: this.props.review,
-        reviewComments: this.props.review.reviewComments,
+        reviewComments: null,
         numberOfCommentDisplayed: null,
         reviewCommentsDisplayed: null,
-        showMoreCommentsButtonVisible: 'flex',
+        showMoreCommentsButtonVisible: 'none',
         user: this.props.user,
-        userComment: null,
         newComment: '',
         userRating: null,
         newRating: null
     }
 
-    handleReviewRated = (ratingValue) => {
+    handleGetRatingOfUser = () => {
+        //TODO
+    }
+
+    handleUpdateRating = (ratingValue) => {
         this.setState({newRating: ratingValue});
         //TODO
     }
 
+    handleGetComments = async () => {
+        const commentsResult = await axios.post("http://localhost:3000/getComments", {
+            reviewID: this.props.review.reviewID
+        })
+        if(commentsResult.data.response){
+            const comments = commentsResult.data.comments;
+            this.setState({reviewComments : comments});
+            if(this.state.numberOfCommentDisplayed === null) {
+                let numberOfComments = null;
+                if(comments.length > 3) {
+                    numberOfComments = 3;
+                    this.setState({ numberOfCommentDisplayed: numberOfComments, showMoreCommentsButtonVisible: 'flex' });
+                    this.setState({ reviewCommentsDisplayed: comments.slice(0, numberOfComments)});
+                } else {
+                    this.setState({ numberOfCommentDisplayed: comments.length, showMoreCommentsButtonVisible: 'none', reviewCommentsDisplayed: comments });
+                }
+            }
+        }
+    }
+
     handleShowMoreComments = () => {
-        if(this.state.reviewComments.length < this.state.numberOfCommentDisplayed + 3) {
+        if(this.state.reviewComments.length <= this.state.numberOfCommentDisplayed + 3) {
             this.setState({ numberOfCommentDisplayed: this.state.reviewComments.length,
                             reviewCommentsDisplayed: this.state.reviewComments,
                             showMoreCommentsButtonVisible: 'none'
                         });
         } else {
-            let numberOfReviews = this.state.numberOfCommentDisplayed + 3;
-            this.setState({ numberOfCommentDisplayed: numberOfReviews,
-                reviewCommentsDisplayed: this.state.reviewComments.slice(0, numberOfReviews)
+            let numberOfComments = this.state.numberOfCommentDisplayed + 3;
+            this.setState({ numberOfCommentDisplayed: numberOfComments,
+                reviewCommentsDisplayed: this.state.reviewComments.slice(0, numberOfComments)
                 });
         }
     }
 
     handleNewComment = async () => {
-        //TODO
-        var showDate = new Date();
+        let todayDate = new Date();
         const userID = localStorage.getItem('userID');
         const commentText = this.state.newComment;
-        const commentDate = showDate.getFullYear() + '/'+ (showDate.getMonth()+1) + '/' + showDate.getDate();
-        const newRating = this.state.newRating;
+        const commentDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate();
         const reviewID = this.state.review.reviewID;
         const result = await axios.post("http://localhost:3000/addComment", {
-            userID:userID,
+            userID: userID,
             commentText: commentText,
             commentDate: commentDate,
-            reviewID:reviewID,
-            newRating:newRating
+            reviewID: reviewID
         });
         if (result.data.response) {
-            console.log('success');
-            this.props.history.push({
-                pathname:'/home'
-            })
+            console.log('You have new Comment for this Review successfully added!');
+            this.setState({
+                reviewComments: null,
+                numberOfCommentDisplayed: null,
+                reviewCommentsDisplayed: null,
+                showMoreCommentsButtonVisible: 'none',
+                newComment: ''
+            });
         }
     }
 
@@ -78,55 +102,19 @@ class ViewOtherReview extends Component {
             this.goToLogin();
         }
         const {t} = this.props;
-        if(this.state.numberOfCommentDisplayed === null) {
-            let numberOfReviews = null;
-            if(this.props.review.reviewComments.length > 1) {
-                numberOfReviews = 1;
-                this.setState({ numberOfCommentDisplayed: 1 });
-            } else {
-                numberOfReviews = this.props.review.reviewComments.length;
-                this.setState({ numberOfCommentDisplayed: this.props.review.reviewComments.length, showMoreCommentsButtonVisible: 'none'});
-            }
-            this.setState({ reviewCommentsDisplayed: this.props.review.reviewComments.slice(0, numberOfReviews)});
-        }
 
-        let CommentOfUser = null;
-
-        if(this.state.userComment === null) {
-            CommentOfUser = (
-                <div className='viewBookAddCommentSection'>
-                    <input  className='viewReviewCommentInputText' 
-                            type='text' 
-                            name=''
-                            value={this.state.newComment} 
-                            onChange={(event) => this.setState({newComment: event.target.value})}  
-                            placeholder='Add Your Comment ...' />
-                    <div className="viewReviewCommentInputSendButton" onClick={this.handleNewComment}>
-                        <FaComment className='viewReviewCommentInputSendButtonIcon' size={22}/>
-                    </div>
-                </div>
-            );
-        } else {
-            CommentOfUser = ( 
-                <div className='viewReviewCommentWrapper'>
-                    <Comment    commenterIcon={this.state.user.userIcon}
-                                commenterName={this.state.user.userName}
-                                commentDate={this.state.userComment.commentDate}
-                                commentText={this.state.userComment.commentText}
-                                />
-                </div>
-                
-            )
+        if(this.state.reviewComments === null) {
+            this.handleGetComments();
         }
 
         let Comments = null;
         if(this.state.reviewCommentsDisplayed !== null) {
             Comments = (
                 <div className='viewReviewCommentsContainer'>
-                    {this.state.reviewCommentsDisplayed.map((comment, index) => {
+                    {this.state.reviewCommentsDisplayed.map((comment) => {
                         return (
-                            <Comment    key={index}
-                                        commenterIcon={comment.commenterIcon}
+                            <Comment    key={comment.commentID}
+                                        commenterIcon={(comment.commenterIcon === '' || typeof(comment.commenterIcon) === 'undefined') ? UserIcon : comment.commenterIcon}
                                         commenterName={comment.commenterName}
                                         commentDate={comment.commentDate}
                                         commentText={comment.commentText}
@@ -207,7 +195,7 @@ class ViewOtherReview extends Component {
                                     </div>
                                     <div className='viewBookOtherReviewRatingCommentSection'>
                                         <div className='viewBookUserReviewShowCommentsWrapper'>
-                                            <p className='viewBookUserReviewLabel'>{t('home_review_card.comments')} &nbsp;{this.state.review.reviewComments.length}</p>
+                                            <p className='viewBookUserReviewLabel'>{t('home_review_card.comments')} &nbsp;{(this.state.reviewComments === null) ? 0 : this.state.reviewComments.length}</p>
                                         </div>
                                         <div className='viewBookRatingSection'>
                                             <p  className='viewReviewRatingLabel'>{RatingLabel}</p>
@@ -220,7 +208,17 @@ class ViewOtherReview extends Component {
                                                     size={24}/>
                                         </div>
                                     </div>
-                                    {CommentOfUser}
+                                    <div className='viewBookAddCommentSection'>
+                                        <input  className='viewReviewCommentInputText' 
+                                                type='text' 
+                                                name=''
+                                                value={this.state.newComment} 
+                                                onChange={(event) => this.setState({newComment: event.target.value})}  
+                                                placeholder='Add Your Comment ...' />
+                                        <div className="viewReviewCommentInputSendButton" onClick={this.handleNewComment}>
+                                            <FaComment className='viewReviewCommentInputSendButtonIcon' size={22}/>
+                                        </div>
+                                    </div>
                                     <div className='viewBookUserReviewBreaklineContainer' >
                                         <hr className='viewBookUserReviewBreakline' />
                                     </div>

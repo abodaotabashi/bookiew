@@ -214,7 +214,7 @@ router.post('/getReview', async function(req, res, next) {
   } else {
     const review = {
       'text':reviewA[0].reviewText, 
-      'date':reviewA[0].reviewDate, 
+      'date':(reviewA[0].reviewDate.getDate() + "/" + (reviewA[0].reviewDate.getMonth()+1) + "/" + reviewA[0].reviewDate.getFullYear()), 
       'rating':reviewA[0].reviewRating, 
       'reviewerID':reviewA[0].reviewUserID, 
       'reviewBookID':reviewA[0].reviewBookID
@@ -228,7 +228,13 @@ router.post('/getlastReview', async function(req, res, next) {
   const userID = req.body.userID;
   const lastReview = await knex('reviews').select('*').where({"reviewUserID": userID}).orderBy('reviewID', 'desc');
   if (lastReview[0] != null) {
-    const lastReviewItem = {'reviewID':lastReview[0].reviewID, 'reviewUserID':lastReview[0].reviewUserID, 'reviewBookID':lastReview[0].reviewBookID, 'reviewText':lastReview[0].reviewText, 'reviewDate':lastReview[0].reviewDate, 'reviewRating':lastReview[0].reviewRating};
+    const lastReviewItem = {
+      'reviewID':lastReview[0].reviewID, 
+      'reviewUserID':lastReview[0].reviewUserID, 
+      'reviewBookID':lastReview[0].reviewBookID, 
+      'reviewText':lastReview[0].reviewText, 
+      'reviewDate':(lastReview[0].reviewDate.getDate() + "/" + (lastReview[0].reviewDate.getMonth()+1) + "/" + lastReview[0].reviewDate.getFullYear()), 
+      'reviewRating':lastReview[0].reviewRating};
     return res.send({response:true, lastReview: lastReviewItem});
   }else{
     return res.send({response:false, message:"No Reviews!"});
@@ -251,7 +257,7 @@ router.post('/getReviews', async function(req, res, next) {
       const review = {
         'reviewID':reviewA[i].reviewID,
         'reviewText':reviewA[i].reviewText, 
-        'reviewDate':reviewA[i].reviewDate, 
+        'reviewDate':(reviewA[i].reviewDate.getDate() + "/" + (reviewA[i].reviewDate.getMonth()+1) + "/" + reviewA[i].reviewDate.getFullYear()), 
         'reviewRating':reviewA[i].reviewRating, 
         'reviewerID': reviewer[0].userID, 
         'reviewerIcon': reviewer[0].profilePhotoURL,
@@ -275,7 +281,7 @@ router.post('/getReviewOfUser', async function(req, res, next) {
   } else {
     const review = {
       'text':reviewA[0].reviewText, 
-      'date':reviewA[0].reviewDate, 
+      'date': (reviewA[0].reviewDate.getDate() + "/" + (reviewA[0].reviewDate.getMonth()+1) + "/" + reviewA[0].reviewDate.getFullYear()) , 
       'rating':reviewA[0].reviewRating, 
       'reviewerID':reviewA[0].reviewUserID, 
       'reviewBookID':reviewA[0].reviewBookID
@@ -311,7 +317,7 @@ router.post('/getComments', async function (req, res, next) {
       const user = await knex('users').select('*').where({'userID':commentsA[i].commentUserID});
       comments.push({
         'commentText': commentsA[i].commentText,
-        'commentDate':commentsA[i].commentDate ,
+        'commentDate': (commentsA[i].commentDate.getDate() + "/" + (commentsA[i].commentDate.getMonth()+1) + "/" + commentsA[i].commentDate.getFullYear()) ,
         'commentID': commentsA[i].commentID,
         'commenterName':user[0].firstname + " " + user[0].surname,
         'commenterIcon':user[0].profilePhotoURL
@@ -463,14 +469,14 @@ router.post('/addComment', async function(req, res, next) {
   const reviewID = req.body.reviewID;
   const userID = req.body.userID;
   const commentDate = req.body.commentDate;
-  const newRating = req.body.newRating;
+  //const newRating = req.body.newRating;
   const result =await knex('comments').insert({
     commentText: commentText,
     commentReviewID: reviewID,
     commentUserID: userID,
     commentDate: commentDate
   });
-  const result2 = await knex('ratings').insert({
+  /*const result2 = await knex('ratings').insert({
     ratingUserID: userID,
     ratingReviewID: reviewID,
     score: newRating
@@ -486,7 +492,7 @@ router.post('/addComment', async function(req, res, next) {
   }
   const result3 = await knex('reviews').where({'reviewID': reviewID}).update(({
     'reviewRating': newScore
-  }))
+  }))*/
   if (result) {
     return res.send({response:true, message:"successfully added "})
   }

@@ -51,7 +51,7 @@ class ViewBook extends Component {
                 let numberOfReviews = null;
                 if(reviews.length > 3) {
                     numberOfReviews = 3;
-                    this.setState({ numberOfReviewsDisplayed: 3,
+                    this.setState({ numberOfReviewsDisplayed: numberOfReviews,
                         showMoreReviewsButtonVisible: 'flex'});
                     this.setState({ reviewsDisplayed: reviews.slice(0, numberOfReviews)});
                 } else {
@@ -137,7 +137,16 @@ class ViewBook extends Component {
         }
 
         let reviewsOfOther = null;
-        if(this.state.reviewsDisplayed !== null) {
+        if(this.state.reviewsDisplayed === null || (typeof(this.state.reviewsDisplayed) === 'object' && this.state.reviewsDisplayed.length === 0)) {
+            reviewsOfOther = (
+                <div className='viewBookUserReviewSection'>
+                    <div className='searchResultsNoResultsSection'>
+                        <FaTimesCircle size={148} color='#341f97'/>
+                        There are no Reviews yet for this book!
+                    </div>
+                </div>
+            );
+        }else{
             reviewsOfOther = (
                 <div className='viewBookOtherReviewsContainer'>
                     {this.state.reviewsDisplayed.map((review, index) => {
@@ -156,15 +165,6 @@ class ViewBook extends Component {
                         }
                         return null;
                     })}
-                </div>
-            );
-        }else{
-            reviewsOfOther = (
-                <div className='viewBookUserReviewSection'>
-                    <div className='searchResultsNoResultsSection'>
-                        <FaTimesCircle size={148} color='#341f97'/>
-                        There are no Reviews yet for this book!
-                    </div>
                 </div>
             );
         }
