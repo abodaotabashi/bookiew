@@ -3,6 +3,8 @@ import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
 import "./AdminAddBook.css";
 
 class AdminAddBook extends Component { 
@@ -16,7 +18,8 @@ class AdminAddBook extends Component {
         language: '',
         coverURL: '',
         errorMessage: '',
-        errorVisible: 'none'
+        errorVisible: 'none',
+        openAckDialog: false
     }
 
     handleAddBook = async () => {
@@ -39,10 +42,7 @@ class AdminAddBook extends Component {
                 coverURL: this.state.coverURL.trim()
             });
             if (result.data.response) {
-                console.log('You have new Book successfully added!');
-                this.props.history.push({
-                    pathname:'/adminpanel/'
-                })
+                this.setState({openAckDialog: true});
             }
         }
     }
@@ -215,6 +215,12 @@ class AdminAddBook extends Component {
                             <button className='adminAddBookSendButton' onClick={this.handleAddBook}>{t('admin_add_book.add_button')}</button>
                         </div>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                    content='You have new Book successfully added!'
+                                    ok="Ok"
+                                    okFunction={() => { this.setState({openWarningDialog: false});
+                                                        this.props.history.push({ pathname: '/adminpanel/' });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         )

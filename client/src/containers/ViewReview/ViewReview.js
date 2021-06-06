@@ -3,6 +3,7 @@ import "./ViewReview.css";
 import axios from 'axios';
 
 import HomeReviewCard from '../../components/HomeReviewCard/HomeReviewCard';
+import WarningDialog from '../../components/Dialogs/WarningDialog';
 
 import UserIcon from "../../assets/icons/user.png";
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
@@ -20,7 +21,8 @@ class ViewReview extends Component {
         reviewComments: null,
         numberOfCommentDisplayed: null,
         reviewCommentsDisplayed: null,
-        showMoreCommentsButtonVisible: 'none'
+        showMoreCommentsButtonVisible: 'none',
+        openWarningDialog: false
     }
 
     handleGetReview = async () => {
@@ -163,7 +165,7 @@ class ViewReview extends Component {
                                         size={100}/>
                                     <p className='viewReviewEditingLabel'>{t('view_review.edit')}</p>
                                 </div>
-                                <div className='viewReviewDeleteReviewWrapper' onClick={this.handleDeleteReview}>
+                                <div className='viewReviewDeleteReviewWrapper' onClick={() => {this.setState({openWarningDialog: true});}}>
                                     <FaTrash  
                                         color="#ffffff" 
                                         size={100}/>
@@ -172,6 +174,15 @@ class ViewReview extends Component {
                             </div>
                         </div>
                     </div>
+                    <WarningDialog  openWarningDialog={this.state.openWarningDialog}
+                                    title='Delete this review?'
+                                    content='Are you sure that you want to delete this review permanently?'
+                                    contentSpan='All Comments on this review will be automatically deleted!'
+                                    yes="Delete"
+                                    no="Cancel"
+                                    yesFunction={this.handleDeleteReview}
+                                    noFunction={() => {this.setState({openWarningDialog: false});}}>
+                    </WarningDialog>
                 </div>
             </div>
         );

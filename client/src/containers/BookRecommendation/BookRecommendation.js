@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import "./BookRecommendation.css";
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 import axios from 'axios';
+
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
+import "./BookRecommendation.css";
 
 class BookRecommendation extends Component {
     state = {
@@ -12,7 +15,8 @@ class BookRecommendation extends Component {
         publishingyear: '',
         note: '',
         errorMessage: '',
-        errorVisible: 'none'
+        errorVisible: 'none',
+        openAckDialog: false
     }
 
     validate = () => {
@@ -44,7 +48,7 @@ class BookRecommendation extends Component {
                 suggestionNote: this.state.note
             })
             if(result.data.response){
-                this.props.history.push({ pathname: '/home' });
+                this.setState({openAckDialog: true});
             }
         }  
     }
@@ -128,6 +132,12 @@ class BookRecommendation extends Component {
                             <p className='recommendationHeart'>💗</p>
                         </div>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                    content='Your Recommendation was added successfully!'
+                                    ok="Ok"
+                                    okFunction={() => { this.setState({openWarningDialog: false});
+                                                        this.props.history.push({ pathname: '/home' });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         )
