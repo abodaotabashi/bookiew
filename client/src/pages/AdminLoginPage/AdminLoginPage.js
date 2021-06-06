@@ -1,4 +1,5 @@
 import React from 'react';
+
 import AdminLoginForm from '../../containers/AdminLoginForm/AdminLoginForm';
 import AdminNavbar from '../../components/AdminNavbar/AdminNavbar';
 import PageContainer from '../../components/PageContainer/PageContainer';
@@ -8,7 +9,7 @@ const AdminLoginPage = (props) => {
         <div>
             <AdminNavbar />
             <PageContainer>
-                <AdminLoginForm  />
+                <AdminLoginForm />
             </PageContainer>
         </div>
     );

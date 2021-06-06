@@ -132,12 +132,6 @@
     font-family: 'Century Gothic';
     
 }
-.formErrorMessageAdmin {
-    color: darkred;
-    font-size: 16px;
-    font-family: 'Century Gothic';
-    
-}
 
 .formButtonsContainer {
     width: 100%;
@@ -261,4 +255,17 @@
 .formGenderText {
     text-align: center;
     color: white;
+}
+
+.adminFormErrorMessage {
+    margin-top: 1em;
+    background: rgb(255, 255, 255);
+    border-radius: 30px;
+    padding: 0.2em 1em;
+    color: rgb(231, 53, 53);
+    font-size: 16px;
+    font-family: 'Century Gothic';
+    font-weight: bold;
+    width: fit-content;
+    transition: all 250ms ease-in-out;
 }

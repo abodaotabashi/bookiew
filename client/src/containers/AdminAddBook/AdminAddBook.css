@@ -158,17 +158,16 @@
 
 .adminAddBookErrorMessage {
     margin-top: 1em;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgb(255, 255, 255);
     border-radius: 30px;
     padding: 0.2em 1em;
-    color: rgb(230, 75, 75);
+    color: rgb(231, 53, 53);
     font-size: 16px;
     font-family: 'Century Gothic';
     font-weight: bold;
     width: fit-content;
     transition: all 250ms ease-in-out;
 }
-
 
 .adminAddBookSendButton {
     border: 0;
@@ -223,7 +222,6 @@
 .adminUpdateBookUpdateButton:hover {
     background-color: rgba(23, 143, 103, 0.6);
 }
-
 
 .adminUpdateBookDeleteButton {
     border: 0;

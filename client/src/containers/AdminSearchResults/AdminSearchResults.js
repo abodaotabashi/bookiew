@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
-import "../SearchResults/SearchResults.css";
-
-import SearchIcon from "../../assets/icons/search_30px.png";
-import BookCard from '../../components/BookCard/BookCard';
-import { FaTimesCircle } from 'react-icons/fa';
-
 import { withRouter } from 'react-router-dom';
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 
+import BookCard from '../../components/BookCard/BookCard';
+
+import SearchIcon from "../../assets/icons/search_30px.png";
+import { FaTimesCircle } from 'react-icons/fa';
+import "../SearchResults/SearchResults.css";
 
 class AdminSearchResults extends Component {
     constructor(props) {
@@ -24,7 +23,6 @@ class AdminSearchResults extends Component {
     
 
     handleBookClicked = async (bookID) => {
-        //TODO
         const result = await axios.post("http://localhost:3000/getBook", {
             bookID:bookID
         })
@@ -32,7 +30,7 @@ class AdminSearchResults extends Component {
             let book = result.data.book;
             this.props.history.push({
                 pathname: '/adminpanel/updateBook',
-                state: {book:book}
+                state: {book: book}
             })
         }
     }
@@ -66,7 +64,15 @@ class AdminSearchResults extends Component {
         this.setState({loading:false});
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/adminpanel/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isAdminAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+        
         let books = null;
         const { t } = this.props;
 

@@ -1,25 +1,21 @@
 import React, { Component } from 'react';
-import "./AdminRecommendations.css";
+import { withRouter } from "react-router-dom";
+import { withTranslation } from 'react-i18next';
+import axios from 'axios';
+
 import { FaTimesCircle } from 'react-icons/fa';
 import { FaCheck } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
-import axios from 'axios';
-
-import { withRouter } from "react-router-dom";
-import { withTranslation } from 'react-i18next';
+import "./AdminRecommendations.css";
 
 class AdminRecommendations extends Component {
     state = {
-            recommendations: [],
-            numberOfNewRecommendations: 0,
+            recommendations: null,
             numberOfRecommendationsDisplayed: null,
             recommendationsDisplayed: null,
-            recs: null,
-            showMoreRecommendationsButtonVisible: 'none',
-            username: null,
+            showMoreRecommendationsButtonVisible: 'none'
         }
-
 
     handleShowMoreRecommendations = () => {
         if(this.state.recommendations.length <= this.state.numberOfRecommendationsDisplayed + 3) {
@@ -36,72 +32,68 @@ class AdminRecommendations extends Component {
     }
 
     handleGetAllRecommendations = async() => {
-        if(this.state.recommendations.length==0){
-            //console.log("hey")
-            const res = await axios.post("http://localhost:3000/getRecs");
-            //console.log(res.data)
-            //console.log("size of: " + res.data.size)
-            this.setState({recommendations: res.data.recs,
-                numberOfNewRecommendations: res.data.size});
-                let usernames = []
-            for(var i=0;i<res.data.size;i++){ // getUsers
-                    let userid = res.data.recs[i].suggestionUserID
-                   // console.log("userid from recs: "+userid)
-                    const userResult = await axios.post("http://localhost:3000/getUser", {
-                        userID: userid
-                    })
-                    //console.log("name of " + i + " " + userResult.data.user.name)
-                    usernames[i] = userResult.data.user.name
-                   
+        const recommendations = await axios.post("http://localhost:3000/getRecommendations");
+        if(recommendations.data.response){
+            this.setState({ recommendations: recommendations.data.recommendations });
+            if(this.state.numberOfRecommendationsDisplayed === null) {
+                let numberOfRecommendations = null;
+                if(recommendations.data.recommendations.length > 3) {
+                    numberOfRecommendations = 3;
+                    this.setState({ numberOfRecommendationsDisplayed: numberOfRecommendations,
+                        showMoreRecommendationsButtonVisible: 'flex',
+                        recommendationsDisplayed: recommendations.data.recommendations.slice(0, numberOfRecommendations) });
+                } else {
+                    this.setState({ numberOfRecommendationsDisplayed: recommendations.data.recommendations.length, 
+                        showMoreRecommendationsButtonVisible: 'none',
+                        recommendationsDisplayed: recommendations.data.recommendations});
                 }
-            
-        }else{
-           
-           // console.log("wrong!")
-            
+                
+            }  
         }
     }
 
     handleCopyInfosToAddBook = (recommendation) => {
         this.props.history.push({
             pathname: '/adminpanel/addBook',
-            state: { recommendedBook:{ bookname: recommendation.suggestionBook, author: recommendation.suggestionAuthor, publishingyear: recommendation.suggestionPublishingYear}}});
+            state: { recommendedBook:{ 
+                        bookname: recommendation.suggestionBook, 
+                        author: recommendation.suggestionAuthor, 
+                        publishingyear: recommendation.suggestionPublishingYear
+                        }
+            }
+        });
     }
 
     handleDeleteRecommendation = async(recommendation) => {
-        const result = await axios.post("http://localhost:3000/deleteRec", 
-        {sugID: recommendation.suggestionID});
-        
-        //console.log(result.data)
-
+        const result = await axios.post("http://localhost:3000/deleteRecommendation", {
+            sugID: recommendation.suggestionID });
         if(result.data.response){
-            const res = await axios.post("http://localhost:3000/getRecs");
-            console.log(res.data)
-            this.setState({recommendations: res.data.recs, numberOfNewRecommendations: res.data.size}); 
-            
+            this.setState({
+                recommendations: null,
+                numberOfRecommendationsDisplayed: null,
+                recommendationsDisplayed: null,
+                showMoreRecommendationsButtonVisible: 'none'
+            });
         }else{
-           console.log("something wrong!") 
+            console.log("something went wrong!") 
         }
     }
-  
+
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/adminpanel/login' });
+    }
+
     render(){
-        this.handleGetAllRecommendations();
-        let recommendations = null;
+        if(localStorage.getItem('isAdminAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+        
+        if(this.state.recommendations === null){
+            this.handleGetAllRecommendations();
+        }
         const { t } = this.props;
 
-        if(this.state.numberOfRecommendationsDisplayed === null) {
-            let numberOfRecommendations = null;
-            if(this.state.recommendations.length > 3) {
-                numberOfRecommendations = 3;
-                this.setState({ numberOfRecommendationsDisplayed: 3,
-                    showMoreRecommendationsButtonVisible: 'flex' });
-            } else {
-                numberOfRecommendations = this.state.recommendations.length;
-                this.setState({ numberOfRecommendationsDisplayed: this.state.recommendations.length, showMoreRecommendationsButtonVisible: 'none'});
-            }
-            this.setState({ recommendationsDisplayed: this.state.recommendations.slice(0, numberOfRecommendations)});
-        }
-     
+        let recommendations = null;
         if(this.state.recommendationsDisplayed !== null){
             recommendations = (
                 <div className='adminRecommendationsContainer'>
@@ -127,12 +119,11 @@ class AdminRecommendations extends Component {
                                     <div className='adminRecommendationsTableLabel'>{t('admin_recomm.delete_add_book')}</div>
                                 </th>
                             </tr>
-                           
-                            {this.state.recommendations.map((recommendation, recusernames) => {
+                            {this.state.recommendationsDisplayed.map((recommendation) => {
                                 return (
                                     <tr key={recommendation.suggestionID} >
                                         <td>
-                                            <p className='adminRecommendationsTableInput'>{recommendation.suggestionUserID}</p>
+                                            <p className='adminRecommendationsTableInput'>{recommendation.suggestionUserName}</p>
                                         </td>
                                         <td>
                                             <p className='adminRecommendationsTableInput'>{recommendation.suggestionBook}</p>

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import "../AdminAddBook/AdminAddBook.css";
+import axios from 'axios';
+import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
-import axios from 'axios';
-import { withTranslation } from 'react-i18next';
+import "../AdminAddBook/AdminAddBook.css";
 
 class AdminUpdateBook extends Component {
     state = {
@@ -23,32 +23,45 @@ class AdminUpdateBook extends Component {
     }
 
     handleUpdateBook = async () => {
-        //TODO
-        //const bookID = this.state.oldBook.bookID;
-        const result = await axios.post("http://localhost:3000/adminPanel/updateBook", {
-            bookID: this.state.oldBook.bookID,
-            bookName: this.state.bookname,
-            author: this.state.author,
-            pubYear: this.state.publishingyear,
-            publisher: this.state.publisher,
-            subject: this.state.subject,
-            category: this.state.category,
-            language: this.state.language,
-            coverURL: this.state.coverURL
-        });
-        if (result.data.response) {
-            console.log('success');
-            this.props.history.push({
-                pathname:'/adminpanel'
-            })
+        this.clearErrors();
+        if (this.state.bookname.trim() === '' || this.state.author.trim() === '' || (this.state.publishingyear > 2022 ||  this.state.publishingyear < 1900)  || this.state.publisher.trim() === '' 
+            || this.state.subject.trim() === '' || this.state.category.trim() === '' || this.state.language.trim() === '' || this.state.coverURL.trim() === '') {
+            this.setState({ 
+                errorMessage: 'Information(s) of the book are missing!',
+                errorVisible: 'flex'   
+            });
+        } else {
+            const result = await axios.post("http://localhost:3000/adminPanel/updateBook", {
+                bookID: this.state.oldBook.bookID,
+                bookName: this.state.bookname,
+                author: this.state.author,
+                pubYear: this.state.publishingyear,
+                publisher: this.state.publisher,
+                subject: this.state.subject,
+                category: this.state.category,
+                language: this.state.language,
+                coverURL: this.state.coverURL
+            });
+            if (result.data.response) {
+                console.log('You have the Book successfully updated!');
+                this.props.history.push({
+                    pathname:'/adminpanel'
+                })
+            }
         }
     }
 
+    clearErrors = () => {
+        this.setState({
+            errorMessage: '',
+            errorVisible: 'none'
+        });
+    }
+    
     handleDeleteBook = async () => {
-        //TODO
         const bookID = this.state.oldBook.bookID;
         const result = await axios.post("http://localhost:3000/adminPanel/deleteBook", {
-            bookID:bookID
+            bookID: bookID
         })
         if (result.data.response) {
             console.log('successfully deleted');
@@ -58,7 +71,15 @@ class AdminUpdateBook extends Component {
         }
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/adminpanel/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isAdminAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+        
         const { t } = this.props;
         return(
             <div className='adminAddBookBackgroundSection'>
@@ -69,7 +90,7 @@ class AdminUpdateBook extends Component {
                             <div className='adminAddBookWrapper'>
                             <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
-                                        <img src={this.state.oldBook.coverURL} className='adminAddBookThumbnail' alt=''/>
+                                        <img src={this.state.oldBook.bookThumbnail} className='adminAddBookThumbnail' alt=''/>
                                     </div>
                                     <p className='adminAddBookCoverLabel'>{t('update_book.old_cover')} </p>
                                 </div>

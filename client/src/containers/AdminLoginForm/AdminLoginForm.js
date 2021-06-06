@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import "../LoginRegisterForm/LoginRegisterForm.css";
-import AdminLogin from '../../components/AdminLogin/AdminLogin';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
 
+import AdminLogin from '../../components/AdminLogin/AdminLogin';
+
+import "../LoginRegisterForm/LoginRegisterForm.css";
 
 class AdminLoginForm extends Component {
     state = {
@@ -11,64 +12,80 @@ class AdminLoginForm extends Component {
         password: '',
         emailErrorMessage: '',
         passwordErrorMessage: '',
-        errorMessage: '',
-        errorVisible: 'none'
+        emailErrorVisible: 'none',
+        passwordErrorVisible: 'none'
     }
 
-    handleLogin = async() => {
-        this.setState({loading: true});
+    validate = () =>{
+        if (!this.state.email.includes('@')) {
+            this.setState({ emailErrorMessage: 'Invalid Email!',
+                            emailErrorVisible: 'flex' });
+            return false;
+        }
+        if (this.state.password.length < 6) {
+            console.log(this.state.password.length);
+            this.setState({ passwordErrorMessage: 'Password must contain more than 6 characters',
+                            passwordErrorVisible: 'flex' });
+            return false;
+        }
+        return true;
+    }
+
+
+    handleLogin = async () => {
         this.clearErrors();
-        
-        const result = await axios.post("http://localhost:3000/login2",{
-            email:this.state.email,
-            password:this.state.password
-        })
-        console.log(result)
-            
-            if(result.data.response){
-                this.setState({ isLoggedin: true});
-                const newUser = result.data.user;
-                localStorage.setItem('isUserAuthenticated' , true);
-                localStorage.setItem('userID', newUser.adminID);
-                localStorage.setItem('userEmail',  newUser.adminEmail);
-                localStorage.setItem('userPassword',  newUser.adminPassword);
+        const isValid = this.validate();
+        if (isValid) {
+            const result = await axios.post("http://localhost:3000/adminPanel/login",{
+                email: this.state.email,
+                password: this.state.password
+            })
+            if (result.data.response) {
+                localStorage.setItem('isAdminAuthenticated' , true);
                 this.props.history.push({ pathname: '/adminpanel/'});
             } else {
                 console.log("Something went wrong "+result.data);
                 this.setState({ 
-                    errorMessage: 'Email or Password is incorrect!',
-                    errorVisible: 'flex'   
-                }, ()=>{console.log(this.state.errorMessage)});
-                
+                    passwordErrorMessage: 'Email or Password is incorrect!',
+                    passwordErrorVisible: 'flex'   
+                });
             }
-            
-        
+        }
     }
 
     clearErrors = () => {
         this.setState({
-            errorMessage: '',
-            errorVisible: 'none'
+            emailErrorMessage: '',
+            passwordErrorMessage: '',
+            emailErrorVisible: 'none',
+            passwordErrorVisible: 'none'
         });
     }
 
-    render(){
-        let formType = null;
-        
-        formType=(  <AdminLogin     emailInputValue={this.state.email} 
-                                    emailInputChanged={(event) => this.setState({ email: event.target.value})}
-                                    emailErrorMessage=""
-                                    passwordInputValue={this.state.password} 
-                                    passwordInputChanged={(event) => this.setState({ password: event.target.value})}
-                                    passwordErrorMessage={this.state.errorMessage}
-                                    loginClicked={this.handleLogin}
-                        />);
+    goToHome = () => {
+        this.props.history.push({ pathname: '/adminpanel/' });
+    }
 
+    render(){
+        if(localStorage.getItem('isAdminAuthenticated') === 'true'){
+            this.goToHome();
+        }
+
+        let formType=(  <AdminLogin     emailInputValue={this.state.email} 
+                                        emailInputChanged={(event) => this.setState({ email: event.target.value})}
+                                        emailErrorMessage={this.state.emailErrorMessage}
+                                        passwordInputValue={this.state.password} 
+                                        passwordInputChanged={(event) => this.setState({ password: event.target.value})}
+                                        passwordErrorMessage={this.state.passwordErrorMessage}
+                                        loginClicked={this.handleLogin}
+                                        emailErrorVisible={this.state.emailErrorVisible}
+                                        passwordErrorVisible={this.state.passwordErrorVisible}
+                        />);
+        
         return( 
             <div className='adminForm'>
                 <div className='adminFormBackgroundFilter'>
                     {formType}
-                    
                 </div>
             </div>
         )

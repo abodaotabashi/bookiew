@@ -113,7 +113,15 @@ class ViewReview extends Component {
             state: {reviewID:this.state.reviewID,  review: this.state.review, book: this.state.book, reviewText: this.state.review.reviewText }});
     }
 
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isUserAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+        
         let review = null;
         const {t} = this.props;
         this.handleGetReview();

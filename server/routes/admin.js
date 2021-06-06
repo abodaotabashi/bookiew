@@ -14,13 +14,24 @@ const knex = require('knex')({
     database : 'bookiew'
   }
 });
+
+router.post('/login', async function(req, res, next) {
+  const email = req.body.email
+  const password = req.body.password
+  const user = await knex('admins').select('*').where({"adminEmail":email, "adminPassword":password}).first()
+  if(user){
+    console.log("successfully logged in")
+    return res.send({response: true, user:user})
+  } else {
+    console.log("email or password is incorrect");
+    return res.send({response:false, message:"email or password is incorrect"})
+  }
+});
+
 router.post('/getSugNo', async function(req, res, next) {
-  console.log(req.body.message);
-  const suggestions = await knex('suggestions').select('*').where({'suggestionUserID':1});
-  console.log(suggestions);
+  const suggestions = await knex('suggestions').select('*');
   if (!suggestions) {return res.send({response:false, message: 'no suggestions found'})}
   const lengthOfSug = suggestions.length;
-  console.log(lengthOfSug);
   return res.send({resposne:true, lengthOfSug});
 });
 
@@ -49,16 +60,16 @@ router.post('/addBook', async function(req, res, next) {
 
 router.post('/deleteBook', async function(req, res, next) {
   const bookID = req.body.bookID;
-  const deleteA = await knex('books').where('bookID', bookID).del();
   const reviews = await knex('reviews').select('*').where('reviewBookID', bookID);
   if (reviews) {
     for (var i = 0; i < reviews.length; i++){
       const reviewID = reviews[i].reviewID;
-      const deleteB = await knex('reviews').where('reviewID', reviewID).del();
-      const deleteC = await knex('comments').where('commentReviewID', reviewID).del();
+      const deleteComments = await knex('comments').where('commentReviewID', reviewID).del();
+      const deleteReviews = await knex('reviews').where('reviewID', reviewID).del();
     }
   }
-  if(deleteA){return res.send({response:true, message:'success'})}
+  const deleteBook = await knex('books').where('bookID', bookID).del();
+  if(deleteBook){return res.send({response:true, message:'success'})}
   return res.send({response:false});
 })
 //       
@@ -76,4 +87,5 @@ router.post('/updateBook', async function(req, res, next) {
   if (result) {return res.send({response:true, message:'success'});}
   return res.send({response:false});
 })
+
 module.exports = router;

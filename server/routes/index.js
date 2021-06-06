@@ -186,7 +186,7 @@ router.post('/myReviews', async function(req, res, next) {
     const books = new Array();
     const displayedBooks = new Array();
     //console.log(reviews[0]);
-    var i;
+    let i;
     for (i = 0; i < reviews.length; i++) {
       const book = await knex('books').select('*').where({'bookID':reviews[i].reviewBookID}).first();
       //console.log(book);
@@ -248,7 +248,7 @@ router.post('/getReviews', async function(req, res, next) {
   if (reviewA[0] == null) {
     return res.send({response:false, message:"review not found"});
   } else {
-    for (var i = 0;i<reviewA.length; i++) {
+    for (let i = 0;i<reviewA.length; i++) {
       //console.log(reviewA[i]);
       const reviewer = await knex('users').select('*').where({"userID":reviewA[i].reviewUserID})
       //console.log(reviewer);
@@ -424,29 +424,6 @@ router.post('/editReview', async function(req, res, next) {
   }
 }); 
 
-
-router.post('/getSugNo', async function(req, res, next) {
-  console.log(req.body.message);
-  const suggestions = await knex('suggestions').select('*').where({'suggestionUserID':1});
-  console.log(suggestions);
-  if (!suggestions) {return res.send({response:false, message: 'no suggestions found'})}
-  const lengthOfSug = suggestions.length;
-  console.log(lengthOfSug);
-  return res.send({resposne:true, lengthOfSug});
-});
-
-
-/*
-router.get('/adminpanel', async function(req, res, next) {
-  console.log(req.body.message);
-  const suggestions = await knex('suggestions').select('*').where({'suggestionUserID':1});
-  console.log(suggestions);
-  if (!suggestions) {return res.send ({response:false, message: 'no suggestions found'})}
-  const lengthOfSug = suggestions.length;
-  console.log(lengthOfSug);
-  return res.send({resposne:true, lengthOfSug});
-})
-*/
 router.post('/addReview', async function(req, res, next) {
   const reviewText = req.body.review;
   const bookID = req.body.bookID;
@@ -499,28 +476,8 @@ router.post('/addComment', async function(req, res, next) {
   return res.send({response:false, message:"something went wrong "})
 })
 
-router.post('/login2', async function(req, res, next) {
-  //get the payload
-  console.log(req.body)
-  const email = req.body.email
-  const password = req.body.password
-  const user = await knex('admins').select('*').where({"adminEmail":email, "adminPassword":password}).first()
-  console.log(user);
-  if(user){
-    console.log("successfully logged in")
-    return res.send({response: true, user:user})
-  } else {
-  console.log("email or password is incorrect");
-  return res.send({response:false, message:"email or password is incorrect"})
-  }
-  
-  
-});
-
-
-router.post('/deleteRec', async function(req, res, next) {
+router.post('/deleteRecommendation', async function(req, res, next) {
   const sugID = req.body.sugID;
-  console.log(sugID);
   const deleted = await knex('suggestions').where('suggestionID', sugID).del();
   if (!deleted) {
     return res.send({response:false, message:'cannot delete suggestion'})
@@ -530,24 +487,27 @@ router.post('/deleteRec', async function(req, res, next) {
   }
 });
 
-
-router.post('/getRecs', async function(req, res, next) {
- 
-  const recs = await knex('suggestions').select('*');
-  if (recs == null) {
-    return res.send({response:false, message:"no recs found"});
+router.post('/getRecommendations', async function(req, res, next) {
+  const recommendations = new Array();
+  const recommendationResults = await knex('suggestions').select('*');
+  if (recommendationResults[0] == null) {
+    return recommendationResults.send({response:false, message:"No Recommendations found!"});
   } else {
-    console.log("number" + recs.length)
-    for (var i = 0;i<recs.length; i++) {
-      console.log("the " + i + ". record")
-      console.log(recs[i]);
-     }
-    return res.send({response:true, size: recs.length,recs})
+    for (let i = 0; i<recommendationResults.length; i++) {
+      const user = await knex('users').select('*').where({"userID":recommendationResults[i].suggestionUserID});
+      const recommendation = {
+        'suggestionBook':recommendationResults[i].suggestionBook, 
+        'suggestionAuthor':recommendationResults[i].suggestionAuthor, 
+        'suggestionPublishingYear':recommendationResults[i].suggestionPublishingYear,  
+        'suggestionNote':recommendationResults[i].suggestionNote,  
+        'suggestionID':recommendationResults[i].suggestionID, 
+        'suggestionUserID':recommendationResults[i].suggestionUserID, 
+        'suggestionUserName':user[0].firstname + " " + user[0].surname,
+      };
+      recommendations.push(recommendation);
+    }
+    return res.send({response:true, recommendations: recommendations});
   }
 })
-
-
-
-
 
 module.exports = router;

@@ -43,8 +43,8 @@ class BookRecommendation extends Component {
                 suggestionPublishingYear: this.state.publishingyear,
                 suggestionNote: this.state.note
             })
-            if(result.response){
-                console.log(result);
+            if(result.data.response){
+                this.props.history.push({ pathname: '/home' });
             }
         }  
     }

@@ -38,7 +38,7 @@ class ViewBook extends Component {
             let userID = this.state.user.userID;
             let newReviews = null;
             reviews.forEach((review, index) => {
-                if (review.reviewerID == userID && this.state.reviewOfUser === null){
+                if (String(review.reviewerID) === userID && this.state.reviewOfUser === null){
                     this.setState({reviewOfUser: review});
                     newReviews = reviews
                     newReviews.splice(index, 1);

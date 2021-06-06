@@ -53,7 +53,7 @@ const AdminNavbarWithUser = () => {
                 </div>
             </section>
             <section className='navbarRightSection'>
-                <button className='navbarLoginButton'>
+                <button className='navbarLoginButton' onClick={() => { localStorage.setItem('isAdminAuthenticated', false); }}>
                     <Link 
                         className='navLink'
                         to="/adminpanel/login"

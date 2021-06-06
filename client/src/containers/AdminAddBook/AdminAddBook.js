@@ -1,8 +1,9 @@
-import axios from 'axios';
 import React, { Component } from 'react';
-import "./AdminAddBook.css";
+import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
+
+import "./AdminAddBook.css";
 
 class AdminAddBook extends Component { 
     state = {
@@ -19,26 +20,49 @@ class AdminAddBook extends Component {
     }
 
     handleAddBook = async () => {
-        //TODO
-        const result = await axios.post("http://localhost:3000/adminPanel/addBook", {
-            bookName: this.state.bookname ,
-            author: this.state.author ,
-            yearOfPub: this.state.publishingyear ,
-            publisher: this.state.publisher ,
-            category: this.state.category ,
-            subject: this.state.subject ,
-            language: this.state.language ,
-            coverURL: this.state.coverURL
-        });
-        if (result.data.response) {
-            console.log('successfully added');
-            this.props.history.push({
-                pathname:'/adminpanel/recommendations'
-            })
+        this.clearErrors();
+        if (this.state.bookname.trim() === '' || this.state.author.trim() === '' || this.state.publishingyear.trim() === '' || this.state.publisher.trim() === '' 
+            || this.state.subject.trim() === '' || this.state.category.trim() === '' || this.state.language.trim() === '' || this.state.coverURL.trim() === '') {
+            this.setState({ 
+                errorMessage: 'Information(s) of the book are missing!',
+                errorVisible: 'flex'   
+            });
+        } else {
+            const result = await axios.post("http://localhost:3000/adminPanel/addBook", {
+                bookName: this.state.bookname.trim(),
+                author: this.state.author.trim(),
+                yearOfPub: this.state.publishingyear.trim(),
+                publisher: this.state.publisher.trim(),
+                category: this.state.category.trim(),
+                subject: this.state.subject.trim(),
+                language: this.state.language.trim(),
+                coverURL: this.state.coverURL.trim()
+            });
+            if (result.data.response) {
+                console.log('You have new Book successfully added!');
+                this.props.history.push({
+                    pathname:'/adminpanel/'
+                })
+            }
         }
     }
 
+    clearErrors = () => {
+        this.setState({
+            errorMessage: '',
+            errorVisible: 'none'
+        });
+    }
+
+    goToLogin = () => {
+        this.props.history.push({ pathname: '/adminpanel/login' });
+    }
+
     render(){
+        if(localStorage.getItem('isAdminAuthenticated') === 'false'){
+            this.goToLogin();
+        }
+        
         const { t } = this.props;
         return(
             <div className='adminAddBookBackgroundSection'>
