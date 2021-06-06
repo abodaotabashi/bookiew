@@ -62,14 +62,14 @@ class ResetPassword extends Component {
                         <input  className='ResetPasswordInputText' 
                                 type='password' 
                                 name='' 
-                                placeholder='Your Password' 
+                                placeholder={t('placeholders.your_password')}
                                 required value={this.state.password} 
                                 onChange={(event) => this.setState({ password : event.target.value })} />
                         <label className='ResetPasswordLabel'>{t('reset_pw.confirm')}</label>
                         <input  className='ResetPasswordInputText' 
                                 type='password' 
                                 name='' 
-                                placeholder='Confirm Your Password' 
+                                placeholder={t('placeholders.confirm_your_pwd')}
                                 required value={this.state.confirmPassword} 
                                 onChange={(event) => this.setState({ confirmPassword : event.target.value })} />
                         <p className='ResetPasswordErrorMessage'>{this.state.passwordErrorMessage}</p>

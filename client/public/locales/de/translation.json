@@ -188,5 +188,31 @@
         "cover_url":"URL des Covers: ",
         "delete":"Buch löschen",
         "update":"Buch aktualisieren"
+    },
+    "placeholders": {
+        "your_email": "Ihre E-Mail",
+        "your_password":"Ihr Passwort",
+        "birthdate":"Geburtsdatum",
+        "firstname":"Vorname",
+        "surname":"Nachname",
+        "email":"Email",
+        "password":"Passwort",
+        "your_review":"Ihre Rezension",
+        "name_of_book":"Name des Buches",
+        "author_of_book": "Autor(en) des Buches",
+        "year_of_pub":"Veröffentlichungsjahr (YYYY)",
+        "publisher":"Herausgeber",
+        "category":"Kategorie",
+        "subject":"Thema",
+        "language":"Sprache",
+        "cover_url": "URL des Coveres",
+        "search":"Suche",
+        "note":"Hinterlassen Sie uns eine Notiz :)",
+        "your_firstname":"Ihr Vorname",
+        "your_surname":"Ihr Nachname",
+        "new_pwd":"Neues Passwort",
+        "confirm_pwd":"Passwort bestätigen",
+        "confirm_your_pwd":"Bestätigen Sie Ihr Passwort",
+        "add_your_comment":"Fügen Sie Ihren Kommentar hinzu ..."
     }
 }

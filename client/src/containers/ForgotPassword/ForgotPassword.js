@@ -62,7 +62,7 @@ class ForgotPassword extends Component {
                         <input  className='ForgotPasswordEmailInputText' 
                                 type='text' 
                                 name='' 
-                                placeholder='Your Email' 
+                                placeholder={t('placeholders.your_email')}
                                 autoFocus
                                 required value={this.state.email} 
                                 onChange={(event) => this.setState({ email: event.target.value})}/>

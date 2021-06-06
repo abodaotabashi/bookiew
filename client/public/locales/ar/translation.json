@@ -188,5 +188,31 @@
         "cover_url":"رابط صورة الغلاف: ",
         "delete":"حذف الكتاب",
         "update":"تحديث الكتاب"
+    },
+    "placeholders": {
+        "your_email": "البريد",
+        "your_password":"كلمة السر",
+        "birthdate":"تاريخ الميلاد",
+        "firstname":"الإسم الأول",
+        "surname":"الكنية",
+        "email":"البريد",
+        "password":"كلمة السر",
+        "your_review":"مراجعتك",
+        "name_of_book":"اسم الكتاب",
+        "author_of_book": "اسم الكاتب",
+        "year_of_pub":"سنة النشر (YYYY)",
+        "publisher":"دار النشر",
+        "category":"الفئة",
+        "subject":"الموضوع",
+        "language":"اللغة",
+        "cover_url": "رابط صورة الغلاف",
+        "search":"بحث",
+        "note":"اترك لنا ملاحظة:)",
+        "your_firstname":"الاسم الأول",
+        "your_surname":"الكنية",
+        "new_pwd":"كلمة السر الجديدة",
+        "confirm_pwd":"تأكيد كلمة السر",
+        "confirm_your_pwd":"تأكيد كلمة السر",
+        "add_your_comment":"أضف التعليق الخاص بك..."
     }
 }

@@ -17,7 +17,7 @@ const RegisterForm = (props) => {
                     scrollableYearDropdown
                     showYearDropdown
                     required
-                    placeholderText='Date of birth'
+                    placeholderText={t('placeholders.birthdate')}
         />
     );
     return(
@@ -29,14 +29,14 @@ const RegisterForm = (props) => {
                 <input  className='formNameInputText' 
                         type='text' 
                         name='' 
-                        placeholder='First name' 
+                        placeholder={t('placeholders.firstname')}
                         autoFocus
                         required value={props.firstnameInputValue} 
                         onChange={props.firstnameInputChanged}/>
                 <input  className='formNameInputText' 
                         type='text' 
                         name='' 
-                        placeholder='Surname' 
+                        placeholder={t('placeholders.surname')}
                         required value={props.surnameInputValue} 
                         onChange={props.surnameInputChanged}/>
             </div>
@@ -44,14 +44,14 @@ const RegisterForm = (props) => {
             <input  className='formInputText' 
                     type='text' 
                     name='' 
-                    placeholder='Email' 
+                    placeholder={t('placeholders.email')}
                     required value={props.emailInputValue} 
                     onChange={props.emailInputChanged}/>
             <p className='formErrorMessage'>{props.emailErrorMessage}</p>
             <input  className='formInputText' 
                     type='password' 
                     name='' 
-                    placeholder='Password' 
+                    placeholder={t('placeholders.password')}
                     required value={props.passwordInputValue} 
                     onChange={props.passwordInputChanged} />
             <p className='formErrorMessage'>{props.passwordErrorMessage}</p>

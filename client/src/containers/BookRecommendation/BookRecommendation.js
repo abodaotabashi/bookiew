@@ -79,7 +79,7 @@ class BookRecommendation extends Component {
                                                 name=''
                                                 required value={this.state.bookname} 
                                                 onChange={(event) => this.setState({bookname: event.target.value})}  
-                                                placeholder='Name of Book' />
+                                                placeholder={t('placeholders.name_of_book')} />
                                         </td>
                                     </tr>
                                     <tr>
@@ -92,7 +92,7 @@ class BookRecommendation extends Component {
                                                 name=''
                                                 required value={this.state.author} 
                                                 onChange={(event) => this.setState({author: event.target.value})}  
-                                                placeholder='Author(s) of Book' />
+                                                placeholder={t('placeholders.author_of_book')} />
                                         </td>
                                     </tr>
                                     <tr>
@@ -105,7 +105,7 @@ class BookRecommendation extends Component {
                                                 min="1900" max="2022"
                                                 required value={this.state.publishingyear} 
                                                 onChange={(event) => this.setState({publishingyear: event.target.value})}  
-                                                placeholder='Year of Publication (YYYY)' />
+                                                placeholder={t('placeholders.year_of_pub')} />
                                         </td>
                                     </tr>
                                     <tr>
@@ -118,7 +118,7 @@ class BookRecommendation extends Component {
                                                         maxLength="200"
                                                         value={this.state.note} 
                                                         onChange={(event) => this.setState({note: event.target.value})} 
-                                                        placeholder='Leave us a note :)' />
+                                                        placeholder={t('placeholders.note')} />
                                         </td>
                                     </tr>
                                 </tbody>

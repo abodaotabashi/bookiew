@@ -12,7 +12,7 @@ const AdminLogin = (props) => {
             <input  className='formInputText' 
                     type='text' 
                     name='' 
-                    placeholder='Your Email' 
+                    placeholder={t('placeholders.your_email')}
                     autoFocus
                     required value={props.emailInputValue} 
                     onChange={props.emailInputChanged}/>
@@ -21,7 +21,7 @@ const AdminLogin = (props) => {
             <input  className='formInputText' 
                     type='password' 
                     name='' 
-                    placeholder='Your Password' 
+                    placeholder={t('placeholders.your_password')} 
                     required value={props.passwordInputValue} 
                     onChange={props.passwordInputChanged} />
             <p className='adminFormErrorMessage' style={{ display: props.passwordErrorVisible}}>{props.passwordErrorMessage}</p>

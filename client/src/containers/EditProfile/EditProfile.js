@@ -217,7 +217,7 @@ class EditProfile extends Component {
                                                             name=''
                                                             required value={this.state.firstname} 
                                                             onChange={(event) => this.setState({firstname: event.target.value})}  
-                                                            placeholder='Your Firstname'
+                                                            placeholder={t('placeholders.your_firstname')}
                                                             disabled = {(this.state.firstnameDisabled) ? "disabled" : ""} />
                                                     <img src={EditIcon} className='editProfileEditIcon' alt='Edit' onClick={this.handleFirstnameClicked}/>
                                                 </td>
@@ -230,7 +230,7 @@ class EditProfile extends Component {
                                                     <input  className='editProfileInputText' 
                                                             type='text' 
                                                             name='' 
-                                                            placeholder='Your Surname'
+                                                            placeholder={t('placeholders.your_surname')}
                                                             required value={this.state.surname} 
                                                             onChange={(event) => this.setState({surname: event.target.value})} 
                                                             disabled = {(this.state.surnameDisabled) ? "disabled" : ""} />
@@ -245,7 +245,7 @@ class EditProfile extends Component {
                                                     <input  className='editProfileInputText' 
                                                             type='text' 
                                                             name='' 
-                                                            placeholder='Your E-mail'
+                                                            placeholder={t('placeholders.your_email')}
                                                             required value={this.state.email} 
                                                             onChange={(event) => this.setState({email: event.target.value})}
                                                             disabled = {(this.state.emailDisabled) ? "disabled" : ""}  />
@@ -265,13 +265,13 @@ class EditProfile extends Component {
                                                                     name=''
                                                                     
                                                                     onChange={(event) => this.setState({newPassword: event.target.value})} 
-                                                                    placeholder='New Password'  />
+                                                                    placeholder={t('placeholders.new_pwd')}  />
                                                             <input  className='editProfileInputText' 
                                                                     type='password' 
                                                                     name=''
                                                                     
                                                                     onChange={(event) => this.setState({confirmPassword: event.target.value})} 
-                                                                    placeholder='Confirm Password'  />
+                                                                    placeholder={t('placeholders.confirm_pwd')}  />
                                                         </div>
                                                     </details>
                                                 </td>

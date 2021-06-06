@@ -13,7 +13,7 @@ const LoginForm = (props) => {
             <input  className='formInputText' 
                     type='text' 
                     name='' 
-                    placeholder='Your Email' 
+                    placeholder={t('placeholders.your_email')} 
                     autoFocus
                     required value={props.emailInputValue} 
                     onChange={props.emailInputChanged}/>
@@ -22,7 +22,7 @@ const LoginForm = (props) => {
             <input  className='formInputText' 
                     type='password' 
                     name='' 
-                    placeholder='Your Password' 
+                    placeholder={t('placeholders.your_password')} 
                     required value={props.passwordInputValue} 
                     onChange={props.passwordInputChanged} />
             <p className='formErrorMessage'>{props.passwordErrorMessage}</p>

@@ -119,7 +119,7 @@ class AdminSearchResults extends Component {
                             </div>
                             <div className='searchResultsSearchBoxContainer'>
                                 <div className='searchResultsSearchBox'>
-                                    <input className='searchResultsSearchBoxText' type='text' name='' placeholder='Search' value={this.state.toSearchBook} onChange={(event) => this.setState({ toSearchBook : event.target.value })}/>
+                                    <input className='searchResultsSearchBoxText' type='text' name='' placeholder={t('placeholders.search')} value={this.state.toSearchBook} onChange={(event) => this.setState({ toSearchBook : event.target.value })}/>
                                     <button className='searchResultsSearchBoxButton' onClick={this.handleSearchClicked}>
                                         <img src={SearchIcon} alt='Search'/>
                                     </button>

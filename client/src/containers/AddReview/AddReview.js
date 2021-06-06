@@ -118,7 +118,7 @@ class AddReview extends Component {
                                             maxLength="500"
                                             required value={this.state.review} 
                                             onChange={(event) => this.setState({review: event.target.value})}  
-                                            placeholder='Your Review' />
+                                            placeholder={t('placeholders.your_review')} />
                                 <div className='addReviewReviewTextLength'>
                                     📝 {this.state.review.length}/500
                                     <span className='addReviewReviewTextLengthTooltip'><p>{t('add_review.warning')}</p></span>

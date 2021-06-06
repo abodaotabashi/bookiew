@@ -188,5 +188,31 @@
         "cover_url":"URL of the Cover: ",
         "delete":"Delete Book",
         "update":"Update Book"
+    },
+    "placeholders": {
+        "your_email": "Your Email",
+        "your_password":"Your Password",
+        "birthdate":"Date of birth",
+        "firstname":"First name",
+        "surname":"Surname",
+        "email":"Email",
+        "password":"Password",
+        "your_review":"Your Review",
+        "name_of_book":"Name of Book",
+        "author_of_book": "Author(s) of Book",
+        "year_of_pub":"Year of Publication (YYYY)",
+        "publisher":"Publisher",
+        "category":"Category",
+        "subject":"Subject",
+        "language":"Language",
+        "cover_url": "URL of the Cover",
+        "search":"Search",
+        "note":"Leave us a note :)",
+        "your_firstname":"Your Firstname",
+        "your_surname":"Your Surname",
+        "new_pwd":"New Password",
+        "confirm_pwd":"Confirm Password",
+        "confirm_your_pwd":"Confirm Your Password",
+        "add_your_comment":"Add Your Comment ..."
     }
 }

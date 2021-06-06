@@ -188,5 +188,31 @@
         "cover_url":"Kapağın URL linki: ",
         "delete":"Kitabı Kaldır",
         "update":"Kitabı Güncelle"
+    },
+    "placeholders": {
+        "your_email": "Email Adresiniz",
+        "your_password":"Şifreniz",
+        "birthdate":"Doğum Tarihi",
+        "firstname":"İsim",
+        "surname":"Soyisim",
+        "email":"Email",
+        "password":"Şifre",
+        "your_review":"İncelemeniz",
+        "name_of_book":"Kitabın Adı",
+        "author_of_book": "Kitabın Yazar(lar)ı",
+        "year_of_pub":"Yayın Tarihi (YYYY)",
+        "publisher":"Yayımcı",
+        "category":"Kategory",
+        "subject":"Konu",
+        "language":"Dil",
+        "cover_url": "Kapak fotoğrafı için URL",
+        "search":"Arama",
+        "note":"Bize bir not bırak :)",
+        "your_firstname":"İsminiz",
+        "your_surname":"Soyisminiz",
+        "new_pwd":"Yeni Şifre",
+        "confirm_pwd":"Yeni Şifre (Tekrar)",
+        "confirm_your_pwd":"Şifreyi Onayla",
+        "add_your_comment":"Kendi Yorumunuzu Ekleyin ..."
     }
 }

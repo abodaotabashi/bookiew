@@ -114,7 +114,7 @@ class AdminUpdateBook extends Component {
                                                     name=''
                                                     required value={this.state.bookname} 
                                                     onChange={(event) => this.setState({bookname: event.target.value})}  
-                                                    placeholder='Name of Book' />
+                                                    placeholder={t('placeholders.name_of_book')} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -127,7 +127,7 @@ class AdminUpdateBook extends Component {
                                                     name=''
                                                     required value={this.state.author} 
                                                     onChange={(event) => this.setState({author: event.target.value})}  
-                                                    placeholder='Author(s) of Book' />
+                                                    placeholder={t('placeholders.author_of_book')} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -140,7 +140,7 @@ class AdminUpdateBook extends Component {
                                                     min="1900" max="2022"
                                                     required value={this.state.publishingyear} 
                                                     onChange={(event) => this.setState({publishingyear: event.target.value})}  
-                                                    placeholder='Year of Publication (YYYY)' />
+                                                    placeholder={t('placeholders.year_of_pub')} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -153,7 +153,7 @@ class AdminUpdateBook extends Component {
                                                     name=''
                                                     required value={this.state.publisher} 
                                                     onChange={(event) => this.setState({publisher: event.target.value})}  
-                                                    placeholder='Publisher' />
+                                                    placeholder={t('placeholders.publisher')} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -166,7 +166,7 @@ class AdminUpdateBook extends Component {
                                                     name=''
                                                     required value={this.state.category} 
                                                     onChange={(event) => this.setState({category: event.target.value})}  
-                                                    placeholder='Category' />
+                                                    placeholder={t('placeholders.category')} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -179,7 +179,7 @@ class AdminUpdateBook extends Component {
                                                     name=''
                                                     required value={this.state.subject} 
                                                     onChange={(event) => this.setState({subject: event.target.value})}  
-                                                    placeholder='Subject' />
+                                                    placeholder={t('placeholders.subject')} />
                                             </td>
                                         </tr>
                                         <tr>
@@ -191,7 +191,7 @@ class AdminUpdateBook extends Component {
                                                         list="languages"
                                                         required value={this.state.language} 
                                                         onChange={(event) => this.setState({language: event.target.value})}  
-                                                        placeholder='Language' />
+                                                        placeholder={t('placeholders.language')} />
                                                 <datalist id="languages">
                                                     <option value="Arabic"/>
                                                     <option value="Chinese"/>
@@ -229,7 +229,7 @@ class AdminUpdateBook extends Component {
                                                     name=''
                                                     required value={this.state.coverURL} 
                                                     onChange={(event) => this.setState({coverURL: event.target.value})}  
-                                                    placeholder='URL of the Cover' />
+                                                    placeholder={t('placeholders.cover_url')} />
                                             </td>
                                         </tr>
                                     </tbody>

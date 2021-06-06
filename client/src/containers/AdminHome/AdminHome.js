@@ -63,7 +63,7 @@ class Home extends Component {
                             </div>
                             <div className='homeSearchBoxContainer'>
                                 <div className='homeSearchBox'>
-                                    <input className='homeSearchBoxText' type='text' name='' placeholder='Search' onChange={(event) => this.setState({searchedBook: event.target.value})}/>
+                                    <input className='homeSearchBoxText' type='text' name='' placeholder={t('placeholders.search')} onChange={(event) => this.setState({searchedBook: event.target.value})}/>
                                     <button className='homeSearchBoxButton' onClick={this.handleSearchBook}>
                                         <img src={SearchIcon} alt='Search'/>
                                     </button>
