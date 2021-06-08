@@ -291,6 +291,18 @@ router.post('/getReviewOfUser', async function(req, res, next) {
   }
 })
 
+router.post('/getRatingOfUser', async function(req, res, next) {
+  console.log(req.body);
+  const userID = req.body.userID;
+  const reviewID = req.body.reviewID;
+  const result = await knex('ratings').select('*').where({'ratingUserID':userID, 'ratingReviewID': reviewID}).first();
+  if (!result) {return res.send({response:false})}
+  console.log('the result is '+result);
+  const rating = result.score;
+  console.log('your rating is '+rating);
+  return res.send({response:true, rating:rating});
+})
+
 router.post('/getUser', async function(req, res, next) {
   const userID = req.body.userID;
   const userA = await knex('users').select('*').where({'userID':userID});
@@ -446,14 +458,23 @@ router.post('/addComment', async function(req, res, next) {
   const reviewID = req.body.reviewID;
   const userID = req.body.userID;
   const commentDate = req.body.commentDate;
-  //const newRating = req.body.newRating;
   const result =await knex('comments').insert({
     commentText: commentText,
     commentReviewID: reviewID,
     commentUserID: userID,
     commentDate: commentDate
   });
-  /*const result2 = await knex('ratings').insert({
+  if (result) {
+    return res.send({response:true, message:"successfully added "})
+  }
+  return res.send({response:false, message:"something went wrong "})
+})
+
+router.post('/updateRating', async function (req, res, next) {
+  const reviewID = req.body.reviewID;
+  const userID = req.body.userID;
+  const newRating = req.body.newRating;
+  const result2 = await knex('ratings').insert({
     ratingUserID: userID,
     ratingReviewID: reviewID,
     score: newRating
@@ -469,11 +490,7 @@ router.post('/addComment', async function(req, res, next) {
   }
   const result3 = await knex('reviews').where({'reviewID': reviewID}).update(({
     'reviewRating': newScore
-  }))*/
-  if (result) {
-    return res.send({response:true, message:"successfully added "})
-  }
-  return res.send({response:false, message:"something went wrong "})
+  }))
 })
 
 router.post('/deleteRecommendation', async function(req, res, next) {

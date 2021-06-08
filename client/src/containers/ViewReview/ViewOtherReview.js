@@ -26,13 +26,34 @@ class ViewOtherReview extends Component {
         newRating: null
     }
 
-    handleGetRatingOfUser = () => {
+    handleGetRatingOfUser = async () => {
         //TODO
+        const userID = localStorage.getItem('userID');
+        const result  = await axios.post("http://localhost:3000/getRatingOfUser", {
+            userID: userID,
+            reviewID: this.state.review.reviewID
+        });
+        if (result.data.response) { 
+            this.setState({userRating: result.data.rating})
+            console.log(this.state.userRating);
+        } else {
+            console.log('no rating for you');
+        }
     }
 
-    handleUpdateRating = (ratingValue) => {
+    handleUpdateRating = async (ratingValue) => {
         this.setState({newRating: ratingValue});
         //TODO
+        const result = await axios.post("http://localhost:3000/updateRating", {
+            userID: localStorage.getItem('userID'),
+            review: this.state.review.reviewID, 
+            rating:ratingValue
+        });
+        if (result.data.response) {
+            console.log('rating updated!');
+        } else {
+            console.log('something went wrong');
+        }
     }
 
     handleGetComments = async () => {
@@ -102,7 +123,9 @@ class ViewOtherReview extends Component {
             this.goToLogin();
         }
         const {t} = this.props;
-
+        if (!this.state.userRating) {
+            this.handleGetRatingOfUser(); 
+        }
         if(this.state.reviewComments === null) {
             this.handleGetComments();
         }
@@ -214,7 +237,7 @@ class ViewOtherReview extends Component {
                                                 name=''
                                                 value={this.state.newComment} 
                                                 onChange={(event) => this.setState({newComment: event.target.value})}  
-                                                placeholder='Add Your Comment ...' />
+                                                placeholder={t('placeholders.add_your_comment')} />
                                         <div className="viewReviewCommentInputSendButton" onClick={this.handleNewComment}>
                                             <FaComment className='viewReviewCommentInputSendButtonIcon' size={22}/>
                                         </div>
