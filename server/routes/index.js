@@ -295,12 +295,13 @@ router.post('/getRatingOfUser', async function(req, res, next) {
   console.log(req.body);
   const userID = req.body.userID;
   const reviewID = req.body.reviewID;
-  const result = await knex('ratings').select('*').where({'ratingUserID':userID, 'ratingReviewID': reviewID}).first();
-  if (!result) {return res.send({response:false})}
-  console.log('the result is '+result);
-  const rating = result.score;
-  console.log('your rating is '+rating);
-  return res.send({response:true, rating:rating});
+  const result = await knex('ratings').select('*').where({'ratingUserID':userID, 'ratingReviewID': reviewID});
+  if (result[0] == null) {
+    return res.send({response:false})
+  } else {
+    const rating = result[0].score;
+    return res.send({response:true, rating:rating});
+  }
 })
 
 router.post('/getUser', async function(req, res, next) {
@@ -474,23 +475,52 @@ router.post('/updateRating', async function (req, res, next) {
   const reviewID = req.body.reviewID;
   const userID = req.body.userID;
   const newRating = req.body.newRating;
-  const result2 = await knex('ratings').insert({
-    ratingUserID: userID,
-    ratingReviewID: reviewID,
-    score: newRating
-  })
-  const ratings = await knex('ratings').select('*').where({'ratingReviewID':reviewID})
-  let toplam = 0;
-  let newScore = newRating;
-  if (ratings[1] !== null){
-    for (var i=0;i<ratings.length;i++) {
-      toplam = toplam + ratings[i].score;
+  const result = await knex('ratings').select('*').where({'ratingUserID':userID, 'ratingReviewID': reviewID});
+  if (result[0] == null) {
+    const result1 = await knex('ratings').insert({
+      'ratingUserID': userID,
+      'ratingReviewID': reviewID,
+      'score': newRating
+    })
+    if (!result1) {
+      return res.send({response:false})
+    } else {
+      const ratings = await knex('ratings').select('*').where({'ratingReviewID':reviewID})
+      let toplam = 0;
+      let newScore = 0;
+      if (ratings[0] !== null){
+        for (let i=0; i < ratings.length; i++) {
+          toplam = toplam + ratings[i].score;
+        }
+        newScore = toplam/ratings.length;
+      }
+      const result3 = await knex('reviews').where({'reviewID': reviewID}).update(({
+        'reviewRating': newScore
+      }))
+      return res.send({newScore: newScore, response: true})
     }
-    newScore = toplam/ratings.length;
+  } else {
+    const result2 = await knex('ratings').where({'ratingUserID':userID, 'ratingReviewID': reviewID}).update(({
+      'score': newRating
+    }));
+    if (!result2) {
+      return res.send({response:false})
+    } else {
+      const ratings = await knex('ratings').select('*').where({'ratingReviewID':reviewID})
+      let toplam = 0;
+      let newScore = 0;
+      if (ratings[0] !== null){
+        for (let i=0; i < ratings.length; i++) {
+          toplam = toplam + ratings[i].score;
+        }
+        newScore = toplam/ratings.length;
+      }
+      const result3 = await knex('reviews').where({'reviewID': reviewID}).update(({
+        'reviewRating': newScore
+      }))
+      return res.send({newScore: newScore, response: true})
+    }
   }
-  const result3 = await knex('reviews').where({'reviewID': reviewID}).update(({
-    'reviewRating': newScore
-  }))
 })
 
 router.post('/deleteRecommendation', async function(req, res, next) {

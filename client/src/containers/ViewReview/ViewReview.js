@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import "./ViewReview.css";
 import axios from 'axios';
+import { withRouter } from "react-router-dom";
+import {withTranslation} from "react-i18next";
 
 import HomeReviewCard from '../../components/HomeReviewCard/HomeReviewCard';
 import WarningDialog from '../../components/Dialogs/WarningDialog';
 
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import UserIcon from "../../assets/icons/user.png";
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
-
-import { withRouter } from "react-router-dom";
-import {withTranslation} from "react-i18next";
 
 class ViewReview extends Component {
     state = {
@@ -128,15 +128,17 @@ class ViewReview extends Component {
         const {t} = this.props;
         this.handleGetReview();
         
+        const myPhoto = localStorage.getItem("userProfilePhotoURL");
+
         if (this.state.review !== null && (this.state.review.reviewComments !== null || typeof(this.state.review.reviewComments) !== 'undefined')) {
-            review = (<HomeReviewCard reviewerIcon={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon}
+            review = (<HomeReviewCard reviewerIcon={(myPhoto === '' || typeof(myPhoto) === 'undefined') ? UserIcon : myPhoto}
                 reviewerName={this.state.review.reviewerName}
                 reviewText={this.state.review.reviewText}
                 reviewDate={this.state.review.reviewDate}
                 reviewRating={this.state.review.reviewRating}
                 bookName={this.state.book.bookName}
                 bookAuthor={this.state.book.bookAuthor}
-                bookThumbnail={this.state.book.bookThumbnail}
+                bookThumbnail={(this.state.book.bookThumbnail === '') ? ThumbnailTest : this.state.book.bookThumbnail}
                 reviewComments={this.state.reviewCommentsDisplayed}
                 reviewCommentsNumber={(typeof(this.state.reviewComments) === 'undefined' || this.state.reviewComments === null) ? 0 : this.state.reviewComments.length}
                 />);

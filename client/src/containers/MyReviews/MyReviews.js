@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import "./MyReviews.css";
-
-import { FaTimesCircle } from 'react-icons/fa';
-import axios from 'axios';
-import BookCard from '../../components/BookCard/BookCard';
 import { withRouter } from "react-router-dom";
 import {withTranslation} from "react-i18next";
+import axios from 'axios';
+
+import BookCard from '../../components/BookCard/BookCard';
+
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
+import { FaTimesCircle } from 'react-icons/fa';
+import "./MyReviews.css";
 
 class MyReviews extends Component {
     state = {
@@ -55,7 +57,7 @@ class MyReviews extends Component {
                                         className='myReviewsBookCard'
                                         bookName={review.bookName}
                                         bookAuthor={review.bookAuthor}
-                                        bookThumbnail={review.bookThumbnail}
+                                        bookThumbnail={(review.bookThumbnail === '') ? ThumbnailTest : review.bookThumbnail}
                                         click={this.handleReviewClicked.bind(this, review.reviewID)}
                                         />
                         );
@@ -67,7 +69,7 @@ class MyReviews extends Component {
                 <div className='searchResultsBookCardsContainer'>
                     <div className='searchResultsNoResultsSection'>
                         <FaTimesCircle size={148} color='#341f97'/>
-                        {t('home.no_review')}😭
+                        {t('home.no_reviews')}😭
                     </div>
                 </div>
             );

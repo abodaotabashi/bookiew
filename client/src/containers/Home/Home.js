@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import "./Home.css";
 
 import SearchIcon from "../../assets/icons/search_30px.png";
-//import ThumbnailTest from "../../assets/images/thumbnailtest.png";
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
 
 import { FaTimesCircle } from 'react-icons/fa';
@@ -126,7 +126,7 @@ class Home extends Component {
                                 className='myReviewsBookCard'
                                 bookName={this.state.lastReviewedBook.bookName}
                                 bookAuthor={this.state.lastReviewedBook.bookAuthor}
-                                bookThumbnail={this.state.lastReviewedBook.bookThumbnail}
+                                bookThumbnail={(this.state.lastReviewedBook.bookThumbnail === '') ? ThumbnailTest : this.state.lastReviewedBook.bookThumbnail}
                                 reviewComments={this.state.reviewCommentsDisplayed}
                                 reviewCommentsNumber={(typeof(this.state.reviewComments) === 'undefined' || this.state.reviewComments === null) ? 0 : this.state.reviewComments.length}
                                 click={this.handleReviewClicked.bind(this, this.state.lastReview.reviewID)}

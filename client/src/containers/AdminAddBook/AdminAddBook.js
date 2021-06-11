@@ -5,6 +5,7 @@ import { withTranslation } from 'react-i18next';
 
 import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
 
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import "./AdminAddBook.css";
 
 class AdminAddBook extends Component { 
@@ -25,7 +26,7 @@ class AdminAddBook extends Component {
     handleAddBook = async () => {
         this.clearErrors();
         if (this.state.bookname.trim() === '' || this.state.author.trim() === '' || this.state.publishingyear.trim() === '' || this.state.publisher.trim() === '' 
-            || this.state.subject.trim() === '' || this.state.category.trim() === '' || this.state.language.trim() === '' || this.state.coverURL.trim() === '') {
+            || this.state.subject.trim() === '' || this.state.category.trim() === '' || this.state.language.trim() === '') {
             this.setState({ 
                 errorMessage: 'Information(s) of the book are missing!',
                 errorVisible: 'flex'   
@@ -73,7 +74,7 @@ class AdminAddBook extends Component {
                             <div className='adminAddBookWrapper'>
                                 <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
-                                        <img src={this.state.coverURL} className='adminAddBookThumbnail' alt=''/>
+                                        <img src={(this.state.coverURL === '') ? ThumbnailTest : this.state.coverURL} className='adminAddBookThumbnail' alt=''/>
                                     </div>
                                     <p className='adminAddBookCoverLabel'>{t('admin_add_book.book_preview')}</p>
                                 </div>
@@ -203,7 +204,7 @@ class AdminAddBook extends Component {
                                             <input  className='adminAddBookInputText' 
                                                     type='text' 
                                                     name=''
-                                                    required value={this.state.coverURL} 
+                                                    value={this.state.coverURL} 
                                                     onChange={(event) => this.setState({coverURL: event.target.value})}  
                                                     placeholder={t('placeholders.cover_url')} />
                                             </td>

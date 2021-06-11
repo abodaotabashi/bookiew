@@ -6,6 +6,7 @@ import axios from 'axios';
 import Comment from '../../components/Comment/Comment';
 import StarRating from '../StarRating/StarRating';
 
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import { FaStar } from 'react-icons/fa';
 import { FaComment } from 'react-icons/fa';
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
@@ -22,12 +23,11 @@ class ViewOtherReview extends Component {
         showMoreCommentsButtonVisible: 'none',
         user: this.props.user,
         newComment: '',
-        userRating: null,
+        userRating: 0,
         newRating: null
     }
 
     handleGetRatingOfUser = async () => {
-        //TODO
         const userID = localStorage.getItem('userID');
         const result  = await axios.post("http://localhost:3000/getRatingOfUser", {
             userID: userID,
@@ -43,13 +43,23 @@ class ViewOtherReview extends Component {
 
     handleUpdateRating = async (ratingValue) => {
         this.setState({newRating: ratingValue});
-        //TODO
         const result = await axios.post("http://localhost:3000/updateRating", {
             userID: localStorage.getItem('userID'),
-            review: this.state.review.reviewID, 
-            rating:ratingValue
+            reviewID: this.state.review.reviewID, 
+            newRating: ratingValue
         });
         if (result.data.response) {
+            let updatedReview = {
+                reviewID: this.state.review.reviewID,
+                reviewDate: this.state.review.reviewDate,
+                reviewRating: result.data.newScore,
+                reviewText: this.state.review.reviewText,
+                reviewerID: this.state.review.reviewerID,
+                reviewerIcon: this.state.review.reviewerIcon,
+                reviewerName: this.state.review.reviewerName,
+                reviewComments: this.state.review.reviewComments
+            };
+            this.setState({review: updatedReview});
             console.log('rating updated!');
         } else {
             console.log('something went wrong');
@@ -123,7 +133,7 @@ class ViewOtherReview extends Component {
             this.goToLogin();
         }
         const {t} = this.props;
-        if (!this.state.userRating) {
+        if (this.state.userRating === 0) {
             this.handleGetRatingOfUser(); 
         }
         if(this.state.reviewComments === null) {
@@ -149,7 +159,7 @@ class ViewOtherReview extends Component {
         }
 
         let RatingLabel = '';
-        if(this.state.userRating !== null) {
+        if(this.state.userRating !== 0) {
             RatingLabel = 'Your Rating: ';
         } else {
             RatingLabel = 'Rate it now!';
@@ -166,7 +176,7 @@ class ViewOtherReview extends Component {
                         <div className='viewBookContainer'>
                             <div className='viewBookBookCardContainer'>
                                 <div className='viewBookBookCardThumbnailWrapper'>
-                                    <img src={this.state.book.bookThumbnail} className='viewBookBookCardThumbnail' alt='bookThumbnail'/>
+                                    <img src={(this.state.book.bookThumbnail === '') ? ThumbnailTest : this.state.book.bookThumbnail} className='viewBookBookCardThumbnail' alt='bookThumbnail'/>
                                 </div>
                                 <div className='viewBookBookCardName'>
                                     <p>{this.state.book.bookName}</p>
@@ -222,7 +232,7 @@ class ViewOtherReview extends Component {
                                         </div>
                                         <div className='viewBookRatingSection'>
                                             <p  className='viewReviewRatingLabel'>{RatingLabel}</p>
-                                            <StarRating userRating={this.state.userRating} click={this.handleReviewRated} /> 
+                                            <StarRating reviewID={this.state.review.reviewID} click={this.handleUpdateRating} />
                                         </div>
                                         <div className='viewBookUserReviewRatingWrapper'>
                                             <p className='viewBookUserReviewLabel'>{this.state.review.reviewRating}</p>

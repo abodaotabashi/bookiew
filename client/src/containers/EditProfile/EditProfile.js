@@ -176,7 +176,7 @@ class EditProfile extends Component {
 
         let image = null;
         if(this.state.profilePhotoURL){
-            image = <img src={this.state.profilePhotoURL} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
+            image = <img src={this.state.profilePhotoURL} className='editProfilePhoto' alt='Update ProfilePhoto'/>
         }else{
             image = <img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/> 
         }

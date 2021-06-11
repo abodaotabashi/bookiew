@@ -23,6 +23,7 @@ import AdminSearchResultsPage from '../pages/AdminSearchResultsPage/AdminSearchR
 import AdminHomePage from '../pages/AdminHomePage/AdminHomePage';
 import AdminUpdateBookPage from '../pages/AdminUpdateBookPage/AdminUpdateBookPage';
 import AdminRecommendationsPage from '../pages/AdminRecommendationsPage/AdminRecommendationsPage';
+//import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
 
 class App extends Component {
   
@@ -52,6 +53,7 @@ class App extends Component {
             <Route path='/adminpanel/' exact component = {AdminHomePage}/>
             <Route path='/adminpanel/updateBook' exact component = {AdminUpdateBookPage}/>
             <Route path='/adminpanel/recommendations' exact component = {AdminRecommendationsPage}/>
+            {/*<Route component={NotFoundPage} />*/}
           </Switch>
         </Router>
       </div>

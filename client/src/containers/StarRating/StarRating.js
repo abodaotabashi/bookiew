@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
+import { FaStar } from 'react-icons/fa';
 import './StarRating.css';
-import { FaStar } from 'react-icons/fa'
 
 class StarRating extends Component {
     state = {
-        rating: (this.props.userRating === null ? 0 : this.props.userRating),
+        reviewID: this.props.reviewID,
+        rating: 0,
         hover: 0
     }
 
@@ -13,8 +16,25 @@ class StarRating extends Component {
         this.props.click(ratingValue);
     }
 
-    
+    handleGetRatingOfUser = async () => {
+        const userID = localStorage.getItem('userID');
+        const result  = await axios.post("http://localhost:3000/getRatingOfUser", {
+            userID: userID,
+            reviewID: this.state.reviewID
+        });
+        if (result.data.response) { 
+            this.setState({rating: result.data.rating})
+            console.log(this.state.rating);
+        } else {
+            console.log('no rating for you');
+        }
+    }
+
     render() {
+        if (this.state.rating === 0) {
+            this.handleGetRatingOfUser(); 
+        }
+
         return(
             <div className='starRatingContainer'>
                 {[ ...Array(5)].map((star, index) => {

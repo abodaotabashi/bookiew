@@ -6,6 +6,7 @@ import axios from 'axios';
 import ViewBookUserReviewCard from '../../components/ViewBookReviewCard/ViewBookUserReviewCard';
 import ViewBookOtherReviewCard from '../../components/ViewBookReviewCard/ViewBookOtherReviewCard';
 
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import { FaTimesCircle } from 'react-icons/fa';
 import { FaPlusCircle } from 'react-icons/fa';
 import ExpandIcon from "../../assets/icons/expand_arrow_32px.png";
@@ -37,6 +38,7 @@ class ViewBook extends Component {
             let reviews = reviewsResult.data.reviews;
             let userID = this.state.user.userID;
             let newReviews = null;
+            this.setState({reviews : reviews});
             reviews.forEach((review, index) => {
                 if (String(review.reviewerID) === userID && this.state.reviewOfUser === null){
                     this.setState({reviewOfUser: review});
@@ -180,7 +182,7 @@ class ViewBook extends Component {
                         <div className='viewBookContainer'>
                             <div className='viewBookBookCardContainer'>
                                 <div className='viewBookBookCardThumbnailWrapper'>
-                                    <img src={this.state.book.bookThumbnail} className='viewBookBookCardThumbnail' alt='bookThumbnail'/>
+                                    <img src={(this.state.book.bookThumbnail === '') ? ThumbnailTest : this.state.book.bookThumbnail} className='viewBookBookCardThumbnail' alt='bookThumbnail'/>
                                 </div>
                                 <div className='viewBookBookCardName'>
                                     <p>{this.state.book.bookName}</p>

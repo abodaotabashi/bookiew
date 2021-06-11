@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import "./EditReview.css";
-
-import UserIcon from "../../assets/icons/user.png";
-import { FaCheck } from 'react-icons/fa'
-import { FaWindowClose } from 'react-icons/fa'
-
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
+
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
+import UserIcon from "../../assets/icons/user.png";
+import { FaCheck } from 'react-icons/fa'
+import { FaWindowClose } from 'react-icons/fa'
+import "./EditReview.css";
 
 class EditReview extends Component {
     state = {
@@ -43,6 +43,8 @@ class EditReview extends Component {
         }
 
         const {t} = this.props;
+        const myPhoto = localStorage.getItem("userProfilePhotoURL");
+        
         return(
             <div className='editReviewBackgroundSection'>
                 <div className='editReviewBackgroundFilterSection'>
@@ -55,7 +57,7 @@ class EditReview extends Component {
                             <div className='editReviewReviewContainer'>
                                 <div className='reviewCardContainer'>
                                     <div className='reviewCardBookThumbnailWrapper'>
-                                        <img src={this.state.book.bookThumbnail} className='reviewCardBookThumbnail' alt='bookThumbnail'/>
+                                        <img src={(this.state.book.bookThumbnail === '') ? ThumbnailTest : this.state.book.bookThumbnail} className='reviewCardBookThumbnail' alt='bookThumbnail'/>
                                     </div>
                                     <div className='reviewCardWrapper'>
                                         <div className='reviewCardBookName'>
@@ -70,7 +72,7 @@ class EditReview extends Component {
                                         <div className='reviewCardReviewerContainer'>
                                             <div className='reviewCardReviewerWrapper'>
                                                 <div className='reviewCardReviewerIconWrapper'>
-                                                    <img src={(this.state.review.reviewerIcon === '' || typeof(this.state.review.reviewerIcon) === 'undefined') ? UserIcon : this.state.review.reviewerIcon} className='reviewCardReviewerIcon' alt='reviewer'/>
+                                                    <img src={(myPhoto === '' || typeof(myPhoto) === 'undefined') ? UserIcon : myPhoto} className='reviewCardReviewerIcon' alt='reviewer'/>
                                                 </div>
                                                 <div className='reviewCardReviewerName'>{this.state.review.reviewerName}</div>
                                             </div>
