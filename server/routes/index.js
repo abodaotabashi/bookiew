@@ -2,7 +2,17 @@ const { response } = require('express');
 const express = require('express');
 const router = express.Router();
 const nodemailer = require('nodemailer');
+const { google } = require('googleapis');
+const crypto = require('crypto');
 //const bcrypt = require('bcrypt');
+
+const CLIENT_ID = '262720466307-nt8db116tqact0u2j83fp3h0qbvul9e0.apps.googleusercontent.com';
+const CLIENT_SECRET = 'YTHbS_U8IzUgQJyCbkg02Z1r';
+const REDIRECT_URI = 'https://developers.google.com/oauthplayground';
+const REFRESH_TOKEN = '1//04rSQ3MznSGKbCgYIARAAGAQSNwF-L9IrWMTPl9ymwnA_G6TGSNqODdrgxnINZu9uxLLpuGwqg_6n86XQyxx2qUANOz-rvFOEMds';
+
+const oAuth2Client = new google.auth.OAuth2(CLIENT_ID, CLIENT_SECRET, REDIRECT_URI);
+oAuth2Client.setCredentials({ refresh_token: REFRESH_TOKEN });
 
 const knex = require('knex')({
   client: 'mysql',
@@ -81,41 +91,65 @@ router.post('/editProfile', async function(req, res, next){
 });
 
 router.post('/forgotPassword', async function(req, res, next) {
-  console.log(req.body);
   const email = req.body.email;
   const user = await knex('users').select('*').where({"email":email})
   if (user) {
-    console.log(user);
-    if (!user.hasHash) {
-      const message = {
-        from: process.env.GOOGLE_USER,
-        //to: email //when we want to send the link to user's actual email address
-        to: process.env.GOOGLE_USER, 
-        subject: 'Bookiew - Reset Password',
-        html:`
-            <h3>Hello ${user.firstname} </h3>
-            <p>To reset your password please follow this link: <a target="_" href="localhost:3000/resetPassword/${user.userID}">Reset Password Link</a></p>
-            <p>Cheers,</p>
-            <p>Bookiew Team</p> 
-            `
-      }
-      console.log('message created');
-      if (sendEmail(message)) {
-        console.log('message sent');
-        const hashSent = await knex('users')
-                                .where('userID', '=', user.userID)
-                                .update({ hasHash: 1})
-                                .decrement({
-                                  balance: 50,
-                                })
-                                .clearCounters()
-        return res.send({response:true, message:"Reset link sent to your email address"})
-      }
-      return res.send({response:false, message:"something went wrong "})
-    } else {return res.send({response:false, message:"Reset link was allready sent!"})}
+    if (!user[0].hasToken || user[0].hasToken === 0) {
+        try {
+          let token = null;
+          crypto.randomBytes(20, (err, buffer)=> {
+            if(err){
+              console.log(err);
+              return res.send({response:false, message:"something went wrong "})
+            } else {
+              token = buffer.toString("hex");
+            }
+          })
+          const accessToken = await oAuth2Client.getAccessToken();
+          const transporter = nodemailer.createTransport({
+            service: 'gmail',
+            auth: {
+                type: 'OAuth2',
+                user: 'bookiew.website@gmail.com',
+                clientId: CLIENT_ID,
+                clientSecret: CLIENT_SECRET,
+                refreshToken: REFRESH_TOKEN,
+                accessToken: accessToken
+            }
+          });
+          const mailOptions={
+            from: 'Bookiew - no-reply <no-reply@bookiew.com>',
+            to: email,
+            subject: 'Bookiew - Reset Password',
+            html:`
+                <h2>Hello ${user[0].firstname} </h2>
+                <h3>To reset your password please follow this <a href="http://127.0.0.1:3000/resetPassword/${token}" target="_">link</a>!</h3>
+                <p>Cheers,</p>
+                <p>Bookiew Team</p> 
+                `
+          }
+          console.log("token = ", token);
+          const result = await transporter.sendMail(mailOptions);
+          console.log("Email Sent! ", result);
+          const tokenSent = await knex('users')
+                                  .where('userID', '=', user[0].userID)
+                                  .update({ hasToken: 1, resetToken: token})
+                                  .decrement({
+                                    balance: 50,
+                                  })
+                                  .clearCounters()
+          return res.send({response:true, message:"Reset link sent to your email address"}); 
+        } catch (error) {
+          console.log(error.message);
+          return res.send({response:false, message:"something went wrong "})
+        }
+    } else {
+      return res.send({response:false, message:"Reset link was already sent!"});
+    }
+  } else {
+    console.log("User doesn't exist!");
+    return res.send({response:false, message:"User doesn't exist!"})
   }
-  console.log('User doesnt exist');
-  return res.send({response:false, message:"User doesn't exist!"})
 });
 
 router.post('/search', async function(req, res, next){
@@ -151,8 +185,6 @@ router.post('/updateProfile', async function(req,res,next){
   }else{
     return res.send({response:false, message: "could not update!", user:null});
   }
-
- 
 });
 
 router.post('/resetPassword', async function(req, res, next) {
@@ -361,26 +393,6 @@ router.post('/getBook', async function(req, res, next) {
     return res.send({response: true, book});
   }
 })
-
-function sendEmail(message) {
-  return new Promise((res, rej) => {
-    const transporter = nodemailer.createTransport({
-      service: 'gmail',
-      auth: {
-        user: process.env.GOOGLE_USER,
-        pass: process.env.GOOGLE_PASSWORD
-      }
-    })
-
-    transporter.sendMail(message, function(err, info) {
-      if (err) {
-        rej(err)
-      } else {
-        res(info)
-      }
-    })
-  })
-}
 
 router.post('/recommend', async function(req, res, next) {
   console.log(req.body);

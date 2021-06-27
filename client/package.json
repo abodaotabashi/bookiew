@@ -11,6 +11,8 @@
     "i18next-browser-languagedetector": "^6.1.1",
     "i18next-http-backend": "^1.2.6",
     "materialize-css": "^1.0.0-rc.2",
+    "mini-css-extract-plugin": "1.6.0",
+    "normalize-url": "^6.0.1",
     "react": "^17.0.2",
     "react-animated-number": "^0.4.4",
     "react-datepicker": "^3.7.0",

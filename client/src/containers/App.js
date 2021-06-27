@@ -37,7 +37,7 @@ class App extends Component {
             <Route path='/' exact component = {LandingPage}/>
             <Route path='/home' exact component = {HomePage}/>
             <Route path='/forgotPassword' exact component = {ForgotPasswordPage}/>
-            <Route path='/resetPassword' exact component = {ResetPasswordPage}/>
+            <Route path='/resetPassword/:token' exact component = {ResetPasswordPage}/>
             <Route path='/myReviews' exact component = {MyReviewsPage}/>
             <Route path='/searchResults' exact component = {SearchResultsPage}/>
             <Route path='/editProfile' exact component = {EditProfilePage}/>

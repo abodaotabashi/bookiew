@@ -12,6 +12,11 @@ class ForgotPassword extends Component {
     }
 
     validate = () =>{
+        if (this.state.email === ""){
+            this.setState({ emailErrorMessage: 'Email-Field is empty!' });
+            return false;
+        }
+        
         if (!this.state.email.includes('@')) {
             this.setState({ emailErrorMessage: 'Invalid Email!' });
             return false;
@@ -50,15 +55,15 @@ class ForgotPassword extends Component {
         return( 
             <div className='forgotPasswordContainer'>
                 <div className='forgotPasswordContainerBackgroundFilter'>
-                    <form className='forgotPasswordWrapper'>
+                    <div className='forgotPasswordWrapper'>
                         <p className='forgotPasswordHeaderOne'>
-                            {t('frogot_password.message')}
+                            {t('forgot_password.message')}
                         </p>
                         <p className='forgotPasswordHeaderTwo'>
-                            {t('frogot_password.dont_worry')}
+                            {t('forgot_password.dont_worry')}
                         </p>
-                        <p className='forgotPasswordSpan'>{t('frogot_password.we_will')}</p>
-                        <label className='ForgotPasswordEmailLabel'>{t('frogot_password.email')}</label>
+                        <p className='forgotPasswordSpan'>{t('forgot_password.we_will')}</p>
+                        <label className='ForgotPasswordEmailLabel'>{t('forgot_password.email')}</label>
                         <input  className='ForgotPasswordEmailInputText' 
                                 type='text' 
                                 name='' 
@@ -67,8 +72,8 @@ class ForgotPassword extends Component {
                                 required value={this.state.email} 
                                 onChange={(event) => this.setState({ email: event.target.value})}/>
                         <p className='ForgotPasswordEmailErrorMessage'>{this.state.emailErrorMessage}</p>
-                        <button className='sendLinkButton' onClick={this.handleForgotPassword}>{t('frogot_password.send_me')}</button>
-                    </form>
+                        <button className='sendLinkButton' onClick={this.handleForgotPassword}>{t('forgot_password.send_me')}</button>
+                    </div>
                 </div>
             </div>
         )
