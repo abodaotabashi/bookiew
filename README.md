@@ -1,11 +1,12 @@
-# Bookiew
+# <h1 align="center"> Bookiew </h1>
 
-<img
-src="./client/src/assets/logos/logo.png"
-raw=true
-alt=""
-style="width: 182px; height: 182px"
-/>
+<p align="center"> 
+    <img
+        src="./client/src/assets/logos/logo.png"
+        raw=true
+        alt="Bookiew_Logo"
+        style="width: 128px; height: 128px" />
+</p>
 
 ## Zielbestimmung
 
@@ -17,11 +18,11 @@ style="width: 182px; height: 182px"
 
 **Projekt-Typ:** Web-Applikaton
 
-**Dokumentationssprache:** Deutsch 
-
 **Front-End-Technologien:** HTML5, CSS3, React.js
 
 **Back-End-Technologien:** Node.js, Express.js
+
+**Testing-Technologien:** Postman, React-Testing-Library, Jest
 
 **Datenbank:** MySQL
 
@@ -29,6 +30,6 @@ style="width: 182px; height: 182px"
 
 | **Bereich** | **Verantwortlich** |
 | --- | --- |
-| Front-End | Sena Nur YILMAZ, Abdurrahman ODABAŞI |
-| Back-End | Fatma Tuğçe AKGÜL, Mahasin ELDERVİŞ |
+| Front-End | Abdurrahman ODABAŞI |
+| Back-End | Fatma Tuğçe AKGÜL, Mahasin ELDERVİŞ, Sena Nur YILMAZ |
 | DevOps | Betül BEIDAS, Nazlı ARAKI |
