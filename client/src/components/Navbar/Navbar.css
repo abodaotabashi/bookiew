@@ -230,3 +230,82 @@
 .navbarLogoutIcon {
     margin: 0 0 0 1em ;
 }
+
+.navbarLangButton {
+    outline: 0;
+    padding: 2px 0.5em;
+    margin-right: 10px;
+    font-family: 'Century Gothic';
+    font-size: 15px;
+    font-weight: 600;
+    color: white;
+    border-radius: 20px;
+    border: 2px solid #341f97;
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.navbarLangButton:hover {
+    background-color: rgba(52, 31, 151, 0.5);
+}
+
+.navbarLangIcon {
+    display: flex;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbarLangDropDown {
+    position: absolute;
+    top: 5.5vh;
+    right: 9vw;
+    margin: 0;
+    padding: 0 0.2em 0.2em 0.2em;
+    width: 6rem;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    border: 1px solid;
+    border-radius:20px;
+    background-color: #341f97;
+    border-color: white;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 500ms ease-in-out 500ms;
+}
+
+.navbarLangDropDownItem {
+    display: flex;
+    padding: 0.3em 0.5em;
+    font-size: 14px;
+    align-items: center;
+    justify-content: left;
+    font-family: 'Century Gothic';
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.navbarLangDropDownItemLink {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: white;
+    text-decoration: none;
+}
+
+.navbarLangDropDownItemLink:hover > .navbarLangDropDown,
+.navbarLangDropDownItem:hover > .navbarLangDropDown,
+.navbarLangButton:hover ~ .navbarLangDropDown,
+.navbarLangDropDown:hover {
+    transform: translate(0, 0);
+    transition-delay:0s;
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.navbarLangDropDownItem:hover {
+    background-color: #241b4b;
+}

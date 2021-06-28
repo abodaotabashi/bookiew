@@ -8,10 +8,17 @@
     align-items: center;
 }
 
+.landingWelcomeImageWrapper {
+    width: 200px;
+    padding: 3em 6em 3em 6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .landingWelcomeImage {
     width: 200px;
     height: fit-content;
-    padding: 6em 12em 3em 12em;
 }
 
 .landingWelcomeWrapper {
@@ -36,7 +43,7 @@
     background: -webkit-linear-gradient(#ff0000, rgb(0, 0, 255));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-top: 100px;
+    margin-top: 5vh;
 }
 
 .landingWelcomeText {

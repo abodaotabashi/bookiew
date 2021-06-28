@@ -9,7 +9,9 @@ const Welcome = () => {
         <div>
             <div className='landingWelcomeContainer'>
                 <div className='landingWelcomeWrapper'>
-                    <img src={WelcomeImage} className='landingWelcomeImage' alt='WelcomeImage'/>
+                    <div className='landingWelcomeImageWrapper'>
+                        <img src={WelcomeImage} className='landingWelcomeImage' alt='WelcomeImage'/>
+                    </div>
                     <div className='landingWelcomeTextWrapper'>
                         <label className='landingWelcomeLabel'><p>{t('landing.welcome')}</p></label>
                         <p className='landingWelcomeText'> 
