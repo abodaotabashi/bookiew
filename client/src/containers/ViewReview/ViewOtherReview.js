@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import Comment from '../../components/Comment/Comment';
 import StarRating from '../StarRating/StarRating';
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
 
 import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import { FaStar } from 'react-icons/fa';
@@ -25,7 +26,8 @@ class ViewOtherReview extends Component {
         newComment: '',
         userRating: 0,
         newRating: null,
-        commentErrorMessage: ''
+        commentErrorMessage: '',
+        openAckDialog: false
     }
 
     handleGetRatingOfUser = async () => {
@@ -115,15 +117,14 @@ class ViewOtherReview extends Component {
                 reviewID: reviewID
             });
             if (result.data.response) {
-                console.log('You have new Comment for this Review successfully added!');
                 this.setState({
                     reviewComments: null,
                     numberOfCommentDisplayed: null,
                     reviewCommentsDisplayed: null,
                     showMoreCommentsButtonVisible: 'none',
                     newComment: '',
-                    commentErrorMessage: ''
-                });
+                    commentErrorMessage: '', 
+                    openAckDialog: true});
             }
         } else {
             this.setState({commentErrorMessage: 'Please fill the comment field first!'})
@@ -273,6 +274,11 @@ class ViewOtherReview extends Component {
                             </div>
                         </div>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                    content='Your new Comment for this Review was successfully added!'
+                                    ok="Ok"
+                                    okFunction={() => { this.setState({openAckDialog: false});}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         );

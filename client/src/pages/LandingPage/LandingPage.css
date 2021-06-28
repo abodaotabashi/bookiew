@@ -1,5 +1,5 @@
 .LandingPageContainer {
-    height: 190vh;
+    height: 198vh;
     background-image: url('../../assets/images/backgrounds/background4.jpg');
     background-size: cover;
     width: 100%;
@@ -7,7 +7,7 @@
 }
 
 .LandingPageWrapper {
-    height: 190vh;
+    height: 198vh;
     background-color: rgba(34, 7, 36, 0.7);
     width: 100%;
     display: block;

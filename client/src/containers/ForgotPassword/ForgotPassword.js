@@ -1,19 +1,22 @@
-import axios from 'axios';
 import React, { Component } from 'react';
-import "./ForgotPassword.css";
+import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
+import "./ForgotPassword.css";
 
 class ForgotPassword extends Component {
     state = {
         email: '',
-        emailErrorMessage: ''
+        emailErrorMessage: '',
+        openAckDialog: false
     }
 
     validate = () =>{
         if (this.state.email === ""){
-            this.setState({ emailErrorMessage: 'Email-Field is empty!' });
+            this.setState({ emailErrorMessage: 'Please enter your Email first!' });
             return false;
         }
         
@@ -25,19 +28,13 @@ class ForgotPassword extends Component {
     }
 
     handleForgotPassword = async () => {
-        console.log("I'm in forgot")
-        //TODO
         const isValid = this.validate();
         if(isValid) {
             const result = await axios.post("http://localhost:3000/forgotPassword", {
                 email: this.state.email
             })
             if(result.data.response) {
-                console.log("Reset link sent to "+ this.state.email);
-                this.props.history.push({
-                    pathname:'/login'
-                });
-                return;
+                this.setState({openAckDialog: true});
             }
         }
     }
@@ -74,6 +71,12 @@ class ForgotPassword extends Component {
                         <p className='ForgotPasswordEmailErrorMessage'>{this.state.emailErrorMessage}</p>
                         <button className='sendLinkButton' onClick={this.handleForgotPassword}>{t('forgot_password.send_me')}</button>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                            content='We have already sent a link to your email in order to reset your password!'
+                                            ok="Ok"
+                                            okFunction={() => { this.setState({openAckDialog: false});
+                                                                this.props.history.push({ pathname: '/login' });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         )

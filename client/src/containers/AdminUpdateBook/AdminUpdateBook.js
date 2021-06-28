@@ -3,6 +3,9 @@ import axios from 'axios';
 import { withTranslation } from 'react-i18next';
 import { withRouter } from 'react-router-dom';
 
+import WarningDialog from '../../components/Dialogs/WarningDialog';
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
 import "../AdminAddBook/AdminAddBook.css";
@@ -19,7 +22,9 @@ class AdminUpdateBook extends Component {
         language: this.props.book.bookLanguage,
         coverURL: this.props.book.bookThumbnail,
         errorMessage: '',
-        errorVisible: 'none'
+        errorVisible: 'none',
+        openAckDialog: false,
+        openWarningDialog: false
     }
 
     handleUpdateBook = async () => {
@@ -43,10 +48,7 @@ class AdminUpdateBook extends Component {
                 coverURL: this.state.coverURL
             });
             if (result.data.response) {
-                console.log('You have the Book successfully updated!');
-                this.props.history.push({
-                    pathname:'/adminpanel'
-                })
+                this.setState({openAckDialog: true});
             }
         }
     }
@@ -237,7 +239,7 @@ class AdminUpdateBook extends Component {
                             </div>
                             <div className='adminAddBookErrorMessage' style={{ display: this.state.errorVisible}}>{this.state.errorMessage}</div>
                             <div className='adminUpdateBookButtonsContainer'>
-                                <button className='adminUpdateBookDeleteButton' onClick={this.handleDeleteBook}>
+                                <button className='adminUpdateBookDeleteButton' onClick={() => this.setState({openWarningDialog: false})}>
                                     <FaTrash 
                                         color="#ffffff" 
                                         size={24}/>
@@ -254,6 +256,21 @@ class AdminUpdateBook extends Component {
                             </div>
                         </div>
                     </div>
+                    <WarningDialog  openWarningDialog={this.state.openWarningDialog}
+                                    title='Delete this recommendation?'
+                                    content='Are you sure that you want to delete this book permanently?'
+                                    contentSpan='All Reviews with their comments on this review will be automatically deleted!'
+                                    yes="Delete"
+                                    no="Cancel"
+                                    yesFunction={() => {this.handleDeleteBook(); this.setState({openWarningDialog: false});}}
+                                    noFunction={() => {this.setState({openWarningDialog: false, recommendationToDelete: null});}}>
+                    </WarningDialog>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                    content='The Informations of this Book were successfully updated!'
+                                    ok="Ok"
+                                    okFunction={() => { this.setState({openAckDialog: false});
+                                                        this.props.history.push({ pathname:'/adminpanel' });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         )

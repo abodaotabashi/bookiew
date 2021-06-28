@@ -1,15 +1,19 @@
-import axios from 'axios';
 import React, { Component } from 'react';
-import "./ResetPassword.css";
+import axios from 'axios';
 import { withRouter } from "react-router-dom";
 import {withTranslation} from "react-i18next";
+
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
+import "./ResetPassword.css";
 
 class ResetPassword extends Component {
     state = {
         password: '',
         confirmPassword: '',
         passwordErrorMessage: '',
-        token: this.props.match.params.token
+        token: this.props.match.params.token,
+        openAckDialog: false
     }
 
     validate = () =>{
@@ -32,10 +36,7 @@ class ResetPassword extends Component {
                 token: this.state.token
             })
             if(result.data.response) {
-                console.log("Successfully changed the password");
-                this.props.history.push({
-                    pathname: '/login' });
-                return;
+                this.setState({openAckDialog: true});
             }
         }
     }
@@ -74,6 +75,12 @@ class ResetPassword extends Component {
                         <p className='ResetPasswordErrorMessage'>{this.state.passwordErrorMessage}</p>
                         <button className='ResetPasswordButton' onClick={this.handleResetPassword}>{t('reset_pw.reset')}</button>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                            content='Your Password has been successfully updated!'
+                                            ok="Ok"
+                                            okFunction={() => { this.setState({openAckDialog: false});
+                                                                this.props.history.push({ pathname: '/login' });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         )

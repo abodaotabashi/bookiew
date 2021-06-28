@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
 import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import UserIcon from "../../assets/icons/user.png";
 import "../ViewReview/ViewReview.css";
@@ -14,7 +16,8 @@ class AddReview extends Component {
         review: '',
         user: this.props.user,
         errorMessage: '',
-        errorVisible: 'none'
+        errorVisible: 'none',
+        openAckDialog: false
     }
 
     handleAddReview = async () => {
@@ -35,11 +38,7 @@ class AddReview extends Component {
                 reviewDate: reviewDate
             });
             if (addResult.data.response) {
-                console.log('You have new Review for this book successfully added!');
-                this.props.history.push({
-                    pathname: '/viewBook',
-                    state: { book: this.state.book }
-                });
+                this.setState({openAckDialog: true});
             }
         }
     }
@@ -133,6 +132,15 @@ class AddReview extends Component {
                             </div>
                         </div>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                    content='Your Review for this book was successfully added!'
+                                    ok="Ok"
+                                    okFunction={() => { this.setState({openAckDialog: false});
+                                                        this.props.history.push({
+                                                            pathname: '/viewBook',
+                                                            state: { book: this.state.book }
+                                                        });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         );

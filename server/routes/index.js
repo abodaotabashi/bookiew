@@ -35,14 +35,11 @@ router.get('/home', function(req, res, next) {
 });
 
 router.post('/login', async function(req, res, next) {
-  //get the payload
-  //console.log(req.body)
   const email = req.body.email
   const password = req.body.password
   if(!email || !password) return res.send({response:false, message:"expect an email and a password"})
   //password encryption
-  //password = bcrypt.hashSync(pwd, 10);
-  //SELECT * from admins where adminEmail=email
+  //password = bcrypt.hash(password, 12).then(hashedPassword => {...})
   const user = await knex('users').select('*').where({"email":email, "password":password}).first()
   if(user){
     console.log("Successfully logged in")
@@ -279,6 +276,7 @@ router.post('/getReviews', async function(req, res, next) {
   if (reviewA[0] == null) {
     return res.send({response:false, message:"review not found"});
   } else {
+    console.log(reviewA)
     for (let i = 0;i<reviewA.length; i++) {
       const reviewer = await knex('users').select('*').where({"userID":reviewA[i].reviewUserID})
       const comments = await knex('comments').select('*').where({"commentReviewID": reviewA[i].reviewID})

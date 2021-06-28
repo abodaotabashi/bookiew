@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
 import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import UserIcon from "../../assets/icons/user.png";
 import { FaCheck } from 'react-icons/fa'
@@ -14,7 +16,8 @@ class EditReview extends Component {
         reviewID:this.props.reviewID,
         book: this.props.book,
         review: this.props.review,
-        reviewText: this.props.reviewText
+        reviewText: this.props.reviewText,
+        openAckDialog: false
     }
 
     handleCancelEditing = () => {
@@ -27,8 +30,7 @@ class EditReview extends Component {
             reviewText: this.state.reviewText
         })
         if (result.data.response) {
-            this.props.history.push({   pathname: '/viewReview',
-                                        state:{reviewID: this.state.reviewID} });
+            this.setState({openAckDialog: true});
         }
         console.log(result.data.message);
     }
@@ -102,6 +104,13 @@ class EditReview extends Component {
                             </div>
                         </div>
                     </div>
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                    content='This Review was successfully updated!'
+                                    ok="Ok"
+                                    okFunction={() => { this.setState({openAckDialog: false});
+                                                        this.props.history.push({   pathname: '/viewReview',
+                                                                                    state:{reviewID: this.state.reviewID} });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         );

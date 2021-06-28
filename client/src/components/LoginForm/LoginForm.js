@@ -27,7 +27,7 @@ const LoginForm = (props) => {
                     onChange={props.passwordInputChanged} />
             <p className='formErrorMessage'>{props.passwordErrorMessage}</p>
             <div className='formButtonsContainer'>
-                <button className='formButtonLogin' onClick={props.loginClicked}><p>{t('login.login')}</p></button>
+                <button className='formButtonLogin' onClick={props.loginClicked}>{t('login.login')}</button>
                 <Link 
                     className='formForgotPasswordSpan'
                     to="/forgotPassword"

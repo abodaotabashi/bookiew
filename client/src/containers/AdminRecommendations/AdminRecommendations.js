@@ -3,6 +3,8 @@ import { withRouter } from "react-router-dom";
 import { withTranslation } from 'react-i18next';
 import axios from 'axios';
 
+import WarningDialog from '../../components/Dialogs/WarningDialog';
+
 import { FaTimesCircle } from 'react-icons/fa';
 import { FaCheck } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
@@ -14,7 +16,9 @@ class AdminRecommendations extends Component {
             recommendations: null,
             numberOfRecommendationsDisplayed: null,
             recommendationsDisplayed: null,
-            showMoreRecommendationsButtonVisible: 'none'
+            showMoreRecommendationsButtonVisible: 'none',
+            openWarningDialog: false,
+            recommendationToDelete: null
         }
 
     handleShowMoreRecommendations = () => {
@@ -138,7 +142,7 @@ class AdminRecommendations extends Component {
                                             <p className='adminRecommendationsTableInput'>{recommendation.suggestionNote}</p>
                                         </td>
                                         <td className='adminRecommendationsButtonsWrapper'>
-                                            <div className='adminRecommendationsDeleteButton' onClick={() => this.handleDeleteRecommendation(recommendation)}>
+                                            <div className='adminRecommendationsDeleteButton' onClick={() => {this.setState({openWarningDialog: true, recommendationToDelete: recommendation});}}>
                                                 <FaTrash  
                                                     color="#ffffff" 
                                                     size={20}/>
@@ -180,6 +184,14 @@ class AdminRecommendations extends Component {
                             {recommendations}
                         </div>
                     </div>
+                    <WarningDialog  openWarningDialog={this.state.openWarningDialog}
+                                    title='Delete this recommendation?'
+                                    content='Are you sure that you want to delete this recommendation permanently?'
+                                    yes="Delete"
+                                    no="Cancel"
+                                    yesFunction={() => {this.handleDeleteRecommendation(this.state.recommendationToDelete); this.setState({openWarningDialog: false});}}
+                                    noFunction={() => {this.setState({openWarningDialog: false, recommendationToDelete: null});}}>
+                    </WarningDialog>
                 </div>
             </div>
         )

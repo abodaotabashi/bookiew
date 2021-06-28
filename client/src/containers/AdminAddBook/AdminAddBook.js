@@ -217,7 +217,7 @@ class AdminAddBook extends Component {
                         </div>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='You have new Book successfully added!'
+                                    content='A new Book was successfully added!'
                                     ok="Ok"
                                     okFunction={() => { this.setState({openWarningDialog: false});
                                                         this.props.history.push({ pathname: '/adminpanel/' });}}>

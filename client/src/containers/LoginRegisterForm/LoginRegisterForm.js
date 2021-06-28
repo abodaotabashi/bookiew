@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
-import "./LoginRegisterForm.css";
-import LoginForm from '../../components/LoginForm/LoginForm';
-import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
+
+import LoginForm from '../../components/LoginForm/LoginForm';
+import RegisterForm from '../../components/RegisterForm/RegisterForm';
+import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
+
+import "./LoginRegisterForm.css";
 
 class LoginRegisterForm extends Component {
     state = {
         firstname: '',
         surname: '',
         birthdate: null,
-        gender: true,       //TRUE for FEMALE, FALSE for MALE
+        gender: null,       //TRUE for FEMALE, FALSE for MALE
         email: '',
         password: '',
         emailErrorMessage: '',
@@ -20,10 +23,15 @@ class LoginRegisterForm extends Component {
         formChanged: false,
         isLoggedin: false,
         isRegistered: false,
-        loading: false
+        loading: false,
+        openAckDialog: false
     }
 
     validate = () =>{
+        if (this.state.email === ""){
+            this.setState({ emailErrorMessage: 'Please enter your Email first!' });
+            return false;
+        }
         
         if (!this.state.email.includes('@')) {
             this.setState({ emailErrorMessage: 'Invalid Email!', loading: false });
@@ -44,6 +52,16 @@ class LoginRegisterForm extends Component {
                 }
             } else {
                 this.setState({ nameErrorMessage: 'Firstname and Surname cannot be empty!' });
+                return false;
+            }
+
+            if(this.state.birthdate === null) {
+                this.setState({ passwordErrorMessage: 'Please enter your Birthdate!', loading: false });
+                return false;
+            }
+
+            if(this.state.gender === null) {
+                this.setState({ passwordErrorMessage: 'Please enter your Gender!', loading: false });
                 return false;
             }
         }
@@ -96,18 +114,11 @@ class LoginRegisterForm extends Component {
             password: this.state.password,
             });
             if(result.data.response){
-                console.log("Successfully registered"+result.data);
-                this.setState({ isRegistered: true});
-                this.props.history.push({pathname: '/login'});
-                return;
+                this.setState({openAckDialog: true});
+            } else {
+                console.log("Something went wrong"+ result.data);
             }
-            console.log("Something went wrong"+ result.data);
-            return;
         }
-    }
-
-    handleForgotPassword = () => {
-        //TODO
     }
 
     getSelectedDate = (date) => {
@@ -225,6 +236,12 @@ class LoginRegisterForm extends Component {
             <div className='LoginRegisterForm'>
                 <div className='formBackgroundFilter'>
                     {formType}
+                    <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
+                                            content='You have successfully registered to Bookiew, so Welcome ❤'
+                                            ok="Ok"
+                                            okFunction={() => { this.setState({openAckDialog: false, isRegistered: true});
+                                                                this.props.history.push({ pathname: '/login' });}}>
+                    </AcknowledgementDialog>
                 </div>
             </div>
         )

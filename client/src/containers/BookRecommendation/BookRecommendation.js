@@ -22,7 +22,7 @@ class BookRecommendation extends Component {
     validate = () => {
         if(this.state.bookname==="" || this.state.author==="" || this.state.publishingyear===""){
             this.setState({ 
-                errorMessage: 'Please give book name, author and publishing year altogether',
+                errorMessage: 'Please fill out all the fields!',
                 errorVisible: 'flex'   
             });
             return false;
@@ -133,9 +133,9 @@ class BookRecommendation extends Component {
                         </div>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='Your Recommendation was added successfully!'
+                                    content='Your Recommendation was successfully added!'
                                     ok="Ok"
-                                    okFunction={() => { this.setState({openWarningDialog: false});
+                                    okFunction={() => { this.setState({openAckDialog: false});
                                                         this.props.history.push({ pathname: '/home' });}}>
                     </AcknowledgementDialog>
                 </div>
