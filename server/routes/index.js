@@ -97,48 +97,60 @@ router.post('/forgotPassword', async function(req, res, next) {
     if (!user[0].hasToken || user[0].hasToken === 0) {
         try {
           let token = null;
-          crypto.randomBytes(20, (err, buffer)=> {
+          crypto.randomBytes(24, async (err, buffer)=> {
             if(err){
               console.log(err);
-              return res.send({response:false, message:"something went wrong "})
+              return res.send({response:false, message:"something went wrong "});
             } else {
               token = buffer.toString("hex");
+              let tokenExists = await knex('users').select('*').where({"resetToken":token});
+              while(tokenExists[0] != null){
+                crypto.randomBytes(24, (err, buffer)=> {
+                  if(err){
+                    console.log(err);
+                    return res.send({response:false, message:"something went wrong "});
+                  } else {
+                    token = buffer.toString("hex");
+                  }
+                })
+                tokenExists = await knex('users').select('*').where({"resetToken":token});
+              }
+              const accessToken = await oAuth2Client.getAccessToken();
+              const transporter = nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                    type: 'OAuth2',
+                    user: 'bookiew.website@gmail.com',
+                    clientId: CLIENT_ID,
+                    clientSecret: CLIENT_SECRET,
+                    refreshToken: REFRESH_TOKEN,
+                    accessToken: accessToken
+                }
+              });
+              const mailOptions={
+                from: 'Bookiew - no-reply <no-reply@bookiew.com>',
+                to: email,
+                subject: 'Bookiew - Reset Password',
+                html:`
+                    <h2>Hello ${user[0].firstname} </h2>
+                    <h3>To reset your password please follow <a href="http://127.0.0.1:3000/resetPassword/${token}" target="_">this link</a>!</h3>
+                    <h3>If you didn’t ask to reset your password, you can ignore this email.</h3>
+                    <p>Thanks,</p>
+                    <p>Bookiew Team</p> 
+                    `
+              }
+              const result = await transporter.sendMail(mailOptions);
+              console.log("Email Sent! ", result);
+              const tokenSent = await knex('users')
+                                      .where('userID', '=', user[0].userID)
+                                      .update({ hasToken: 1, resetToken: token})
+                                      .decrement({
+                                        balance: 50,
+                                      })
+                                      .clearCounters()
+              return res.send({response:true, message:"Reset link sent to your email address"});
             }
           })
-          const accessToken = await oAuth2Client.getAccessToken();
-          const transporter = nodemailer.createTransport({
-            service: 'gmail',
-            auth: {
-                type: 'OAuth2',
-                user: 'bookiew.website@gmail.com',
-                clientId: CLIENT_ID,
-                clientSecret: CLIENT_SECRET,
-                refreshToken: REFRESH_TOKEN,
-                accessToken: accessToken
-            }
-          });
-          const mailOptions={
-            from: 'Bookiew - no-reply <no-reply@bookiew.com>',
-            to: email,
-            subject: 'Bookiew - Reset Password',
-            html:`
-                <h2>Hello ${user[0].firstname} </h2>
-                <h3>To reset your password please follow this <a href="http://127.0.0.1:3000/resetPassword/${token}" target="_">link</a>!</h3>
-                <p>Cheers,</p>
-                <p>Bookiew Team</p> 
-                `
-          }
-          console.log("token = ", token);
-          const result = await transporter.sendMail(mailOptions);
-          console.log("Email Sent! ", result);
-          const tokenSent = await knex('users')
-                                  .where('userID', '=', user[0].userID)
-                                  .update({ hasToken: 1, resetToken: token})
-                                  .decrement({
-                                    balance: 50,
-                                  })
-                                  .clearCounters()
-          return res.send({response:true, message:"Reset link sent to your email address"}); 
         } catch (error) {
           console.log(error.message);
           return res.send({response:false, message:"something went wrong "})
@@ -189,39 +201,29 @@ router.post('/updateProfile', async function(req,res,next){
 
 router.post('/resetPassword', async function(req, res, next) {
   const password = req.body.password;
-  const hash = req.body.hash;
+  const token = req.body.token;
   const result = await knex('users')
-                        .where('userID', '=', hash)
-                        .update({ password: password})
+                        .where({'resetToken': token})
+                        .update({ password: password, hasToken: 0, resetToken: null})
                         .decrement({
                           balance: 50,
                         })
                         .clearCounters()
-  const result1 = await knex('users')
-                        .where('userID', '=', hash)
-                        .update({ hasHash: 0})
-                        .decrement({
-                          balance: 50,
-                        })
-                        .clearCounters()
-  return res.send({response:true, message:"Password has been changed"})
+  if(result) {
+    return res.send({response:true, message:"Password has been changed"})
+  } else {
+    return res.send({response:false, message:"Something went wrong!"})
+  }
 })
 
 router.post('/myReviews', async function(req, res, next) {
   const userID = req.body.userID;
-  //console.log(userID);
   const reviews = await knex('reviews').select('*').where({"reviewUserID":userID});
-  
-  //console.log(reviews);
   if (reviews[0]!=null) {
-    //console.log(reviews+" "+userID);
     const books = new Array();
     const displayedBooks = new Array();
-    //console.log(reviews[0]);
-    let i;
-    for (i = 0; i < reviews.length; i++) {
+    for (let i = 0; i < reviews.length; i++) {
       const book = await knex('books').select('*').where({'bookID':reviews[i].reviewBookID}).first();
-      //console.log(book);
       const bookName = book.bookName;
       const bookAuthor = book.author;
       const bookThumbnail = book.bookCoverURL;
@@ -229,11 +231,9 @@ router.post('/myReviews', async function(req, res, next) {
       const displayedBook = {bookName, bookAuthor, bookThumbnail, reviewID};
       books.push(book);
       displayedBooks.push(displayedBook);
-      //console.log(displayedBook);
     }
     return res.send({response:true, displayedBooks});
   };
-  //console.log("No reviews found")
   return res.send({response:false, message:"No reviews found"});
 })
 
@@ -274,18 +274,14 @@ router.post('/getlastReview', async function(req, res, next) {
 })
 router.post('/getReviews', async function(req, res, next) {
   const bookID = req.body.bookID;
-  //console.log(bookID);
   const reviews = new Array();
   const reviewA = await knex('reviews').select('*').where({"reviewBookID":bookID});
   if (reviewA[0] == null) {
     return res.send({response:false, message:"review not found"});
   } else {
     for (let i = 0;i<reviewA.length; i++) {
-      //console.log(reviewA[i]);
       const reviewer = await knex('users').select('*').where({"userID":reviewA[i].reviewUserID})
-      //console.log(reviewer);
       const comments = await knex('comments').select('*').where({"commentReviewID": reviewA[i].reviewID})
-      //console.log(comments);
       const review = {
         'reviewID':reviewA[i].reviewID,
         'reviewText':reviewA[i].reviewText, 
@@ -296,10 +292,8 @@ router.post('/getReviews', async function(req, res, next) {
         'reviewerName': reviewer[0].firstname + " " + reviewer[0].surname,
         'reviewComments': comments
       };
-      //console.log(review);
       reviews.push(review);
     }
-    //console.log(reviews);
     return res.send({response:true, reviews})
   }
 })
@@ -374,7 +368,6 @@ router.post('/getComments', async function (req, res, next) {
 
 router.post('/getBook', async function(req, res, next) {
   const bookID = req.body.bookID;
-  //console.log(bookID);
   const bookA = await knex('books').select('*').where({'bookID':bookID});
   if (!bookA) { 
     return res.send({response:false, message:'no books found'});

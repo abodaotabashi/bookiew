@@ -1,12 +1,15 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 import "./ResetPassword.css";
+import { withRouter } from "react-router-dom";
 import {withTranslation} from "react-i18next";
+
 class ResetPassword extends Component {
     state = {
         password: '',
         confirmPassword: '',
-        passwordErrorMessage: ''
+        passwordErrorMessage: '',
+        token: this.props.match.params.token
     }
 
     validate = () =>{
@@ -22,15 +25,11 @@ class ResetPassword extends Component {
     }
 
     handleResetPassword = async () => {
-        //TODO
-        const isValid = this.state.validate;
+        const isValid = this.validate;
         if(isValid) {
-            const location = window.location.href;
-            const hash = location.slice(29);
-            console.log(hash); //check if this code is getting the hash right
             const result = await axios.post("http://localhost:3000/resetPassword", {
                 password: this.state.password,
-                hash: hash
+                token: this.state.token
             })
             if(result.data.response) {
                 console.log("Successfully changed the password");
@@ -53,7 +52,7 @@ class ResetPassword extends Component {
         return( 
             <div className='ResetPasswordContainer'>
                 <div className='ResetPasswordContainerBackgroundFilter'>
-                    <form className='ResetPasswordWrapper'>
+                    <div className='ResetPasswordWrapper'>
                         <p className='ResetPasswordHeader'>
                             {t('reset_pw.title')}
                         </p>
@@ -74,11 +73,11 @@ class ResetPassword extends Component {
                                 onChange={(event) => this.setState({ confirmPassword : event.target.value })} />
                         <p className='ResetPasswordErrorMessage'>{this.state.passwordErrorMessage}</p>
                         <button className='ResetPasswordButton' onClick={this.handleResetPassword}>{t('reset_pw.reset')}</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-export default withTranslation()(ResetPassword);
+export default withTranslation()(withRouter(ResetPassword));
