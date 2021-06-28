@@ -24,7 +24,8 @@ class ViewOtherReview extends Component {
         user: this.props.user,
         newComment: '',
         userRating: 0,
-        newRating: null
+        newRating: null,
+        commentErrorMessage: ''
     }
 
     handleGetRatingOfUser = async () => {
@@ -101,26 +102,31 @@ class ViewOtherReview extends Component {
     }
 
     handleNewComment = async () => {
-        let todayDate = new Date();
-        const userID = localStorage.getItem('userID');
-        const commentText = this.state.newComment;
-        const commentDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate();
-        const reviewID = this.state.review.reviewID;
-        const result = await axios.post("http://localhost:3000/addComment", {
-            userID: userID,
-            commentText: commentText,
-            commentDate: commentDate,
-            reviewID: reviewID
-        });
-        if (result.data.response) {
-            console.log('You have new Comment for this Review successfully added!');
-            this.setState({
-                reviewComments: null,
-                numberOfCommentDisplayed: null,
-                reviewCommentsDisplayed: null,
-                showMoreCommentsButtonVisible: 'none',
-                newComment: ''
+        const commentText = this.state.newComment.trim();
+        if(commentText !== '') {
+            let todayDate = new Date();
+            const userID = localStorage.getItem('userID');
+            const commentDate = todayDate.getFullYear() + '/' + (todayDate.getMonth()+1) + '/' + todayDate.getDate();
+            const reviewID = this.state.review.reviewID;
+            const result = await axios.post("http://localhost:3000/addComment", {
+                userID: userID,
+                commentText: commentText,
+                commentDate: commentDate,
+                reviewID: reviewID
             });
+            if (result.data.response) {
+                console.log('You have new Comment for this Review successfully added!');
+                this.setState({
+                    reviewComments: null,
+                    numberOfCommentDisplayed: null,
+                    reviewCommentsDisplayed: null,
+                    showMoreCommentsButtonVisible: 'none',
+                    newComment: '',
+                    commentErrorMessage: ''
+                });
+            }
+        } else {
+            this.setState({commentErrorMessage: 'Please fill the comment field first!'})
         }
     }
 
@@ -252,6 +258,7 @@ class ViewOtherReview extends Component {
                                             <FaComment className='viewReviewCommentInputSendButtonIcon' size={22}/>
                                         </div>
                                     </div>
+                                    <p className='ResetPasswordErrorMessage'>{this.state.commentErrorMessage}</p>
                                     <div className='viewBookUserReviewBreaklineContainer' >
                                         <hr className='viewBookUserReviewBreakline' />
                                     </div>
