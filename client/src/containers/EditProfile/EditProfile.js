@@ -109,7 +109,7 @@ class EditProfile extends Component {
             console.log("firstname after changing: " + this.state.firstname);
             console.log("surname after changing: " + this.state.surname);
             console.log("email after changing: " + this.state.email);
-            console.log("photo after changing: " + this.state.selectedPhoto);
+            console.log("photo after changing: " + this.state.profilePhotoURL);
 
             if(this.state.profilePhotoURL===undefined){
                 this.setState({profilePhotoURL: this.state.profilePhotoURL=null})
@@ -133,7 +133,7 @@ class EditProfile extends Component {
                     surname: this.state.surname,
                     email: this.state.email,
                     password: this.state.newPassword,
-                    photoURL: this.state.selectedPhoto
+                    photoURL: this.state.profilePhotoURL
                 })
                 
                 if(result2.data.response){
