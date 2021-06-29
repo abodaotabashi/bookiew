@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom';
 import WarningDialog from '../../components/Dialogs/WarningDialog';
 import AcknowledgementDialog from '../../components/Dialogs/AcknowledgementDialog';
 
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import { FaEdit } from 'react-icons/fa'
 import { FaTrash } from 'react-icons/fa'
 import "../AdminAddBook/AdminAddBook.css";
@@ -92,14 +93,14 @@ class AdminUpdateBook extends Component {
                             <div className='adminAddBookWrapper'>
                             <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
-                                        <img src={this.state.oldBook.bookThumbnail} className='adminAddBookThumbnail' alt=''/>
+                                        <img src={(this.state.oldBook.bookThumbnail === '') ? ThumbnailTest : this.state.oldBook.bookThumbnail} className='adminAddBookThumbnail' alt=''/>
                                     </div>
                                     <p className='adminAddBookCoverLabel'>{t('update_book.old_cover')} </p>
                                 </div>
                                 <div className='adminAddBookVerticalBreakline'></div>
                                 <div className='adminAddBookCoverSection'>
                                     <div className='adminAddBookThumbnailWrapper'>
-                                        <img src={this.state.coverURL} className='adminAddBookThumbnail' alt=''/>
+                                        <img src={(this.state.coverURL === '') ? ThumbnailTest : this.state.coverURL} className='adminAddBookThumbnail' alt=''/>
                                     </div>
                                     <p className='adminAddBookCoverLabel'>{t('update_book.new_cover')} </p>
                                 </div>

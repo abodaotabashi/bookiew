@@ -5,6 +5,7 @@ import axios from 'axios';
 
 import BookCard from '../../components/BookCard/BookCard';
 
+import ThumbnailTest from "../../assets/images/thumbnailtest.png";
 import SearchIcon from "../../assets/icons/search_30px.png";
 import { FaTimesCircle } from 'react-icons/fa';
 import "../SearchResults/SearchResults.css";
@@ -86,7 +87,7 @@ class AdminSearchResults extends Component {
                                         className='searchResultsBookCard'
                                         bookName={book.bookName}
                                         bookAuthor={book.author}
-                                        bookThumbnail={book.bookCoverURL}
+                                        bookThumbnail={(book.bookCoverURL === '') ? ThumbnailTest : book.bookCoverURL}
                                         click={this.handleBookClicked.bind(this, book.bookID)}
                                     />
                                 );
