@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import "./EditProfile.css";
+import { withRouter } from "react-router-dom";
+import axios from 'axios';
+import { withTranslation } from 'react-i18next';
+
 import AnimatedNumber from 'react-animated-number';
 
 import UserIcon from "../../assets/icons/user.png";
 import EditIcon from "../../assets/icons/edit.png";
 import EditPhotoIcon from "../../assets/icons/edit_image.png";
-import { withRouter } from "react-router-dom";
-import axios from 'axios';
-import { withTranslation } from 'react-i18next';
-
+import "./EditProfile.css";
 
 class EditProfile extends Component {
     state = {
@@ -27,24 +27,29 @@ class EditProfile extends Component {
         surnameDisabled: true,
         emailDisabled: true,
         errorVisible: 'none',
-        passwordChange: true,
-        selectedPhoto: null
+        passwordChange: true
     }
 
     handleFirstnameClicked = () => {
-        this.setState( {firstnameDisabled: !this.state.firstnameDisabled});
-    }
+        this.setState({firstnameDisabled: !this.state.firstnameDisabled});
+    };
 
     handleSurnameClicked = () => {
-        this.setState( {surnameDisabled: !this.state.surnameDisabled});
-    }
+        this.setState({surnameDisabled: !this.state.surnameDisabled});
+    };
 
     handleEmailClicked = () => {
-        this.setState( {emailDisabled: !this.state.emailDisabled});
-    }
+        this.setState({emailDisabled: !this.state.emailDisabled});
+    };
 
 
-    validate = () =>{
+    validate = () => {
+        if (this.state.email === ""){
+            this.setState({ 
+                errorMessage: 'Please enter your Email first!',
+                errorVisible: 'flex' });
+            return false;
+        }
         if (!this.state.email.includes('@')) {
             this.setState({ 
                 errorMessage: 'Invalid Email!',
@@ -68,34 +73,31 @@ class EditProfile extends Component {
             return false;
         }
 
-        if(this.state.passwordChange===true){
-            console.log("inside valid true")
-        }else{
+        if (this.state.passwordChange===true) {
+            console.log("inside valid true");
+        } else {
             return false;
         }
         return true;
-    }
+    };
 
-    handlePhoto = () => {
-        this.inputElement.click();
+    handleUpdatePhoto = async (event) => {
+        if (!event.target.files || Object.keys(event.target.files).length === 0) {
+            console.log("Photo couldn't be uploaded. Please Try again!");
+        } else {
+            const data = new FormData();
+            data.append("userID", this.state.userID)
+            data.append("photo", event.target.files[0]);
+            const uploadPhoto= await axios.post("http://localhost:3000/uploadPhoto", data)
+            if(uploadPhoto.data.response){
+                const photoName = uploadPhoto.data.photoName;
+                const photoPath = window.location.origin + "/files/uploadedPhotos/"+photoName;
+                this.setState({profilePhotoURL: photoPath});
+            } else {
+                console.log("Something went wrong! Try Again!");
+            }
+        }
     }
-    handleUpdatePhoto = (event) =>{
-        let p= event.target.files[0];
-        
-        console.log(URL.createObjectURL(p))
-        this.setState({profilePhotoURL: URL.createObjectURL(p)})
-        /*
-        const accept = ["image/png"];
-        if (accept.indexOf(file.mediaType) > -1) {
-            console.log("inside?")
-        this.setState({
-           selectedPhoto: file.getAsDataURL()
-        })
-        */
-
-        
-    }
-    
 
     handleEditProfile = async() => {
             this.clearInputs();
@@ -105,28 +107,24 @@ class EditProfile extends Component {
             console.log("email: " + localStorage.getItem('userEmail'));
             console.log("password: " + localStorage.getItem('userPassword'));
             console.log("photo: " + localStorage.getItem('userProfilePhotoURL'));
-
             console.log("firstname after changing: " + this.state.firstname);
             console.log("surname after changing: " + this.state.surname);
             console.log("email after changing: " + this.state.email);
             console.log("photo after changing: " + this.state.profilePhotoURL);
 
-            if(this.state.profilePhotoURL===undefined){
-                this.setState({profilePhotoURL: this.state.profilePhotoURL=null})
+            if (this.state.profilePhotoURL === null || typeof(this.state.profilePhotoURL) === "undefined") {
+                this.setState({profilePhotoURL: ''})
             }
-
-            if(this.state.newPassword==="" && this.state.confirmPassword===""){
+            if (this.state.newPassword === "" && this.state.confirmPassword === "") {
                 this.setState({ passwordChange: this.state.passwordChange = true})
                 this.setState({ newPassword: this.state.newPassword = this.state.user.password})
-
-            }else if(this.state.newPassword!==this.state.confirmPassword){
+            } else if (this.state.newPassword !== this.state.confirmPassword){
                 this.setState({ passwordChange: this.state.passwordChange = false});
-            }else{
+            } else {
                 this.setState({ passwordChange: this.state.passwordChange = true});
             }
         
             if(this.validate()){
-            
                 const result2 = await axios.post("http://localhost:3000/updateProfile", {
                     userID: this.state.userID,
                     firstname: this.state.firstname,
@@ -134,8 +132,7 @@ class EditProfile extends Component {
                     email: this.state.email,
                     password: this.state.newPassword,
                     photoURL: this.state.profilePhotoURL
-                })
-                
+                });
                 if(result2.data.response){
                     const result = await axios.post("http://localhost:3000/editProfile", {
                         userID: this.state.userID,
@@ -163,28 +160,26 @@ class EditProfile extends Component {
             errorMessage: '',
             errorVisible: 'none'
         });
-    }
+    };
 
     goToLogin = () => {
         this.props.history.push({ pathname: '/login' });
-    }
+    };
 
-    render(){
+    render() {
         if(localStorage.getItem('isUserAuthenticated') === 'false'){
             this.goToLogin();
         }
 
         let image = null;
-        if(this.state.profilePhotoURL){
-            image = <img src={this.state.profilePhotoURL} className='editProfilePhoto' alt='Update ProfilePhoto'/>
-        }else{
-            image = <img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/> 
+        if (this.state.profilePhotoURL) {
+            image = (<img src={this.state.profilePhotoURL} className='editProfilePhoto' alt='Update ProfilePhoto'/>);
+        } else {
+            image = (<img src={UserIcon} className='editProfilePhoto' alt='ProfilePhoto'/>);
         }
         
-
-
         const {t} = this.props;
-        return(
+        return (
             <div className='editProfileBackgroundSection'>
                 <div className='editProfileBackgroundFilterSection'>
                     <div className='editProfileSectionsContainer'>
@@ -194,11 +189,11 @@ class EditProfile extends Component {
                                     <div className='editProfileSectionPhotoWrapper'>
                                         {image}
                                     </div>
-                                    <div className='editProfileUpdatePhotoWrapper' onClick={this.handlePhoto} >
+                                    <div className='editProfileUpdatePhotoWrapper' onClick={() => this.inputElement.click()} >
                                         <img src={EditPhotoIcon} className='editProfileUpdatePhotoIcon' alt='Update ProfilePhoto'/>
                                         {t('edit_profile.photo')}
                                     </div>
-                                    <input className="updatePhotoInput" type="file" 
+                                    <input className="updatePhotoInput" type="file" accept=".png, .jpg, .jpeg" name="profilePhoto"
                                     ref={input => this.inputElement = input} 
                                     onChange={this.handleUpdatePhoto}/>
                                 </div>
@@ -263,13 +258,11 @@ class EditProfile extends Component {
                                                             <input  className='editProfileInputText' 
                                                                     type='password'
                                                                     name=''
-                                                                    
                                                                     onChange={(event) => this.setState({newPassword: event.target.value})} 
                                                                     placeholder={t('placeholders.new_pwd')}  />
                                                             <input  className='editProfileInputText' 
                                                                     type='password' 
                                                                     name=''
-                                                                    
                                                                     onChange={(event) => this.setState({confirmPassword: event.target.value})} 
                                                                     placeholder={t('placeholders.confirm_pwd')}  />
                                                         </div>
@@ -306,8 +299,8 @@ class EditProfile extends Component {
                     </div>
                 </div>
             </div>
-        )
+        );
     }
-}
+} 
 
 export default withTranslation()(withRouter(EditProfile));

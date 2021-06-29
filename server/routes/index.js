@@ -1,5 +1,9 @@
 const { response } = require('express');
 const express = require('express');
+const multer = require('multer');
+const fs = require('fs');
+const { promisify } = require('util');
+const pipeline = promisify(require("stream").pipeline);
 const router = express.Router();
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
@@ -85,6 +89,15 @@ router.post('/editProfile', async function(req, res, next){
   }else{
     return res.send({response: false, user: null})
   }
+});
+
+const photoUploader = multer();
+router.post('/uploadPhoto', photoUploader.single("photo"), async function(req, res, next){
+  const {file, body: {userID}} = req;
+  const photoFile = req.file;
+  const photoName = "USER-" + userID + photoFile.detectedFileExtension;
+  await pipeline(photoFile.stream, fs.createWriteStream(`${__dirname}/../../client/public/files/uploadedPhotos/${photoName}`));
+  return res.send({response: true, photoName: photoName});
 });
 
 router.post('/forgotPassword', async function(req, res, next) {
