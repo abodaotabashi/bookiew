@@ -126,42 +126,42 @@ test('allows the user to go LoginForm then login successfully', async () => {
  
 
 
-// test('allows the user to go RegisterForm then register successfully', async () => {
-//   render(<App />);
-//   const linkElement = screen.getByText(/register.register/i);
-//   expect(linkElement).toBeInTheDocument();
-//   const leftClick = { button: 0 }
-//   userEvent.click(screen.getByText(/register.register/i), leftClick);
+test('allows the user to go RegisterForm then register successfully', async () => {
+  render(<App />);
+  const linkElement = screen.getByText(/register.register/i);
+  expect(linkElement).toBeInTheDocument();
+  const leftClick = { button: 0 }
+  userEvent.click(screen.getByText(/register.register/i), leftClick);
 
-//   const linkElement2 = screen.getByPlaceholderText(/First name/i);
-//   expect(linkElement2).toBeInTheDocument();
+  const linkElement2 = screen.getByPlaceholderText(/First name/i);
+  expect(linkElement2).toBeInTheDocument();
 
-//   // fill out the form
-//     fireEvent.change(screen.getByPlaceholderText(/First name/i), {
-//       target: { value: 'r' },
-//     })
-//     fireEvent.change(screen.getByPlaceholderText(/Surname/i), {
-//       target: { value: 'a' },
-//     })
-//     fireEvent.change(screen.getByPlaceholderText(/Email/i), {
-//       target: { value: 'a3@s.ab' },
-//     })
-//     fireEvent.change(screen.getByPlaceholderText(/Password/i), {
-//       target: { value: '12345678' },
-//     })
-//     fireEvent.change(screen.getByPlaceholderText(/Date of birth/i), {
-//       target: { value: '10/06/2021' },
-//     })
+  // fill out the form
+    fireEvent.change(screen.getByPlaceholderText(/First name/i), {
+      target: { value: 'r' },
+    })
+    fireEvent.change(screen.getByPlaceholderText(/Surname/i), {
+      target: { value: 'a' },
+    })
+    fireEvent.change(screen.getByPlaceholderText(/Email/i), {
+      target: { value: 'a3@s.ab' },
+    })
+    fireEvent.change(screen.getByPlaceholderText(/Password/i), {
+      target: { value: '12345678' },
+    })
+    fireEvent.change(screen.getByPlaceholderText(/Date of birth/i), {
+      target: { value: '10/06/2021' },
+    })
  
-//     const radio = screen.getByLabelText('female')
-//     fireEvent.change(radio, { target: { value: "male" } });
-//     expect(radio.value).toBe('male')
+    const radio = screen.getByLabelText('female')
+    fireEvent.change(radio, { target: { value: "male" } });
+    expect(radio.value).toBe('male')
 
     
-//   userEvent.click(screen.getByText(/register.create/i), leftClick);
+  userEvent.click(screen.getByText(/register.create/i), leftClick);
 
-//   const homeElement = await screen.findByText(/login.title/i) ;
-//   expect(homeElement).toBeInTheDocument();
+  const homeElement = await screen.findByText(/login.title/i) ;
+  expect(homeElement).toBeInTheDocument();
 
 
-// });
+});
