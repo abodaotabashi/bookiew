@@ -17,7 +17,7 @@ const RegisterForm = (props) => {
                     scrollableYearDropdown
                     showYearDropdown
                     required
-                    placeholderText={t('placeholders.birthdate')}
+                    placeholderText='Date of birth'
         />
     );
     return(
@@ -29,14 +29,14 @@ const RegisterForm = (props) => {
                 <input  className='formNameInputText' 
                         type='text' 
                         name='' 
-                        placeholder={t('placeholders.firstname')}
+                        placeholder='First name' 
                         autoFocus
                         required value={props.firstnameInputValue} 
                         onChange={props.firstnameInputChanged}/>
                 <input  className='formNameInputText' 
                         type='text' 
                         name='' 
-                        placeholder={t('placeholders.surname')}
+                        placeholder='Surname' 
                         required value={props.surnameInputValue} 
                         onChange={props.surnameInputChanged}/>
             </div>
@@ -44,25 +44,29 @@ const RegisterForm = (props) => {
             <input  className='formInputText' 
                     type='text' 
                     name='' 
-                    placeholder={t('placeholders.email')}
+                    placeholder='Email' 
                     required value={props.emailInputValue} 
                     onChange={props.emailInputChanged}/>
             <p className='formErrorMessage'>{props.emailErrorMessage}</p>
             <input  className='formInputText' 
                     type='password' 
                     name='' 
-                    placeholder={t('placeholders.password')}
+                    placeholder='Password' 
                     required value={props.passwordInputValue} 
                     onChange={props.passwordInputChanged} />
             <p className='formErrorMessage'>{props.passwordErrorMessage}</p>
             <div className='formNameContainer'>
                 {BirthdatePicker}
                 <div className='formGenderBox'>
-                    <p className='formGenderText'>{t('register.female')}</p>
-                    <input type="radio" name="sex" value="female" required onClick={props.femaleSelected}/>
+
+                    <label>
+                    female <input type="radio" name="sex" value="female" required onClick={props.femaleSelected}/>
+                    </label>
                     &nbsp;
-                    <p className='formGenderText'>{t('register.male')}</p>
-                    <input type="radio" name="sex" value="male" required onClick={props.maleSelected}/>
+
+                    <label>
+                    male <input type="radio" name="sex" value="male" required onClick={props.maleSelected}/>
+                    </label>
                 </div>
             </div>
             <div className='formButtonsContainer'>
