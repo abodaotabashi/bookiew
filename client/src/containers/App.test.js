@@ -127,7 +127,7 @@ test('allows the user to go LoginForm then login successfully', async () => {
 
 
 test('allows the user to go RegisterForm then register successfully', async () => {
-  render(<App />);
+  render(<App />); 
   const linkElement = screen.getByText(/register.register/i);
   expect(linkElement).toBeInTheDocument();
   const leftClick = { button: 0 }
