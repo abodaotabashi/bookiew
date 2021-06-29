@@ -276,7 +276,6 @@ router.post('/getReviews', async function(req, res, next) {
   if (reviewA[0] == null) {
     return res.send({response:false, message:"review not found"});
   } else {
-    console.log(reviewA)
     for (let i = 0;i<reviewA.length; i++) {
       const reviewer = await knex('users').select('*').where({"userID":reviewA[i].reviewUserID})
       const comments = await knex('comments').select('*').where({"commentReviewID": reviewA[i].reviewID})

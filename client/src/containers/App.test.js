@@ -98,7 +98,6 @@ test('allows the user to login successfully', async () => {
 });
 // */
 
-/**/
 
 test('allows the user to go LoginForm then login successfully', async () => {
   render(<App />);
@@ -123,7 +122,6 @@ test('allows the user to go LoginForm then login successfully', async () => {
 
 });
 
- 
 
 
 test('allows the user to go RegisterForm then register successfully', async () => {
@@ -152,7 +150,7 @@ test('allows the user to go RegisterForm then register successfully', async () =
     fireEvent.change(screen.getByPlaceholderText(/Date of birth/i), {
       target: { value: '10/06/2021' },
     })
- 
+
     const radio = screen.getByLabelText('female')
     fireEvent.change(radio, { target: { value: "male" } });
     expect(radio.value).toBe('male')
