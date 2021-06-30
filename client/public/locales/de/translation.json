@@ -214,5 +214,16 @@
         "confirm_pwd":"Passwort bestätigen",
         "confirm_your_pwd":"Bestätigen Sie Ihr Passwort",
         "add_your_comment":"Fügen Sie Ihren Kommentar hinzu ..."
+    },
+    "dialogs": {
+        "add_review": "Ihre Rezension zu diesem Buch wurde erfolgreich hinzugefügt!",
+        "admin_add_book": "Ein neues Buch wurde erfolgreich hinzugefügt!",
+        "admin_update_book": "Die Informationen dieses Buches wurden erfolgreich aktualisiert!",
+        "book_recomm": "Ihre Empfehlung wurde erfolgreich hinzugefügt!",
+        "edit_review": "Diese Rezension wurde erfolgreich aktualisiert!",
+        "forgot_pass": "Wir haben bereits einen Link an Ihre E-Mail gesendet, um Ihr Passwort zurückzusetzen!",
+        "login_register": "Sie haben sich erfolgreich bei Bookiew registriert, also Willkommen ❤",
+        "reset_pass":"Ihr Passwort wurde erfolgreich aktualisiert!",
+        "view_other": "Ihr neuer Kommentar zu dieser Rezension wurde erfolgreich hinzugefügt!"
     }
 }

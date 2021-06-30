@@ -105,7 +105,7 @@ class EditReview extends Component {
                         </div>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='This Review was successfully updated!'
+                                    content= {t('dialogs.edit_review')}
                                     ok="Ok"
                                     okFunction={() => { this.setState({openAckDialog: false});
                                                         this.props.history.push({   pathname: '/viewReview',

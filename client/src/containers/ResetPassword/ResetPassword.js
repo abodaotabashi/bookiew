@@ -76,7 +76,7 @@ class ResetPassword extends Component {
                         <button className='ResetPasswordButton' onClick={this.handleResetPassword}>{t('reset_pw.reset')}</button>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                            content='Your Password has been successfully updated!'
+                                            content= {t('dialogs.reset_pass')}
                                             ok="Ok"
                                             okFunction={() => { this.setState({openAckDialog: false});
                                                                 this.props.history.push({ pathname: '/login' });}}>

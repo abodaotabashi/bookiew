@@ -237,7 +237,7 @@ class LoginRegisterForm extends Component {
                 <div className='formBackgroundFilter'>
                     {formType}
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                            content='You have successfully registered to Bookiew, so Welcome ❤'
+                                            content= {t('dialogs.login_register')}
                                             ok="Ok"
                                             okFunction={() => { this.setState({openAckDialog: false, isRegistered: true});
                                                                 this.props.history.push({ pathname: '/login' });}}>

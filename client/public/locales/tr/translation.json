@@ -214,5 +214,16 @@
         "confirm_pwd":"Yeni Şifre (Tekrar)",
         "confirm_your_pwd":"Şifreyi Onayla",
         "add_your_comment":"Kendi Yorumunuzu Ekleyin ..."
+    },
+    "dialogs": {
+        "add_review": "Bu kitap için incelemeniz başarıyla eklenmiştir!",
+        "admin_add_book": "Yeni Kitap başarıyla eklenmiştir!",
+        "admin_update_book": "Bu kitabın bilgileri başarıyla güncellenmiştir!",
+        "book_recomm": "Önermeniz başarıyla eklenmiştir!",
+        "edit_review": "Bu inceleme başarıyla güncellenmiştir!",
+        "forgot_pass": "Şifrenizi yenilemek için e-posta adresinize bir bağlantı gönderdik!",
+        "login_register": "Bookiew'e üyeniz başarıyla oluşturulmuştur, hoş geldiniz ❤",
+        "reset_pass":"Şifreniz başarıyla güncellenmiştir!",
+        "view_other": "Bu inceleme için yeni yorumunuz başarıyla eklenmiştir!"
     }
 }

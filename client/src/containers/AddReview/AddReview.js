@@ -133,7 +133,7 @@ class AddReview extends Component {
                         </div>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='Your Review for this book was successfully added!'
+                                    content= {t('dialogs.add_review')}
                                     ok="Ok"
                                     okFunction={() => { this.setState({openAckDialog: false});
                                                         this.props.history.push({

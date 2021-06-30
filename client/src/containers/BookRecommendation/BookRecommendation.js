@@ -133,7 +133,7 @@ class BookRecommendation extends Component {
                         </div>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='Your Recommendation was successfully added!'
+                                    content= {t('dialogs.book_recomm')}
                                     ok="Ok"
                                     okFunction={() => { this.setState({openAckDialog: false});
                                                         this.props.history.push({ pathname: '/home' });}}>

@@ -275,7 +275,7 @@ class ViewOtherReview extends Component {
                         </div>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='Your new Comment for this Review was successfully added!'
+                                    content= {t('dialogs.view_other')}
                                     ok="Ok"
                                     okFunction={() => { this.setState({openAckDialog: false});}}>
                     </AcknowledgementDialog>

@@ -72,7 +72,7 @@ class ForgotPassword extends Component {
                         <button className='sendLinkButton' onClick={this.handleForgotPassword}>{t('forgot_password.send_me')}</button>
                     </div>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                            content='We have already sent a link to your email in order to reset your password!'
+                                            content= {t('dialogs.forgot_pass')}
                                             ok="Ok"
                                             okFunction={() => { this.setState({openAckDialog: false});
                                                                 this.props.history.push({ pathname: '/login' });}}>

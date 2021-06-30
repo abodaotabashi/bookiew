@@ -214,5 +214,16 @@
         "confirm_pwd":"Confirm Password",
         "confirm_your_pwd":"Confirm Your Password",
         "add_your_comment":"Add Your Comment ..."
+    },
+    "dialogs": {
+        "add_review": "Your Review for this book was successfully added!",
+        "admin_add_book": "A new Book was successfully added!",
+        "admin_update_book": "The Informations of this Book were successfully updated!",
+        "book_recomm": "Your Recommendation was successfully added!",
+        "edit_review": "This Review was successfully updated!",
+        "forgot_pass": "We have already sent a link to your email in order to reset your password!",
+        "login_register": "You have successfully registered to Bookiew, so Welcome ❤",
+        "reset_pass":"Your Password has been successfully updated!",
+        "view_other": "Your new Comment for this Review was successfully added!"
     }
 }

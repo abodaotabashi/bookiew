@@ -266,7 +266,7 @@ class AdminUpdateBook extends Component {
                                     noFunction={() => {this.setState({openWarningDialog: false, recommendationToDelete: null});}}>
                     </WarningDialog>
                     <AcknowledgementDialog  openAckDialog={this.state.openAckDialog}
-                                    content='The Informations of this Book were successfully updated!'
+                                    content= {t('dialogs.admin_update_book')}
                                     ok="Ok"
                                     okFunction={() => { this.setState({openAckDialog: false});
                                                         this.props.history.push({ pathname:'/adminpanel' });}}>
