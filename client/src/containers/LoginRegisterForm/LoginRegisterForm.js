@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { withRouter } from "react-router-dom";
+import {withTranslation} from "react-i18next";
 
 import LoginForm from '../../components/LoginForm/LoginForm';
 import RegisterForm from '../../components/RegisterForm/RegisterForm';
@@ -231,7 +232,8 @@ class LoginRegisterForm extends Component {
                                     }
                         />);
         }
-
+        const {t} = this.props;
+        
         return( 
             <div className='LoginRegisterForm'>
                 <div className='formBackgroundFilter'>
@@ -248,4 +250,4 @@ class LoginRegisterForm extends Component {
     }
 }
 
-export default withRouter(LoginRegisterForm);
+export default withTranslation()(withRouter(LoginRegisterForm));
