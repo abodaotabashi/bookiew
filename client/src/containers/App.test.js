@@ -9,7 +9,11 @@ import Navbar from '../components/Navbar/Navbar';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginForm from '../components/LoginForm/LoginForm';
 
+//
 
+//each test is passed successfully when it runs alone  , when all tests run together non will pass
+
+//
 test('renders langing page', () => {
   render(<App />);
   const linkElement = screen.getAllByText(/landing.welcome/i)[0];
@@ -33,26 +37,28 @@ test('allows the user to go RegisterForm then register successfully', async () =
   const leftClick = { button: 0 }
   userEvent.click(screen.getByText(/register.register/i), leftClick);
 
-  const linkElement2 = screen.getByPlaceholderText(/First name/i);
+ 
+  const linkElement2 = screen.getByPlaceholderText(/placeholders.firstname/i);
   expect(linkElement2).toBeInTheDocument();
 
   // fill out the form
-    fireEvent.change(screen.getByPlaceholderText(/First name/i), {
-      target: { value: 'r' },
+    fireEvent.change(screen.getByPlaceholderText(/placeholders.firstname/i), {
+      target: { value: 'test' },
     })
-    fireEvent.change(screen.getByPlaceholderText(/Surname/i), {
+    fireEvent.change(screen.getByPlaceholderText(/placeholders.surname/i), {
       target: { value: 'a' },
     })
-    fireEvent.change(screen.getByPlaceholderText(/Email/i), {
-      target: { value: 'a3@s.ab' },
+    fireEvent.change(screen.getByPlaceholderText(/placeholders.email/i), {
+      target: { value: 'test1@tttt.t' },
     })
-    fireEvent.change(screen.getByPlaceholderText(/Password/i), {
-      target: { value: '12345678' },
+    fireEvent.change(screen.getByPlaceholderText(/placeholders.password/i), {
+      target: { value: '123456' },
     })
-    fireEvent.change(screen.getByPlaceholderText(/Date of birth/i), {
+    fireEvent.change(screen.getByPlaceholderText(/placeholders.birthdate/i), {
       target: { value: '10/06/2021' },
     })
  
+    
     const radio = screen.getByLabelText('female')
     fireEvent.change(radio, { target: { value: "male" } });
     expect(radio.value).toBe('male')
@@ -62,7 +68,6 @@ test('allows the user to go RegisterForm then register successfully', async () =
 
   const homeElement = await screen.findByText(/login.title/i) ;
   expect(homeElement).toBeInTheDocument();
-
 
 });
 
