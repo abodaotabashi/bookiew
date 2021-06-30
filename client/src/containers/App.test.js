@@ -148,12 +148,8 @@ test('login then recommend a book', async () => {
   const homeElement = await screen.findByText(/home.question/i) ;
   expect(homeElement).toBeInTheDocument();
 
-
-<<<<<<< HEAD
   const recommend = screen.getByText(/navbar.Book_Recommendation/i);
   expect(recommend).toBeInTheDocument();
-=======
->>>>>>> 66e881c2df7b3b7b2869166e1ab68c4810ddc480
 
   userEvent.click(recommend,leftClick);
 
@@ -167,7 +163,7 @@ test('login then recommend a book', async () => {
   fireEvent.change(screen.getByPlaceholderText(/placeholders.year_of_pub/i), {
     target: {value: '202'},
   })
-   
+
   const send = { button: 0 }
   userEvent.click(screen.getByText(/Send Recommendation/i), send);
 
@@ -189,7 +185,6 @@ test('login then edit profile', async () => {
   expect(linkElement2).toBeInTheDocument();
 
   // fill out the form
-<<<<<<< HEAD
   fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_email/i), {
     target: {value: 'spac@gmail.com'},
   })
@@ -217,30 +212,4 @@ test('login then edit profile', async () => {
   const question = await screen.getByText(/home.question/i)
 
   expect(question).toBeInTheDocument();
- 
 });
-=======
-    fireEvent.change(screen.getByPlaceholderText(/First name/i), {
-      target: { value: 'r' },
-    })
-    fireEvent.change(screen.getByPlaceholderText(/Surname/i), {
-      target: { value: 'a' },
-    })
-    fireEvent.change(screen.getByPlaceholderText(/Email/i), {
-      target: { value: 'a3@s.ab' },
-    })
-    fireEvent.change(screen.getByPlaceholderText(/Password/i), {
-      target: { value: '12345678' },
-    })
-    fireEvent.change(screen.getByPlaceholderText(/Date of birth/i), {
-      target: { value: '10/06/2021' },
-    })
-
-    const radio = screen.getByLabelText('female')
-    fireEvent.change(radio, { target: { value: "male" } });
-    expect(radio.value).toBe('male')
->>>>>>> 66e881c2df7b3b7b2869166e1ab68c4810ddc480
-
-
-
-

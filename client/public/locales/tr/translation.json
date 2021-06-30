@@ -189,6 +189,10 @@
         "delete":"Kitabı Kaldır",
         "update":"Kitabı Güncelle"
     },
+    "notfound": {
+        "go_to_home": "Anasayfaya geri dön",
+        "page_not_found": "Ay! Sayfayı bulamadık!"
+    },
     "placeholders": {
         "your_email": "Email Adresiniz",
         "your_password":"Şifreniz",

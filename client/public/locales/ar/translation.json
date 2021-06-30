@@ -189,6 +189,10 @@
         "delete":"حذف الكتاب",
         "update":"تحديث الكتاب"
     },
+    "notfound": {
+        "go_to_home": "العودة إلى الصفحة الرئيسية",
+        "page_not_found": "!للأسف الصفحة غير متوفرة"
+    },
     "placeholders": {
         "your_email": "البريد",
         "your_password":"كلمة السر",

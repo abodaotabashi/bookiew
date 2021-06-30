@@ -189,6 +189,10 @@
         "delete":"Delete Book",
         "update":"Update Book"
     },
+    "notfound": {
+        "go_to_home": "Go Back to Home",
+        "page_not_found": "Oops! Page not found!"
+    },
     "placeholders": {
         "your_email": "Your Email",
         "your_password":"Your Password",

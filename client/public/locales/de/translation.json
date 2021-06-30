@@ -189,6 +189,10 @@
         "delete":"Buch löschen",
         "update":"Buch aktualisieren"
     },
+    "notfound": {
+        "go_to_home": "Zurück zu Startseite",
+        "page_not_found": "Hoppala! Die Seite nicht gefunden!"
+    },
     "placeholders": {
         "your_email": "Ihre E-Mail",
         "your_password":"Ihr Passwort",
