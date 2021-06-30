@@ -8,6 +8,10 @@
         style="width: 128px; height: 128px" />
 </p>
 
+<p align="center"> 
+    Bookiew v1.0 is now available! 😄
+</p>
+
 ## Zielbestimmung
 
 <p align="justify">Die Entwicklung der letzten Jahrzehnte zeigt, dass wir die Informationen überall sehr leicht und in kurzer Zeit bekommen können, insbesondere durch die Milliarden von Quellen im Internet. Trotzdem hat man noch die Angst vor die Richtigkeit der Informationen und Kenntnisse, die dort präsentiert wurden, da die Webseiten die akademischen Referenzen kaum angeben, aus denen die Informationen erhalten werden können. Deswegen ist das Lesen der akademischen Literaturen, egal zu welchem Bereich gehören, ein Muss, um die richtigen vertrauenswürdigen Kenntnisse erwerben zu können. Aber jetzt entsteht ein anderes Problem, dass es sehr große Anzahl an Literaturen in verschiedenen Bereichen gibt, und man weiß nicht, welche davon man lesen soll. </p>
