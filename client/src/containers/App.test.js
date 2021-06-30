@@ -9,28 +9,6 @@ import Navbar from '../components/Navbar/Navbar';
 import HomePage from '../pages/HomePage/HomePage';
 import LoginForm from '../components/LoginForm/LoginForm';
 
-// describe('LoginView' , () => {
-//   describe('submit with valid credentials', () => {
-//     it.todo('calls api with data from form');
-//     it.todo('redirects to app page');
-//     it.todo('renders snackbar with success message');
-//   });
-
-//   describe('submit with invalid credentials', () => {
-//     it.todo('does not call api',);
-//     it.todo('stays on login page');
-//     it.todo('clears password field, but not email');
-//     it.todo('renders snackbar with error message');
-//   });
-
-//   describe('with invalid input values', () => {
-//     it.todo('display required errors for email and password when empty');
-//     it.todo('display incorrect email address on invalid email');
-//     it.todo('does not call api when i click the login button');
-//   });
-// });
-
-
 
 test('renders langing page', () => {
   render(<App />);
@@ -48,84 +26,6 @@ test('renders Home page', () => {
   const linkElement = screen.getAllByText(/home.question/i)[0];
   expect(linkElement).toBeInTheDocument();
 });
-/*
-test('renders navigatation from landing to login link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/login.login/i);
-  expect(linkElement).toBeInTheDocument();
-  const leftClick = { button: 0 }
-  userEvent.click(screen.getByText(/login.login/i), leftClick);
-
-  // let page;
-  // await page.submitForm({ email: '', password: ''});
-
-
-  const linkElement2 = screen.getByText(/email/i);
-  expect(linkElement2).toBeInTheDocument();
-});
-
-
-
-
-
-test('allows the user to login successfully', async () => {
-  const history = createMemoryHistory();
-  render(
-    <Router history={history}>
-      <LoginPage />
-    </Router>
-  );
-  // fill out the form
-  fireEvent.change(screen.getByPlaceholderText(/Your Email/i), {
-    target: {value: 'email@gmail.com'},
-  })
-  fireEvent.change(screen.getByPlaceholderText(/Your Password/i), {
-    target: {value: 'thepassword'},
-  })
-
- // fireEvent.click(screen.getAllByText(/login.login/i)[1])
-
-  // await console.log('aaaaaaaaaaaa');
-  // just like a manual tester, we'll instruct our test to wait for the alert
-  // to show up before continuing with our assertions.
- //const homeElement = await screen.findByText(/home.question/i) ;
- //expect(homeElement).toBeInTheDocument();
-  // .toHaveTextContent() comes from jest-dom's assertions
-  // otherwise you could use expect(alert.textContent).toMatch(/congrats/i)
-  // but jest-dom will give you better error messages which is why it's recommended
-  // expect(alert).toHaveTextContent(/congrats/i)
-  //expect(window.localStorage.getItem('token')).toEqual(fakeUserResponse.token)
-});
-// */
-
-/**/
-
-test('allows the user to go LoginForm then login successfully', async () => {
-  render(<App />);
-  const linkElement = screen.getByText(/login.login/i);
-  expect(linkElement).toBeInTheDocument();
-  const leftClick = { button: 0 }
-  userEvent.click(screen.getByText(/login.login/i), leftClick);
-
-  const linkElement2 = screen.getByText(/email/i);
-  expect(linkElement2).toBeInTheDocument();
-
-  // fill out the form
-  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_email/i), {
-    target: {value: 'a3@s.ab'},
-  })
-  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_password/i), {
-    target: {value: '12345678'},
-  })
-  fireEvent.click(screen.getAllByText(/login.login/i)[1]);
-  const homeElement = await screen.findByText(/home.question/i) ;
-  expect(homeElement).toBeInTheDocument();
-
-});
-
- 
-
-
 test('allows the user to go RegisterForm then register successfully', async () => {
   render(<App />); 
   const linkElement = screen.getByText(/register.register/i);
@@ -165,3 +65,157 @@ test('allows the user to go RegisterForm then register successfully', async () =
 
 
 });
+
+test('allows the user to go LoginForm then login successfully', async () => {
+  render(<App />);
+  const linkElement = screen.getByText(/login.login/i);
+  expect(linkElement).toBeInTheDocument();
+  const leftClick = { button: 0 }
+  userEvent.click(screen.getByText(/login.login/i), leftClick);
+
+  const linkElement2 = screen.getByText(/email/i);
+  expect(linkElement2).toBeInTheDocument();
+
+  // fill out the form
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_email/i), {
+    target: {value: 'spac@gmail.com'},
+  })
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_password/i), {
+    target: {value: '123456'},
+  })
+  fireEvent.click(screen.getAllByText(/login.login/i)[1]);
+  const homeElement = await screen.findByText(/home.question/i) ;
+  expect(homeElement).toBeInTheDocument();
+
+});
+
+test('login then search for a book', async () => {
+  render(<App />);
+  const linkElement = screen.getByText(/login.login/i);
+  expect(linkElement).toBeInTheDocument();
+  const leftClick = { button: 0 }
+  userEvent.click(screen.getByText(/login.login/i), leftClick);
+
+  const linkElement2 = screen.getByText(/email/i);
+  expect(linkElement2).toBeInTheDocument();
+
+  // fill out the form
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_email/i), {
+    target: {value: 'spac@gmail.com'},
+  })
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_password/i), {
+    target: {value: '123456'},
+  })
+  fireEvent.click(screen.getAllByText(/login.login/i)[1]);
+  const homeElement = await screen.findByText(/home.question/i) ;
+  expect(homeElement).toBeInTheDocument();
+
+  const linkElement1 = screen.getByPlaceholderText(/placeholders.search/i);
+  expect(linkElement1).toBeInTheDocument();
+
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.search/i), {
+    target: {value: 'Siddharta'},
+  })
+
+  const leftClick1 = { button: 0 }
+  userEvent.click(screen.getByAltText(/Search/i), leftClick1);
+
+  
+  const bookName = screen.getByText(/Siddharta/i);
+  expect(bookName).toBeInTheDocument();
+
+});
+
+
+test('login then recommend a book', async () => {
+  render(<App />);
+  const linkElement = screen.getByText(/login.login/i);
+  expect(linkElement).toBeInTheDocument();
+  const leftClick = { button: 0 }
+  userEvent.click(screen.getByText(/login.login/i), leftClick);
+
+  const linkElement2 = screen.getByText(/email/i);
+  expect(linkElement2).toBeInTheDocument();
+
+  // fill out the form
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_email/i), {
+    target: {value: 'spac@gmail.com'},
+  })
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_password/i), {
+    target: {value: '123456'},
+  })
+  fireEvent.click(screen.getAllByText(/login.login/i)[1]);
+  const homeElement = await screen.findByText(/home.question/i) ;
+  expect(homeElement).toBeInTheDocument();
+
+
+  const recommend = screen.getByText(/navbar.Book_Recommendation/i);
+  expect(recommend).toBeInTheDocument();
+
+  userEvent.click(recommend,leftClick);
+
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.name_of_book/i), {
+    target: {value: 'test'},
+  })
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.author_of_book/i), {
+    target: {value: 'Verlyn Klinkenborg'},
+  })
+
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.year_of_pub/i), {
+    target: {value: '202'},
+  })
+   
+  const send = { button: 0 }
+  userEvent.click(screen.getByText(/Send Recommendation/i), send);
+
+
+  //expect(ok).toBeInTheDocument();
+  const ok = await screen.findByText(/Your Recommendation was successfully added!/i) ;
+  expect(ok).toBeInTheDocument();
+
+});
+
+test('login then edit profile', async () => {
+  render(<App />);
+  const linkElement = screen.getByText(/login.login/i);
+  expect(linkElement).toBeInTheDocument();
+  const leftClick = { button: 0 }
+  userEvent.click(screen.getByText(/login.login/i), leftClick);
+
+  const linkElement2 = screen.getByText(/email/i);
+  expect(linkElement2).toBeInTheDocument();
+
+  // fill out the form
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_email/i), {
+    target: {value: 'spac@gmail.com'},
+  })
+  fireEvent.change(screen.getByPlaceholderText(/placeholders.Your_password/i), {
+    target: {value: '123456'},
+  })
+  fireEvent.click(screen.getAllByText(/login.login/i)[1]);
+  const homeElement = await screen.findByText(/home.question/i) ;
+  expect(homeElement).toBeInTheDocument();
+
+
+
+  const userIcon = await screen.getByRole('div', {
+    name: /navbarDropDownContainer/i
+  })    
+  
+  userEvent.click(userIcon,leftClick);
+  const editProfile = await screen.getByText(/navbar.Edit_Profile/i);
+  userEvent.click(editProfile,leftClick);
+
+  fireEvent.change(screen.getByLabelText(/edit_profile.surname/i), {
+    target: {value: 'changed'},
+  })
+
+  const question = await screen.getByText(/home.question/i)
+
+  expect(question).toBeInTheDocument();
+ 
+});
+
+
+
+
