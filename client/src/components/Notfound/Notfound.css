@@ -1,0 +1,85 @@
+.nfBackgroundSection {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-image: url('../../assets/images/backgrounds/background8.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.nfBackgroundFilterSection {
+    width: 100%;
+    height: fit-content;
+    min-height: 810px;
+    background-image: linear-gradient(to left, rgba(68, 20, 5, 0.9) 0%, rgba(35, 9, 36, 0.9) 50%);
+}
+
+.nfContainer {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    padding-top: 10vh;
+}
+
+.nfGoHomeButton {
+    border: 0;
+    outline: 0;
+    padding: 0.5em 1em;
+    font-family: 'Century Gothic';
+    font-size: 20px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #341f97;
+    border: 2px solid #341f97;
+    border-radius: 30px;
+    background-image: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.9) 15%, rgba(255, 255, 255, 0.9) 85%, transparent 100% );
+    background-color: transparent;
+    transition: all 250ms ease-in-out; 
+    cursor: pointer;
+}
+
+.nfGoHomeButton:hover {
+    background-color: #ffffff;
+} 
+
+.nfTextSection {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.nfGIFLogoWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.nfGIFLogo {
+    width: 60%;
+    border-radius: 50%;
+    border: 3px solid white;
+    opacity: 0.9;
+}
+
+.nfLogo {
+    margin: 0 5rem;
+    width: 30%;
+}
+
+.nfText {
+    font-family: 'Century Gothic';
+    font-size: 28px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: white;
+    margin: 2rem 0;
+}

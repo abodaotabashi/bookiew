@@ -214,5 +214,9 @@
         "confirm_pwd":"Yeni Şifre (Tekrar)",
         "confirm_your_pwd":"Şifreyi Onayla",
         "add_your_comment":"Kendi Yorumunuzu Ekleyin ..."
+    },
+    "notfound": {
+        "go_to_home": "Anasayfaya geri dön",
+        "page_not_found": "Ay! Sayfayı bulamadık!"
     }
 }

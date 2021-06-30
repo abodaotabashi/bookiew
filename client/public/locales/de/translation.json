@@ -214,5 +214,9 @@
         "confirm_pwd":"Passwort bestätigen",
         "confirm_your_pwd":"Bestätigen Sie Ihr Passwort",
         "add_your_comment":"Fügen Sie Ihren Kommentar hinzu ..."
+    },
+    "notfound": {
+        "go_to_home": "Zurück zu Startseite",
+        "page_not_found": "Hoppala! Die Seite nicht gefunden!"
     }
 }

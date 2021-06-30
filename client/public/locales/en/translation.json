@@ -214,5 +214,9 @@
         "confirm_pwd":"Confirm Password",
         "confirm_your_pwd":"Confirm Your Password",
         "add_your_comment":"Add Your Comment ..."
+    },
+    "notfound": {
+        "go_to_home": "Go Back to Home",
+        "page_not_found": "Oops! Page not found!"
     }
 }
